@@ -207,6 +207,13 @@ func TestLinksPriceAndConstrainDataMovement(t *testing.T) {
 	if math.Abs(d.Chosen.MoveJoules-1e3) > 1e-6 || d.Chosen.MoveSeconds < 10 || d.Chosen.Start.Before(t0.Add(10*time.Second)) {
 		t.Fatalf("move not priced from the link: %+v", d.Chosen)
 	}
+	// The move is charged at the mean intensity of its two ends (400 and 20
+	// g/kWh), the computation at the intensity where it runs.
+	c := d.Chosen
+	wantG := (c.Joules-c.MoveJoules)/3.6e6*20 + c.MoveJoules/3.6e6*(400+20)/2
+	if math.Abs(c.GCO2-wantG) > 1e-9*math.Max(1, wantG) {
+		t.Fatalf("move carbon not at the path's mean intensity: got %g g, want %g g", c.GCO2, wantG)
+	}
 	// No DE-GB link: GB is unreachable for DE data.
 	r.Zones = []string{"GB"}
 	if d, _ = Plan(e, r); d.Chosen != nil {

@@ -37,11 +37,11 @@ a secondary source, says so. "Checked" notes what we verified ourselves.
 ## Systems and software
 
 - **borg** — A. Verma et al., "Large-scale cluster management at Google with Borg", EuroSys 2015.
-- **k8s-large** — Kubernetes, "Considerations for large clusters": at most 110 pods per node, 5,000 nodes, 150,000 pods. https://kubernetes.io/docs/setup/best-practices/cluster-large/
+- **k8s-large** — Kubernetes, "Considerations for large clusters": designed for at most 110 pods per node, 5,000 nodes, 150,000 pods and 300,000 containers. https://kubernetes.io/docs/setup/best-practices/cluster-large/
 - **k8s-net** — Kubernetes cluster networking model: every pod has its own IP, pods communicate without NAT. https://kubernetes.io/docs/concepts/cluster-administration/networking/
-- **nftables** — "NFTables mode for kube-proxy", Kubernetes blog, 2025. https://kubernetes.io/blog/2025/02/28/nftables-kube-proxy/
+- **nftables** — KEP-3866, "Add an nftables-based kube-proxy backend": alpha 1.31, stable 1.33; iptables remains the default. https://www.k8s.dev/resources/keps/3866/ ; "NFTables mode for kube-proxy", Kubernetes blog, 2025. https://kubernetes.io/blog/2025/02/28/nftables-kube-proxy/
 - **kep5495** — KEP-5495: deprecate ipvs mode in kube-proxy (deprecated in 1.35). https://www.k8s.dev/resources/keps/5495/
-- **dra** — Kubernetes Dynamic Resource Allocation, stable in 1.34. https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/
+- **dra** — "Kubernetes v1.34: DRA has graduated to GA", Kubernetes blog, 2025. https://kubernetes.io/blog/2025/09/01/kubernetes-v1-34-dra-updates/ ; documentation: https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/
 - **homa** — J. Ousterhout, "It's Time to Replace TCP in the Datacenter", arXiv:2210.00714. https://arxiv.org/abs/2210.00714
 - **rfc9171** — S. Burleigh, K. Fall, E. Birrane, "Bundle Protocol Version 7", RFC 9171, 2022. https://www.rfc-editor.org/rfc/rfc9171
 - **dbos** — "DBOS: A DBMS-oriented Operating System", PVLDB 15. https://mail.vldb.org/pvldb/volumes/15/paper/DBOS%3A%20A%20DBMS-oriented%20Operating%20System
