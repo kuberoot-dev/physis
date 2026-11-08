@@ -25,7 +25,9 @@ spec:
       - name: agent
         image: IMAGE
         command: [/usr/local/bin/physis-agent, -name, NAME, -physics, PHYSICS, -zone, ZONE, -operator, OPERATOR,
-                  -jurisdiction, JURISDICTION, -slots, "SLOTS", -data, /data, -state, /state, -code, IMAGE]
+                  -jurisdiction, JURISDICTION, -slots, "SLOTS", -data, /data, -state, /state, -code, IMAGE,
+                  -key-secret, agent-key-NAME]
+        env: [{name: POD_NAMESPACE, valueFrom: {fieldRef: {fieldPath: metadata.namespace}}}]
         resources: {requests: {cpu: 250m, memory: 256Mi}, limits: {cpu: "1", memory: 1Gi}}
         volumeMounts: [{name: data, mountPath: /data}, {name: state, mountPath: /state}]
       volumes:

@@ -21,6 +21,7 @@ import (
 	"net/http"
 	"os"
 	"path/filepath"
+	"slices"
 	"sync"
 	"time"
 
@@ -47,6 +48,8 @@ var (
 	stateDir     = flag.String("state", "/state", "directory for the signing key and the outbox")
 	code         = flag.String("code", "physis-agent/dev", "build identifier written into receipts")
 	gridCache    = flag.String("grid-cache", "", "directory caching live grid data (30 min)")
+	keySecret    = flag.String("key-secret", "", "Secret in the agent's namespace that keeps the signing key across restarts (empty: the state directory only)")
+	namespace    = flag.String("namespace", os.Getenv("POD_NAMESPACE"), "namespace of the key Secret")
 	partitionAnn = v1.Group + "/simulate-partition-until"
 )
 
@@ -87,7 +90,7 @@ func main() {
 	a := &agent{c: c, model: m, loader: &instances.Loader{Dir: *dataDir}, sem: make(chan struct{}, *slots)}
 	a.loadBestFound()
 	ctx := context.Background()
-	priv := a.key()
+	priv := a.key(ctx)
 	seq, head := uint64(0), ""
 	if cur, err := c.GetSubstrate(ctx, *name); err == nil && cur.Status.PublicKey == hex.EncodeToString(priv.Public().(ed25519.PublicKey)) {
 		seq, head = cur.Status.ChainSeq, cur.Status.ChainHead
@@ -101,15 +104,41 @@ func main() {
 	}
 }
 
-// key loads or creates the agent's Ed25519 identity.
-func (a *agent) key() ed25519.PrivateKey {
+// key loads or creates the agent's Ed25519 identity. The identity must
+// outlive the process: a substrate that comes back with a new key starts a
+// new chain, and its earlier receipts verify only against the retired key.
+// The state directory keeps it across process restarts; a Secret, when
+// named, keeps it across pod restarts and moves.
+func (a *agent) key(ctx context.Context) ed25519.PrivateKey {
 	p := filepath.Join(*stateDir, "agent.key")
 	if b, err := os.ReadFile(p); err == nil && len(b) == ed25519.PrivateKeySize {
 		return ed25519.PrivateKey(b)
 	}
-	_, priv, err := ed25519.GenerateKey(rand.Reader)
-	if err != nil {
-		log.Fatal(err)
+	var priv ed25519.PrivateKey
+	if *keySecret != "" {
+		k, err := a.c.SecretKey(ctx, *namespace, *keySecret)
+		if err != nil {
+			log.Fatalf("key secret %s/%s: %v", *namespace, *keySecret, err)
+		}
+		if len(k) == ed25519.PrivateKeySize {
+			priv = ed25519.PrivateKey(k)
+		}
+	}
+	if priv == nil {
+		var err error
+		if _, priv, err = ed25519.GenerateKey(rand.Reader); err != nil {
+			log.Fatal(err)
+		}
+		if *keySecret != "" {
+			if err := a.c.CreateSecretKey(ctx, *namespace, *keySecret, priv); err != nil {
+				// Another start won the race: take its key, not ours.
+				k, gerr := a.c.SecretKey(ctx, *namespace, *keySecret)
+				if gerr != nil || len(k) != ed25519.PrivateKeySize {
+					log.Fatalf("key secret %s/%s: %v", *namespace, *keySecret, err)
+				}
+				priv = ed25519.PrivateKey(k)
+			}
+		}
 	}
 	if err := os.MkdirAll(*stateDir, 0o700); err != nil {
 		log.Fatal(err)
@@ -209,8 +238,14 @@ func (a *agent) heartbeat(ctx context.Context) {
 	s.Meta.Name = *name
 	if cur, err := a.c.GetSubstrate(ctx, *name); err == nil {
 		s.Meta = cur.Meta
+		s.Status.RetiredKeys = cur.Status.RetiredKeys
 		if cur.Status.PublicKey != "" && cur.Status.PublicKey != s.Status.PublicKey {
-			log.Printf("warning: substrate %s was registered with another key; taking it over", *name)
+			// Record the change instead of overwriting: receipts signed with
+			// the old key must stay verifiable.
+			log.Printf("warning: substrate %s was registered with another key; taking it over and retiring the old one", *name)
+			if !slices.Contains(s.Status.RetiredKeys, cur.Status.PublicKey) {
+				s.Status.RetiredKeys = append(s.Status.RetiredKeys, cur.Status.PublicKey)
+			}
 		}
 	}
 	if _, err := a.c.ApplySubstrate(ctx, s); err != nil {

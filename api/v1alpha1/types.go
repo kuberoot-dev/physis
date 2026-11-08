@@ -47,10 +47,14 @@ type SubstrateStatus struct {
 	Agent     string    `json:"agent,omitempty"`
 	Heartbeat time.Time `json:"heartbeat,omitempty"`
 	PublicKey string    `json:"publicKey,omitempty"`
-	ChainSeq  uint64    `json:"chainSeq,omitempty"`
-	ChainHead string    `json:"chainHead,omitempty"`
-	BusyUntil time.Time `json:"busyUntil,omitempty"`
-	Running   int       `json:"running,omitempty"`
+	// RetiredKeys are keys this substrate signed with before PublicKey:
+	// receipts signed with them still verify, and a key change is recorded
+	// rather than silent.
+	RetiredKeys []string  `json:"retiredKeys,omitempty"`
+	ChainSeq    uint64    `json:"chainSeq,omitempty"`
+	ChainHead   string    `json:"chainHead,omitempty"`
+	BusyUntil   time.Time `json:"busyUntil,omitempty"`
+	Running     int       `json:"running,omitempty"`
 }
 
 // InstanceRef names the input of a problem. Exactly one field is set.

@@ -541,9 +541,16 @@ func tc10(t *T) error {
 	if err != nil {
 		return err
 	}
-	key := map[string]string{}
+	// A substrate may have changed its key (a new device, a lost one); its
+	// earlier receipts verify against the keys it lists as retired. A
+	// receipt signed with a key the substrate never published fails.
+	keys := map[string]map[string]bool{}
 	for _, s := range subs {
-		key[s.Meta.Name] = s.Status.PublicKey
+		k := map[string]bool{s.Status.PublicKey: true}
+		for _, r := range s.Status.RetiredKeys {
+			k[r] = true
+		}
+		keys[s.Meta.Name] = k
 	}
 	l, err := t.c.D.Resource(kube.Receipts).Namespace("").List(t.ctx, metav1.ListOptions{})
 	if err != nil {
@@ -556,10 +563,14 @@ func tc10(t *T) error {
 			return err
 		}
 		r := o.Spec
-		chains[r.Substrate] = append(chains[r.Substrate], &r)
+		chains[r.Substrate+"/"+r.Key] = append(chains[r.Substrate+"/"+r.Key], &r)
 	}
 	verified := 0
-	for sub, rs := range chains {
+	for id, rs := range chains {
+		sub, signer, _ := strings.Cut(id, "/")
+		if !keys[sub][signer] {
+			return fmt.Errorf("chain of %s: signed with %.12s, a key the substrate never published", sub, signer)
+		}
 		sort.Slice(rs, func(i, j int) bool { return rs[i].Seq < rs[j].Seq })
 		// Receipts of a chain may live in several namespaces and earlier ones
 		// may have been deleted with their namespace; verify the contiguous
@@ -571,7 +582,7 @@ func tc10(t *T) error {
 			}
 		}
 		tail := rs[start:]
-		if err := receipt.VerifyChain(tail, key[sub]); err != nil {
+		if err := receipt.VerifyChain(tail, signer); err != nil {
 			return fmt.Errorf("chain of %s: %v", sub, err)
 		}
 		verified += len(tail)
@@ -579,12 +590,12 @@ func tc10(t *T) error {
 			forged := *tail[0]
 			forged.DeviceJoules /= 10
 			tampered := append([]*receipt.Receipt{&forged}, tail[1:]...)
-			if receipt.VerifyChain(tampered, key[sub]) == nil {
+			if receipt.VerifyChain(tampered, signer) == nil {
 				return fmt.Errorf("a tampered receipt of %s verified", sub)
 			}
 		}
 	}
-	t.note("%d receipts in %d chains verified with the substrates' public keys; a tampered copy was rejected", verified, len(chains))
+	t.note("%d receipts in %d chains verified with the substrates' published keys; a tampered copy was rejected", verified, len(chains))
 	return nil
 }
 

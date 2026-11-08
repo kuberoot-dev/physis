@@ -8,10 +8,12 @@ package kube
 import (
 	"bytes"
 	"context"
+	"encoding/base64"
 	"encoding/json"
 	"fmt"
 	"strconv"
 
+	apierrors "k8s.io/apimachinery/pkg/api/errors"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
@@ -221,6 +223,33 @@ func (c *Client) CreateReceipt(ctx context.Context, ns, name string, r *v1.Recei
 		return err
 	}
 	_, err = c.D.Resource(Receipts).Namespace(ns).Create(ctx, u, metav1.CreateOptions{})
+	return err
+}
+
+var secrets = schema.GroupVersionResource{Version: "v1", Resource: "secrets"}
+
+// SecretKey reads the key kept in a Secret; a missing Secret is no key.
+func (c *Client) SecretKey(ctx context.Context, ns, name string) ([]byte, error) {
+	u, err := c.D.Resource(secrets).Namespace(ns).Get(ctx, name, metav1.GetOptions{})
+	if apierrors.IsNotFound(err) {
+		return nil, nil
+	}
+	if err != nil {
+		return nil, err
+	}
+	v, _, _ := unstructured.NestedString(u.Object, "data", "key")
+	return base64.StdEncoding.DecodeString(v)
+}
+
+// CreateSecretKey keeps a key in a new Secret; it fails if one exists.
+func (c *Client) CreateSecretKey(ctx context.Context, ns, name string, key []byte) error {
+	u := &unstructured.Unstructured{Object: map[string]any{
+		"apiVersion": "v1", "kind": "Secret",
+		"metadata": map[string]any{"name": name, "namespace": ns},
+		"type":     "Opaque",
+		"data":     map[string]any{"key": base64.StdEncoding.EncodeToString(key)},
+	}}
+	_, err := c.D.Resource(secrets).Namespace(ns).Create(ctx, u, metav1.CreateOptions{})
 	return err
 }
 

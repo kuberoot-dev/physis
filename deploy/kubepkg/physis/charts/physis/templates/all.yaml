@@ -35,6 +35,20 @@ metadata: {name: physis-agent}
 roleRef: {apiGroup: rbac.authorization.k8s.io, kind: ClusterRole, name: physis-agent}
 subjects: [{kind: ServiceAccount, name: physis-agent, namespace: {{ $ns }}}]
 ---
+# Agents keep their signing keys in Secrets of their own namespace, so a
+# restarted or moved agent signs with the same identity.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: {name: physis-agent-keys, namespace: {{ $ns }}}
+rules:
+- {apiGroups: [""], resources: [secrets], verbs: [get, create]}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: {name: physis-agent-keys, namespace: {{ $ns }}}
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: Role, name: physis-agent-keys}
+subjects: [{kind: ServiceAccount, name: physis-agent, namespace: {{ $ns }}}]
+---
 apiVersion: v1
 kind: ConfigMap
 metadata: {name: physis-calibration, namespace: {{ $ns }}}
@@ -99,7 +113,9 @@ spec:
       - name: agent
         image: {{ $.Values.image }}
         command: [/usr/local/bin/physis-agent, -name, {{ .name }}, -physics, {{ .physics }}, -zone, {{ .zone }}, -operator, {{ .operator }},
-                  -jurisdiction, {{ .jurisdiction }}, -slots, {{ .slots | quote }}, -data, /data, -state, /state, -code, {{ $.Values.image }}]
+                  -jurisdiction, {{ .jurisdiction }}, -slots, {{ .slots | quote }}, -data, /data, -state, /state, -code, {{ $.Values.image }},
+                  -key-secret, agent-key-{{ .name }}]
+        env: [{name: POD_NAMESPACE, valueFrom: {fieldRef: {fieldPath: metadata.namespace}}}]
         resources: {requests: {cpu: 250m, memory: 256Mi}, limits: {cpu: "1", memory: 1Gi}}
         volumeMounts: [{name: data, mountPath: /data}, {name: state, mountPath: /state}]
       volumes:
