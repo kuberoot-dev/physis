@@ -5,7 +5,7 @@
   "principle": "P9",
   "title": "every result has a signed receipt whose chain verifies offline; tampering is detected",
   "pass": true,
-  "seconds": 7.16827625,
+  "seconds": 7.6937795829999995,
   "evidence": [
    "132 receipts in 7 chains verified with the substrates' public keys; a tampered copy was rejected"
   ]

@@ -290,7 +290,7 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 			req.Pin.Physics = append(req.Pin.Physics, device.Physics(x))
 		}
 	}
-	env := &plan.Env{Substrates: live, Grid: g, Learn: s.store, Now: now, PUE: 1.2, InterZoneJPerByte: *interZoneJB, IntraZoneJPerByte: *interZoneJB / 10}
+	env := &plan.Env{Substrates: live, Grid: g, Learn: s.store, Now: now, PUE: 1.2, InterZoneJPerByte: *interZoneJB, IntraZoneJPerByte: *interZoneJB / 10, Links: s.links(ctx)}
 	d, err := plan.Plan(env, req)
 	if err != nil {
 		s.reject(ctx, p, err.Error(), nil)
@@ -324,6 +324,24 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 	}
 	s.update(ctx, p)
 	log.Printf("%s/%s planned on %s (%s/%s) at %s: %.3g J, %.3g gCO2", p.Meta.Namespace, p.Meta.Name, d.Chosen.Substrate, d.Chosen.Algorithm, d.Chosen.Effort, d.Chosen.Start.Format(time.RFC3339), d.Chosen.Joules, d.Chosen.GCO2)
+}
+
+// links reads the Link objects: the network as priced paths.
+func (s *scheduler) links(ctx context.Context) []plan.Link {
+	l, err := s.c.D.Resource(kube.Links).List(ctx, metav1.ListOptions{})
+	if err != nil {
+		return nil
+	}
+	var out []plan.Link
+	for i := range l.Items {
+		o, err := kube.Decode[v1.LinkSpec, struct{}](&l.Items[i])
+		if err != nil {
+			continue
+		}
+		out = append(out, plan.Link{Name: o.Meta.Name, From: o.Spec.From, To: o.Spec.To, JPerByte: o.Spec.JPerByte,
+			LatencySeconds: o.Spec.LatencySeconds, BytesPerSecond: o.Spec.BytesPerSecond, Jurisdictions: o.Spec.PathJurisdictions})
+	}
+	return out
 }
 
 func intersect(a, b []string) []string {

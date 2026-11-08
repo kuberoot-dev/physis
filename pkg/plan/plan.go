@@ -82,6 +82,39 @@ type Substrate struct {
 	Slots    int        `json:"-"`
 }
 
+// Link is a network path between two zones (or within one, From == To).
+type Link struct {
+	Name           string   `json:"name"`
+	From, To       string   `json:"-"`
+	JPerByte       float64  `json:"jPerByte"`
+	LatencySeconds float64  `json:"latencySeconds"`
+	BytesPerSecond float64  `json:"bytesPerSecond"`
+	Jurisdictions  []string `json:"pathJurisdictions"`
+}
+
+// route finds the link for moving data from one zone to another; links are
+// symmetric. ok is false when links are declared and none connects the pair.
+func (env *Env) route(from, to string) (Link, bool) {
+	if len(env.Links) == 0 {
+		if from == to || from == "" {
+			return Link{JPerByte: env.IntraZoneJPerByte}, true
+		}
+		return Link{JPerByte: env.InterZoneJPerByte}, true
+	}
+	if from == "" {
+		from = to
+	}
+	for _, l := range env.Links {
+		if (l.From == from && l.To == to) || (l.From == to && l.To == from) {
+			return l, true
+		}
+	}
+	if from == to {
+		return Link{JPerByte: env.IntraZoneJPerByte}, true
+	}
+	return Link{}, false
+}
+
 // Interval is a reservation [From, To).
 type Interval struct{ From, To time.Time }
 
@@ -124,6 +157,12 @@ type Env struct {
 	PUE float64
 	// TransferJPerByte between zones and within one.
 	InterZoneJPerByte, IntraZoneJPerByte float64
+	// Links describe the network between zones as objects with a price
+	// (P11, section 4.4 of the design). When any are given, data moves only
+	// along a link: a pair of zones with no link cannot exchange data, and a
+	// link whose path crosses a jurisdiction the request does not allow is
+	// not used. Without links the two constants above apply.
+	Links []Link
 	// UseActuals makes the scheduler see actual grid values instead of
 	// forecasts: the oracle that bounds what forecasting costs.
 	UseActuals bool
@@ -151,6 +190,11 @@ type Candidate struct {
 	// figures, or it would learn a correction of its own correction.
 	ModelSeconds float64 `json:"modelSeconds"`
 	ModelJoules  float64 `json:"modelJoules"`
+	// Data movement: the link used, its energy and the time before the
+	// data is where the work runs.
+	Link        string  `json:"link,omitempty"`
+	MoveJoules  float64 `json:"moveJoules,omitempty"`
+	MoveSeconds float64 `json:"moveSeconds,omitempty"`
 }
 
 // Finish is when the run is predicted to end.
@@ -250,18 +294,39 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 				// Moving data costs energy in the networks between the zones;
 				// it is charged at the mean intensity of source and
 				// destination, not at the destination's alone.
-				var moveJ float64
+				var moveJ, moveS float64
 				var src *grid.Series
+				var link Link
 				if r.DataBytes > 0 {
+					l, ok := env.route(r.DataZone, s.Zone)
+					if !ok {
+						reject("%s: no link from %s to %s", s.Name, r.DataZone, s.Zone)
+						continue
+					}
+					if len(r.Jurisdictions) > 0 {
+						bad := ""
+						for _, j := range l.Jurisdictions {
+							if !contains(r.Jurisdictions, j) {
+								bad = j
+							}
+						}
+						if bad != "" {
+							reject("%s: the path %s crosses jurisdiction %s", s.Name, l.Name, bad)
+							continue
+						}
+					}
+					link = l
+					moveJ = r.DataBytes * l.JPerByte
+					if l.BytesPerSecond > 0 {
+						moveS = r.DataBytes/l.BytesPerSecond + l.LatencySeconds
+					}
 					if r.DataZone != "" && r.DataZone != s.Zone {
-						moveJ = r.DataBytes * env.InterZoneJPerByte
 						src, _ = env.Grid.Zone(r.DataZone)
-					} else {
-						moveJ = r.DataBytes * env.IntraZoneJPerByte
 					}
 				}
 				dur := time.Duration(secs * float64(time.Second))
-				earliest := env.Now
+				// The work cannot start before its data has arrived.
+				earliest := env.Now.Add(time.Duration(moveS * float64(time.Second)))
 				if s.BusyUntil.After(earliest) {
 					earliest = s.BusyUntil
 				}
@@ -304,7 +369,7 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 					}
 					c := Candidate{Substrate: s.Name, Zone: s.Zone, Physics: s.Model.Physics, Algorithm: a.Name, Effort: e.Name,
 						Start: st, Seconds: secs, Joules: joules + moveJ, GCO2: gco2, EUR: eur, PQuality: pq, QualityN: n, CI: ci,
-						ModelSeconds: cost.Seconds, ModelJoules: cost.Joules}
+						ModelSeconds: cost.Seconds, ModelJoules: cost.Joules, MoveJoules: moveJ, MoveSeconds: moveS, Link: link.Name}
 					if !withinBudget(r.Budget, c) {
 						reject("%s %s/%s: over budget", s.Name, a.Name, e.Name)
 						continue

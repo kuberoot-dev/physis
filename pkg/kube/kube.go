@@ -27,6 +27,7 @@ var (
 	Problems   = schema.GroupVersionResource{Group: v1.Group, Version: v1.Version, Resource: "problems"}
 	Receipts   = schema.GroupVersionResource{Group: v1.Group, Version: v1.Version, Resource: "receipts"}
 	Mandates   = schema.GroupVersionResource{Group: v1.Group, Version: v1.Version, Resource: "mandates"}
+	Links      = schema.GroupVersionResource{Group: v1.Group, Version: v1.Version, Resource: "links"}
 )
 
 // Client wraps the dynamic client.
@@ -155,6 +156,10 @@ func (c *Client) ApplySubstrate(ctx context.Context, s *Substrate) (*Substrate, 
 	cur, err := ri.Get(ctx, s.Meta.Name, metav1.GetOptions{})
 	if err == nil {
 		s.Meta.ResourceVersion = cur.GetResourceVersion()
+		// Keep what others wrote on the object since the caller read it:
+		// an agent's heartbeat must not wipe an operator's annotation.
+		s.Meta.Annotations = cur.GetAnnotations()
+		s.Meta.Labels = cur.GetLabels()
 		u, err := Encode("Substrate", s)
 		if err != nil {
 			return nil, err

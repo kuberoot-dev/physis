@@ -38,6 +38,7 @@ skip is never a pass.
 | TC-14 | Extended | P8 | A substrate cut off from the API server after claiming finishes the work and delivers the report when the connection returns. | Claims slow work, cuts the agent off, checks the report arrives after the cut. |
 | TC-15 | Core | P2, P3 | The same problem class can be met on more than one physics. | Dry runs of a MaxCut and a classification problem; counts physics with feasible plans. |
 | TC-16 | Core | P5 | Results report the achieved quality and plans report a lower confidence bound and the number of observations behind it. | Runs a problem and inspects plan and result. |
+| TC-17 | Core | P11 | Data movement is priced from `Link` objects (energy per byte, transfer time before the start), and a path that crosses a jurisdiction the problem does not allow is not used. | Plans a problem with a gigabyte of data and compares its movement with the Link; then forbids a jurisdiction every path out of a zone crosses and checks the data does not leave. |
 
 ## Test hooks
 

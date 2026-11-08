@@ -135,3 +135,16 @@ type Result struct {
 
 // ReceiptSpec is the signed record (P9); see package receipt.
 type ReceiptSpec = receipt.Receipt
+
+// LinkSpec is a network path between zones as an object with a price
+// (design section 4.4): energy per byte, latency, bandwidth, and the
+// jurisdictions the path crosses.
+type LinkSpec struct {
+	From              string   `json:"from"`
+	To                string   `json:"to"`
+	JPerByte          float64  `json:"jPerByte"`
+	LatencySeconds    float64  `json:"latencySeconds,omitempty"`
+	BytesPerSecond    float64  `json:"bytesPerSecond,omitempty"`
+	PathJurisdictions []string `json:"pathJurisdictions,omitempty"`
+	Source            string   `json:"source"`
+}

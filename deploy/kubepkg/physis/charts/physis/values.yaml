@@ -19,3 +19,5 @@ fleet:
   - {name: organoid-fr, physics: organoid, zone: FR, operator: wetware-fr, jurisdiction: EU, slots: 1}
 # Trusted principals: name -> Ed25519 public key (hex).
 principals: {}
+# Install the default priced network paths between the zones (deploy/links.yaml).
+installLinks: true

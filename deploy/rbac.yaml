@@ -20,7 +20,7 @@ rules:
   resources: [problems, problems/status]
   verbs: [get, list, watch, update]
 - apiGroups: [physis.kuberoot.dev]
-  resources: [substrates, mandates, receipts]
+  resources: [substrates, mandates, receipts, links]
   verbs: [get, list, watch]
 - apiGroups: [""]
   resources: [configmaps]

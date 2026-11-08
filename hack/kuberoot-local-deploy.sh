@@ -43,5 +43,5 @@ kill $PF
 $K apply -f deploy/kubepkg/physis/charts/physis/crds/physis-crds.yaml
 helm template physis deploy/kubepkg/physis/charts/physis --namespace physis-system \
   --set image=localhost:5001/physis:dev | { $K create namespace physis-system --dry-run=client -o yaml; echo ---; cat; } | $K apply -f -
-$K -n physis-system rollout status deploy/physis-scheduler --timeout=600s
+sleep 2; $K -n physis-system rollout status deploy/physis-scheduler --timeout=600s
 $K get substrates

@@ -19,7 +19,7 @@ case "${1:-}" in
     nohup $OUT/bin/stand -assets "$ASSETS" -out $KC > $OUT/logs/stand.log 2>&1 &
     echo $! > $OUT/stand.pid
     for i in $(seq 60); do [ -s $KC ] && break; sleep 1; done
-    kubectl --kubeconfig $KC apply -f deploy/rbac.yaml >/dev/null
+    kubectl --kubeconfig $KC apply -f deploy/rbac.yaml -f deploy/links.yaml >/dev/null
     kubectl --kubeconfig $KC -n physis-system create configmap principals >/dev/null 2>&1 || true
     nohup $OUT/bin/physis-scheduler -kubeconfig $KC -learn out/calibration/learn.json -grid-cache $OUT/grid-cache > $OUT/logs/scheduler.log 2>&1 &
     echo $! > $OUT/scheduler.pid

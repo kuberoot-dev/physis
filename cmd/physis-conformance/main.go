@@ -15,6 +15,7 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"math"
 	"os"
 	"sort"
 	"strings"
@@ -238,6 +239,7 @@ func tests() []test {
 		{"TC-14", "Extended", "P8", "a substrate cut off after claiming finishes the work and reports it later", tc14},
 		{"TC-15", "Core", "P2,P3", "the same problem class is offered on more than one physics", tc15},
 		{"TC-16", "Core", "P5", "results report achieved quality; plans report a confidence bound", tc16},
+		{"TC-17", "Core", "P11", "data movement is priced from Link objects; paths through disallowed jurisdictions are not used", tc17},
 	}
 }
 
@@ -778,7 +780,9 @@ func tc14(t *T) error {
 		return errSkip
 	}
 	sub := p.Status.ClaimedBy
-	until := time.Now().Add(30 * time.Second)
+	// The annotation carries whole seconds; compare against what the agent
+	// is told, not against a finer local clock.
+	until := time.Now().Add(30 * time.Second).Truncate(time.Second)
 	if err := t.partition(sub, until); err != nil {
 		return err
 	}
@@ -842,5 +846,130 @@ func tc16(t *T) error {
 		return fmt.Errorf("plan without a confidence bound")
 	}
 	t.note("plan: P(quality >= %.2f) >= %.3f from %d runs; achieved %.4f", p.Spec.Quality, p.Status.Plan.PQuality, p.Status.Plan.QualityN, p.Status.Result.Quality)
+	return nil
+}
+
+func tc17(t *T) error {
+	l, err := t.c.D.Resource(kube.Links).List(t.ctx, metav1.ListOptions{})
+	if err != nil {
+		return err
+	}
+	type link struct {
+		name string
+		spec v1.LinkSpec
+	}
+	var links []link
+	for i := range l.Items {
+		o, err := kube.Decode[v1.LinkSpec, struct{}](&l.Items[i])
+		if err != nil {
+			return err
+		}
+		links = append(links, link{o.Meta.Name, o.Spec})
+	}
+	if len(links) == 0 {
+		return fmt.Errorf("no Link objects: the network is not described")
+	}
+	find := func(a, b string) *link {
+		for i, x := range links {
+			if (x.spec.From == a && x.spec.To == b) || (x.spec.From == b && x.spec.To == a) {
+				return &links[i]
+			}
+		}
+		return nil
+	}
+	// Part 1: a gigabyte of data in one zone; whatever the plan, its data
+	// movement must be what the Link between the zones says.
+	subs, err := t.substrates()
+	if err != nil {
+		return err
+	}
+	src := ""
+	for _, sub := range liveSubstrates(subs) {
+		src = sub.Spec.Zone
+		break
+	}
+	spec := withDry(maxcut("G1", 0.98))
+	spec.Policy = "min-carbon"
+	spec.DataZone = src
+	spec.DataBytes = 1e9
+	if err := t.createProblem("tc17a", spec, nil); err != nil {
+		return err
+	}
+	p, err := t.wait("tc17a", "plan", phaseIs(v1.PhasePlanned, v1.PhaseRejected))
+	if err != nil || p.Status.Plan == nil {
+		return fmt.Errorf("not planned: %v", err)
+	}
+	pl := p.Status.Plan
+	lk := find(src, pl.Zone)
+	if lk == nil {
+		return fmt.Errorf("planned in %s with data in %s, but no Link connects them", pl.Zone, src)
+	}
+	want := spec.DataBytes * lk.spec.JPerByte
+	if pl.Link != lk.name || math.Abs(pl.MoveJoules-want) > 1e-6*want+1e-9 {
+		return fmt.Errorf("data movement %.4g J over %q, the Link %s says %.4g J", pl.MoveJoules, pl.Link, lk.name, want)
+	}
+	if lk.spec.BytesPerSecond > 0 {
+		minWait := spec.DataBytes / lk.spec.BytesPerSecond
+		if pl.MoveSeconds+1e-9 < minWait || pl.Start.Sub(p.Meta.CreationTimestamp.Time).Seconds() < minWait-1 {
+			return fmt.Errorf("work starts before its data can arrive (%.2fs transfer)", minWait)
+		}
+	}
+	t.note("data in %s, planned in %s over %s: %.3g J and %.2f s of movement, as the Link prices it", src, pl.Zone, lk.name, pl.MoveJoules, pl.MoveSeconds)
+	// Part 2: find a zone whose every link to another zone crosses some
+	// jurisdiction, and forbid that jurisdiction: the data may then not
+	// leave the zone, so a plan, if any, stays there.
+	zones := map[string]bool{}
+	juris := map[string]bool{}
+	for _, sub := range liveSubstrates(subs) {
+		zones[sub.Spec.Zone] = true
+		juris[sub.Spec.Jurisdiction] = true
+	}
+	for z := range zones {
+		for j := range juris {
+			blocked := true
+			for o := range zones {
+				if o == z {
+					continue
+				}
+				x := find(z, o)
+				if x == nil {
+					continue
+				}
+				crosses := false
+				for _, pj := range x.spec.PathJurisdictions {
+					if pj == j {
+						crosses = true
+					}
+				}
+				if !crosses {
+					blocked = false
+				}
+			}
+			if !blocked {
+				continue
+			}
+			var allowed []string
+			for k := range juris {
+				if k != j {
+					allowed = append(allowed, k)
+				}
+			}
+			spec := withDry(digits(100, 0.95))
+			spec.DataZone, spec.DataBytes, spec.Jurisdictions = z, 1e6, allowed
+			if err := t.createProblem("tc17b", spec, nil); err != nil {
+				return err
+			}
+			q, err := t.wait("tc17b", "decision", phaseIs(v1.PhasePlanned, v1.PhaseRejected))
+			if err != nil {
+				return err
+			}
+			if q.Status.Phase == v1.PhasePlanned && q.Status.Plan.Zone != z {
+				return fmt.Errorf("data left %s for %s although every path crosses the forbidden jurisdiction %s", z, q.Status.Plan.Zone, j)
+			}
+			t.note("data in %s, jurisdiction %s forbidden, every path out of %s crosses it: %s", z, j, z, q.Status.Phase)
+			return nil
+		}
+	}
+	t.note("no zone whose every path crosses one jurisdiction: path part not exercised")
 	return nil
 }

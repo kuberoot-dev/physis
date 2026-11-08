@@ -1,0 +1,122 @@
+{{- if .Values.installLinks }}
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: de-de}
+spec:
+  from: DE
+  to: DE
+  jPerByte: 4.77e-07
+  latencySeconds: 0.0005
+  bytesPerSecond: 1.25e+10
+  pathJurisdictions: [EU]
+  source: "assumption (intra-zone: a tenth of the inter-zone energy, 100 Gbit/s)"
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: fr-fr}
+spec:
+  from: FR
+  to: FR
+  jPerByte: 4.77e-07
+  latencySeconds: 0.0005
+  bytesPerSecond: 1.25e+10
+  pathJurisdictions: [EU]
+  source: "assumption (intra-zone: a tenth of the inter-zone energy, 100 Gbit/s)"
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: pl-pl}
+spec:
+  from: PL
+  to: PL
+  jPerByte: 4.77e-07
+  latencySeconds: 0.0005
+  bytesPerSecond: 1.25e+10
+  pathJurisdictions: [EU]
+  source: "assumption (intra-zone: a tenth of the inter-zone energy, 100 Gbit/s)"
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: gb-gb}
+spec:
+  from: GB
+  to: GB
+  jPerByte: 4.77e-07
+  latencySeconds: 0.0005
+  bytesPerSecond: 1.25e+10
+  pathJurisdictions: [UK]
+  source: "assumption (intra-zone: a tenth of the inter-zone energy, 100 Gbit/s)"
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: de-fr}
+spec:
+  from: DE
+  to: FR
+  jPerByte: 4.77e-06
+  latencySeconds: 0.01
+  bytesPerSecond: 1.25e+09
+  pathJurisdictions: [EU]
+  source: "ref:aslan2018 (0.06 kWh/GB in 2015, halving every two years, extrapolated to 2026); bandwidth and latency: assumption"
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: de-pl}
+spec:
+  from: DE
+  to: PL
+  jPerByte: 4.77e-06
+  latencySeconds: 0.012
+  bytesPerSecond: 1.25e+09
+  pathJurisdictions: [EU]
+  source: "ref:aslan2018 (0.06 kWh/GB in 2015, halving every two years, extrapolated to 2026); bandwidth and latency: assumption"
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: de-gb}
+spec:
+  from: DE
+  to: GB
+  jPerByte: 4.77e-06
+  latencySeconds: 0.015
+  bytesPerSecond: 1.25e+09
+  pathJurisdictions: [EU, UK]
+  source: "ref:aslan2018 (0.06 kWh/GB in 2015, halving every two years, extrapolated to 2026); bandwidth and latency: assumption"
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: fr-pl}
+spec:
+  from: FR
+  to: PL
+  jPerByte: 4.77e-06
+  latencySeconds: 0.02
+  bytesPerSecond: 1.25e+09
+  pathJurisdictions: [EU]
+  source: "ref:aslan2018 (0.06 kWh/GB in 2015, halving every two years, extrapolated to 2026); bandwidth and latency: assumption"
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: fr-gb}
+spec:
+  from: FR
+  to: GB
+  jPerByte: 4.77e-06
+  latencySeconds: 0.01
+  bytesPerSecond: 1.25e+09
+  pathJurisdictions: [EU, UK]
+  source: "ref:aslan2018 (0.06 kWh/GB in 2015, halving every two years, extrapolated to 2026); bandwidth and latency: assumption"
+---
+apiVersion: physis.kuberoot.dev/v1alpha1
+kind: Link
+metadata: {name: pl-gb}
+spec:
+  from: PL
+  to: GB
+  jPerByte: 4.77e-06
+  latencySeconds: 0.025
+  bytesPerSecond: 1.25e+09
+  pathJurisdictions: [EU, UK]
+  source: "ref:aslan2018 (0.06 kWh/GB in 2015, halving every two years, extrapolated to 2026); bandwidth and latency: assumption"
+{{- end }}

@@ -5,7 +5,7 @@
   "principle": "P3",
   "title": "every substrate describes its physics with provenance",
   "pass": false,
-  "seconds": 0.012530458,
+  "seconds": 0.003269292,
   "evidence": null,
   "error": "no live substrates"
  },
@@ -15,7 +15,7 @@
   "principle": "P7",
   "title": "work completes without Node objects; roles grant nothing on nodes",
   "pass": false,
-  "seconds": 20.002108208,
+  "seconds": 20.000625333,
   "evidence": [
    "Node objects in the cluster: 0",
    "ClusterRole physis-agent: no access to nodes or pods",
@@ -29,7 +29,7 @@
   "principle": "P2,P4",
   "title": "an outcome request is planned with predicted cost and met by its deadline",
   "pass": false,
-  "seconds": 20.0008955,
+  "seconds": 20.000629,
   "evidence": null,
   "error": "timed out waiting for success (tc03:  )"
  },
@@ -39,7 +39,7 @@
   "principle": "P4",
   "title": "the plan exposes a non-dominated set of alternatives",
   "pass": false,
-  "seconds": 20.000167959,
+  "seconds": 20.000147792,
   "evidence": null,
   "error": "timed out waiting for plan (tc04:  )"
  },
@@ -49,7 +49,7 @@
   "principle": "P5",
   "title": "an unattainable outcome is refused with reasons and never run",
   "pass": false,
-  "seconds": 20.00106225,
+  "seconds": 20.00145175,
   "evidence": null,
   "error": "timed out waiting for a decision (tc05:  )"
  },
@@ -59,7 +59,7 @@
   "principle": "P4",
   "title": "a budget is a hard limit",
   "pass": false,
-  "seconds": 20.00234625,
+  "seconds": 20.001069041,
   "evidence": null,
   "error": "reference plan: timed out waiting for plan (tc06a:  ) "
  },
@@ -69,7 +69,7 @@
   "principle": "P11",
   "title": "zones and operator jurisdictions are hard constraints",
   "pass": false,
-  "seconds": 0.00653475,
+  "seconds": 0.003552625,
   "evidence": null,
   "error": "need live substrates in at least two zones and two jurisdictions, have 0 and 0"
  },
@@ -79,7 +79,7 @@
   "principle": "P14",
   "title": "a dry run returns a plan and runs nothing",
   "pass": false,
-  "seconds": 20.001077291,
+  "seconds": 20.00048875,
   "evidence": null,
   "error": "timed out waiting for plan (tc08:  )"
  },
@@ -89,7 +89,7 @@
   "principle": "P12",
   "title": "deferrable work is placed at the lowest forecast carbon within its deadline",
   "pass": false,
-  "seconds": 20.002448167,
+  "seconds": 20.000261375,
   "evidence": null,
   "error": "timed out waiting for plan (tc09:  )"
  },
@@ -99,7 +99,7 @@
   "principle": "P9",
   "title": "every result has a signed receipt whose chain verifies offline; tampering is detected",
   "pass": false,
-  "seconds": 20.000799625,
+  "seconds": 20.002556459,
   "evidence": null,
   "error": "timed out waiting for success (tc10-0:  )"
  },
@@ -109,7 +109,7 @@
   "principle": "P9",
   "title": "receipts are immutable",
   "pass": false,
-  "seconds": 0.002426625,
+  "seconds": 0.066979666,
   "evidence": null,
   "error": "no receipts to test (run TC-10 first)"
  },
@@ -119,7 +119,7 @@
   "principle": "P10",
   "title": "work outside a valid human mandate is refused; approval thresholds hold",
   "pass": false,
-  "seconds": 20.001780459,
+  "seconds": 20.000524458,
   "evidence": null,
   "error": "timed out waiting for decision (tc12a:  )"
  },
@@ -129,7 +129,7 @@
   "principle": "P7",
   "title": "work planned on a substrate that goes silent returns to the pool and completes elsewhere",
   "pass": false,
-  "seconds": 20.000707333,
+  "seconds": 20.000859375,
   "evidence": null,
   "error": "probe not planned: timed out waiting for plan (tc13-probe:  )"
  },
@@ -139,7 +139,7 @@
   "principle": "P8",
   "title": "a substrate cut off after claiming finishes the work and reports it later",
   "pass": false,
-  "seconds": 20.001070416,
+  "seconds": 20.001096458,
   "evidence": null,
   "error": "timed out waiting for claim (tc14:  )"
  },
@@ -149,7 +149,7 @@
   "principle": "P2,P3",
   "title": "the same problem class is offered on more than one physics",
   "pass": false,
-  "seconds": 20.001171041,
+  "seconds": 20.000302833,
   "evidence": null,
   "error": "timed out waiting for plan (tc15-maxcut:  )"
  },
@@ -159,8 +159,18 @@
   "principle": "P5",
   "title": "results report achieved quality; plans report a confidence bound",
   "pass": false,
-  "seconds": 20.001086542,
+  "seconds": 20.001141042,
   "evidence": null,
   "error": "timed out waiting for success (tc16:  )"
+ },
+ {
+  "id": "TC-17",
+  "level": "Core",
+  "principle": "P11",
+  "title": "data movement is priced from Link objects; paths through disallowed jurisdictions are not used",
+  "pass": false,
+  "seconds": 20.001109416,
+  "evidence": null,
+  "error": "not planned: timed out waiting for plan (tc17a:  )"
  }
 ]

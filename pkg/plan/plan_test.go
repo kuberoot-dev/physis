@@ -185,3 +185,36 @@ func TestReservationsBlockOnlyTheirInterval(t *testing.T) {
 		t.Fatalf("overlapping reservation ignored: %+v", d.Chosen)
 	}
 }
+
+// Links are objects with a price: moving data costs their energy and time,
+// zones without a link cannot exchange data, and a path through a
+// jurisdiction the request does not allow is not taken.
+func TestLinksPriceAndConstrainDataMovement(t *testing.T) {
+	zones := map[string]*grid.Series{"DE": twoPhaseGrid("DE", 400, 400), "FR": twoPhaseGrid("FR", 20, 20), "GB": twoPhaseGrid("GB", 100, 100)}
+	e := env(zones,
+		&Substrate{Name: "cpu-fr", Zone: "FR", Jurisdiction: "EU", Model: device.Builtin(device.CPU)},
+		&Substrate{Name: "cpu-gb", Zone: "GB", Jurisdiction: "UK", Model: device.Builtin(device.CPU)})
+	e.Links = []Link{
+		{Name: "de-fr", From: "DE", To: "FR", JPerByte: 1e-6, BytesPerSecond: 1e8, Jurisdictions: []string{"EU"}},
+		{Name: "gb-fr", From: "GB", To: "FR", JPerByte: 1e-6, BytesPerSecond: 1e8, Jurisdictions: []string{"UK", "EU"}},
+	}
+	knownQuality(e.Learn, shape)
+	r := &Request{ID: "a", Shape: shape, Quality: 0.99, Deadline: t0.Add(time.Hour), Policy: MinCarbon, DataZone: "DE", DataBytes: 1e9}
+	d, _ := Plan(e, r)
+	if d.Chosen == nil || d.Chosen.Zone != "FR" || d.Chosen.Link != "de-fr" {
+		t.Fatalf("expected the DE data to move to FR over de-fr: %+v", d.Chosen)
+	}
+	if math.Abs(d.Chosen.MoveJoules-1e3) > 1e-6 || d.Chosen.MoveSeconds < 10 || d.Chosen.Start.Before(t0.Add(10*time.Second)) {
+		t.Fatalf("move not priced from the link: %+v", d.Chosen)
+	}
+	// No DE-GB link: GB is unreachable for DE data.
+	r.Zones = []string{"GB"}
+	if d, _ = Plan(e, r); d.Chosen != nil {
+		t.Fatalf("planned over a link that does not exist: %+v", d.Chosen)
+	}
+	// GB data may go to FR only through UK and EU; restricted to EU, it cannot.
+	r.Zones, r.DataZone, r.Jurisdictions = nil, "GB", []string{"EU"}
+	if d, _ = Plan(e, r); d.Chosen != nil {
+		t.Fatalf("data crossed a disallowed jurisdiction: %+v", d.Chosen)
+	}
+}
