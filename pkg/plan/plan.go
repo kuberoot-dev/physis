@@ -247,11 +247,17 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 				cost := s.Model.Predict(ops)
 				secs := cost.Seconds * env.Learn.Correct(s.Name, "seconds")
 				joules := cost.Joules * env.Learn.Correct(s.Name, "joules") * env.PUE
+				// Moving data costs energy in the networks between the zones;
+				// it is charged at the mean intensity of source and
+				// destination, not at the destination's alone.
+				var moveJ float64
+				var src *grid.Series
 				if r.DataBytes > 0 {
 					if r.DataZone != "" && r.DataZone != s.Zone {
-						joules += r.DataBytes * env.InterZoneJPerByte
+						moveJ = r.DataBytes * env.InterZoneJPerByte
+						src, _ = env.Grid.Zone(r.DataZone)
 					} else {
-						joules += r.DataBytes * env.IntraZoneJPerByte
+						moveJ = r.DataBytes * env.IntraZoneJPerByte
 					}
 				}
 				dur := time.Duration(secs * float64(time.Second))
@@ -276,13 +282,19 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 						reject("%s %s/%s: finishes after deadline", s.Name, a.Name, e.Name)
 						continue
 					}
-					var ci float64
-					if env.UseActuals {
-						ci = series.CarbonActual(st, dur)
-					} else {
-						ci = series.CarbonForecast(env.Now, st, dur)
+					ciAt := func(z *grid.Series) float64 {
+						if env.UseActuals {
+							return z.CarbonActual(st, dur)
+						}
+						return z.CarbonForecast(env.Now, st, dur)
 					}
-					kwh := joules / 3.6e6
+					ci := ciAt(series)
+					moveCI := ci
+					if src != nil {
+						moveCI = (ci + ciAt(src)) / 2
+					}
+					kwh := (joules + moveJ) / 3.6e6
+					gco2 := joules/3.6e6*ci + moveJ/3.6e6*moveCI
 					price := series.PriceAt(st, dur)
 					// Unknown price stays NaN: it cannot be minimised, and a
 					// zone without a published price must not look free.
@@ -291,7 +303,7 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 						eur = kwh / 1000 * price
 					}
 					c := Candidate{Substrate: s.Name, Zone: s.Zone, Physics: s.Model.Physics, Algorithm: a.Name, Effort: e.Name,
-						Start: st, Seconds: secs, Joules: joules, GCO2: kwh * ci, EUR: eur, PQuality: pq, QualityN: n, CI: ci,
+						Start: st, Seconds: secs, Joules: joules + moveJ, GCO2: gco2, EUR: eur, PQuality: pq, QualityN: n, CI: ci,
 						ModelSeconds: cost.Seconds, ModelJoules: cost.Joules}
 					if !withinBudget(r.Budget, c) {
 						reject("%s %s/%s: over budget", s.Name, a.Name, e.Name)

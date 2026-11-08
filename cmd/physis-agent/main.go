@@ -46,6 +46,7 @@ var (
 	dataDir      = flag.String("data", "/data", "directory with gset/ and digits/")
 	stateDir     = flag.String("state", "/state", "directory for the signing key and the outbox")
 	code         = flag.String("code", "physis-agent/dev", "build identifier written into receipts")
+	gridCache    = flag.String("grid-cache", "", "directory caching live grid data (30 min)")
 	partitionAnn = v1.Group + "/simulate-partition-until"
 )
 
@@ -129,15 +130,16 @@ func (a *agent) loadBestFound() {
 
 func (a *agent) refreshGrid() {
 	for {
-		p, err := grid.FetchLive(&http.Client{Timeout: 2 * time.Minute}, zoneSource(*zone), time.Now().UTC())
+		p, err := grid.CachedLive(&http.Client{Timeout: 2 * time.Minute}, zoneSource(*zone), time.Now().UTC(), *gridCache, 30*time.Minute)
 		if err == nil {
 			a.mu.Lock()
 			a.grid = p.Zones[*zone]
 			a.mu.Unlock()
+			time.Sleep(30 * time.Minute)
 		} else {
-			log.Printf("grid: %v", err)
+			log.Printf("grid: %v; retrying in 5 min", err)
+			time.Sleep(5 * time.Minute)
 		}
-		time.Sleep(30 * time.Minute)
 	}
 }
 

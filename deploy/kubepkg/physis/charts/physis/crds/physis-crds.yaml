@@ -82,8 +82,8 @@ spec:
                   gset: {type: string}
                   random:
                     type: object
-                    required: [n, p, seed]
-                    properties: {n: {type: integer, minimum: 2}, p: {type: number}, seed: {type: integer}}
+                    required: ["n", "p", "seed"]
+                    properties: {"n": {type: integer, minimum: 2}, "p": {type: number}, "seed": {type: integer}}
                   digits:
                     type: object
                     required: [size, offset]

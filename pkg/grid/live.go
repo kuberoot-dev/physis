@@ -2,6 +2,8 @@ package grid
 
 import (
 	"net/http"
+	"os"
+	"path/filepath"
 	"time"
 )
 
@@ -50,6 +52,51 @@ func FetchLive(c *http.Client, zones []ZoneSource, now time.Time) (*Provider, er
 			return nil, err
 		}
 		p.Zones[z.Zone] = s
+	}
+	return p, nil
+}
+
+// CachedLive wraps FetchLive with an on-disk cache: a series younger than ttl
+// is read from dir instead of being fetched again. Providers rate-limit, and
+// a fleet of agents restarting together must not hammer them.
+func CachedLive(c *http.Client, zones []ZoneSource, now time.Time, dir string, ttl time.Duration) (*Provider, error) {
+	if dir == "" {
+		return FetchLive(c, zones, now)
+	}
+	if err := os.MkdirAll(dir, 0o755); err != nil {
+		return nil, err
+	}
+	p := &Provider{Zones: map[string]*Series{}}
+	var missing []ZoneSource
+	for _, z := range zones {
+		path := filepath.Join(dir, z.Zone+".csv")
+		if st, err := os.Stat(path); err == nil && now.Sub(st.ModTime()) < ttl {
+			if f, err := os.Open(path); err == nil {
+				s, err := ReadCSV(z.Zone, f)
+				f.Close()
+				if err == nil {
+					p.Zones[z.Zone] = s
+					continue
+				}
+			}
+		}
+		missing = append(missing, z)
+	}
+	if len(missing) == 0 {
+		return p, nil
+	}
+	fresh, err := FetchLive(c, missing, now)
+	if err != nil {
+		return nil, err
+	}
+	for z, s := range fresh.Zones {
+		p.Zones[z] = s
+		tmp := filepath.Join(dir, z+".csv.tmp")
+		if f, err := os.Create(tmp); err == nil {
+			s.WriteCSV(f)
+			f.Close()
+			os.Rename(tmp, filepath.Join(dir, z+".csv"))
+		}
 	}
 	return p, nil
 }

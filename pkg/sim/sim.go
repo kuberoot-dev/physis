@@ -174,19 +174,24 @@ func Run(cfg Config, jobs []Job) []Outcome {
 		f := math.Exp(cfg.Noise * rng.NormFloat64())
 		deviceJ := cost.Joules * f
 		secs, joules := cost.Seconds*f, deviceJ*cfg.PUE
-		if r.DataBytes > 0 {
-			if r.DataZone != "" && r.DataZone != c.Zone {
-				joules += r.DataBytes * cfg.InterZoneJPerByte
-			} else {
-				joules += r.DataBytes * cfg.IntraZoneJPerByte
-			}
-		}
 		dur := time.Duration(secs * float64(time.Second))
 		series, _ := cfg.Grid.Zone(c.Zone)
 		ci := series.CarbonActual(c.Start, dur)
+		var moveJ float64
+		moveCI := ci
+		if r.DataBytes > 0 {
+			if r.DataZone != "" && r.DataZone != c.Zone {
+				moveJ = r.DataBytes * cfg.InterZoneJPerByte
+				if src, err := cfg.Grid.Zone(r.DataZone); err == nil {
+					moveCI = (ci + src.CarbonActual(c.Start, dur)) / 2
+				}
+			} else {
+				moveJ = r.DataBytes * cfg.IntraZoneJPerByte
+			}
+		}
 		price := series.PriceAt(c.Start, dur)
-		kwh := joules / 3.6e6
-		o.Seconds, o.Joules, o.GCO2 = secs, joules, kwh*ci
+		kwh := (joules + moveJ) / 3.6e6
+		o.Seconds, o.Joules, o.GCO2 = secs, joules+moveJ, joules/3.6e6*ci+moveJ/3.6e6*moveCI
 		o.EUR = math.NaN()
 		if !math.IsNaN(price) {
 			o.EUR = kwh / 1000 * price

@@ -21,12 +21,14 @@ case "${1:-}" in
     for i in $(seq 60); do [ -s $KC ] && break; sleep 1; done
     kubectl --kubeconfig $KC apply -f deploy/rbac.yaml >/dev/null
     kubectl --kubeconfig $KC -n physis-system create configmap principals >/dev/null 2>&1 || true
-    nohup $OUT/bin/physis-scheduler -kubeconfig $KC -learn out/calibration/learn.json > $OUT/logs/scheduler.log 2>&1 &
+    nohup $OUT/bin/physis-scheduler -kubeconfig $KC -learn out/calibration/learn.json -grid-cache $OUT/grid-cache > $OUT/logs/scheduler.log 2>&1 &
     echo $! > $OUT/scheduler.pid
+    # Agents read the grid cache the scheduler fills; start them after it.
+    for i in $(seq 120); do grep -q "grid data loaded" $OUT/logs/scheduler.log 2>/dev/null && break; sleep 5; done
     grep -v '^#' hack/fleet.tsv | while IFS=$'\t' read -r name phys zone op jur slots; do
       mkdir -p $OUT/state/$name
       nohup $OUT/bin/physis-agent -kubeconfig $KC -name "$name" -physics "$phys" -zone "$zone" -operator "$op" \
-        -jurisdiction "$jur" -slots "$slots" -data data -state $OUT/state/$name -code "physis-agent/$(git rev-parse --short HEAD)" \
+        -jurisdiction "$jur" -slots "$slots" -data data -state $OUT/state/$name -grid-cache $OUT/grid-cache -code "physis-agent/$(git rev-parse --short HEAD)" \
         > $OUT/logs/agent-$name.log 2>&1 &
       echo $! > $OUT/agent-$name.pid
     done

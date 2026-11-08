@@ -38,6 +38,7 @@ var (
 	claimGrace  = flag.Duration("claim-grace", 2*time.Minute, "a plan not claimed this long after its start is planned again")
 	interval    = flag.Duration("interval", 2*time.Second, "reconcile interval")
 	systemNS    = flag.String("system-namespace", "physis-system", "namespace of the principals ConfigMap")
+	gridCache   = flag.String("grid-cache", "", "directory caching live grid data (30 min)")
 	interZoneJB = flag.Float64("inter-zone-j-per-byte", 4.77e-6, "energy of moving a byte between zones (ref:aslan2018, extrapolated to 2026)")
 )
 
@@ -65,8 +66,15 @@ func main() {
 		log.Fatal(err)
 	}
 	s := &scheduler{c: c, store: store, seen: map[string]bool{}}
-	if err := s.refreshGrid(); err != nil {
-		log.Fatalf("grid: %v", err)
+	// Without grid data there is nothing to plan with: retry with backoff
+	// instead of exiting, the provider may be rate-limiting.
+	for wait := 10 * time.Second; ; wait = min(2*wait, 10*time.Minute) {
+		err := s.refreshGrid()
+		if err == nil {
+			break
+		}
+		log.Printf("grid: %v; retrying in %s", err, wait)
+		time.Sleep(wait)
 	}
 	go func() {
 		for range time.Tick(30 * time.Minute) {
@@ -90,7 +98,7 @@ func (s *scheduler) refreshGrid() error {
 	if *gridDir != "" {
 		p, err = grid.LoadDir(*gridDir, []string{"DE", "FR", "PL", "GB"})
 	} else {
-		p, err = grid.FetchLive(&http.Client{Timeout: 2 * time.Minute}, grid.DefaultZones, time.Now().UTC())
+		p, err = grid.CachedLive(&http.Client{Timeout: 2 * time.Minute}, grid.DefaultZones, time.Now().UTC(), *gridCache, 30*time.Minute)
 	}
 	if err != nil {
 		return err
