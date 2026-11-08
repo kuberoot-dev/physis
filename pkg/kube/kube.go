@@ -6,9 +6,11 @@
 package kube
 
 import (
+	"bytes"
 	"context"
 	"encoding/json"
 	"fmt"
+	"strconv"
 
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
@@ -78,10 +80,16 @@ func Encode[S, T any](kind string, o *Object[S, T]) (*unstructured.Unstructured,
 	if err != nil {
 		return nil, err
 	}
-	m := map[string]any{}
-	if err := json.Unmarshal(b, &m); err != nil {
+	// Decode numbers exactly: through float64, a 64-bit integer such as a
+	// receipt's seed loses its low digits, and a signature over the exact
+	// value no longer verifies against the stored one.
+	dec := json.NewDecoder(bytes.NewReader(b))
+	dec.UseNumber()
+	var raw map[string]any
+	if err := dec.Decode(&raw); err != nil {
 		return nil, err
 	}
+	m, _ := exactNumbers(raw).(map[string]any)
 	m["apiVersion"] = v1.Group + "/" + v1.Version
 	m["kind"] = kind
 	return &unstructured.Unstructured{Object: m}, nil
@@ -209,4 +217,29 @@ func (c *Client) CreateReceipt(ctx context.Context, ns, name string, r *v1.Recei
 	}
 	_, err = c.D.Resource(Receipts).Namespace(ns).Create(ctx, u, metav1.CreateOptions{})
 	return err
+}
+
+// exactNumbers turns json.Number into int64 where the number is an integer
+// that fits, and into float64 otherwise -- the types unstructured content
+// accepts.
+func exactNumbers(v any) any {
+	switch x := v.(type) {
+	case map[string]any:
+		for k, e := range x {
+			x[k] = exactNumbers(e)
+		}
+		return x
+	case []any:
+		for i, e := range x {
+			x[i] = exactNumbers(e)
+		}
+		return x
+	case json.Number:
+		if i, err := strconv.ParseInt(string(x), 10, 64); err == nil {
+			return i
+		}
+		f, _ := x.Float64()
+		return f
+	}
+	return v
 }
