@@ -1,0 +1,15 @@
+# name	physics	zone	operator	jurisdiction	slots
+cpu-de	cpu	DE	hetzner-like-de	EU	4
+cpu-fr	cpu	FR	ovh-like-fr	EU	4
+cpu-pl	cpu	PL	local-pl	EU	4
+cpu-gb	cpu	GB	colo-gb	UK	4
+ising-digital-pl	ising-digital	PL	annealer-co	EU	1
+sfq-de	sfq	DE	cryo-lab-de	EU	1
+adiabatic-fr	adiabatic	FR	reversible-fr	EU	1
+pbit-gb	pbit	GB	pbit-labs	UK	1
+optical-ising-gb	optical-ising	GB	photon-ising	UK	1
+qpu-de	qpu	DE	quantum-de	EU	1
+analog-imc-fr	analog-imc	FR	pcm-fab	EU	1
+photonic-de	photonic	DE	lightcore	EU	1
+neuromorphic-pl	neuromorphic	PL	spiking-pl	EU	1
+organoid-fr	organoid	FR	wetware-fr	EU	1

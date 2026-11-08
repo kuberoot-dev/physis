@@ -1,0 +1,167 @@
+# physis.kuberoot.dev CRDs. Specs carry schemas strict enough for machine
+# callers (P14); statuses are written by physis components only.
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: substrates.physis.kuberoot.dev
+spec:
+  group: physis.kuberoot.dev
+  scope: Cluster
+  names: {kind: Substrate, plural: substrates, singular: substrate, shortNames: [sub]}
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+    subresources: {status: {}}
+    additionalPrinterColumns:
+    - {name: Physics, type: string, jsonPath: .spec.physics}
+    - {name: Zone, type: string, jsonPath: .spec.zone}
+    - {name: Jurisdiction, type: string, jsonPath: .spec.jurisdiction}
+    - {name: Emulated, type: boolean, jsonPath: .spec.emulated}
+    - {name: Heartbeat, type: date, jsonPath: .status.heartbeat}
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            required: [physics, zone]
+            properties:
+              physics: {type: string, enum: [cpu, ising-digital, pbit, analog-imc, qpu, optical-ising, sfq, adiabatic, neuromorphic, photonic, organoid]}
+              zone: {type: string}
+              operator: {type: string}
+              jurisdiction: {type: string}
+              emulated: {type: boolean}
+              slots: {type: integer, minimum: 1}
+              model:
+                type: array
+                items:
+                  type: object
+                  required: [name, value, source]
+                  properties:
+                    name: {type: string}
+                    value: {type: number}
+                    lo: {type: number}
+                    hi: {type: number}
+                    source: {type: string}
+                    note: {type: string}
+          status: {type: object, x-kubernetes-preserve-unknown-fields: true}
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: problems.physis.kuberoot.dev
+spec:
+  group: physis.kuberoot.dev
+  scope: Namespaced
+  names: {kind: Problem, plural: problems, singular: problem, shortNames: [prob]}
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+    subresources: {status: {}}
+    additionalPrinterColumns:
+    - {name: Phase, type: string, jsonPath: .status.phase}
+    - {name: Substrate, type: string, jsonPath: .status.plan.substrate}
+    - {name: Algorithm, type: string, jsonPath: .status.plan.algorithm}
+    - {name: Start, type: string, jsonPath: .status.plan.start}
+    - {name: Quality, type: number, jsonPath: .status.result.quality}
+    - {name: gCO2, type: number, jsonPath: .status.plan.gco2}
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            required: [class, instance, quality, policy]
+            properties:
+              class: {type: string, enum: [maxcut, classify]}
+              instance:
+                type: object
+                properties:
+                  gset: {type: string}
+                  random:
+                    type: object
+                    required: [n, p, seed]
+                    properties: {n: {type: integer, minimum: 2}, p: {type: number}, seed: {type: integer}}
+                  digits:
+                    type: object
+                    required: [size, offset]
+                    properties: {size: {type: integer, minimum: 1}, offset: {type: integer, minimum: 0}}
+              quality: {type: number, minimum: 0, maximum: 1.5}
+              confidence: {type: number, minimum: 0, maximum: 1}
+              deadline: {type: string, format: date-time}
+              deadlineSeconds: {type: integer, minimum: 1}
+              deferrable: {type: boolean}
+              policy: {type: string, enum: [min-carbon, min-cost, min-energy, fastest]}
+              budget:
+                type: object
+                properties: {joules: {type: number}, eur: {type: number}, gco2: {type: number}}
+              zones: {type: array, items: {type: string}}
+              jurisdictions: {type: array, items: {type: string}}
+              dataZone: {type: string}
+              dataBytes: {type: number}
+              mandate: {type: string}
+              physics: {type: array, items: {type: string}}
+              dryRun: {type: boolean}
+          status: {type: object, x-kubernetes-preserve-unknown-fields: true}
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: receipts.physis.kuberoot.dev
+spec:
+  group: physis.kuberoot.dev
+  scope: Namespaced
+  names: {kind: Receipt, plural: receipts, singular: receipt, shortNames: [rcpt]}
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+    additionalPrinterColumns:
+    - {name: Substrate, type: string, jsonPath: .spec.substrate}
+    - {name: Seq, type: integer, jsonPath: .spec.seq}
+    - {name: Quality, type: number, jsonPath: .spec.quality}
+    - {name: Joules, type: number, jsonPath: .spec.deviceJoules}
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            x-kubernetes-preserve-unknown-fields: true
+            # A receipt is immutable once written.
+            x-kubernetes-validations:
+            - rule: self == oldSelf
+              message: receipts are immutable
+---
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: mandates.physis.kuberoot.dev
+spec:
+  group: physis.kuberoot.dev
+  scope: Namespaced
+  names: {kind: Mandate, plural: mandates, singular: mandate}
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+    additionalPrinterColumns:
+    - {name: Principal, type: string, jsonPath: .spec.principal}
+    - {name: Autonomy, type: string, jsonPath: .spec.autonomy}
+    - {name: NotAfter, type: string, jsonPath: .spec.notAfter}
+    schema:
+      openAPIV3Schema:
+        type: object
+        properties:
+          spec:
+            type: object
+            required: [principal, namespace, autonomy, key, signature]
+            x-kubernetes-preserve-unknown-fields: true
+            properties:
+              principal: {type: string}
+              namespace: {type: string}
+              autonomy: {type: string, enum: [manual, augmented, directed]}
+              key: {type: string}
+              signature: {type: string}

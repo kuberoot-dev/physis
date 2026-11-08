@@ -2,3 +2,6 @@
 /bin/
 /out/
 *.test
+data/gset/
+data/digits/
+data/grid/

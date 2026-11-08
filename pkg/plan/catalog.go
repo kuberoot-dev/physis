@@ -57,12 +57,20 @@ var Catalog = []Algorithm{
 	{Name: "exact", Class: MaxCut, Physics: []device.Physics{device.CPU}, Efforts: []Effort{{Name: "full"}}, MaxN: 24},
 	{Name: "local", Class: MaxCut, Physics: []device.Physics{device.CPU},
 		Efforts: []Effort{{Name: "s10", Starts: 10}, {Name: "s100", Starts: 100}}},
-	{Name: "anneal", Class: MaxCut, Physics: []device.Physics{device.CPU, device.IsingDigital},
+	{Name: "anneal", Class: MaxCut, Physics: []device.Physics{device.CPU, device.IsingDigital, device.SFQ, device.Adiabatic},
 		Efforts: []Effort{{Name: "w300", Sweeps: 300}, {Name: "w3000", Sweeps: 3000}, {Name: "w30000", Sweeps: 30000}}},
 	{Name: "pbit", Class: MaxCut, Physics: []device.Physics{device.PBit},
 		Efforts: []Effort{{Name: "w300", Sweeps: 300}, {Name: "w3000", Sweeps: 3000}, {Name: "w30000", Sweeps: 30000}}},
+	{Name: "cim", Class: MaxCut, Physics: []device.Physics{device.OpticalIsing},
+		Efforts: []Effort{{Name: "r200", Sweeps: 200}, {Name: "r1000", Sweeps: 1000}, {Name: "r5000", Sweeps: 5000}}},
+	{Name: "qaoa", Class: MaxCut, Physics: []device.Physics{device.QPU}, MaxN: 20,
+		Efforts: []Effort{{Name: "p4s256", Sweeps: 4, Starts: 256}, {Name: "p8s1024", Sweeps: 8, Starts: 1024}}},
 	{Name: "exact-fp", Class: Classify, Physics: []device.Physics{device.CPU}, Efforts: []Effort{{Name: "fp64"}}},
-	{Name: "analog", Class: Classify, Physics: []device.Physics{device.AnalogIMC}, Efforts: []Effort{{Name: "w4"}}},
+	{Name: "analog", Class: Classify, Physics: []device.Physics{device.AnalogIMC, device.Photonic}, Efforts: []Effort{{Name: "w4"}}},
+	{Name: "spiking", Class: Classify, Physics: []device.Physics{device.Neuromorphic},
+		Efforts: []Effort{{Name: "t8", Sweeps: 8}, {Name: "t32", Sweeps: 32}, {Name: "t128", Sweeps: 128}}},
+	{Name: "reservoir", Class: Classify, Physics: []device.Physics{device.Organoid},
+		Efforts: []Effort{{Name: "s8", Sweeps: 8}, {Name: "s20", Sweeps: 20}}},
 }
 
 // Find returns an algorithm by name.
@@ -99,6 +107,22 @@ func EstimateOps(a Algorithm, e Effort, s Shape) (solve.Ops, bool) {
 		return solve.Ops{SpinUpdates: int64(e.Sweeps) * int64(s.N), MACs: int64(e.Sweeps) * int64(s.DegreeSum), RandomBits: int64(e.Sweeps) * int64(s.N)}, true
 	case "exact-fp", "analog":
 		return solve.Ops{MACs: int64(s.N) * int64(s.DegreeSum)}, true
+	case "cim":
+		return solve.Ops{SpinUpdates: int64(e.Sweeps) * int64(s.N), MACs: int64(e.Sweeps) * int64(s.DegreeSum)}, true
+	case "qaoa":
+		if s.N > a.MaxN {
+			return solve.Ops{}, false
+		}
+		// Shots are the QPU's operation; gates are recorded for the error model.
+		return solve.Ops{SpinUpdates: int64(e.Starts), MACs: int64(e.Sweeps) * int64(s.DegreeSum)}, true
+	case "spiking":
+		// Expected synaptic events: steps x samples x (mean active inputs
+		// ~ 30% of 64 for digits) x classes. DegreeSum carries MACs per
+		// sample = classes x features, so events ~ 0.3 x steps x MACs.
+		return solve.Ops{MACs: int64(float64(e.Sweeps) * 0.3 * float64(s.N) * float64(s.DegreeSum))}, true
+	case "reservoir":
+		// Unit-steps: samples x steps x units (300).
+		return solve.Ops{SpinUpdates: int64(s.N) * int64(e.Sweeps) * 300}, true
 	}
 	return solve.Ops{}, false
 }

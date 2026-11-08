@@ -8,6 +8,7 @@
 package plan
 
 import (
+	"encoding/json"
 	"fmt"
 	"math"
 	"sort"
@@ -43,15 +44,18 @@ type Request struct {
 	// accuracy / exact accuracy.
 	Quality float64 `json:"quality"`
 	// Confidence is the required lower bound on P(quality >= target).
-	Confidence float64       `json:"confidence"`
-	Deadline   time.Time     `json:"deadline"`
-	Deferrable bool          `json:"deferrable"`
-	Policy     Policy        `json:"policy"`
-	Budget     Budget        `json:"budget"`
-	Zones      []string      `json:"zones,omitempty"` // allowed zones; empty = any
-	DataZone   string        `json:"dataZone,omitempty"`
-	DataBytes  float64       `json:"dataBytes,omitempty"`
-	Pin        *PinAlgorithm `json:"pin,omitempty"` // fix algorithm/physics (baselines, tests)
+	Confidence float64   `json:"confidence"`
+	Deadline   time.Time `json:"deadline"`
+	Deferrable bool      `json:"deferrable"`
+	Policy     Policy    `json:"policy"`
+	Budget     Budget    `json:"budget"`
+	Zones      []string  `json:"zones,omitempty"` // allowed zones; empty = any
+	// Jurisdictions under which the operator of a substrate may fall;
+	// empty = any. Sovereignty is a constraint, not a preference (P11).
+	Jurisdictions []string      `json:"jurisdictions,omitempty"`
+	DataZone      string        `json:"dataZone,omitempty"`
+	DataBytes     float64       `json:"dataBytes,omitempty"`
+	Pin           *PinAlgorithm `json:"pin,omitempty"` // fix algorithm/physics (baselines, tests)
 }
 
 // PinAlgorithm restricts the search.
@@ -62,10 +66,12 @@ type PinAlgorithm struct {
 
 // Substrate is one schedulable device.
 type Substrate struct {
-	Name      string        `json:"name"`
-	Zone      string        `json:"zone"`
-	Model     *device.Model `json:"-"`
-	BusyUntil time.Time     `json:"busyUntil"`
+	Name         string        `json:"name"`
+	Zone         string        `json:"zone"`
+	Operator     string        `json:"operator,omitempty"`
+	Jurisdiction string        `json:"jurisdiction,omitempty"`
+	Model        *device.Model `json:"-"`
+	BusyUntil    time.Time     `json:"busyUntil"`
 }
 
 // Env is everything the scheduler consults.
@@ -111,10 +117,12 @@ func (c Candidate) Finish() time.Time {
 
 // Decision is the outcome of planning.
 type Decision struct {
-	Chosen  *Candidate  `json:"chosen,omitempty"`
-	Pareto  []Candidate `json:"pareto,omitempty"`
-	Count   int         `json:"candidates"`
-	Reasons []string    `json:"reasons,omitempty"` // why candidates were rejected (sample)
+	Chosen *Candidate  `json:"chosen,omitempty"`
+	Pareto []Candidate `json:"pareto,omitempty"`
+	Count  int         `json:"candidates"`
+	// Physics lists every physics with at least one feasible candidate.
+	Physics []device.Physics `json:"feasiblePhysics,omitempty"`
+	Reasons []string         `json:"reasons,omitempty"` // why candidates were rejected (sample)
 }
 
 // zoneAllowed reports whether a zone is in the request's allow-list.
@@ -164,6 +172,10 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 	for _, s := range env.Substrates {
 		if !zoneAllowed(r, s.Zone) {
 			reject("%s: zone %s not allowed", s.Name, s.Zone)
+			continue
+		}
+		if len(r.Jurisdictions) > 0 && !contains(r.Jurisdictions, s.Jurisdiction) {
+			reject("%s: operator jurisdiction %q not allowed", s.Name, s.Jurisdiction)
 			continue
 		}
 		if !pinned(r, s.Model.Physics) {
@@ -226,7 +238,9 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 					}
 					kwh := joules / 3.6e6
 					price := series.PriceAt(st, dur)
-					eur := 0.0
+					// Unknown price stays NaN: it cannot be minimised, and a
+					// zone without a published price must not look free.
+					eur := math.NaN()
 					if finite(price) {
 						eur = kwh / 1000 * price
 					}
@@ -242,6 +256,13 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 		}
 	}
 	d.Count = len(cands)
+	seen := map[device.Physics]bool{}
+	for _, c := range cands {
+		if !seen[c.Physics] {
+			seen[c.Physics] = true
+			d.Physics = append(d.Physics, c.Physics)
+		}
+	}
 	if len(cands) == 0 {
 		return d, nil
 	}
@@ -255,7 +276,7 @@ func withinBudget(b Budget, c Candidate) bool {
 	if b.Joules > 0 && c.Joules > b.Joules {
 		return false
 	}
-	if b.EUR > 0 && c.EUR > b.EUR {
+	if b.EUR > 0 && (math.IsNaN(c.EUR) || c.EUR > b.EUR) {
 		return false
 	}
 	if b.GCO2 > 0 && c.GCO2 > b.GCO2 {
@@ -270,6 +291,9 @@ func objective(p Policy, c Candidate) float64 {
 	case MinCarbon:
 		return c.GCO2
 	case MinCost:
+		if math.IsNaN(c.EUR) {
+			return math.Inf(1)
+		}
 		return c.EUR
 	case MinEnergy:
 		return c.Joules
@@ -305,16 +329,14 @@ func choose(p Policy, cs []Candidate) Candidate {
 }
 
 // pareto keeps candidates not dominated on (carbon, money, energy, finish).
+// Where either price is unknown, money is not comparable and the other three
+// axes decide.
 func pareto(cs []Candidate) []Candidate {
 	var out []Candidate
 	for i, a := range cs {
 		dominated := false
 		for j, b := range cs {
-			if i == j {
-				continue
-			}
-			if b.GCO2 <= a.GCO2 && b.EUR <= a.EUR && b.Joules <= a.Joules && !b.Finish().After(a.Finish()) &&
-				(b.GCO2 < a.GCO2 || b.EUR < a.EUR || b.Joules < a.Joules || b.Finish().Before(a.Finish())) {
+			if i != j && Dominates(b, a) {
 				dominated = true
 				break
 			}
@@ -328,4 +350,53 @@ func pareto(cs []Candidate) []Candidate {
 		out = out[:12]
 	}
 	return out
+}
+
+// Dominates reports whether b is at least as good as a on every comparable
+// axis and strictly better on one.
+func Dominates(b, a Candidate) bool {
+	money := !math.IsNaN(a.EUR) && !math.IsNaN(b.EUR)
+	if b.GCO2 > a.GCO2 || b.Joules > a.Joules || b.Finish().After(a.Finish()) || (money && b.EUR > a.EUR) {
+		return false
+	}
+	return b.GCO2 < a.GCO2 || b.Joules < a.Joules || b.Finish().Before(a.Finish()) || (money && b.EUR < a.EUR)
+}
+
+func (c Candidate) MarshalJSON() ([]byte, error) {
+	type alias Candidate
+	var eur *float64
+	if !math.IsNaN(c.EUR) {
+		v := c.EUR
+		eur = &v
+	}
+	return json.Marshal(struct {
+		alias
+		EUR *float64 `json:"eur"`
+	}{alias(c), eur})
+}
+
+// UnmarshalJSON reads null back as NaN.
+func (c *Candidate) UnmarshalJSON(b []byte) error {
+	type alias Candidate
+	aux := struct {
+		*alias
+		EUR *float64 `json:"eur"`
+	}{alias: (*alias)(c)}
+	if err := json.Unmarshal(b, &aux); err != nil {
+		return err
+	}
+	c.EUR = math.NaN()
+	if aux.EUR != nil {
+		c.EUR = *aux.EUR
+	}
+	return nil
+}
+
+func contains(xs []string, x string) bool {
+	for _, y := range xs {
+		if y == x {
+			return true
+		}
+	}
+	return false
 }

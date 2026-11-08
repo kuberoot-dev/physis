@@ -132,14 +132,11 @@ func ReadGset(name string, r io.Reader) (*Graph, error) {
 	return NewGraph(name, n, edges)
 }
 
-// GsetBestKnown are the best published cut values for the Gset instances
-// used in the evaluation, as compiled by Ma and Hao (2017) and reproduced in
-// later papers (see docs/references.md).
+// GsetBestKnown are best published cut values that we confirmed in two
+// independent sources (ref:gset-best). For other instances physis uses the
+// best cut found across all its own runs as the reference and says so.
 var GsetBestKnown = map[string]float64{
-	"G1": 11624, "G2": 11620, "G3": 11622,
-	"G11": 564, "G12": 556, "G13": 582,
-	"G14": 3064, "G15": 3050,
-	"G22": 13359, "G43": 6660,
+	"G1": 11624, "G2": 11620, "G22": 13359,
 }
 
 // RandomGraph draws an Erdos-Renyi G(n, p) graph with unit weights, seeded so

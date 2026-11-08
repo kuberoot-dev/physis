@@ -33,10 +33,10 @@ var LifecycleFactor = map[string]float64{
 
 // FactorSource says where each factor comes from.
 var FactorSource = map[string]string{
-	"Fossil oil": "assumption (between gas and coal; not in Table A.III.2)",
-	"Waste":      "assumption",
-	"Others":     "assumption",
-	"Fossil coal-derived gas": "assumption (treated as coal)",
+	"Fossil oil":                  "assumption (between gas and coal; not in Table A.III.2)",
+	"Waste":                       "assumption",
+	"Others":                      "assumption",
+	"Fossil coal-derived gas":     "assumption (treated as coal)",
 	"Fossil brown coal / lignite": "ref:ipcc2014 (coal median; lignite is higher, so this understates)",
 }
 
@@ -196,7 +196,8 @@ func FetchGB(c *http.Client, from, to time.Time) (*Series, error) {
 				if k < 0 || k >= n {
 					continue
 				}
-				if d.Intensity.Actual != nil {
+				// The API reports an occasional 0 for a missing reading.
+				if d.Intensity.Actual != nil && *d.Intensity.Actual > 0 {
 					s.CI[k] = *d.Intensity.Actual
 				}
 				if d.Intensity.Forecast != nil {

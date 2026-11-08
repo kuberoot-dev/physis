@@ -119,7 +119,7 @@ func TestBudgetRejectsAndParetoIsNonDominated(t *testing.T) {
 	d, _ := Plan(e, r)
 	for _, a := range d.Pareto {
 		for _, b := range d.Pareto {
-			if b.GCO2 < a.GCO2 && b.EUR < a.EUR && b.Joules < a.Joules && b.Finish().Before(a.Finish()) {
+			if Dominates(b, a) {
 				t.Fatalf("pareto member dominated: %+v by %+v", a, b)
 			}
 		}
