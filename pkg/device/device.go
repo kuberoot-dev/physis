@@ -258,7 +258,7 @@ func Builtin(p Physics) *Model {
 		base := IsingPowerW.V / IsingRate.V
 		return &Model{Physics: Adiabatic, Emulated: true,
 			OpsPerSecond: Value{V: IsingRate.V / 2, Lo: IsingRate.Lo / 2, Hi: IsingRate.Hi / 2, Source: "assumption", Note: "half the clock of a conventional annealer"},
-			EnergyPerOp:  Value{V: base * (1 - AdiabaticSaving.V), Lo: base * (1 - AdiabaticSaving.Hi), Hi: base * (1 - AdiabaticSaving.Lo), Source: "ref:vaire", Note: "conventional annealer energy minus the measured saving"},
+			EnergyPerOp:  Value{V: base * (1 - AdiabaticSaving.V), Lo: base * (1 - AdiabaticSaving.Hi), Hi: base * (1 - AdiabaticSaving.Lo), Source: "assumption", Note: "assumed conventional annealer energy (40 W at 4e9 ops/s) minus the 30% saving measured by Vaire (ref:vaire)"},
 			SetupSeconds: Value{V: 0.002, Lo: 0.0005, Hi: 0.02, Source: "assumption"},
 			MaxSize:      100000, PrecisionBits: 16}
 	case Neuromorphic:

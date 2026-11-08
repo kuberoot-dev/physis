@@ -28,8 +28,8 @@ func cell(v device.Value) string {
 }
 
 func main() {
-	fmt.Println("| Физика | Эмуляция | Операций/с | Энергия на операцию, Дж | Мощность, Вт | Загрузка, с | Калибровка | Ёмкость |")
-	fmt.Println("|---|---|---|---|---|---|---|---|")
+	fmt.Println("| Физика | Эмуляция | Операций/с | Энергия на операцию, Дж | Мощность, Вт | Загрузка, с | Загрузка, Дж | Калибровка | Ёмкость |")
+	fmt.Println("|---|---|---|---|---|---|---|---|---|")
 	for _, p := range device.All {
 		m := device.Builtin(p)
 		cal := "—"
@@ -40,6 +40,6 @@ func main() {
 		if m.Emulated {
 			emu = "да"
 		}
-		fmt.Printf("| %s | %s | %s | %s | %s | %s | %s | %d |\n", p, emu, cell(m.OpsPerSecond), cell(m.EnergyPerOp), cell(m.ActivePowerW), cell(m.SetupSeconds), cal, m.MaxSize)
+		fmt.Printf("| %s | %s | %s | %s | %s | %s | %s | %s | %d |\n", p, emu, cell(m.OpsPerSecond), cell(m.EnergyPerOp), cell(m.ActivePowerW), cell(m.SetupSeconds), cell(m.SetupJoules), cal, m.MaxSize)
 	}
 }
