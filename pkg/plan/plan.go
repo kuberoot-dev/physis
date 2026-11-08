@@ -71,7 +71,44 @@ type Substrate struct {
 	Operator     string        `json:"operator,omitempty"`
 	Jurisdiction string        `json:"jurisdiction,omitempty"`
 	Model        *device.Model `json:"-"`
-	BusyUntil    time.Time     `json:"busyUntil"`
+	// BusyUntil is the earliest the substrate can start new work when it
+	// does not publish reservations.
+	BusyUntil time.Time `json:"busyUntil"`
+	// Reserved are intervals already promised to other work. With Slots
+	// parallel slots a start is possible while fewer than Slots of them
+	// overlap the run. Deferred work reserves only its own interval, not
+	// everything from now until it ends.
+	Reserved []Interval `json:"-"`
+	Slots    int        `json:"-"`
+}
+
+// Interval is a reservation [From, To).
+type Interval struct{ From, To time.Time }
+
+// fit returns the first start >= t at which a run of length d overlaps fewer
+// than slots reservations.
+func fit(res []Interval, slots int, t time.Time, d time.Duration) time.Time {
+	if slots < 1 {
+		slots = 1
+	}
+	for i := 0; i < 1000; i++ {
+		end := t.Add(d)
+		n := 0
+		var next time.Time
+		for _, r := range res {
+			if r.From.Before(end) && r.To.After(t) {
+				n++
+				if next.IsZero() || r.To.Before(next) {
+					next = r.To
+				}
+			}
+		}
+		if n < slots {
+			return t
+		}
+		t = next
+	}
+	return t
 }
 
 // Env is everything the scheduler consults.
@@ -224,6 +261,9 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 					}
 				}
 				for _, st := range starts {
+					if len(s.Reserved) > 0 {
+						st = fit(s.Reserved, s.Slots, st, dur)
+					}
 					avail := s.Model.AvailableAt(float64(st.Unix()), secs)
 					st = time.Unix(int64(math.Ceil(avail)), 0).UTC()
 					if st.Add(dur).After(r.Deadline) {

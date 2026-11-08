@@ -315,7 +315,7 @@ func writeSummary(dir string, all []sim.Summary) {
 	w.Flush()
 }
 
-func f3(x float64) string { return strconv.FormatFloat(x, 'f', 4, 64) }
+func f3(x float64) string { return strconv.FormatFloat(x, 'g', 5, 64) }
 
 func mean(x []float64) float64 {
 	var t float64

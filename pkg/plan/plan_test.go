@@ -166,3 +166,22 @@ func TestSchedulerUsesForecastNotActual(t *testing.T) {
 		t.Fatalf("oracle did not use actuals: start %v", d.Chosen.Start)
 	}
 }
+
+// Deferred work reserves only its own interval: a substrate reserved for a
+// run tomorrow is free now.
+func TestReservationsBlockOnlyTheirInterval(t *testing.T) {
+	sub := &Substrate{Name: "ising", Zone: "DE", Model: device.Builtin(device.IsingDigital), Slots: 1,
+		Reserved: []Interval{{From: t0.Add(10 * time.Hour), To: t0.Add(11 * time.Hour)}}}
+	e := env(map[string]*grid.Series{"DE": twoPhaseGrid("DE", 400, 400)}, sub)
+	knownQuality(e.Learn, shape)
+	r := &Request{ID: "a", Shape: shape, Quality: 0.99, Deadline: t0.Add(time.Hour), Policy: Fastest, Pin: &PinAlgorithm{Physics: []device.Physics{device.IsingDigital}}}
+	d, _ := Plan(e, r)
+	if d.Chosen == nil || !d.Chosen.Start.Equal(t0) {
+		t.Fatalf("a reservation ten hours away delayed work now: %+v", d.Chosen)
+	}
+	sub.Reserved = []Interval{{From: t0, To: t0.Add(30 * time.Minute)}}
+	d, _ = Plan(e, r)
+	if d.Chosen == nil || d.Chosen.Start.Before(t0.Add(30*time.Minute)) {
+		t.Fatalf("overlapping reservation ignored: %+v", d.Chosen)
+	}
+}

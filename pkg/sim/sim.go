@@ -27,9 +27,9 @@ type Member struct {
 	Model *device.Model
 	// True is the model the world actually follows; the scheduler starts
 	// from Model. They differ in the model-mismatch experiment.
-	True  *device.Model
-	Slots int
-	busy  []time.Time
+	True     *device.Model
+	Slots    int
+	reserved []plan.Interval
 }
 
 // Job is one problem in the stream.
@@ -105,7 +105,7 @@ func Run(cfg Config, jobs []Job) []Outcome {
 	// calibration.
 	learnStore.Quality = store.Quality
 	for _, m := range cfg.Fleet {
-		m.busy = make([]time.Time, max(m.Slots, 1))
+		m.reserved = nil
 	}
 	out := make([]Outcome, 0, len(jobs))
 	for _, j := range jobs {
@@ -121,19 +121,21 @@ func Run(cfg Config, jobs []Job) []Outcome {
 		var subs []*plan.Substrate
 		idx := map[string]*Member{}
 		for _, m := range cfg.Fleet {
-			free := m.busy[0]
-			for _, b := range m.busy[1:] {
-				if b.Before(free) {
-					free = b
+			// Forget reservations that ended before this arrival.
+			kept := m.reserved[:0]
+			for _, r := range m.reserved {
+				if r.To.After(j.Arrival) {
+					kept = append(kept, r)
 				}
 			}
+			m.reserved = kept
 			mm := *m.Model
 			if m.Model.Physics == device.CPU {
 				if rate, ok := cfg.Cal.CPUOpsPerSecond[algoForShape(j.Shape)]; ok {
 					mm.OpsPerSecond.V = rate
 				}
 			}
-			subs = append(subs, &plan.Substrate{Name: m.Name, Zone: m.Zone, Model: &mm, BusyUntil: free})
+			subs = append(subs, &plan.Substrate{Name: m.Name, Zone: m.Zone, Model: &mm, Reserved: m.reserved, Slots: max(m.Slots, 1)})
 			idx[m.Name] = m
 		}
 		env := &plan.Env{Substrates: subs, Grid: cfg.Grid, Learn: learnStore, Now: j.Arrival, PUE: cfg.PUE,
@@ -196,14 +198,8 @@ func Run(cfg Config, jobs []Job) []Outcome {
 		finish := c.Start.Add(dur)
 		o.MissDL = finish.After(r.Deadline)
 		o.MissQ = o.Quality < r.Quality-1e-12
-		// Occupy the earliest free slot from the start to the finish.
-		k := 0
-		for i := range m.busy {
-			if m.busy[i].Before(m.busy[k]) {
-				k = i
-			}
-		}
-		m.busy[k] = finish
+		// Reserve the run's own interval on the substrate.
+		m.reserved = append(m.reserved, plan.Interval{From: c.Start, To: finish})
 		if cfg.Policy.Learn {
 			learnStore.Measure(m.Name, "joules", joules/cfg.PUE, c.Joules/cfg.PUE)
 			learnStore.Measure(m.Name, "seconds", secs, c.Seconds)

@@ -155,15 +155,13 @@ func (s *scheduler) reconcile(ctx context.Context) error {
 	}
 	// Queue per substrate: work planned or running there ends no earlier
 	// than its predicted finish.
-	busy := map[string]time.Time{}
+	reserved := map[string][]plan.Interval{}
 	spent := map[string]mandate.Spent{}
 	day := now.Truncate(24 * time.Hour)
 	for _, p := range probs {
 		st := p.Status
 		if st.Plan != nil && (st.Phase == v1.PhasePlanned || st.Phase == v1.PhaseRunning) && !p.Spec.DryRun {
-			if f := st.Plan.Finish(); f.After(busy[st.Plan.Substrate]) {
-				busy[st.Plan.Substrate] = f
-			}
+			reserved[st.Plan.Substrate] = append(reserved[st.Plan.Substrate], plan.Interval{From: st.Plan.Start, To: st.Plan.Finish()})
 		}
 		if st.Phase == v1.PhaseSucceeded && st.Result != nil && st.ClaimedAt != nil && !st.ClaimedAt.Before(day) {
 			sp := spent[p.Meta.Namespace]
@@ -185,11 +183,8 @@ func (s *scheduler) reconcile(ctx context.Context) error {
 		if m == nil {
 			continue
 		}
-		b := busy[sub.Meta.Name]
-		if sub.Spec.Slots > 1 {
-			b = time.Time{} // pools: the prototype does not model slot queues here
-		}
-		live = append(live, &plan.Substrate{Name: sub.Meta.Name, Zone: sub.Spec.Zone, Operator: sub.Spec.Operator, Jurisdiction: sub.Spec.Jurisdiction, Model: m, BusyUntil: b})
+		live = append(live, &plan.Substrate{Name: sub.Meta.Name, Zone: sub.Spec.Zone, Operator: sub.Spec.Operator, Jurisdiction: sub.Spec.Jurisdiction, Model: m,
+			Reserved: reserved[sub.Meta.Name], Slots: max(sub.Spec.Slots, 1)})
 	}
 	for _, p := range probs {
 		switch p.Status.Phase {
