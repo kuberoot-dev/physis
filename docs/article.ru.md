@@ -746,7 +746,7 @@ physis — не продукт, а заявка, проверенная кодо
 
 Ключи в квадратных скобках в тексте ведут сюда. Где цифра взята из вторичного источника, это сказано. Полный список с пометками о том, что мы проверяли сами, — в `docs/references.md` репозитория.
 
-## Physics and devices
+### Physics and devices
 
 - **legallo2023** — M. Le Gallo et al., "A 64-core mixed-signal in-memory compute chip based on phase-change memory for deep neural network inference", *Nature Electronics* (2023), doi:10.1038/s41928-023-01010-1. 63.1 TOPS at 9.76 TOPS/W for 8-bit input/output MVM; effective MVM precision 3–4 bits. Figures as reported in the paper's abstract and in HPCwire's summary: https://www.hpcwire.com/off-the-wire/ibm-develops-a-new-64-core-mixed-signal-in-memory-computing-chip/
 - **ambrogio2023** — S. Ambrogio et al., "An analog-AI chip for energy-efficient speech recognition and transcription", *Nature* 620 (2023). Up to 12.4 TOPS/W. https://www.nature.com/articles/s41586-023-06337-5
@@ -776,7 +776,7 @@ physis — не продукт, а заявка, проверенная кодо
 - **dna2026** — Biomemory DNA storage in datacenters (Blocks & Files, 2026). https://www.blocksandfiles.com/architecture/2026/03/06/french-dna-coming-to-a-datacenter-near-you-soon/4093753
 - **suncatcher** — Google Project Suncatcher and orbital datacentres. https://www.fierce-network.com/cloud/space-data-centers-starcloud-spacex-and-project-suncatcher-explained
 
-## Systems and software
+### Systems and software
 
 - **borg** — A. Verma et al., "Large-scale cluster management at Google with Borg", EuroSys 2015.
 - **k8s-large** — Kubernetes, "Considerations for large clusters": at most 110 pods per node, 5,000 nodes, 150,000 pods. https://kubernetes.io/docs/setup/best-practices/cluster-large/
@@ -796,19 +796,19 @@ physis — не продукт, а заявка, проверенная кодо
 - **malleable** — Ink & Switch, "Malleable Software", 2025. https://www.inkandswitch.com/essay/malleable-software/
 - **microvm2026** — "Your Container Is Not a Sandbox: The State of MicroVM Isolation in 2026". https://emirb.github.io/blog/microvm-2026/
 - **oxide** — Oxide Computer, rack-scale design. https://blocksandfiles.com/?p=56486
-- **kcp** — kcp: a Kubernetes-like control plane without nodes or pods. https://github.com/kcp-dev/kcp
-- **virtual-kubelet** — Virtual Kubelet: a kubelet implementation that presents an arbitrary API as a node. https://github.com/virtual-kubelet/virtual-kubelet
+- **kcp** — kcp: "Kubernetes-like control planes for form-factors and use-cases beyond Kubernetes and container workloads"; it serves Kubernetes-style APIs with no nodes. https://github.com/kcp-dev/kcp
+- **virtual-kubelet** — Virtual Kubelet: a kubelet implementation that "masquerades as a kubelet for the purposes of connecting Kubernetes to other APIs" (ACI, AWS Fargate and others). https://github.com/virtual-kubelet/virtual-kubelet
 - **talos** — Talos Linux: an immutable, API-managed OS that runs only Kubernetes. https://www.talos.dev/
-- **hubris** — Oxide Computer, Hubris: a small operating system for deeply embedded service processors. https://hubris.oxide.computer/
+- **hubris** — Oxide Computer, Hubris: a small open-source operating system for deeply-embedded systems (the microcontrollers of Oxide's racks). https://hubris.oxide.computer/
 - **rfc9162** — B. Laurie, E. Messeri, R. Stradling, "Certificate Transparency Version 2.0", RFC 9162, 2021. https://www.rfc-editor.org/rfc/rfc9162
 - **rekor** — Sigstore Rekor, an append-only transparency log for signed software artefacts. https://docs.sigstore.dev/logging/overview/
-- **mlir** — C. Lattner et al., "MLIR: Scaling Compiler Infrastructure for Domain Specific Computation", CGO 2021. https://arxiv.org/abs/2002.11054
-- **jevons** — W. S. Jevons, *The Coal Question*, 1865; on the rebound effect see B. Alcott, "Jevons' paradox", *Ecological Economics* 54 (2005), doi:10.1016/j.ecolecon.2005.03.020.
+- **mlir** — C. Lattner et al., "MLIR: Scaling Compiler Infrastructure for Domain Specific Computation", CGO 2021; preprint "MLIR: A Compiler Infrastructure for the End of Moore's Law", arXiv:2002.11054. https://arxiv.org/abs/2002.11054
+- **jevons** — W. S. Jevons, *The Coal Question*, 1865; on the rebound effect see B. Alcott, "Jevons' paradox", *Ecological Economics* 54 (2005), doi:10.1016/j.ecolecon.2005.03.020. Checked: title, author, journal and volume via Crossref.
 - **cxl-dc** — Panmnesia and Meta, CXL fabric spanning AI datacentres. https://www.hpcwire.com/off-the-wire/panmnesia-and-meta-outline-cxl-fabric-spanning-entire-ai-data-centers/ ; "One-chip-like datacenter design enabled by CXL-based scale-up fabrics", *Nature Reviews Electrical Engineering* (2026). https://www.nature.com/articles/s44287-026-00315-5
 - **ocp2026** — "OCP 2026: Agentic AI Pushes the Data Center from Chip to Grid". https://www.datacenterfrontier.com/hyperscale/article/55411534/ocp-2026-agentic-ai-pushes-the-data-center-from-chip-to-grid
 - **fhe2026** — FHE accelerators: Niobium "The Fog". https://www.pulse.bot/ai/news/niobium-brings-fully-encrypted-ai-workloads-to-the-cloud-with-the-fog-e8630698-34c4-42c2-b133-dbd0f611552e
 
-## Economics and energy
+### Economics and energy
 
 - **capex2026** — Hyperscaler capex guidance 2026 (aggregated). https://www.yieldtheory.app/research/hyperscaler-ai-capex-tracker-2026
 - **gartner2026** — Gartner, worldwide IT spending 2026: $6.37 trillion, +14.2%. https://www.gartner.com/en/newsroom/press-releases/2026-07-27-gartner-forecasts-worldwide-it-spending-to-grow-14-point-2-percent-in-2026-totaling-6-point-37-trillion
@@ -822,14 +822,14 @@ physis — не продукт, а заявка, проверенная кодо
 - **aslan2018** — J. Aslan, K. Mayers, J. Koomey, C. France, "Electricity Intensity of Internet Data Transmission: Untangling the Estimates", *Journal of Industrial Ecology* 22(4), 2018, doi:10.1111/jiec.12630: 0.06 kWh/GB in 2015, halving about every two years. We extrapolate to 2026 (0.06 / 2^5.5 kWh/GB); the extrapolation is ours.
 - **ipcc2014** — IPCC AR5 WGIII Annex III, Table A.III.2, life-cycle emission medians (gCO2e/kWh): coal 820, gas 490, biomass 230, solar PV utility 48, geothermal 38, hydro 24, nuclear 12, wind 11.5/12. As reproduced at https://lowcarbonpower.org/de/blog/emissions ; NREL harmonisation for comparison: https://www.nrel.gov/docs/fy21osti/80580.pdf
 
-## Foresight
+### Foresight
 
 - **iftf2036** — Institute for the Future, Ten-Year Forecast 2036 "What We Choose Next" (October 2026). https://www.iftf.org/projects/iftf-ten-year-forecast-2036-tyf/
 - **iftf2025** — IFTF Ten-Year Forecast 2025–2035 "Strategy in the Age of Chaos". https://www.iftf.org/events/iftf-ten-year-forecast-2025-2035-sanctuaries-of-social-imagination/ ; perspectives: https://www.iftf.org/projects/iftf-ten-year-forecast-urgent-futures-perspectives/
 - **ftsg2026** — Future Today Strategy Group, Convergence Outlook 2026 (Amy Webb, SXSW 2026). https://sxsw.md/news/2026-03-16-amy-webb-end-of-trend-reports
 - **abi-physical** — ABI Research, "Physical AI at Scale: Why Robotics Needs a New Data Infrastructure". https://www.abiresearch.com/blog/physical-ai-at-scale-why-robotics-needs-a-new-data-infrastructure
 
-## Data and benchmarks
+### Data and benchmarks
 
 - **gset-best** — Gset best-known MaxCut values: G1 = 11624, G2 = 11620, G22 = 13359, confirmed in two independent sources (e.g. arXiv:2606.03917 and the Tabu-search comparison table of Ma and Hao 2017 as cited). Instances: https://web.stanford.edu/~yyye/yyye/Gset/
 - **optdigits** — E. Alpaydin, C. Kaynak, "Optical Recognition of Handwritten Digits", UCI Machine Learning Repository (CC BY 4.0). https://archive.ics.uci.edu/ml/machine-learning-databases/optdigits/
