@@ -1,0 +1,4 @@
+.stand/
+/bin/
+/out/
+*.test
