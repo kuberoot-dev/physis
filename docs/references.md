@@ -54,6 +54,14 @@ a secondary source, says so. "Checked" notes what we verified ourselves.
 - **malleable** — Ink & Switch, "Malleable Software", 2025. https://www.inkandswitch.com/essay/malleable-software/
 - **microvm2026** — "Your Container Is Not a Sandbox: The State of MicroVM Isolation in 2026". https://emirb.github.io/blog/microvm-2026/
 - **oxide** — Oxide Computer, rack-scale design. https://blocksandfiles.com/?p=56486
+- **kcp** — kcp: a Kubernetes-like control plane without nodes or pods. https://github.com/kcp-dev/kcp
+- **virtual-kubelet** — Virtual Kubelet: a kubelet implementation that presents an arbitrary API as a node. https://github.com/virtual-kubelet/virtual-kubelet
+- **talos** — Talos Linux: an immutable, API-managed OS that runs only Kubernetes. https://www.talos.dev/
+- **hubris** — Oxide Computer, Hubris: a small operating system for deeply embedded service processors. https://hubris.oxide.computer/
+- **rfc9162** — B. Laurie, E. Messeri, R. Stradling, "Certificate Transparency Version 2.0", RFC 9162, 2021. https://www.rfc-editor.org/rfc/rfc9162
+- **rekor** — Sigstore Rekor, an append-only transparency log for signed software artefacts. https://docs.sigstore.dev/logging/overview/
+- **mlir** — C. Lattner et al., "MLIR: Scaling Compiler Infrastructure for Domain Specific Computation", CGO 2021. https://arxiv.org/abs/2002.11054
+- **jevons** — W. S. Jevons, *The Coal Question*, 1865; on the rebound effect see B. Alcott, "Jevons' paradox", *Ecological Economics* 54 (2005), doi:10.1016/j.ecolecon.2005.03.020.
 - **cxl-dc** — Panmnesia and Meta, CXL fabric spanning AI datacentres. https://www.hpcwire.com/off-the-wire/panmnesia-and-meta-outline-cxl-fabric-spanning-entire-ai-data-centers/ ; "One-chip-like datacenter design enabled by CXL-based scale-up fabrics", *Nature Reviews Electrical Engineering* (2026). https://www.nature.com/articles/s44287-026-00315-5
 - **ocp2026** — "OCP 2026: Agentic AI Pushes the Data Center from Chip to Grid". https://www.datacenterfrontier.com/hyperscale/article/55411534/ocp-2026-agentic-ai-pushes-the-data-center-from-chip-to-grid
 - **fhe2026** — FHE accelerators: Niobium "The Fog". https://www.pulse.bot/ai/news/niobium-brings-fully-encrypted-ai-workloads-to-the-cloud-with-the-fog-e8630698-34c4-42c2-b133-dbd0f611552e
