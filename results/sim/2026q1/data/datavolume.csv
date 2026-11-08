@@ -1,0 +1,9 @@
+bytes_per_sample,policy,kwh,kgco2,moved_pct
+65,physis-energy,0.0011484,0.00025704,4.8382
+65,physis-carbon,0.0012325,0.00023429,4.8382
+10000,physis-energy,0.0064467,0.0016229,4.8382
+10000,physis-carbon,0.0065307,0.0013115,4.8382
+1e+06,physis-energy,0.53437,0.13771,4.8382
+1e+06,physis-carbon,0.53445,0.10864,4.8382
+1e+08,physis-energy,53.326,13.747,4.8382
+1e+08,physis-carbon,53.326,10.842,4.8382

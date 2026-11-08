@@ -5,7 +5,7 @@
   "principle": "P3",
   "title": "every substrate describes its physics with provenance",
   "pass": true,
-  "seconds": 0.001731166,
+  "seconds": 0.002350875,
   "evidence": [
    "14 live substrates, 11 physics: adiabatic, analog-imc, cpu, ising-digital, neuromorphic, optical-ising, organoid, pbit, photonic, qpu, sfq"
   ]
@@ -16,7 +16,7 @@
   "principle": "P7",
   "title": "work completes without Node objects; roles grant nothing on nodes",
   "pass": true,
-  "seconds": 4.531241542,
+  "seconds": 3.032011208,
   "evidence": [
    "Node objects in the cluster: 0",
    "ClusterRole physis-agent: no access to nodes or pods",
@@ -30,10 +30,10 @@
   "principle": "P2,P4",
   "title": "an outcome request is planned with predicted cost and met by its deadline",
   "pass": true,
-  "seconds": 3.519130208,
+  "seconds": 4.54220725,
   "evidence": [
-   "plan: pbit/w30000 on pbit-gb (pbit), predicted 0.00124s, 0.0123J, 9.14e-07gCO2 at 267 g/kWh",
-   "result: quality 0.9976, finished 1m57s before the deadline"
+   "plan: pbit/w30000 on pbit-gb (pbit), predicted 0.00124s, 0.0123J, 7.77e-07gCO2 at 227 g/kWh",
+   "result: quality 1.0000, finished 1m55s before the deadline"
   ]
  },
  {
@@ -42,9 +42,9 @@
   "principle": "P4",
   "title": "the plan exposes a non-dominated set of alternatives",
   "pass": true,
-  "seconds": 1.5091168750000001,
+  "seconds": 0.5052425,
   "evidence": [
-   "24 candidates considered, 2 non-dominated alternatives exposed"
+   "24 candidates considered, 3 non-dominated alternatives exposed"
   ]
  },
  {
@@ -53,10 +53,10 @@
   "principle": "P5",
   "title": "an unattainable outcome is refused with reasons and never run",
   "pass": true,
-  "seconds": 2.011657459,
+  "seconds": 2.01157475,
   "evidence": [
-   "refused: no way to reach quality 1.000 by 2026-11-08T01:39:34-07:00 within the budget on the 14 live substrates",
-   "e.g. adiabatic-fr anneal/w300: P(q\u003e=1.000) lower bound 0.00 from 12 runs \u003c 1.00"
+   "refused: no way to reach quality 1.000 by 2026-11-08T06:21:08-07:00 within the budget on the 14 live substrates",
+   "e.g. adiabatic-fr anneal/w300: P(q\u003e=1.000) lower bound 0.00 from 17 runs \u003c 1.00"
   ]
  },
  {
@@ -65,7 +65,7 @@
   "principle": "P4",
   "title": "a budget is a hard limit",
   "pass": true,
-  "seconds": 4.024459042,
+  "seconds": 4.526421041,
   "evidence": [
    "cheapest plan 0.00504 J; with a 5.04e-06 J budget: Rejected"
   ]
@@ -76,14 +76,14 @@
   "principle": "P11",
   "title": "zones and operator jurisdictions are hard constraints",
   "pass": true,
-  "seconds": 12.077258291,
+  "seconds": 12.09013625,
   "evidence": [
    "zone FR: Planned",
    "zone DE: Planned",
    "zone GB: Planned",
    "zone PL: Planned",
-   "jurisdiction UK: Planned",
-   "jurisdiction EU: Planned"
+   "jurisdiction EU: Planned",
+   "jurisdiction UK: Planned"
   ]
  },
  {
@@ -92,7 +92,7 @@
   "principle": "P14",
   "title": "a dry run returns a plan and runs nothing",
   "pass": true,
-  "seconds": 10.018744625,
+  "seconds": 10.016921208,
   "evidence": [
    "plan returned; nothing claimed after 8s"
   ]
@@ -103,9 +103,9 @@
   "principle": "P12",
   "title": "deferrable work is placed at the lowest forecast carbon within its deadline",
   "pass": true,
-  "seconds": 2.013447917,
+  "seconds": 0.506629041,
   "evidence": [
-   "planned on adiabatic-fr in FR at 2026-11-08T08:40:03Z (wait 0s), 73 g/kWh forecast"
+   "planned on adiabatic-fr in FR at 2026-11-08T13:21:36Z (wait 0s), 67 g/kWh forecast"
   ]
  },
  {
@@ -114,9 +114,9 @@
   "principle": "P9",
   "title": "every result has a signed receipt whose chain verifies offline; tampering is detected",
   "pass": true,
-  "seconds": 7.045633958,
+  "seconds": 6.061630875,
   "evidence": [
-   "5 receipts in 2 chains verified with the substrates' public keys; a tampered copy was rejected"
+   "125 receipts in 6 chains verified with the substrates' public keys; a tampered copy was rejected"
   ]
  },
  {
@@ -125,9 +125,9 @@
   "principle": "P9",
   "title": "receipts are immutable",
   "pass": true,
-  "seconds": 0.004760208,
+  "seconds": 0.006405625,
   "evidence": [
-   "update of receipt tc02-photonic-de-1 refused: Receipt.physis.kuberoot.dev \"tc02-photonic-de-1\" is invalid: spec: Invalid value: receipts are immutable"
+   "update of receipt tc02-photonic-de-28 refused: Receipt.physis.kuberoot.dev \"tc02-photonic-de-28\" is invalid: spec: Invalid value: receipts are immutable"
   ]
  },
  {
@@ -136,7 +136,7 @@
   "principle": "P10",
   "title": "work outside a valid human mandate is refused; approval thresholds hold",
   "pass": true,
-  "seconds": 6.044853875,
+  "seconds": 6.572194708,
   "evidence": [
    "mandate signed by a key the principal does not hold: no valid mandate: mandate of \"conformance-person\" signed by an unknown key",
    "valid mandate, plan above threshold: AwaitingApproval (plan of 0 J above the 0 J approval threshold)",
@@ -149,10 +149,10 @@
   "principle": "P7",
   "title": "work planned on a substrate that goes silent returns to the pool and completes elsewhere",
   "pass": true,
-  "seconds": 34.192177167,
+  "seconds": 35.171524167,
   "evidence": [
    "would run on adiabatic-fr; that agent was silenced for 75s before submission",
-   "returned to the pool 1 time(s), completed on pbit-gb (pbit)"
+   "returned to the pool 1 time(s), completed on sfq-de (sfq)"
   ]
  },
  {
@@ -161,10 +161,10 @@
   "principle": "P8",
   "title": "a substrate cut off after claiming finishes the work and reports it later",
   "pass": true,
-  "seconds": 32.201456417,
+  "seconds": 32.710547292,
   "evidence": [
-   "claimed by organoid-fr; agent cut off until 2026-11-08T01:41:22-07:00",
-   "work finished at 2026-11-08T08:41:02Z, during the cut; report delivered after it ended, receipt #1"
+   "claimed by organoid-fr; agent cut off until 2026-11-08T06:22:56-07:00",
+   "work finished at 2026-11-08T13:22:38Z, during the cut; report delivered after it ended, receipt #1"
   ]
  },
  {
@@ -173,9 +173,9 @@
   "principle": "P2,P3",
   "title": "the same problem class is offered on more than one physics",
   "pass": true,
-  "seconds": 3.527253458,
+  "seconds": 3.522164583,
   "evidence": [
-   "maxcut: reachable on cpu, ising-digital, pbit, sfq; chosen pbit",
+   "maxcut: reachable on cpu, ising-digital, pbit, sfq; chosen sfq",
    "classify: reachable on cpu, neuromorphic, organoid, photonic; chosen photonic"
   ]
  },
@@ -185,9 +185,9 @@
   "principle": "P5",
   "title": "results report achieved quality; plans report a confidence bound",
   "pass": true,
-  "seconds": 2.019179833,
+  "seconds": 3.013596208,
   "evidence": [
-   "plan: P(quality \u003e= 0.95) \u003e= 0.985 from 257 runs; achieved 0.9835"
+   "plan: P(quality \u003e= 0.95) \u003e= 0.981 from 284 runs; achieved 0.9670"
   ]
  }
 ]

@@ -1,8 +1,8 @@
 policy,kwh_mean,kwh_p5,kwh_p95,kgco2_mean,kgco2_p5,kgco2_p95,eur_mean,deadline_miss_pct,quality_miss_pct,wait_min,placed_pct,physics_share
 k8s-today,0.011171,0.010867,0.011447,0.0025249,0.0024287,0.0026062,0.00098822,0,0.73349,-0.0083645,100,cpu:100.0%
-carbon-aware-cpu,0.012632,0.012285,0.012946,0.0006599,0.00064898,0.00067723,0.0013159,0,0.73349,162.45,100,cpu:100.0%
-hetero-fastest,0.0029658,0.0028905,0.003022,0.00063627,0.00062141,0.00064871,0.00022358,0,0.73062,-0.0083645,100,adiabatic:1.4% cpu:45.6% ising-digital:1.3% pbit:24.3% sfq:27.3%
-physis-energy,0.0011703,0.001149,0.0011972,0.00020037,0.00019442,0.00020601,0.00010857,0,0.93144,-0.0083645,100,adiabatic:27.2% cpu:33.0% ising-digital:10.1% neuromorphic:2.2% pbit:10.4% photonic:2.8% sfq:14.3%
-physis-carbon,0.0019339,0.0018891,0.0019884,0.00010476,0.00010237,0.0001071,0.00018796,0,0.85085,162.47,100,adiabatic:49.8% cpu:29.1% ising-digital:1.1% neuromorphic:0.5% pbit:8.5% photonic:2.1% sfq:8.8%
-physis-cost,0.39514,0.37606,0.42626,0.013301,0.012759,0.014307,-0.0004915,0.0015093,0.8921,170.85,100,adiabatic:26.6% cpu:40.6% ising-digital:10.1% neuromorphic:2.0% organoid:3.6% pbit:1.0% photonic:2.3% sfq:13.8%
-oracle-carbon,0.0019344,0.0018923,0.0019851,9.9023e-05,9.6773e-05,0.00010097,0.00018634,0,0.84926,173.91,100,adiabatic:50.2% cpu:29.1% ising-digital:1.1% neuromorphic:0.5% pbit:8.2% photonic:2.1% sfq:8.8%
+carbon-aware-cpu,0.012188,0.011849,0.012496,0.00079744,0.00078226,0.00081218,0.0011722,0,0.73349,162.5,100,cpu:100.0%
+hetero-fastest,0.0029658,0.0028905,0.003022,0.0006706,0.00065285,0.00068497,0.00022358,0,0.73062,-0.0083645,100,adiabatic:1.4% cpu:45.6% ising-digital:1.3% pbit:24.3% sfq:27.3%
+physis-energy,0.0011703,0.001149,0.0011972,0.00021991,0.00021368,0.00022574,0.00010857,0,0.93144,-0.0083645,100,adiabatic:27.2% cpu:33.0% ising-digital:10.1% neuromorphic:2.2% pbit:10.4% photonic:2.8% sfq:14.3%
+physis-carbon,0.0012277,0.0012055,0.0012565,0.00019008,0.00018539,0.00019507,0.00010078,0,0.91467,162.8,100,adiabatic:31.3% cpu:33.4% ising-digital:8.7% neuromorphic:2.2% pbit:8.7% photonic:2.3% sfq:13.4%
+physis-cost,0.39514,0.37606,0.42626,0.013306,0.012764,0.014312,-0.0004915,0.0015093,0.8921,170.85,100,adiabatic:26.6% cpu:40.6% ising-digital:10.1% neuromorphic:2.0% organoid:3.6% pbit:1.0% photonic:2.3% sfq:13.8%
+oracle-carbon,0.0012311,0.0012093,0.0012583,0.00018544,0.00018096,0.00019026,9.8008e-05,0,0.91467,173.39,100,adiabatic:31.4% cpu:33.4% ising-digital:8.7% neuromorphic:2.2% pbit:8.6% photonic:2.3% sfq:13.3%

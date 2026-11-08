@@ -1,0 +1,4 @@
+variant,kwh,kgco2,wrong_share_pct,err_first10,err_first100,err_decile_1,err_decile_10,physics_share
+no-learning,0.01197,0.0029938,64.601,66.731,74.49,72.627,73.383,adiabatic:27.4% cpu:33.2% ising-digital:9.9% neuromorphic:2.2% pbit:10.4% photonic:2.7% sfq:14.2%
+learning,0.0054231,0.00078396,29.745,32.421,7.6411,5.1263,4.4238,adiabatic:15.3% cpu:68.0% ising-digital:0.3% neuromorphic:2.2% pbit:11.3% photonic:2.7% sfq:0.0%
+truth-known,0.0054125,0.00073753,30.266,2.8364,4.4374,4.0961,4.2147,adiabatic:15.9% cpu:67.5% ising-digital:0.3% neuromorphic:2.2% pbit:11.3% photonic:2.7%
