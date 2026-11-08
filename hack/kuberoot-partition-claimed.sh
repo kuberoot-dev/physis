@@ -10,7 +10,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 D=${D:-out/kuberoot-2n}; IFACE=${IFACE:-eth1}
 K="kubectl --kubeconfig $D/cluster.kubeconfig"
-CUT=${1:-90}; WORKER=${WORKER:-kuberoot-000012}; NS=${NS:-partition-claimed}
+STAMP=$(date +%s); CUT=${1:-90}; WORKER=${WORKER:-kuberoot-000012}; NS=${NS:-partition-claimed}
 $K -n physis-system patch deploy agent-organoid-fr --type merge -p "{\"spec\":{\"template\":{\"spec\":{\"nodeName\":\"$WORKER\"}}}}" >/dev/null
 $K -n physis-system rollout status deploy/agent-organoid-fr --timeout=300s
 $K -n physis-system get pods -l substrate=organoid-fr -o wide --no-headers
@@ -28,7 +28,7 @@ $K -n $NS get problem slow-batch -o jsonpath='claimed by {.status.claimedBy} at 
 cat <<YAML | $K apply -f -
 apiVersion: v1
 kind: Pod
-metadata: {name: cut-link-claimed, namespace: kube-system}
+metadata: {name: cut-link-claimed-$STAMP, namespace: kube-system}
 spec:
   nodeName: $WORKER
   hostNetwork: true
@@ -40,7 +40,7 @@ spec:
     command: [sh, -c, "date -u +%FT%TZ; i=$IFACE; [ \$i = auto ] \u0026\u0026 i=\$(ip route | awk '/^default/ {print \$5}'); r=\$(ip route | grep '^default'); ip link set \$i down; sleep $CUT; ip link set \$i up; sleep 1; [ -n \"\$r\" ] \u0026\u0026 ip route replace \$r; date -u +%FT%TZ"]
 YAML
 until [ "$($K -n $NS get problem slow-batch -o jsonpath='{.status.phase}' 2>/dev/null)" = Succeeded ]; do sleep 2; done
-$K -n kube-system logs cut-link-claimed
+$K -n kube-system logs cut-link-claimed-$STAMP
 $K -n $NS get problem slow-batch -o json --show-managed-fields > $D/partition-claimed.json
 r=$($K -n $NS get problem slow-batch -o jsonpath='{.status.result.receipt}')
 $K -n $NS get receipt "$r" -o json > $D/partition-claimed-receipt.json

@@ -11,7 +11,7 @@ set -euo pipefail
 cd "$(dirname "$0")/.."
 D=${D:-out/kuberoot-2n}; IFACE=${IFACE:-eth1}
 K="kubectl --kubeconfig $D/cluster.kubeconfig"
-DELAY=${1:-90}; CUT=${2:-120}
+DELAY=${1:-90}; CUT=${2:-120}; STAMP=$(date +%s)
 CP=${CP:-kuberoot-000011}; WORKER=${WORKER:-kuberoot-000012}
 $K -n physis-system patch deploy physis-scheduler --type merge -p "{\"spec\":{\"template\":{\"spec\":{\"nodeName\":\"$CP\"}}}}" >/dev/null
 $K -n physis-system rollout status deploy/physis-scheduler --timeout=300s
@@ -24,7 +24,7 @@ cut_at=$(date -u +%Y-%m-%dT%H:%M:%SZ)
 cat <<YAML | $K apply -f -
 apiVersion: v1
 kind: Pod
-metadata: {name: cut-link, namespace: kube-system}
+metadata: {name: cut-link-$STAMP, namespace: kube-system}
 spec:
   nodeName: $WORKER
   hostNetwork: true
@@ -38,5 +38,5 @@ YAML
 echo "cut requested at $cut_at for ${CUT}s"
 wait $LOAD
 echo "load finished: $(tail -1 $D/load-partition.log)"
-$K -n kube-system logs cut-link || true
+$K -n kube-system logs cut-link-$STAMP || true
 echo "$cut_at $CUT" > $D/partition-window.txt
