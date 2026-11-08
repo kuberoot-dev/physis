@@ -8,9 +8,9 @@
 #   hack/kuberoot-partition-claimed.sh [cut-s]
 set -euo pipefail
 cd "$(dirname "$0")/.."
-D=out/kuberoot-2n
+D=${D:-out/kuberoot-2n}; IFACE=${IFACE:-eth1}
 K="kubectl --kubeconfig $D/cluster.kubeconfig"
-CUT=${1:-90}; WORKER=kuberoot-000012; NS=partition-claimed
+CUT=${1:-90}; WORKER=${WORKER:-kuberoot-000012}; NS=${NS:-partition-claimed}
 $K -n physis-system patch deploy agent-organoid-fr --type merge -p "{\"spec\":{\"template\":{\"spec\":{\"nodeName\":\"$WORKER\"}}}}" >/dev/null
 $K -n physis-system rollout status deploy/agent-organoid-fr --timeout=300s
 $K -n physis-system get pods -l substrate=organoid-fr -o wide --no-headers
@@ -37,7 +37,7 @@ spec:
   - name: cut
     image: busybox:1.37
     securityContext: {privileged: true}
-    command: [sh, -c, "date -u +%FT%TZ; ip link set eth1 down; sleep $CUT; ip link set eth1 up; date -u +%FT%TZ"]
+    command: [sh, -c, "date -u +%FT%TZ; i=$IFACE; [ \$i = auto ] \u0026\u0026 i=\$(ip route | awk '/^default/ {print \$5}'); r=\$(ip route | grep '^default'); ip link set \$i down; sleep $CUT; ip link set \$i up; sleep 1; [ -n \"\$r\" ] \u0026\u0026 ip route replace \$r; date -u +%FT%TZ"]
 YAML
 until [ "$($K -n $NS get problem slow-batch -o jsonpath='{.status.phase}' 2>/dev/null)" = Succeeded ]; do sleep 2; done
 $K -n kube-system logs cut-link-claimed

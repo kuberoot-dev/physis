@@ -1,0 +1,14 @@
+{
+ "cluster": "kuberoot, 3 nodes in KubeVirt VMs on the workshop cluster: control plane on server ws1, workers on server ws3",
+ "cut": {
+  "down": "2026-11-08T22:13:59Z",
+  "up": "2026-11-08T22:15:30Z"
+ },
+ "claimedBy": "organoid-fr",
+ "claimedAt": "2026-11-08T22:13:54.49068256Z",
+ "receiptFinished": "2026-11-08T22:14:06.026273881Z",
+ "statusReported": "2026-11-08T22:15:30Z",
+ "phase": "Succeeded",
+ "receipt": "slow-batch-organoid-fr-1",
+ "node": "kuberoot-0e556e (worker, server ws3)"
+}

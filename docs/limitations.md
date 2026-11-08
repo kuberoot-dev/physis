@@ -65,14 +65,15 @@ list is part of the results, not an appendix to them.
 
 ## System
 
-- **Three live stands, all small.** A control plane with no nodes (envtest
+- **Four live stands, all small.** A control plane with no nodes (envtest
   etcd and kube-apiserver 1.37) with physis as local processes; a single
-  kuberoot `edge` node (arm64, built from source, Kubernetes 1.37.1) in QEMU
-  on a laptop with physis as pods from the Helm chart; and a two-machine
-  kuberoot cluster (one control plane, one worker joined with a JoinTicket)
-  in QEMU on the same laptop, agents spread seven and seven. None is a
-  cluster in a datacentre; kuberoot's own high availability was not
-  exercised.
+  kuberoot `edge` node (arm64) in QEMU on a laptop; a two-machine kuberoot
+  cluster in QEMU on the same laptop; and a three-node kuberoot cluster
+  (amd64, built in the cluster) in KubeVirt VMs on the Cozystack workshop
+  cluster, with the control plane on one physical server and both workers
+  on another. Moving a worker to a third server failed on the host
+  cluster's pod networking and was not pursued. kuberoot's own high
+  availability was not exercised.
 - **The scheduler polls** every two seconds rather than using informers.
 - **Learning in the live scheduler is in memory** and is lost on restart.
 - **The network redesign is a design**, checked at the level of the contract
@@ -80,4 +81,4 @@ list is part of the results, not an appendix to them.
   identity-addressed transport.
 - **The partition test hook** simulates a cut-off agent by an annotation in
   the conformance suite; a network-level partition (the worker's cluster link
-  taken down) was tested separately on the two-node kuberoot cluster.
+  taken down) was tested separately on the two-node and the three-node kuberoot clusters.
