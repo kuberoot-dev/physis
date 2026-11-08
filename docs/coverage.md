@@ -18,7 +18,7 @@ implemented.
 | Compute as a commodity; market roles; capture risk | 1, F6; 2 | design |
 | Limits of a single interface: lowest common denominator, embrace-extend, data gravity, commoditise the complement | 2 | design |
 | Jevons paradox | 1, F6 | design |
-| Disconnected and delay-tolerant operation | 1, F7; 6 "Сеть" | tested (TC-14) |
+| Disconnected and delay-tolerant operation | 1, F7; 6 "Сеть"; 8.6 | tested (TC-14; real link cut on a two-node kuberoot cluster) |
 | Systems designing machines (ADRS) | 1, F8; 6 "Планирование" | design |
 | State over computation (DBOS, Hydro, CALM, local-first) | 1, F9 | design |
 | Uncertainty as the norm; quality as a bounded probability | 1, F10; 7 | tested (TC-05, TC-16) |
