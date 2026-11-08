@@ -86,6 +86,10 @@ spec:
     metadata: {labels: {app: physis-agent, substrate: {{ .name }}}}
     spec:
       serviceAccountName: physis-agent
+      # Spread substrates over the cluster's machines; a cluster of one
+      # machine is unaffected.
+      topologySpreadConstraints:
+      - {maxSkew: 1, topologyKey: kubernetes.io/hostname, whenUnsatisfiable: {{ $.Values.agentSpread }}, labelSelector: {matchLabels: {app: physis-agent}}}
       initContainers:
       - name: data
         image: {{ $.Values.dataImage }}

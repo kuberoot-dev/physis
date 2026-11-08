@@ -32,7 +32,7 @@ a secondary source, says so. "Checked" notes what we verified ourselves.
 - **pcss-hybrid** — Hybrid classical-quantum supercomputing: multi-user, multi-QPU and multi-GPU environment at PCSS under Slurm (arXiv:2508.16297). https://arxiv.org/pdf/2508.16297
 - **hpc-qc-sched** — Assessing the elephant in the room in scheduling for current hybrid HPC-QC clusters (arXiv:2504.10520). https://arxiv.org/pdf/2504.10520
 - **dna2026** — Biomemory DNA storage in datacenters (Blocks & Files, 2026). https://www.blocksandfiles.com/architecture/2026/03/06/french-dna-coming-to-a-datacenter-near-you-soon/4093753
-- **suncatcher** — Google Project Suncatcher and orbital datacentres. https://www.fierce-network.com/cloud/space-data-centers-starcloud-spacex-and-project-suncatcher-explained
+- **suncatcher** — Google Project Suncatcher: two prototype TPU satellites with Planet Labs by early 2027 (Interesting Engineering); Starcloud satellite with an NVIDIA GPU. https://interestingengineering.com/innovation/google-project-suncatcher-space-ai ; https://www.fierce-network.com/cloud/space-data-centers-starcloud-spacex-and-project-suncatcher-explained
 
 ## Systems and software
 
@@ -69,8 +69,8 @@ a secondary source, says so. "Checked" notes what we verified ourselves.
 ## Economics and energy
 
 - **capex2026** — Yield Theory, "Hyperscaler Capex 2026: $720B to $740B Guidance by Company" (updated 5 November 2026). https://www.yieldtheory.app/research/hyperscaler-ai-capex-tracker-2026
-- **gartner2026** — Gartner, worldwide IT spending 2026: $6.37 trillion, +14.2%. https://www.gartner.com/en/newsroom/press-releases/2026-07-27-gartner-forecasts-worldwide-it-spending-to-grow-14-point-2-percent-in-2026-totaling-6-point-37-trillion
-- **ai-debt** — "The Half-Trillion-Dollar Silicon Gamble: Inside The AI Debt Boom", Forbes, 2026. https://www.forbes.com/sites/mayrarodriguezvalladares/2026/10/22/the-half-trillion-dollar-silicon-gamble-inside-the-ai-debt-boom/
+- **gartner2026** — Gartner, "Gartner Forecasts Worldwide IT Spending to Grow 14.2% in 2026, Totaling $6.37 Trillion", 27 July 2026. https://www.gartner.com/en/newsroom/press-releases/2026-07-27-gartner-forecasts-worldwide-it-spending-to-grow-14-point-2-percent-in-2026-totaling-6-point-37-trillion ; the Gartner page refuses automated fetching, the release is checked through TelecomTV: https://www.telecomtv.com/content/digital-platforms-services/gartner-forecasts-worldwide-it-spending-to-grow-14-2-in-2026-totalling-6-37tn-55964/
+- **ai-debt** — "Morgan Stanley estimates global AI debt issuance to double to $570 billion in 2026" (Reuters via newkerala, 10 June 2026): "global debt issuance for AI companies to top $500 billion in 2026". https://www.newkerala.com/news/a/morgan-stanley-estimates-global-ai-debt-issuance-double-248.htm ; background: Forbes, "The Half-Trillion-Dollar Silicon Gamble", 2026 (not reachable for automated checking).
 - **ap2-fido** — "FIDO Alliance to start work on interoperable standards for agentic commerce", Biometric Update, April 2026: work drawing on initial contributions from Google (AP2) and Mastercard. https://www.biometricupdate.com/202604/fido-alliance-to-start-work-on-interoperable-standards-for-agentic-commerce
 - **boe-fsr-2026** — Bank of England, Financial Stability Report, July 2026, section 2.3: "chips have short and uncertain lifecycles … debt maturities aligned with the asset life of AI chips would imply shorter tenors than are typically preferred by most credit investors". https://www.bankofengland.co.uk/-/media/boe/files/financial-stability-report/2026/financial-stability-report-july-2026.pdf
 - **woodmac-transformers** — Wood Mackenzie, "Supply shortages and an inflexible market give rise to high power transformer lead times": lead times from about 50 weeks in 2021 to 120 weeks on average in 2024. https://www.woodmac.com/news/opinion/supply-shortages-and-an-inflexible-market-give-rise-to-high-power-transformer-lead-times/
