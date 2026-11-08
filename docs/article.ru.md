@@ -25,7 +25,7 @@
 
 ## 1. Как мы будем вычислять завтра
 
-Футуролог Рой Амара, основатель Institute for the Future, сформулировал закон, который носит его имя: мы переоцениваем эффект технологии на коротком горизонте и недооцениваем на длинном [iftf2025]. Поэтому дальше речь не о прогнозах, а о тенденциях, у которых уже есть измеримые проявления. Каждую мы потом превратим в требование к инфраструктуре.
+Рой Амара, многолетний президент Institute for the Future, сформулировал закон, который носит его имя: мы переоцениваем эффект технологии на коротком горизонте и недооцениваем на длинном [iftf2025]. Поэтому дальше речь не о прогнозах, а о тенденциях, у которых уже есть измеримые проявления. Каждую мы потом превратим в требование к инфраструктуре.
 
 ### F1. Энергия становится связывающим ограничением
 
@@ -121,7 +121,7 @@ Durable execution делает состояние программы перви�
 
 ## 3. Люди, агенты и доверие
 
-Institute for the Future выпускает десятилетний прогноз с 1975 года. Его выпуск «2036 — What We Choose Next» (октябрь 2026) состоит из десяти прогнозов в трёх блоках [iftf2036]:
+Institute for the Future выпускает десятилетний прогноз уже полвека: в 2025 году программе исполнилось 50 лет [iftf2025]. Его выпуск «2036 — What We Choose Next» (октябрь 2026) состоит из десяти прогнозов в трёх блоках [iftf2036]:
 
 - **Доверие и знание:** различение в мире, где видеть больше не значит верить; будущее научного знания; «четыре культуры ИИ» — без ИИ, усиленная ИИ, рядом с ИИ и управляемая ИИ.
 - **Куда мигрируют власть и капитал:** «мутные державы», для которых энергия, а не идеология задаёт повестку; «Китай повсюду»; мир после финансиализации; конец старой страховой модели.
@@ -415,7 +415,7 @@ Kubernetes вырос из Borg [borg] — системы для одной ко
 
 - На больших графах специализированные машины решают ту же задачу на один–три порядка экономнее CPU при одинаковом качестве — ведь алгоритм тот же.
 - На маленьких графах CPU выигрывает: у специализированной машины фиксированные затраты на загрузку задачи больше, чем сам счёт.
-- Квантовый процессор на 20 кубитах решает задачу точно, но тратит десятки килоджоулей: криогеника горит всё время, пока идёт задача. Эта модель не говорит, что квантовые компьютеры бесполезны. Она говорит, что для MaxCut на 20 вершинах они бессмысленны, и планировщик должен это видеть.
+- Квантовый процессор на графах из 20 вершин находит в среднем 95,6% оптимума (ошибки вентилей съедают часть качества) и тратит около 53 кДж: криогеника горит всё время, пока идёт задача. Точный перебор на CPU находит оптимум за 51 мДж — примерно в миллион раз дешевле. Эта модель не говорит, что квантовые компьютеры бесполезны. Она говорит, что для MaxCut на 20 вершинах они бессмысленны, и планировщик должен это видеть.
 - Живая культура классифицирует цифры даже точнее линейной модели, потому что резервуар — нелинейное расширение признаков. Но на 1797 изображений у неё уходит около шести минут и около 10 кДж энергии жизнеобеспечения — в тысячи раз больше, чем у любой другой физики на этой задаче.
 
 ### Планировщик
@@ -444,5 +444,287 @@ Kubernetes вырос из Borg [borg] — системы для одной ко
 
 Мандат подписывает человек. Он делегирует пространство имён, бюджет на день в джоулях, евро и граммах CO₂, зоны, срок действия и уровень автономии: «ручной» — одобрять каждый план; «усиленный» — одобрять планы выше порога; «направляемый» — агенты действуют сами в пределах бюджета. Ключи людей зарегистрированы в control plane, а подпись проверяется при каждой задаче.
 
-<!-- RESULTS -->
+
+---
+
+## 8. Как мы проверяли
+
+### 8.1. Методика
+
+Проверка шла на трёх уровнях, и у каждого своя роль.
+
+1. **Калибровка на реальном процессоре.** Каждая комбинация «алгоритм × усилие × физика» прогонялась на всех экземплярах по 12 раз — 6405 запусков. Это настоящие вычисления: разрезы считаются, классификаторы классифицируют, качество измеряется против рекордов и точных решений. Время CPU измерено, время и энергия остальных физик посчитаны моделью по числу операций. Двенадцать повторов взялись не с потолка. При пяти повторах планировщик отказывался планировать G22: пять успехов из пяти дают нижнюю границу Уилсона 0,83, а требовалось 0,9. Система отказывалась обещать то, что недостаточно проверила, — ровно как требует принцип П5.
+
+2. **Цифровой двойник на реальных данных энергосистем.** Симулятор использует тот же код планировщика. Поток примерно из 13 тысяч задач за квартал приходит днём вдвое чаще, чем ночью. Половина задач интерактивная (срок 60 секунд, ждать нельзя), половина пакетная (срок от 2 до 24 часов, ждать можно). Каждая пятая задача может выполняться только в ЕС, каждая десятая — только в зоне своих данных. Два квартала — первый (зима) и третий (лето) 2026 года — с данными Германии, Франции, Польши и Великобритании с шагом 15 минут. Парк подложек — CPU-пулы по 16 слотов в каждой стране и по одной машине каждой из десяти особых физик у разных «владельцев» в разных странах. Планировщик видит только **прогноз**, а углерод и деньги начисляются по **факту** часов, в которые работа реально шла. Итог исполнения берётся из калибровки: качество выбирается случайно из реально наблюдённых значений для этой комбинации, затраты — из модели с разбросом ±10% (логнормальный шум). Каждая политика прогоняется с пятью зёрнами; приводим среднее и диапазон 5–95%.
+
+3. **Живой стенд.** Настоящий kube-apiserver 1.37 с etcd без единой ноды, планировщик и 14 агентов (CPU в четырёх странах и десять особых физик) процессами, живые прогнозы энергосистем на день запуска. На нём шли поток из 120 задач в реальном времени и conformance-набор.
+
+Сравнивались семь политик:
+
+| Политика | Что это |
+|---|---|
+| **Kubernetes сегодня** | Только CPU, только в зоне данных, сразу, как можно быстрее. Так устроено большинство кластеров |
+| **Углеродно-осознанная, только CPU** | Только CPU, но в любой разрешённой зоне и с переносом во времени на минимум углерода — так устроены сегодняшние «зелёные» планировщики |
+| **Разная физика, только скорость** | Все физики, но цель — закончить как можно раньше, без учёта энергии |
+| **physis: минимум энергии** | Все физики, все зоны, без ожидания |
+| **physis: минимум углерода** | Все физики, все зоны, с ожиданием до срока |
+| **physis: минимум денег** | То же, цель — деньги |
+| **Оракул** | Как «минимум углерода», но видит фактическую интенсивность вместо прогноза: верхняя граница того, что даёт идеальный прогноз |
+
+### 8.2. Главный результат
+
+Третий квартал 2026 года, около 13 тысяч задач на прогон, пять прогонов:
+
+| Политика | Энергия, Вт·ч | Углерод, г CO₂ (5–95%) | Против «Kubernetes сегодня» | Среднее ожидание | Срывы срока | Недобор качества |
+|---|---|---|---|---|---|---|
+| Kubernetes сегодня | 11,17 | 2,525 (2,43–2,61) | — | 0 | 0 | 0,73% |
+| Углеродно-осознанная, только CPU | 12,19 | 0,797 (0,78–0,81) | энергия +9%, углерод −68% | 162 мин | 0 | 0,73% |
+| Разная физика, только скорость | 2,97 | 0,671 (0,65–0,69) | −73%, −73% | 0 | 0 | 0,73% |
+| **physis: минимум энергии** | **1,17** | 0,220 (0,21–0,23) | **−90%**, −91% | 0 | 0 | 0,93% |
+| **physis: минимум углерода** | 1,23 | **0,190** (0,19–0,20) | −89%, **−92%** | 163 мин | 0 | 0,91% |
+| physis: минимум денег | 395,1 | 13,31 (12,8–14,3) | **+3437%, +427%** | 171 мин | 0 | 0,89% |
+| Оракул | 1,23 | 0,185 (0,18–0,19) | −89%, −93% | 174 мин | 0 | 0,91% |
+
+Первый квартал (зима) даёт ту же картину: «минимум энергии» −89% энергии и −91% углерода, «минимум углерода» −92% углерода, оракул −92%, углеродно-осознанный CPU −69% углерода при +9% энергии.
+
+Что из этого следует.
+
+**Выбор физики даёт больше, чем выбор места и времени вместе взятые.** Перенос по времени и месту на одних процессорах (то, что сегодня называют углеродно-осознанным планированием) снимает около 70% углерода, но добавляет 9% энергии и заставляет пакетную работу ждать в среднем почти три часа. Одна только смена физики, даже без всякой цели по энергии, даёт −73% по обоим показателям без ожидания. physis с целью по энергии — минус 90% энергии и 91% углерода, тоже без ожидания. Ожидание чистых часов добавляет сверху ещё 14% экономии углерода.
+
+**Цели надо выбирать осознанно: «минимум денег» — опасная цель.** На рынке на сутки вперёд бывают отрицательные цены: энергосистема платит за потребление, когда избыток ветра и солнца некуда девать. В третьем квартале 2026 года так было в 7,6% четвертей часа в Германии, в 6,5% во Франции и в 3,7% в Польше (там минимум доходил до −120 € за МВт·ч). Планировщик, минимизирующий деньги, в такие часы выбирает самый энергоёмкий вариант — живую культуру нейронов с её жизнеобеспечением (3,6% задач) — и в сумме тратит в 35 раз больше энергии, чем Kubernetes, буквально зарабатывая на этом. С точки зрения сигнала цены это правильное поведение: сети нужна нагрузка. С точки зрения углерода и здравого смысла — нет. Вывод для дизайна: деньги нельзя делать единственной целью; нужна составная цель или ограничение по энергии и углероду поверх денег. Мандаты с дневным бюджетом в джоулях и граммах (принцип П10) — один из способов это сделать.
+
+**Прогноз стоит немного.** Оракул, видящий будущее точно, лучше нашего наивного прогноза «как вчера» всего на 2,5% углерода в третьем квартале и на 2,6% в первом. Почти вся выгода приходит от выбора физики и от ожидания как такового, а не от точности прогноза.
+
+**Сроки не нарушены ни разу.** Недобор качества — меньше 1% задач при заявленной 90-процентной нижней границе уверенности. У политик physis он чуть выше (0,9% против 0,7%): они чаще берут минимальное усилие, которое по статистике ещё укладывается в цель.
+
+### 8.3. Перенос данных: вычисления должны идти к данным
+
+В первой версии симулятора энергия переноса данных начислялась по углероду страны назначения, и планировщик охотно увозил задачи во Францию с её атомной энергетикой: так уезжало до трети работы. Это была ошибка модели. Данные идут по сетям между странами, и честнее считать перенос по средней интенсивности источника и назначения. После исправления физически увезённой оказалась только та работа, которую заставляли увозить ограничения суверенитета, — 4,8% задач. Добровольно планировщик не перенёс ни одной.
+
+Причина в масштабах. По оценке Аслана и соавторов, передача данных по интернету стоила 0,06 кВт·ч на гигабайт в 2015 году и дешевела вдвое каждые два года [aslan2018]. Экстраполяция на 2026 год даёт около 4,8 мкДж на байт. Граф G22 весит около 480 КБ, и его перенос стоит порядка 2,3 Дж. Решение той же задачи на обратимой логике — 4 мДж, в пятьсот раз меньше. Чем экономнее становится физика вычислений, тем сильнее перенос данных доминирует в счёте. Мы прогнали эксперимент с объёмом данных на задачу от 65 байт до 100 МБ на изображение, и доля добровольных переносов во всех случаях осталась нулевой.
+
+Оговорка: внутризонный перенос мы приняли в десять раз дешевле межзонного, и это допущение. Но вывод от него не зависит. В мире, где вычисление дешевеет на порядки, а сеть — вдвое за два года, **планировщик должен везти вычисление к данным, а не наоборот**. Для дизайна это аргумент за перенос данных как явную, планируемую операцию с ценой (раздел 6) и против плоской сети, где перенос невидим.
+
+### 8.4. Модель ошибается — система учится
+
+Самый важный вопрос к эмуляции: что будет, если модель реальной машины окажется неверной? Мы проверили это напрямую. Пять физик — цифровой отжиг, SFQ, обратимая логика, p-биты и фотоника — в «мире» тратят в 30 раз больше энергии, чем считает модель планировщика. Это достаточно, чтобы доверие к модели вело к неправильному выбору физики. Сравнивались три варианта:
+
+| Вариант (3-й квартал) | Энергия, Вт·ч | Углерод, г | Работы на «ошибочных» физиках | Ошибка прогноза: первые 10 запусков → первые 100 → конец квартала |
+|---|---|---|---|---|
+| Без обучения | 11,97 | 2,99 | 64,6% | 67% → 74% → 73% |
+| **С обучением по квитанциям** | **5,42** | **0,78** | 29,7% | **32% → 7,6% → 4,4%** |
+| Истина известна заранее | 5,41 | 0,74 | 30,3% | 3% → 4,4% → 4,2% |
+
+Без обучения планировщик продолжает верить модели и тратит в 2,2 раза больше энергии. С обучением ошибка прогноза падает с 32% на первых десяти запусках до 7,6% на первых ста и упирается в уровень шума (около 4–5%). Итоговые энергия и доля работы на «ошибочных» физиках практически совпадают с вариантом, где истина известна заранее. В первом квартале цифры те же.
+
+Именно поэтому эмуляция в прототипе — не лажа, а постановка эксперимента. Модель подложки — это стартовая гипотеза, а не утверждение. На реальном железе система сама сведёт её с фактом по квитанциям за первые сотни запусков.
+
+По пути этот эксперимент нашёл ещё одну ошибку. Сначала обучение не сходилось, ошибка стояла около 60%, потому что квитанции сравнивались с уже скорректированным прогнозом и система учила «поправку к поправке». Теперь факт сравнивается с сырым предсказанием модели, без поправок, накладных расходов площадки и переноса данных.
+
+
+### 8.5. Насколько выводы зависят от допущений
+
+Большинство параметров эмулированных физик — допущения с диапазонами. Мы по очереди сдвигали каждую физику на пессимистичный край её диапазона (энергия и мощность — максимум, скорость — минимум) и на оптимистичный, причём одновременно и в «мире», и в модели планировщика. Затем смотрели, какую долю работы эта физика получает и что происходит с суммарным углеродом. Три прогона на точку, оба квартала; ниже — третий квартал, первый даёт те же выводы.
+
+| Физика | Доля работы (мин. углерода): пессим. / номинал / оптим. | Углерод всего, г: пессим. / номинал / оптим. |
+|---|---|---|
+| Обратимая логика | 30,8% / 31,2% / 32,3% | 0,191 / 0,189 / 0,185 |
+| p-биты | 6,2% / 8,7% / 8,9% | 0,192 / 0,189 / 0,189 |
+| Фотоника | 2,3% / 2,3% / 2,3% | 0,189 / 0,189 / 0,189 |
+| Нейроморфный чип | 0% / 2,2% / 2,2% | 0,189 / 0,189 / 0,189 |
+| Цифровой отжиг | **0%** / 8,6% / 13,7% | **0,349** / 0,189 / 0,146 |
+| SFQ | **0%** / 13,3% / 18,2% | **0,250** / 0,189 / 0,146 |
+| Квантовый процессор, оптическая машина Изинга, живая культура, аналоговая память | 0% при любых параметрах | без изменений |
+
+Из таблицы следуют три вывода.
+
+- **Устойчивые.** Доли обратимой логики, p-битов, фотоники и нейроморфного чипа почти не зависят от того, где в диапазоне допущений лежит правда.
+- **Зависящие от допущений.** Роль цифрового отжига и сверхпроводящей логики целиком определяется их скоростью, мощностью и, для SFQ, ценой охлаждения: на пессимистичном краю планировщик перестаёт их выбирать, и углерод в сумме растёт на 32–84%. Для этих физик нужна калибровка на реальном железе, прежде чем делать выводы.
+- **Никогда не выбираемые** для этих задач: квантовый процессор (криогеника съедает всё на задачах до 20 вершин), оптическая машина Изинга (у неё хуже качество при сравнимой энергии), живая культура (медленно и дорого из-за жизнеобеспечения) и аналоговая память (фотоника решает ту же классификацию точнее и дешевле). Это не приговор физикам, а свойство этих задач и этих моделей. И именно то, что планировщик должен уметь видеть.
+
+Самое важное для всей статьи: **даже на самом пессимистичном краю любой физики суммарный углерод physis на 84% ниже, чем у «Kubernetes сегодня»** (0,40 г против 2,52 г в третьем квартале, 0,47 г против 2,95 г в первом). Чувствительность меняет то, какая особая физика выигрывает, но не то, что выигрывает выбор физики.
+
+Оговорка: физики сдвигались по одной, а не все сразу, и диапазоны — наши. Совместный пессимистичный сценарий — следующая проверка.
+
+
+### 8.6. Живой стенд
+
+Поток из 120 задач в реальном времени — MaxCut на графах Gset и случайных графах, классификация цифр, четыре разные политики, у трети задач ограничение «только ЕС» — прошёл на control plane без нод с живыми прогнозами энергосистем на 8 ноября 2026 года:
+
+- выполнены **все 120 задач**; сроки не нарушены;
+- работа разошлась по пяти физикам: обратимая логика — 47 задач, фотоника — 27, CPU — 26, p-биты — 12, SFQ — 8;
+- качество не дотянуло до цели в 3 случаях из 120 (2,5%) — в пределах заявленной 90-процентной уверенности;
+- от создания задачи до того, как агент её забрал, в медиане проходит 2,3 с, на 95-м перцентиле — 3,7 с. Это цена опроса: планировщик проверяет задачи раз в 2 секунды, агент — раз в секунду;
+- все квитанции этого прогона и conformance-набора — 125 квитанций в шести цепочках — проверены открытыми ключами подложек без доступа к системе.
+
+### 8.7. Среды, на которых мы проверяли
+
+| Среда | Что на ней проверено |
+|---|---|
+| Ноутбук на Apple M4 (macOS, arm64) | Калибровка: 6405 запусков всех алгоритмов на всех физиках; модульные тесты (23 теста: решатели против точного перебора, планировщик, квитанции, мандаты) |
+| Control plane без нод: kube-apiserver 1.37 и etcd из envtest, 14 агентов процессами | Сквозная работа без объектов Node; живой поток из 120 задач; conformance 16/16 и контрольный прогон 0/16 |
+| Цифровой двойник на данных энергосистем DE, FR, PL, GB за первый и третий кварталы 2026 года | Сравнение семи политик, ценность прогноза, перенос данных, обучение при ошибочной модели, чувствительность к допущениям |
+| Кластер kuberoot `edge` (пакет kubepkg и Helm-чарт) | Подготовлено, прогон ждёт стенда (см. ограничения) |
+
+---
+
+## 9. Conformance для систем завтрашнего дня
+
+Conformance Kubernetes отвечает на вопрос «реализует ли кластер API так же, как эталон». Наш набор задаёт другой вопрос: **ведёт ли себя система так, как требуют принципы**. Он работает как черный ящик: обращается только к API, создаёт задачи в своём пространстве имён и судит по поведению, а не по устройству. Пройти его может любая реализация ресурсов `physis.kuberoot.dev/v1alpha1`, не только наша. Полная спецификация — в `docs/conformance.md`.
+
+У тестов два уровня. **Core** обязателен. **Extended** ожидается от промышленных систем, и его можно пропустить с указанной причиной. Пропуск никогда не засчитывается как прохождение.
+
+| Тест | Уровень | Принцип | Требование |
+|---|---|---|---|
+| TC-01 | Core | П3 | Каждая живая подложка указывает физику, зону, юрисдикцию оператора и модель, у каждого параметра которой есть происхождение |
+| TC-02 | Core | П7 | Работа выполняется без объектов Node, а роли системы не дают доступа к узлам и подам |
+| TC-03 | Core | П2, П4 | Запрос-результат планируется с прогнозом времени, энергии и интенсивности сети и выполняется в срок |
+| TC-04 | Core | П4 | План показывает альтернативы, и ни одна не доминирована другой |
+| TC-05 | Core | П5 | Недостижимый результат отклоняется с причинами и никогда не запускается |
+| TC-06 | Core | П4 | Бюджет — жёсткий предел |
+| TC-07 | Core | П11 | Разрешённые зоны и юрисдикции операторов — жёсткие ограничения |
+| TC-08 | Core | П14 | Пробный прогон (dry run) возвращает план и ничего не запускает |
+| TC-09 | Extended | П12 | Гибкая работа с длинным сроком ставится на минимум прогнозного углерода среди альтернатив |
+| TC-10 | Core | П9 | У каждого результата есть подписанная квитанция; цепочка проверяется без доступа к системе; подделка обнаруживается |
+| TC-11 | Core | П9 | Квитанции нельзя изменить |
+| TC-12 | Core | П10 | Работа под мандатом с чужой подписью отклоняется; план выше порога ждёт одобрения человека и выполняется после него |
+| TC-13 | Core | П7 | Работа, запланированная на замолчавшую подложку, возвращается в пул и выполняется на другой |
+| TC-14 | Extended | П8 | Подложка, отрезанная от API после того, как забрала работу, доводит её и сообщает результат после восстановления связи |
+| TC-15 | Core | П2, П3 | Один и тот же класс задач выполним более чем на одной физике |
+| TC-16 | Core | П5 | Результат сообщает достигнутое качество, план — нижнюю границу уверенности и число наблюдений за ней |
+
+Для TC-13 и TC-14 нужно сделать подложку недоступной. В реальной инсталляции это делается сетевой политикой, а эталонный набор использует переносимый приём: аннотацию `physis.kuberoot.dev/simulate-partition-until` на подложке. Получив её, агент прекращает весь обмен с API до указанного времени, но не прерывает начатую работу.
+
+### Результаты
+
+**На physis, на control plane без единой ноды: 16 из 16.**
+
+**Контрольный прогон** — тот же control plane с теми же CRD, но без планировщика и агентов, то есть примерно то, что даёт обычный Kubernetes: **0 из 16**. Контрольный прогон понадобился, чтобы проверить сами тесты. И он нашёл в них ошибку: TC-07 при отсутствии подложек ничего не проверял и засчитывался как пройденный. Теперь тест требует, чтобы было что проверять: живые подложки хотя бы в двух зонах и двух юрисдикциях.
+
+Сам набор тоже нашёл две настоящие ошибки в прототипе, до того как мы о них знали. Первая: неизвестная цена хранилась как NaN, который не сериализуется в JSON, и планы просто не записывались. Вторая (TC-04): при неизвестной цене сравнение с NaN всегда ложно, и на границу компромиссов попадали доминируемые варианты. Правильно так: где цена неизвестна, варианты по деньгам несравнимы, и решают остальные оси. Ровно ради таких находок и нужен conformance.
+
+---
+
+## 10. Ограничения
+
+Это часть результатов, а не приложение к ним. Полный список — в `docs/limitations.md`.
+
+- **Десять из одиннадцати физик эмулируются.** Выводы, которые держатся на одном допущенном числе, выводами не являются; анализ чувствительности показывает, какие из них переживают диапазоны.
+- **Один и тот же отжиг на CPU, цифровом, сверхпроводящем и обратимом устройствах даёт одинаковое качество по построению.** Реальное железо отличается точностью и шумом.
+- **Эмуляция квантового процессора грубая**: фиксированные углы QAOA, до 20 кубитов, глобальная модель ошибок.
+- **Живая культура — это эхо-сеть с допущенным шумом.**
+- **Энергия CPU — модель**: измеренное процессорное время умножается на долю TDP одного ядра EPYC 9454P. Счётчики RAPL внутри подов кластера закрыты.
+- **Калибровка шла на ноутбуке (Apple M4).** Скорость CPU в симуляторе — скорость M4, мощность — EPYC.
+- **Интенсивность для Германии, Франции и Польши считаем мы сами**, без учёта импорта и экспорта, а лигнит приравнен к каменному углю, что занижает немецкую интенсивность.
+- **Задачи маленькие**: джоули, а не киловатт-часы. Важны отношения, а не абсолютные суммы.
+- **Поток задач синтетический**, с явно указанными распределениями.
+- **Живой стенд — это control plane без нод** (etcd и kube-apiserver 1.37 из envtest), а компоненты physis работают процессами. Пакет для kuberoot (Helm-чарт и рецепт kubepkg) готов, но прогон на кластере kuberoot ждёт стенда.
+- **Сеть завтрашнего дня описана как дизайн** и проверена на уровне контракта (зоны, юрисдикции, цена переноса), а не реализована как транспорт по идентичностям.
+
+---
+
+## 11. Что дальше
+
+physis — не продукт, а заявка, проверенная кодом. Дальше напрашиваются четыре вещи:
+
+1. **Настоящее железо.** Подключить хотя бы одну реальную нестандартную физику — FPGA-отжиг, GPU, облачный квантовый процессор — и показать перекалибровку по квитанциям на живых данных, а не в симуляции.
+2. **Сеть.** Реализовать связи как объекты и перенос данных как шаг плана с адресацией по содержимому.
+3. **Иерархия без центрального etcd**: локальный уровень на подложке, региональный и глобальный.
+4. **Стандарт.** Обсудить ресурсы и conformance с сообществом — так, как когда-то обсуждали CNI и CSI.
+
+Всё открыто: код, данные (через скрипты загрузки), тесты, модели и их источники. Если вам близка идея инфраструктуры, которая целится в завтра, а не тащит вчерашнее, присоединяйтесь — с подложкой, с критикой модели или с тестом, который наш прототип не пройдёт.
+
+
+---
+
+## Литература и данные
+
+Ключи в квадратных скобках в тексте ведут сюда. Где цифра взята из вторичного источника, это сказано. Полный список с пометками о том, что мы проверяли сами, — в `docs/references.md` репозитория.
+
+gives the primary source where we found one and, where a figure was taken from
+a secondary source, says so. "Checked" notes what we verified ourselves.
+
+## Physics and devices
+
+- **legallo2023** — M. Le Gallo et al., "A 64-core mixed-signal in-memory compute chip based on phase-change memory for deep neural network inference", *Nature Electronics* (2023), doi:10.1038/s41928-023-01010-1. 63.1 TOPS at 9.76 TOPS/W for 8-bit input/output MVM; effective MVM precision 3–4 bits. Figures as reported in the paper's abstract and in HPCwire's summary: https://www.hpcwire.com/off-the-wire/ibm-develops-a-new-64-core-mixed-signal-in-memory-computing-chip/
+- **ambrogio2023** — S. Ambrogio et al., "An analog-AI chip for energy-efficient speech recognition and transcription", *Nature* 620 (2023). Up to 12.4 TOPS/W. https://www.nature.com/articles/s41586-023-06337-5
+- **horowitz2014** — M. Horowitz, "Computing's energy problem (and what we can do about it)", ISSCC 2014, doi:10.1109/ISSCC.2014.6757323. Energy per operation at 45 nm (8-bit multiply ≈ 0.2 pJ, 8-bit add ≈ 0.03 pJ). Copy: https://www.Gwern.net/doc/cs/hardware/2014-horowitz-2.pdf (we did not re-read the table in this work; the values are the widely cited ones).
+- **singh2024** — N. S. Singh et al., CMOS plus stochastic magnetic tunnel junctions for probabilistic computing (arXiv:2304.05949): about 2 fJ per random bit for sMTJ p-bits. https://arxiv.org/html/2304.05949v3
+- **aadit2022** — N. A. Aadit et al., "Massively parallel probabilistic computing with sparse Ising machines", *Nature Electronics* (2022). Background for p-bit throughput; no figure is taken from it.
+- **tatsumura2019** — K. Tatsumura, A. Dixon, H. Goto, "FPGA-Based Simulated Bifurcation Machine", FPL 2019: 2000-node all-to-all MAX-CUT 14× faster than the CIM and 124× faster than optimised simulated annealing. Slides: https://fpl2019.bsc.es/sites/default/files/uploaded/A12.FPL2019-slides-FPGABasedSimulatedBifurcation.pdf ; algorithm: H. Goto, K. Tatsumura, A. Dixon, *Science Advances* (2019), doi:10.1126/sciadv.aav2372.
+- **cim2018** — NTT, coherent Ising machine with up to 1936 coupled DOPOs, *Nature Communications* 9 (2018). https://ideas.repec.org/a/nat/natcom/v9y2018i1d10.1038_s41467-018-07328-1.html
+- **cim2026** — Optical Ising machine based on polarization symmetry breaking in a driven Kerr resonator (Auckland/Dijon/Strathclyde), *Nature Communications* (2026). https://thequantuminsider.com/2026/03/24/new-zealand-researchers-report-advance-in-optical-ising-machine-for-hybrid-quantum-optimization/
+- **arute2019supp** — F. Arute et al., supplementary information for "Quantum supremacy using a programmable superconducting processor" (arXiv:1910.11333): total worst-case apparatus power about 26 kW (dilution refrigerator about 10 kW plus chilled water, about 3 kW electronics). https://arxiv.org/pdf/1910.11333
+- **cryo4k** — Cryocooler input power at 4 K: about 740 W per W of refrigeration for large Collins/Brayton plants, 5–7.5 kW/W for small coolers (SPIE proceedings 5904); Carnot limit about 75 W/W. https://opticalengineering.spiedigitallibrary.org/conference-proceedings-of-spie/5904/59040X/Development-of-a-4K-10K-Collins-type-cryocooler-for-space/10.1117/12.626151.full
+- **imec-sfq** — imec superconducting digital computing: "How to Put a Data Center in a Shoebox", IEEE Spectrum. https://spectrum.ieee.org/superconducting-computer
+- **loihi** — M. Davies et al., "Loihi: A Neuromorphic Manycore Processor with On-Chip Learning", *IEEE Micro* 38(1), 2018. Energy per synaptic operation as reported by later surveys: 20–25 pJ (we did not find the figure in the paper's abstract). https://arxiv.org/pdf/2509.23896
+- **halapoint** — Sandia, Hala Point (1152 Loihi 2 chips, 1.15 billion neurons). https://www.sandia.gov/news/publications/hpc-annual-reports/article/advancing-neuromorphic-computing-at-the-neural-exploration-and-research-lab/
+- **photonic2024** — Minimalistic photonic matrix processor: 0.27 pJ/MAC laser energy at 10 mW and 36.7 GBaud (arXiv:2403.04216). https://arxiv.org/pdf/2403.04216
+- **lightmatter** — Lightmatter photonic interconnect roadmap. https://convergedigest.com/ai-infrastructure-summit-lightmatters-photonic-roadmap/?amp=1
+- **cl1power** — Cortical Labs CL1: about 200,000 human neurons; a rack of 30 units draws 850–1000 W according to the company (secondary source). https://liveinthefuture.org/stories/biocomputing-neurons-for-sale ; https://heise.de/-10312614
+- **finalspark** — FinalSpark Neuroplatform; organoid lifetime about 100 days. https://www.tomshardware.com/pc-components/cpus/worlds-first-bioprocessor-uses-16-human-brain-organoids-for-a-million-times-less-power-consumption-than-a-digital-chip
+- **vaire** — Vaire Computing adiabatic reversible chip ("Ice River"): about 30% less energy than a conventional processor on the same task. https://interestingengineering.com/innovation/reversible-computing-chip-energy ; https://www.techradar.com/pro/more-like-a-pendulum-than-a-hammer-the-ai-chip-that-can-reuse-its-own-energy-reaches-proof-of-concept-stage-but-i-dont-think-it-will-be-enough-to-convince-hyperscalers-to-invest
+- **extropic** — Extropic thermodynamic computing. https://extropic.ai/writing/from-one-to-one-billion
+- **mcmahon** — L. G. Wright et al., deep physical neural networks trained with backpropagation, *Nature* 601 (2022); training review *Nature* 645 (2025). https://mcmahon.aep.cornell.edu/aspen/2024/slides/Wright.pdf
+- **metamaterial2026** — Mechanical metamaterials with reprogrammable sequential deformation for analog-to-digital encoding and computing, *Advanced Materials* (2026). https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.74376
+- **ackley** — D. Ackley, robust-first computing and the Movable Feast Machine. https://highscalability.com/pursue-robust-indefinite-scalability-with-the-movable-feast/ ; T2 Tiles: https://creativegood.com/blog/21/ackley-and-tiles.html
+- **landauer** — the Landauer limit kT ln 2 per erased bit (textbook result).
+- **pcss-hybrid** — Hybrid classical-quantum supercomputing: multi-user, multi-QPU and multi-GPU environment at PCSS under Slurm (arXiv:2508.16297). https://arxiv.org/pdf/2508.16297
+- **hpc-qc-sched** — Assessing the elephant in the room in scheduling for current hybrid HPC-QC clusters (arXiv:2504.10520). https://arxiv.org/pdf/2504.10520
+- **dna2026** — Biomemory DNA storage in datacenters (Blocks & Files, 2026). https://www.blocksandfiles.com/architecture/2026/03/06/french-dna-coming-to-a-datacenter-near-you-soon/4093753
+- **suncatcher** — Google Project Suncatcher and orbital datacentres. https://www.fierce-network.com/cloud/space-data-centers-starcloud-spacex-and-project-suncatcher-explained
+
+## Systems and software
+
+- **borg** — A. Verma et al., "Large-scale cluster management at Google with Borg", EuroSys 2015.
+- **k8s-large** — Kubernetes, "Considerations for large clusters": at most 110 pods per node, 5,000 nodes, 150,000 pods. https://kubernetes.io/docs/setup/best-practices/cluster-large/
+- **k8s-net** — Kubernetes cluster networking model: every pod has its own IP, pods communicate without NAT. https://kubernetes.io/docs/concepts/cluster-administration/networking/
+- **nftables** — "NFTables mode for kube-proxy", Kubernetes blog, 2025. https://kubernetes.io/blog/2025/02/28/nftables-kube-proxy/
+- **kep5495** — KEP-5495: deprecate ipvs mode in kube-proxy (deprecated in 1.35). https://www.k8s.dev/resources/keps/5495/
+- **dra** — Kubernetes Dynamic Resource Allocation, stable in 1.34. https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/
+- **homa** — J. Ousterhout, "It's Time to Replace TCP in the Datacenter", arXiv:2210.00714. https://arxiv.org/abs/2210.00714
+- **rfc9171** — S. Burleigh, K. Fall, E. Birrane, "Bundle Protocol Version 7", RFC 9171, 2022. https://www.rfc-editor.org/rfc/rfc9171
+- **dbos** — "DBOS: A DBMS-oriented Operating System", PVLDB 15. https://mail.vldb.org/pvldb/volumes/15/paper/DBOS%3A%20A%20DBMS-oriented%20Operating%20System
+- **hydro** — J. Hellerstein, Hydro. https://jhellerstein.github.io/blog/hello-aws
+- **calm** — J. Hellerstein, P. Alvaro, "Keeping CALM: When Distributed Consistency Is Easy", *CACM* 2020.
+- **adrs** — "Barbarians at the Gate: How AI is Upending Systems Research", arXiv:2510.06189. https://arxiv.org/abs/2510.06189v1
+- **demoura2026** — L. de Moura, "Lean 4: A Unified Platform for Programming and Verification", NFM 2026. https://leodemoura.github.io/static/nfm2026/
+- **skypilot** — "Going Beyond Hyperscaler Clouds in the Sky Ecosystem with SkyPilot". https://www2.eecs.berkeley.edu/Pubs/TechRpts/2023/EECS-2023-179.html
+- **localfirst** — M. Kleppmann, local-first software (SE Radio 716, 2026). https://se-radio.net/2026/04/se-radio-716-martin-kleppmann-local-first-software/
+- **malleable** — Ink & Switch, "Malleable Software", 2025. https://www.inkandswitch.com/essay/malleable-software/
+- **microvm2026** — "Your Container Is Not a Sandbox: The State of MicroVM Isolation in 2026". https://emirb.github.io/blog/microvm-2026/
+- **oxide** — Oxide Computer, rack-scale design. https://blocksandfiles.com/?p=56486
+- **cxl-dc** — Panmnesia and Meta, CXL fabric spanning AI datacentres. https://www.hpcwire.com/off-the-wire/panmnesia-and-meta-outline-cxl-fabric-spanning-entire-ai-data-centers/ ; "One-chip-like datacenter design enabled by CXL-based scale-up fabrics", *Nature Reviews Electrical Engineering* (2026). https://www.nature.com/articles/s44287-026-00315-5
+- **ocp2026** — "OCP 2026: Agentic AI Pushes the Data Center from Chip to Grid". https://www.datacenterfrontier.com/hyperscale/article/55411534/ocp-2026-agentic-ai-pushes-the-data-center-from-chip-to-grid
+- **fhe2026** — FHE accelerators: Niobium "The Fog". https://www.pulse.bot/ai/news/niobium-brings-fully-encrypted-ai-workloads-to-the-cloud-with-the-fog-e8630698-34c4-42c2-b133-dbd0f611552e
+
+## Economics and energy
+
+- **capex2026** — Hyperscaler capex guidance 2026 (aggregated). https://www.yieldtheory.app/research/hyperscaler-ai-capex-tracker-2026
+- **gartner2026** — Gartner, worldwide IT spending 2026: $6.37 trillion, +14.2%. https://www.gartner.com/en/newsroom/press-releases/2026-07-27-gartner-forecasts-worldwide-it-spending-to-grow-14-point-2-percent-in-2026-totaling-6-point-37-trillion
+- **ai-debt** — "The Half-Trillion-Dollar Silicon Gamble: Inside The AI Debt Boom", Forbes, 2026. https://www.forbes.com/sites/mayrarodriguezvalladares/2026/10/22/the-half-trillion-dollar-silicon-gamble-inside-the-ai-debt-boom/
+- **epoch-prices** — Epoch AI, LLM inference price trends. https://epoch.ai/blog/llm-inference-price-trends
+- **compute-futures** — FIA, "What are compute futures". https://www.fia.org/fia/articles/explainer-what-are-compute-futures-and-how-do-they-work
+- **x402** — Coinbase/Google, agent payments (x402, AP2). https://www.coinbase.com/developer-platform/discover/launches/google_x402
+- **outcome-pricing** — EQT Ventures on outcome-based pricing. https://stories.eqtventures.com/articles/monetising-the-agentic-workforce-is-outcome-based-pricing-the-answer
+- **data-act** — EU Data Act removes egress charges by 12 January 2027 (as reported). https://www.worldstream.com/en/great-recalibration-cloud-repatriation-egress-hybrid-2026/
+- **power2026** — Grid interconnection and data centre power. https://www.softwareseni.com/the-broken-power-grid-infrastructure-bottlenecks-driving-the-nuclear-push-for-ai-data-centres/
+- **aslan2018** — J. Aslan, K. Mayers, J. Koomey, C. France, "Electricity Intensity of Internet Data Transmission: Untangling the Estimates", *Journal of Industrial Ecology* 22(4), 2018, doi:10.1111/jiec.12630: 0.06 kWh/GB in 2015, halving about every two years. We extrapolate to 2026 (0.06 / 2^5.5 kWh/GB); the extrapolation is ours.
+- **ipcc2014** — IPCC AR5 WGIII Annex III, Table A.III.2, life-cycle emission medians (gCO2e/kWh): coal 820, gas 490, biomass 230, solar PV utility 48, geothermal 38, hydro 24, nuclear 12, wind 11.5/12. As reproduced at https://lowcarbonpower.org/de/blog/emissions ; NREL harmonisation for comparison: https://www.nrel.gov/docs/fy21osti/80580.pdf
+
+## Foresight
+
+- **iftf2036** — Institute for the Future, Ten-Year Forecast 2036 "What We Choose Next" (October 2026). https://www.iftf.org/projects/iftf-ten-year-forecast-2036-tyf/
+- **iftf2025** — IFTF Ten-Year Forecast 2025–2035 "Strategy in the Age of Chaos". https://www.iftf.org/events/iftf-ten-year-forecast-2025-2035-sanctuaries-of-social-imagination/ ; perspectives: https://www.iftf.org/projects/iftf-ten-year-forecast-urgent-futures-perspectives/
+- **ftsg2026** — Future Today Strategy Group, Convergence Outlook 2026 (Amy Webb, SXSW 2026). https://sxsw.md/news/2026-03-16-amy-webb-end-of-trend-reports
+- **abi-physical** — ABI Research, "Physical AI at Scale: Why Robotics Needs a New Data Infrastructure". https://www.abiresearch.com/blog/physical-ai-at-scale-why-robotics-needs-a-new-data-infrastructure
+
+## Data and benchmarks
+
+- **gset-best** — Gset best-known MaxCut values: G1 = 11624, G2 = 11620, G22 = 13359, confirmed in two independent sources (e.g. arXiv:2606.03917 and the Tabu-search comparison table of Ma and Hao 2017 as cited). Instances: https://web.stanford.edu/~yyye/yyye/Gset/
+- **optdigits** — E. Alpaydin, C. Kaynak, "Optical Recognition of Handwritten Digits", UCI Machine Learning Repository (CC BY 4.0). https://archive.ics.uci.edu/ml/machine-learning-databases/optdigits/
+- **energy-charts** — Fraunhofer ISE, Energy-Charts API (public net generation; day-ahead prices CC BY 4.0 from Bundesnetzagentur | SMARD.de). https://api.energy-charts.info/
+- **uk-ci** — National Energy System Operator, Carbon Intensity API (forecast and actual, CC BY 4.0). https://carbonintensity.org.uk/
+- **amd-9454p** — AMD EPYC 9454P: 48 cores, 290 W default TDP, configurable 240–300 W (reseller specification sheets; AMD lists the same). https://www.scan.co.uk/products/amd-epyc-9454p-s-sp5-5nm-zen-4-48-core-96-thread-275ghz-38ghz-turbo-256mb-290w-cpu-oem
+
 
