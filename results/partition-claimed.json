@@ -1,0 +1,13 @@
+{
+ "cut": {
+  "down": "2026-11-08T17:40:21Z",
+  "up": "2026-11-08T17:41:51Z"
+ },
+ "claimedBy": "organoid-fr",
+ "claimedAt": "2026-11-08T17:40:20.295351131Z",
+ "receiptFinished": "2026-11-08T17:40:31.556275011Z",
+ "statusReported": "2026-11-08T17:41:53Z",
+ "phase": "Succeeded",
+ "receipt": "slow-batch-organoid-fr-1",
+ "node": "kuberoot-000012 (worker)"
+}

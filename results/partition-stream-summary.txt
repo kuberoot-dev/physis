@@ -1,0 +1,11 @@
+total 120 phases {'Succeeded': 120}
+claimed by worker substrates: 40  by control-plane substrates: 80
+claimed during cut: 41 of them by worker: 0
+planned for worker, finished on control plane: 0
+  p0014 cpu-fr claimed 17:32:18 reported 17:32:18 Succeeded
+  p0016 adiabatic-fr claimed 17:32:27 reported 17:32:27 Succeeded
+  p0018 adiabatic-fr claimed 17:32:29 reported 17:32:29 Succeeded
+  p0019 adiabatic-fr claimed 17:32:30 reported 17:32:33 Succeeded
+  p0067 adiabatic-fr claimed 17:34:39 reported 17:34:40 Succeeded
+worker claims before/at cut reported after link returned: 0
+worker claims inside the cut window: 0
