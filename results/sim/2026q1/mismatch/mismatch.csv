@@ -1,3 +1,0 @@
-policy,learn,kwh,kgco2,pred_err_first_pct,pred_err_last_pct,physics_share
-physis-energy,false,0.0018759,0.00045542,19.017,19.915,adiabatic:27.3% cpu:33.2% ising-digital:9.9% neuromorphic:2.2% pbit:10.5% photonic:2.7% sfq:14.2%
-physis-energy,true,0.0018623,0.00044302,14.783,15.411,adiabatic:27.3% cpu:33.5% ising-digital:9.1% neuromorphic:2.2% pbit:11.0% photonic:2.7% sfq:14.1%

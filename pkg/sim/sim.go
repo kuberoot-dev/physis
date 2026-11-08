@@ -172,7 +172,8 @@ func Run(cfg Config, jobs []Job) []Outcome {
 		}
 		cost := tm.Predict(ops)
 		f := math.Exp(cfg.Noise * rng.NormFloat64())
-		secs, joules := cost.Seconds*f, cost.Joules*f*cfg.PUE
+		deviceJ := cost.Joules * f
+		secs, joules := cost.Seconds*f, deviceJ*cfg.PUE
 		if r.DataBytes > 0 {
 			if r.DataZone != "" && r.DataZone != c.Zone {
 				joules += r.DataBytes * cfg.InterZoneJPerByte
@@ -201,8 +202,8 @@ func Run(cfg Config, jobs []Job) []Outcome {
 		// Reserve the run's own interval on the substrate.
 		m.reserved = append(m.reserved, plan.Interval{From: c.Start, To: finish})
 		if cfg.Policy.Learn {
-			learnStore.Measure(m.Name, "joules", joules/cfg.PUE, c.Joules/cfg.PUE)
-			learnStore.Measure(m.Name, "seconds", secs, c.Seconds)
+			learnStore.Measure(m.Name, "joules", deviceJ, c.ModelJoules)
+			learnStore.Measure(m.Name, "seconds", secs, c.ModelSeconds)
 		}
 		out = append(out, o)
 	}

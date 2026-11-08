@@ -145,6 +145,12 @@ type Candidate struct {
 	QualityN  int            `json:"qualitySamples"`
 	// CarbonIntensity used, gCO2e/kWh.
 	CI float64 `json:"ci"`
+	// ModelSeconds and ModelJoules are the device model's raw prediction:
+	// no learned correction, no facility overhead, no data movement. The
+	// feedback loop compares receipts with these, not with the corrected
+	// figures, or it would learn a correction of its own correction.
+	ModelSeconds float64 `json:"modelSeconds"`
+	ModelJoules  float64 `json:"modelJoules"`
 }
 
 // Finish is when the run is predicted to end.
@@ -285,7 +291,8 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 						eur = kwh / 1000 * price
 					}
 					c := Candidate{Substrate: s.Name, Zone: s.Zone, Physics: s.Model.Physics, Algorithm: a.Name, Effort: e.Name,
-						Start: st, Seconds: secs, Joules: joules, GCO2: kwh * ci, EUR: eur, PQuality: pq, QualityN: n, CI: ci}
+						Start: st, Seconds: secs, Joules: joules, GCO2: kwh * ci, EUR: eur, PQuality: pq, QualityN: n, CI: ci,
+						ModelSeconds: cost.Seconds, ModelJoules: cost.Joules}
 					if !withinBudget(r.Budget, c) {
 						reject("%s %s/%s: over budget", s.Name, a.Name, e.Name)
 						continue

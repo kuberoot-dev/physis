@@ -401,37 +401,78 @@ func sensitivity(b simBase, seeds int, dir string) {
 	w.Flush()
 }
 
-// mismatch starts the scheduler from models that are wrong -- the world's
-// annealers, photonic core and p-bits use three times the energy the priors
-// say -- and compares learning from receipts against not learning.
+// mismatch starts the scheduler from models that are badly wrong: the world's
+// annealers, p-bits and photonic core use thirty times the energy their
+// priors claim, enough that trusting the priors picks the wrong physics. It
+// compares a scheduler that never learns, one that learns from receipts, and
+// one that knows the truth from the start, and records the learning curve of
+// the prediction error on the mislabelled substrates.
 func mismatch(b simBase, seeds int, dir string) {
 	os.MkdirAll(dir, 0o755)
 	f, _ := os.Create(filepath.Join(dir, "mismatch.csv"))
 	defer f.Close()
 	w := csv.NewWriter(f)
-	w.Write([]string{"policy", "learn", "kwh", "kgco2", "pred_err_first_pct", "pred_err_last_pct", "physics_share"})
+	w.Write([]string{"variant", "kwh", "kgco2", "wrong_share_pct", "err_first10", "err_first100", "err_decile_1", "err_decile_10", "physics_share"})
 	wrong := map[device.Physics]bool{device.IsingDigital: true, device.SFQ: true, device.Photonic: true, device.PBit: true, device.Adiabatic: true}
-	for _, learn := range []bool{false, true} {
+	const factor = 30
+	for _, variant := range []string{"no-learning", "learning", "truth-known"} {
 		p := policies()[3]
-		p.Learn = learn
-		var kwh, co2, e1, e2 float64
+		p.Learn = variant == "learning"
+		var kwh, co2, wshare, first10, first100 float64
+		var dec [10]float64
 		share := map[device.Physics]float64{}
 		for s := 1; s <= seeds; s++ {
 			fl := fleet()
 			for _, m := range fl {
 				if wrong[m.Model.Physics] {
 					t := *m.Model
-					t.EnergyPerOp.V *= 3
-					t.ActivePowerW.V *= 3
-					t.SetupJoules.V *= 3
+					t.EnergyPerOp.V *= factor
+					t.ActivePowerW.V *= factor
+					t.SetupJoules.V *= factor
 					m.True = &t
+					if variant == "truth-known" {
+						m.Model = &t
+					}
 				}
 			}
-			sm := b.run(p, s, fl)
+			js := jobs(b.from, b.to, b.rate, uint64(s))
+			os := sim.Run(sim.Config{Fleet: fl, Grid: b.g, Cal: b.cal, Policy: p, Seed: uint64(s), Noise: 0.1,
+				InterZoneJPerByte: interZone, IntraZoneJPerByte: interZone / 10, PUE: 1.2}, js)
+			sm := sim.Summarise(p.Name, os)
 			kwh += sm.KWh / float64(seeds)
 			co2 += sm.KgCO2 / float64(seeds)
-			e1 += sm.PredictionErrorFirst / float64(seeds)
-			e2 += sm.PredictionErrorLast / float64(seeds)
+			var errs []float64
+			n, nw := 0, 0
+			for _, o := range os {
+				if !o.Placed {
+					continue
+				}
+				n++
+				if wrong[o.Physics] {
+					nw++
+					errs = append(errs, math.Abs(o.PredJ-o.Joules)/o.Joules)
+				}
+			}
+			wshare += float64(nw) / float64(max(n, 1)) / float64(seeds)
+			mean := func(x []float64) float64 {
+				var t float64
+				for _, v := range x {
+					t += v
+				}
+				return t / float64(max(len(x), 1))
+			}
+			first10 += mean(errs[:min(10, len(errs))]) / float64(seeds)
+			first100 += mean(errs[:min(100, len(errs))]) / float64(seeds)
+			if len(errs) >= 10 {
+				for d := 0; d < 10; d++ {
+					lo, hi := d*len(errs)/10, (d+1)*len(errs)/10
+					var t float64
+					for _, e := range errs[lo:hi] {
+						t += e
+					}
+					dec[d] += t / float64(hi-lo) / float64(seeds)
+				}
+			}
 			for k, v := range sm.PhysicsShare {
 				share[k] += v / float64(seeds)
 			}
@@ -441,8 +482,8 @@ func mismatch(b simBase, seeds int, dir string) {
 			parts = append(parts, fmt.Sprintf("%s:%.1f%%", k, 100*v))
 		}
 		sort.Strings(parts)
-		w.Write([]string{p.Name, strconv.FormatBool(learn), f3(kwh), f3(co2), f3(100 * e1), f3(100 * e2), strings.Join(parts, " ")})
-		log.Printf("learn=%v: %.4f kWh, %.5f kgCO2, prediction error %.1f%% -> %.1f%%", learn, kwh, co2, 100*e1, 100*e2)
+		w.Write([]string{variant, f3(kwh), f3(co2), f3(100 * wshare), f3(100 * first10), f3(100 * first100), f3(100 * dec[0]), f3(100 * dec[9]), strings.Join(parts, " ")})
+		log.Printf("%-12s %.5f kWh %.6f kgCO2, %.1f%% of work on mislabelled physics, error first 10 runs %.0f%%, first 100 %.0f%%, last decile %.0f%%", variant, kwh, co2, 100*wshare, 100*first10, 100*first100, 100*dec[9])
 	}
 	w.Flush()
 }

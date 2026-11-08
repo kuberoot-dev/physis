@@ -230,7 +230,7 @@ func (s *scheduler) learnFrom(p *kube.Problem) {
 		return
 	}
 	s.store.Observe(learn.Key{Class: string(shape.Class), Algo: st.Plan.Algorithm, Effort: st.Plan.Effort, Physics: string(st.Plan.Physics), SizeBucket: learn.Bucket(shape.Size())}, st.Result.Quality)
-	s.store.Measure(st.Plan.Substrate, "joules", st.Result.DeviceJoules, st.Plan.Joules)
+	s.store.Measure(st.Plan.Substrate, "joules", st.Result.DeviceJoules, st.Plan.ModelJoules)
 }
 
 func (s *scheduler) update(ctx context.Context, p *kube.Problem) {
