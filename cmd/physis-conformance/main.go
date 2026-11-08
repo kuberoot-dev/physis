@@ -421,6 +421,10 @@ func tc07(t *T) error {
 		zones[s.Spec.Zone] = true
 		juris[s.Spec.Jurisdiction] = true
 	}
+	// A constraint can only be shown to hold where there is a choice.
+	if len(zones) < 2 || len(juris) < 2 {
+		return fmt.Errorf("need live substrates in at least two zones and two jurisdictions, have %d and %d", len(zones), len(juris))
+	}
 	for z := range zones {
 		spec := withDry(digits(100, 0.95))
 		spec.Zones = []string{z}

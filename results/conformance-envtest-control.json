@@ -1,0 +1,166 @@
+[
+ {
+  "id": "TC-01",
+  "level": "Core",
+  "principle": "P3",
+  "title": "every substrate describes its physics with provenance",
+  "pass": false,
+  "seconds": 0.012530458,
+  "evidence": null,
+  "error": "no live substrates"
+ },
+ {
+  "id": "TC-02",
+  "level": "Core",
+  "principle": "P7",
+  "title": "work completes without Node objects; roles grant nothing on nodes",
+  "pass": false,
+  "seconds": 20.002108208,
+  "evidence": [
+   "Node objects in the cluster: 0",
+   "ClusterRole physis-agent: no access to nodes or pods",
+   "ClusterRole physis-scheduler: no access to nodes or pods"
+  ],
+  "error": "timed out waiting for success (tc02:  )"
+ },
+ {
+  "id": "TC-03",
+  "level": "Core",
+  "principle": "P2,P4",
+  "title": "an outcome request is planned with predicted cost and met by its deadline",
+  "pass": false,
+  "seconds": 20.0008955,
+  "evidence": null,
+  "error": "timed out waiting for success (tc03:  )"
+ },
+ {
+  "id": "TC-04",
+  "level": "Core",
+  "principle": "P4",
+  "title": "the plan exposes a non-dominated set of alternatives",
+  "pass": false,
+  "seconds": 20.000167959,
+  "evidence": null,
+  "error": "timed out waiting for plan (tc04:  )"
+ },
+ {
+  "id": "TC-05",
+  "level": "Core",
+  "principle": "P5",
+  "title": "an unattainable outcome is refused with reasons and never run",
+  "pass": false,
+  "seconds": 20.00106225,
+  "evidence": null,
+  "error": "timed out waiting for a decision (tc05:  )"
+ },
+ {
+  "id": "TC-06",
+  "level": "Core",
+  "principle": "P4",
+  "title": "a budget is a hard limit",
+  "pass": false,
+  "seconds": 20.00234625,
+  "evidence": null,
+  "error": "reference plan: timed out waiting for plan (tc06a:  ) "
+ },
+ {
+  "id": "TC-07",
+  "level": "Core",
+  "principle": "P11",
+  "title": "zones and operator jurisdictions are hard constraints",
+  "pass": false,
+  "seconds": 0.00653475,
+  "evidence": null,
+  "error": "need live substrates in at least two zones and two jurisdictions, have 0 and 0"
+ },
+ {
+  "id": "TC-08",
+  "level": "Core",
+  "principle": "P14",
+  "title": "a dry run returns a plan and runs nothing",
+  "pass": false,
+  "seconds": 20.001077291,
+  "evidence": null,
+  "error": "timed out waiting for plan (tc08:  )"
+ },
+ {
+  "id": "TC-09",
+  "level": "Extended",
+  "principle": "P12",
+  "title": "deferrable work is placed at the lowest forecast carbon within its deadline",
+  "pass": false,
+  "seconds": 20.002448167,
+  "evidence": null,
+  "error": "timed out waiting for plan (tc09:  )"
+ },
+ {
+  "id": "TC-10",
+  "level": "Core",
+  "principle": "P9",
+  "title": "every result has a signed receipt whose chain verifies offline; tampering is detected",
+  "pass": false,
+  "seconds": 20.000799625,
+  "evidence": null,
+  "error": "timed out waiting for success (tc10-0:  )"
+ },
+ {
+  "id": "TC-11",
+  "level": "Core",
+  "principle": "P9",
+  "title": "receipts are immutable",
+  "pass": false,
+  "seconds": 0.002426625,
+  "evidence": null,
+  "error": "no receipts to test (run TC-10 first)"
+ },
+ {
+  "id": "TC-12",
+  "level": "Core",
+  "principle": "P10",
+  "title": "work outside a valid human mandate is refused; approval thresholds hold",
+  "pass": false,
+  "seconds": 20.001780459,
+  "evidence": null,
+  "error": "timed out waiting for decision (tc12a:  )"
+ },
+ {
+  "id": "TC-13",
+  "level": "Core",
+  "principle": "P7",
+  "title": "work planned on a substrate that goes silent returns to the pool and completes elsewhere",
+  "pass": false,
+  "seconds": 20.000707333,
+  "evidence": null,
+  "error": "probe not planned: timed out waiting for plan (tc13-probe:  )"
+ },
+ {
+  "id": "TC-14",
+  "level": "Extended",
+  "principle": "P8",
+  "title": "a substrate cut off after claiming finishes the work and reports it later",
+  "pass": false,
+  "seconds": 20.001070416,
+  "evidence": null,
+  "error": "timed out waiting for claim (tc14:  )"
+ },
+ {
+  "id": "TC-15",
+  "level": "Core",
+  "principle": "P2,P3",
+  "title": "the same problem class is offered on more than one physics",
+  "pass": false,
+  "seconds": 20.001171041,
+  "evidence": null,
+  "error": "timed out waiting for plan (tc15-maxcut:  )"
+ },
+ {
+  "id": "TC-16",
+  "level": "Core",
+  "principle": "P5",
+  "title": "results report achieved quality; plans report a confidence bound",
+  "pass": false,
+  "seconds": 20.001086542,
+  "evidence": null,
+  "error": "timed out waiting for success (tc16:  )"
+ }
+]

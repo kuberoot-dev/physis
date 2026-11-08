@@ -1,0 +1,20 @@
+# physis on any Kubernetes (kuberoot edge, Cozystack tenant clusters, ...).
+# Apply after crds.yaml and rbac.yaml. IMAGE is replaced by the deploy script.
+# learn.json (calibration) and best-found.json go in the ConfigMap physis-calibration.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: physis-scheduler, namespace: physis-system}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: physis-scheduler}}
+  template:
+    metadata: {labels: {app: physis-scheduler}}
+    spec:
+      serviceAccountName: physis-scheduler
+      containers:
+      - name: scheduler
+        image: IMAGE
+        command: [/usr/local/bin/physis-scheduler, -learn, /etc/physis/learn.json]
+        resources: {requests: {cpu: 100m, memory: 128Mi}, limits: {memory: 512Mi}}
+        volumeMounts: [{name: cal, mountPath: /etc/physis}]
+      volumes: [{name: cal, configMap: {name: physis-calibration}}]

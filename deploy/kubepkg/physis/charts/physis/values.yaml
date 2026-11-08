@@ -1,0 +1,21 @@
+image: ghcr.io/kuberoot-dev/physis:0.1.0
+dataImage: busybox:1.37
+# One agent per substrate. Emulated physics run on ordinary CPUs; the model
+# charges the substrate's published or assumed cost (see docs/references.md).
+fleet:
+  - {name: cpu-de, physics: cpu, zone: DE, operator: hetzner-like-de, jurisdiction: EU, slots: 4}
+  - {name: cpu-fr, physics: cpu, zone: FR, operator: ovh-like-fr, jurisdiction: EU, slots: 4}
+  - {name: cpu-pl, physics: cpu, zone: PL, operator: local-pl, jurisdiction: EU, slots: 4}
+  - {name: cpu-gb, physics: cpu, zone: GB, operator: colo-gb, jurisdiction: UK, slots: 4}
+  - {name: ising-digital-pl, physics: ising-digital, zone: PL, operator: annealer-co, jurisdiction: EU, slots: 1}
+  - {name: sfq-de, physics: sfq, zone: DE, operator: cryo-lab-de, jurisdiction: EU, slots: 1}
+  - {name: adiabatic-fr, physics: adiabatic, zone: FR, operator: reversible-fr, jurisdiction: EU, slots: 1}
+  - {name: pbit-gb, physics: pbit, zone: GB, operator: pbit-labs, jurisdiction: UK, slots: 1}
+  - {name: optical-ising-gb, physics: optical-ising, zone: GB, operator: photon-ising, jurisdiction: UK, slots: 1}
+  - {name: qpu-de, physics: qpu, zone: DE, operator: quantum-de, jurisdiction: EU, slots: 1}
+  - {name: analog-imc-fr, physics: analog-imc, zone: FR, operator: pcm-fab, jurisdiction: EU, slots: 1}
+  - {name: photonic-de, physics: photonic, zone: DE, operator: lightcore, jurisdiction: EU, slots: 1}
+  - {name: neuromorphic-pl, physics: neuromorphic, zone: PL, operator: spiking-pl, jurisdiction: EU, slots: 1}
+  - {name: organoid-fr, physics: organoid, zone: FR, operator: wetware-fr, jurisdiction: EU, slots: 1}
+# Trusted principals: name -> Ed25519 public key (hex).
+principals: {}

@@ -1,0 +1,35 @@
+# One agent per substrate: an ordinary Deployment, no node affinity, no
+# DaemonSet. NAME, PHYSICS, ZONE, OPERATOR, JURISDICTION, SLOTS, IMAGE are
+# substituted from hack/fleet.tsv by hack/deploy.sh.
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: agent-NAME, namespace: physis-system}
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector: {matchLabels: {app: physis-agent, substrate: NAME}}
+  template:
+    metadata: {labels: {app: physis-agent, substrate: NAME}}
+    spec:
+      serviceAccountName: physis-agent
+      initContainers:
+      - name: data
+        image: busybox:1.37
+        command: [sh, /scripts/fetch-data.sh]
+        volumeMounts: [{name: data, mountPath: /data}, {name: scripts, mountPath: /scripts}]
+      - name: best
+        image: busybox:1.37
+        command: [sh, -c, "cp /cal/best-found.json /data/"]
+        volumeMounts: [{name: data, mountPath: /data}, {name: cal, mountPath: /cal}]
+      containers:
+      - name: agent
+        image: IMAGE
+        command: [/usr/local/bin/physis-agent, -name, NAME, -physics, PHYSICS, -zone, ZONE, -operator, OPERATOR,
+                  -jurisdiction, JURISDICTION, -slots, "SLOTS", -data, /data, -state, /state, -code, IMAGE]
+        resources: {requests: {cpu: 250m, memory: 256Mi}, limits: {cpu: "1", memory: 1Gi}}
+        volumeMounts: [{name: data, mountPath: /data}, {name: state, mountPath: /state}]
+      volumes:
+      - {name: data, emptyDir: {}}
+      - {name: state, emptyDir: {}}
+      - {name: cal, configMap: {name: physis-calibration}}
+      - {name: scripts, configMap: {name: physis-scripts}}

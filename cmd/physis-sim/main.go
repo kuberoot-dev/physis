@@ -187,6 +187,7 @@ func main() {
 	seeds := flag.Int("seeds", 5, "seeds")
 	perHour := flag.Float64("rate", 20, "base arrivals per hour")
 	flag.Float64Var(&dataPerSample, "sample-bytes", 65, "bytes per classification sample")
+	experiment := flag.String("experiment", "main", "main | sensitivity | mismatch | data")
 	flag.Parse()
 	g, err := grid.LoadDir(*gridDir, zones)
 	if err != nil {
@@ -211,6 +212,18 @@ func main() {
 	from, to := s0.Start, s0.End()
 	if err := os.MkdirAll(*out, 0o755); err != nil {
 		log.Fatal(err)
+	}
+	base := func() simBase { return simBase{g: g, cal: cal, from: from, to: to, rate: *perHour} }
+	switch *experiment {
+	case "sensitivity":
+		sensitivity(base(), *seeds, *out)
+		return
+	case "mismatch":
+		mismatch(base(), *seeds, *out)
+		return
+	case "data":
+		dataVolume(base(), *seeds, *out)
+		return
 	}
 	var all []sim.Summary
 	for _, p := range policies() {
@@ -310,4 +323,163 @@ func mean(x []float64) float64 {
 		t += v
 	}
 	return t / float64(len(x))
+}
+
+type simBase struct {
+	g        *grid.Provider
+	cal      *sim.Calibration
+	from, to time.Time
+	rate     float64
+}
+
+func (b simBase) run(p sim.Policy, seed int, fl []*sim.Member) sim.Summary {
+	js := jobs(b.from, b.to, b.rate, uint64(seed))
+	os := sim.Run(sim.Config{Fleet: fl, Grid: b.g, Cal: b.cal, Policy: p, Seed: uint64(seed), Noise: 0.1,
+		InterZoneJPerByte: interZone, IntraZoneJPerByte: interZone / 10, PUE: 1.2}, js)
+	return sim.Summarise(p.Name, os)
+}
+
+// shifted returns a copy of a model with its energy pushed to the pessimistic
+// (hi) or optimistic (lo) end of its provenance ranges: energy per operation
+// and active power to Hi and rate to Lo, or the reverse.
+func shifted(m *device.Model, pessimistic bool) *device.Model {
+	c := *m
+	pick := func(v device.Value, highIsBad bool) device.Value {
+		if v.Lo == 0 && v.Hi == 0 {
+			return v
+		}
+		if pessimistic == highIsBad {
+			v.V = v.Hi
+		} else {
+			v.V = v.Lo
+		}
+		return v
+	}
+	c.EnergyPerOp = pick(m.EnergyPerOp, true)
+	c.ActivePowerW = pick(m.ActivePowerW, true)
+	c.SetupJoules = pick(m.SetupJoules, true)
+	c.OpsPerSecond = pick(m.OpsPerSecond, false)
+	return &c
+}
+
+// sensitivity moves one physics at a time to each end of its assumption
+// ranges -- in both the world and the scheduler's prior -- and records how
+// much work that physics still wins and what happens to the totals.
+func sensitivity(b simBase, seeds int, dir string) {
+	os.MkdirAll(dir, 0o755)
+	f, _ := os.Create(filepath.Join(dir, "sensitivity.csv"))
+	defer f.Close()
+	w := csv.NewWriter(f)
+	w.Write([]string{"physics", "setting", "policy", "share_pct", "kwh", "kgco2", "quality_miss_pct"})
+	pols := []sim.Policy{policies()[3], policies()[4]}
+	for _, ph := range device.All {
+		if ph == device.CPU {
+			continue
+		}
+		for _, setting := range []string{"nominal", "pessimistic", "optimistic"} {
+			for _, p := range pols {
+				var share, kwh, co2, qm float64
+				for s := 1; s <= seeds; s++ {
+					fl := fleet()
+					for _, m := range fl {
+						if m.Model.Physics == ph && setting != "nominal" {
+							m.Model = shifted(m.Model, setting == "pessimistic")
+							m.True = m.Model
+						}
+					}
+					sm := b.run(p, s, fl)
+					share += sm.PhysicsShare[ph] / float64(seeds)
+					kwh += sm.KWh / float64(seeds)
+					co2 += sm.KgCO2 / float64(seeds)
+					qm += sm.QualityMiss / float64(seeds)
+				}
+				w.Write([]string{string(ph), setting, p.Name, f3(100 * share), f3(kwh), f3(co2), f3(100 * qm)})
+				log.Printf("%-14s %-11s %-14s share %5.1f%%  %.4f kWh  %.5f kgCO2", ph, setting, p.Name, 100*share, kwh, co2)
+			}
+		}
+	}
+	w.Flush()
+}
+
+// mismatch starts the scheduler from models that are wrong -- the world's
+// annealers, photonic core and p-bits use three times the energy the priors
+// say -- and compares learning from receipts against not learning.
+func mismatch(b simBase, seeds int, dir string) {
+	os.MkdirAll(dir, 0o755)
+	f, _ := os.Create(filepath.Join(dir, "mismatch.csv"))
+	defer f.Close()
+	w := csv.NewWriter(f)
+	w.Write([]string{"policy", "learn", "kwh", "kgco2", "pred_err_first_pct", "pred_err_last_pct", "physics_share"})
+	wrong := map[device.Physics]bool{device.IsingDigital: true, device.SFQ: true, device.Photonic: true, device.PBit: true, device.Adiabatic: true}
+	for _, learn := range []bool{false, true} {
+		p := policies()[3]
+		p.Learn = learn
+		var kwh, co2, e1, e2 float64
+		share := map[device.Physics]float64{}
+		for s := 1; s <= seeds; s++ {
+			fl := fleet()
+			for _, m := range fl {
+				if wrong[m.Model.Physics] {
+					t := *m.Model
+					t.EnergyPerOp.V *= 3
+					t.ActivePowerW.V *= 3
+					t.SetupJoules.V *= 3
+					m.True = &t
+				}
+			}
+			sm := b.run(p, s, fl)
+			kwh += sm.KWh / float64(seeds)
+			co2 += sm.KgCO2 / float64(seeds)
+			e1 += sm.PredictionErrorFirst / float64(seeds)
+			e2 += sm.PredictionErrorLast / float64(seeds)
+			for k, v := range sm.PhysicsShare {
+				share[k] += v / float64(seeds)
+			}
+		}
+		var parts []string
+		for k, v := range share {
+			parts = append(parts, fmt.Sprintf("%s:%.1f%%", k, 100*v))
+		}
+		sort.Strings(parts)
+		w.Write([]string{p.Name, strconv.FormatBool(learn), f3(kwh), f3(co2), f3(100 * e1), f3(100 * e2), strings.Join(parts, " ")})
+		log.Printf("learn=%v: %.4f kWh, %.5f kgCO2, prediction error %.1f%% -> %.1f%%", learn, kwh, co2, 100*e1, 100*e2)
+	}
+	w.Flush()
+}
+
+// dataVolume grows the data each classification job carries and records how
+// often work still leaves its data's zone, and at what energy.
+func dataVolume(b simBase, seeds int, dir string) {
+	os.MkdirAll(dir, 0o755)
+	f, _ := os.Create(filepath.Join(dir, "datavolume.csv"))
+	defer f.Close()
+	w := csv.NewWriter(f)
+	w.Write([]string{"bytes_per_sample", "policy", "kwh", "kgco2", "moved_pct"})
+	for _, bps := range []float64{65, 1e4, 1e6, 1e8} {
+		dataPerSample = bps
+		for _, p := range []sim.Policy{policies()[3], policies()[4]} {
+			var kwh, co2, moved float64
+			for s := 1; s <= seeds; s++ {
+				js := jobs(b.from, b.to, b.rate, uint64(s))
+				os := sim.Run(sim.Config{Fleet: fleet(), Grid: b.g, Cal: b.cal, Policy: p, Seed: uint64(s), Noise: 0.1,
+					InterZoneJPerByte: interZone, IntraZoneJPerByte: interZone / 10, PUE: 1.2}, js)
+				sm := sim.Summarise(p.Name, os)
+				kwh += sm.KWh / float64(seeds)
+				co2 += sm.KgCO2 / float64(seeds)
+				n, mv := 0, 0
+				for i, o := range os {
+					if o.Placed && js[i].Shape.Class == plan.Classify {
+						n++
+						if o.Zone != js[i].Req.DataZone {
+							mv++
+						}
+					}
+				}
+				moved += float64(mv) / float64(max(n, 1)) / float64(seeds)
+			}
+			w.Write([]string{strconv.FormatFloat(bps, 'g', -1, 64), p.Name, f3(kwh), f3(co2), f3(100 * moved)})
+			log.Printf("%8.0g B/sample %-14s %.4f kWh %.5f kgCO2, %.1f%% of classification jobs moved", bps, p.Name, kwh, co2, 100*moved)
+		}
+	}
+	w.Flush()
 }

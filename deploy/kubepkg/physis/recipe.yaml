@@ -1,0 +1,31 @@
+# kubepkg recipe: physis as a package of a kuberoot distribution.
+apiVersion: kubepkg.dev/v1
+kind: Recipe
+metadata:
+  name: physis
+  annotations:
+    kubepkg.dev/description: "physis: outcome-driven scheduling across computing physics, energy and jurisdictions, with no nodes"
+    kubepkg.dev/home: https://github.com/kuberoot-dev/physis
+spec:
+  version: 0.1.0
+  build: 1
+  sources:
+    chart:
+      dir: charts/physis
+  charts:
+    physis:
+      from: [chart]
+  package:
+    provides: [physis]
+    crds: [substrates.physis.kuberoot.dev, problems.physis.kuberoot.dev, receipts.physis.kuberoot.dev, mandates.physis.kuberoot.dev]
+    images:   # pinned by digest at release
+      - ghcr.io/kuberoot-dev/physis:0.1.0
+      - docker.io/library/busybox:1.37
+    rollback:
+      safe: true   # controllers and agents; problems and receipts are API objects
+    variants:
+      - name: default
+        components:
+          - name: physis
+            path: physis
+            install: {namespace: physis-system, releaseName: physis}

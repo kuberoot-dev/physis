@@ -1,0 +1,106 @@
+{{- $ns := .Release.Namespace }}
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: physis-scheduler, namespace: {{ $ns }}}
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: physis-agent, namespace: {{ $ns }}}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata: {name: physis-scheduler}
+rules:
+- {apiGroups: [physis.kuberoot.dev], resources: [problems, problems/status], verbs: [get, list, watch, update]}
+- {apiGroups: [physis.kuberoot.dev], resources: [substrates, mandates, receipts], verbs: [get, list, watch]}
+- {apiGroups: [""], resources: [configmaps], resourceNames: [principals], verbs: [get]}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata: {name: physis-agent}
+rules:
+- {apiGroups: [physis.kuberoot.dev], resources: [problems, problems/status], verbs: [get, list, watch, update]}
+- {apiGroups: [physis.kuberoot.dev], resources: [substrates, substrates/status], verbs: [get, list, watch, create, update]}
+- {apiGroups: [physis.kuberoot.dev], resources: [receipts], verbs: [create, get]}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata: {name: physis-scheduler}
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: ClusterRole, name: physis-scheduler}
+subjects: [{kind: ServiceAccount, name: physis-scheduler, namespace: {{ $ns }}}]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata: {name: physis-agent}
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: ClusterRole, name: physis-agent}
+subjects: [{kind: ServiceAccount, name: physis-agent, namespace: {{ $ns }}}]
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: physis-calibration, namespace: {{ $ns }}}
+data:
+  learn.json: |-
+{{ .Files.Get "files/learn.json" | indent 4 }}
+  best-found.json: |-
+{{ .Files.Get "files/best-found.json" | indent 4 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: physis-scripts, namespace: {{ $ns }}}
+data:
+  fetch-data.sh: |-
+{{ .Files.Get "files/fetch-data.sh" | indent 4 }}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata: {name: principals, namespace: {{ $ns }}}
+data: {{ .Values.principals | toJson }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: physis-scheduler, namespace: {{ $ns }}}
+spec:
+  replicas: 1
+  selector: {matchLabels: {app: physis-scheduler}}
+  template:
+    metadata: {labels: {app: physis-scheduler}}
+    spec:
+      serviceAccountName: physis-scheduler
+      containers:
+      - name: scheduler
+        image: {{ .Values.image }}
+        command: [/usr/local/bin/physis-scheduler, -learn, /etc/physis/learn.json, -system-namespace, {{ $ns }}]
+        resources: {requests: {cpu: 100m, memory: 128Mi}, limits: {memory: 512Mi}}
+        volumeMounts: [{name: cal, mountPath: /etc/physis}]
+      volumes: [{name: cal, configMap: {name: physis-calibration}}]
+{{- range .Values.fleet }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: agent-{{ .name }}, namespace: {{ $ns }}}
+spec:
+  replicas: 1
+  strategy: {type: Recreate}
+  selector: {matchLabels: {app: physis-agent, substrate: {{ .name }}}}
+  template:
+    metadata: {labels: {app: physis-agent, substrate: {{ .name }}}}
+    spec:
+      serviceAccountName: physis-agent
+      initContainers:
+      - name: data
+        image: {{ $.Values.dataImage }}
+        command: [sh, -c, "sh /scripts/fetch-data.sh && cp /cal/best-found.json /data/"]
+        volumeMounts: [{name: data, mountPath: /data}, {name: scripts, mountPath: /scripts}, {name: cal, mountPath: /cal}]
+      containers:
+      - name: agent
+        image: {{ $.Values.image }}
+        command: [/usr/local/bin/physis-agent, -name, {{ .name }}, -physics, {{ .physics }}, -zone, {{ .zone }}, -operator, {{ .operator }},
+                  -jurisdiction, {{ .jurisdiction }}, -slots, {{ .slots | quote }}, -data, /data, -state, /state, -code, {{ $.Values.image }}]
+        resources: {requests: {cpu: 250m, memory: 256Mi}, limits: {cpu: "1", memory: 1Gi}}
+        volumeMounts: [{name: data, mountPath: /data}, {name: state, mountPath: /state}]
+      volumes:
+      - {name: data, emptyDir: {}}
+      - {name: state, emptyDir: {}}
+      - {name: cal, configMap: {name: physis-calibration}}
+      - {name: scripts, configMap: {name: physis-scripts}}
+{{- end }}
