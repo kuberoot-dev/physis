@@ -65,10 +65,12 @@ list is part of the results, not an appendix to them.
 
 ## System
 
-- **The live stand is a control plane with no nodes** (envtest etcd and
-  kube-apiserver 1.37) and physis components as local processes. The packaged
-  deployment for kuberoot (Helm chart and kubepkg recipe) is provided; running
-  it on a kuberoot cluster is pending access to a stand.
+- **Two live stands, both small.** One is a control plane with no nodes
+  (envtest etcd and kube-apiserver 1.37) with physis as local processes; the
+  other is a single kuberoot `edge` node (arm64, built from source, Kubernetes
+  1.37.1) in QEMU on a laptop, with physis as pods from the Helm chart. Neither
+  is a multi-node cluster in a datacentre; kuberoot's own high availability was
+  not exercised.
 - **The scheduler polls** every two seconds rather than using informers.
 - **Learning in the live scheduler is in memory** and is lost on restart.
 - **The network redesign is a design**, checked at the level of the contract

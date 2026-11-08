@@ -62,8 +62,19 @@ go run ./cmd/physis-conformance -kubeconfig out/stand/kubeconfig
 hack/run-local.sh down
 ```
 
-On a cluster (for instance a kuberoot `edge` cluster): `hack/deploy.sh <kubeconfig> <image>`,
-or install the kubepkg package in `deploy/kubepkg/physis`.
+## Run it on kuberoot
+
+```bash
+git clone https://github.com/kuberoot-dev/kuberoot .stand/kuberoot
+hack/kuberoot-local-build.sh        # kernel, DRBD, binaries, rootfs, media (arm64, in containers)
+hack/kuberoot-local-boot.sh fetch   # media and node credentials out of the build volume
+hack/kuberoot-local-boot.sh up      # boot the node in QEMU (HVF on macOS)
+hack/kuberoot-local-deploy.sh       # registry on the node, physis image, Helm chart
+go run ./cmd/physis-conformance -kubeconfig out/kuberoot/cluster.kubeconfig
+```
+
+On any other cluster: `hack/deploy.sh <kubeconfig> <image>`, or install the
+kubepkg package in `deploy/kubepkg/physis`.
 
 ## License
 
