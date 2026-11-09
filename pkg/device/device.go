@@ -189,11 +189,11 @@ var (
 	QPUPowerW = Value{V: 26000, Lo: 15000, Hi: 30000, Source: "ref:arute2019supp"}
 	// Time per shot: circuit, readout and reset of a superconducting device.
 	QPUShotSeconds = Value{V: 2e-4, Lo: 5e-5, Hi: 1e-3, Source: "assumption"}
-	// Cryogenic refrigeration at 4 K: the Carnot limit is about 74 W of wall
-	// power per watt of heat removed, the best large plants reach below
-	// 400 W/W (ref:primavera2021), small coolers need 5-7.5 kW/W (ref:cryo4k).
-	// 740 W/W is our assumption for a mid-sized plant; it errs against SFQ.
-	Cryo4KWallPerWatt = Value{V: 740, Lo: 740, Hi: 7500, Source: "assumption"}
+	// Cryogenic refrigeration at 4 K: machines on the conventional Collins or
+	// Brayton cycles need about 740 W of wall power per watt of heat removed,
+	// small coolers 5-7.5 kW/W (ref:cryo4k). The Carnot limit is about 74 W/W
+	// and the best plants reach below 400 W/W (ref:primavera2021).
+	Cryo4KWallPerWatt = Value{V: 740, Lo: 740, Hi: 7500, Source: "ref:cryo4k"}
 	// Loihi: about 20-25 pJ per synaptic operation (ref:loihi).
 	NeuroEnergyPerSynop = Value{V: 23.6e-12, Lo: 4e-12, Hi: 25e-12, Source: "ref:loihi"}
 	// A photonic matrix processor measured 0.27 pJ/MAC of laser energy at

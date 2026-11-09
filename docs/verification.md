@@ -61,10 +61,11 @@ and a Neowin page behind a bot check.
   references; it moves intensities by at most 0.5 g/kWh.
 - **Device parameters** carry their provenance in the code
   (`measured`, `ref:<key>` or `assumption`); the models table in the article is
-  generated from it (`go run ./cmd/physis-models`). Two labels were corrected
-  in the check: the adiabatic energy per operation and the 4 K cryogenic factor
-  are assumptions, with only the 30% saving and the cooler figures taken from
-  the sources.
+  generated from it (`go run ./cmd/physis-models`). Labels were corrected
+  in the check: the adiabatic energy per operation is an assumption, with only
+  the 30% saving taken from the source. The 4 K cryogenic factor of 740 W/W was
+  first relabelled as an assumption, then restored to its source when a later
+  check found the figure in the SPIE abstract.
 - **Results** in sections 8–9 are recomputed from the files in `results/`.
 
 ## 4. Behaviour
@@ -74,3 +75,11 @@ The prototype's claims about itself are checked by the conformance suite
 network-cut experiments with their raw data in `results/partition-*`. The
 conformance runs found bugs that are described in the article; each was fixed
 and the suite run again.
+
+## 5. A last pass over late edits
+
+Text added or rewritten after the three reviews (the multi-node stands, new
+references, the corrections themselves) was checked once more, independently:
+about 95 claims, 18 corrections — among them two experiments credited to the
+wrong cluster size, an out-of-date count of bugs, a reversed statement about
+lenders, a wrong alpha release of nftables, and the cryogenic factor above.
