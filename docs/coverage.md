@@ -9,7 +9,7 @@ implemented.
 |---|---|---|
 | Energy as the binding constraint; grid, heat, carbon, price per hour | 1, F1 | design + scheduler objectives (tested, 8.2) |
 | Materials limits: copper, transformers, turbines, helium; oxygen is not a limit | 1, F1 | design |
-| Divergent physics of computation (analog, Ising, p-bits, optics, SFQ, adiabatic, neuromorphic, quantum, living cultures, DNA storage) | 1, F2; 7 "Одиннадцать физик" | emulated, calibrated (7, 8) |
+| Divergent physics of computation (analog, Ising, p-bits, optics, SFQ, adiabatic, neuromorphic, quantum, living cultures, DNA storage) | 1, F2; 7 "Двенадцать физик" | CPU and GPU (Apple M4) real and measured; ten emulated and calibrated (7, 8) |
 | Non-copyable device state; migration means retraining; care of devices; ethics of living hardware | 1, F2 | design |
 | Dissolving machine boundaries (CXL, optical interconnect, rack-scale) | 1, F3 | design |
 | Agents as the main users; defensive server-side code | 1, F4; 3 | design; budgets and mandates enforced server-side (TC-06, TC-12) |
