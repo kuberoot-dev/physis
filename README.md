@@ -33,6 +33,7 @@ from receipts once real hardware is attached.
 - `docs/design.ru.md` — from the forces shaping computing to the design (Russian).
 - `docs/principles.md` — the fourteen principles.
 - `docs/conformance.md` — the tomorrow conformance suite, version 0.1.
+- `docs/agents.md` — what serves AI agents as callers, and what is open.
 - `docs/limitations.md` — what the results do not show.
 - `docs/verification.md` — how every claim and link of the article was checked.
 - `docs/references.md` — sources of every figure.
@@ -50,6 +51,8 @@ from receipts once real hardware is attached.
 | `pkg/receipt`, `pkg/mandate` | Signed receipt chains; signed human mandates |
 | `pkg/sim` | The digital twin used for the experiments |
 | `cmd/physis-scheduler`, `cmd/physis-agent` | Control plane and substrate agent |
+| `pkg/reason` | Stable machine-readable reason codes for refusals |
+| `cmd/physis-mcp`, `pkg/mcp` | MCP server over stdio: the API as tools for AI agents |
 | `cmd/physis-conformance` | The conformance suite |
 | `cmd/physis-calibrate`, `cmd/physis-sim`, `cmd/physis-data`, `cmd/physis-load` | Experiments |
 | `deploy/` | CRDs, RBAC, manifests, Helm chart and kubepkg recipe for kuberoot |
