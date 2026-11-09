@@ -1,0 +1,12 @@
+# identity-addressed transfer on the four-node kuberoot cluster, 2026-11-09T11:14:17Z
+## id-b-de (node kuberoot-7a7463)
+2026/11/09 11:10:15 identity physis:rfvav5k4hftxbq5a7gvhrg25ugtnau62bt4kruz2h7uf6yqujaj2lmq serves /state/objects on [::]:7443, published as 10.200.4.35:7443
+2026/11/09 11:10:46 identity: physis:66apcfcu4jpm asked for dataset.bin: identity: refused by policy: identity: not held by any substrate: physis:66apcfcu4jpm
+2026/11/09 11:10:49 identity: physis:pwpkwzazj35p asked for dataset.bin: identity: refused by policy: identity: not held by any substrate: physis:pwpkwzazj35p
+2026/11/09 11:13:09 identity: physis:pwpkwzazj35p asked for dataset.bin: identity: refused by policy: physis:pwpkwzazj35p (substrate id-c-gb) is under jurisdiction "UK", the data allows [EU]
+## id-a-fr-fetch (node kuberoot-be113c)
+2026/11/09 11:13:06 fetched 3145728 bytes, sha256:ce0beaf168eb842bdb707b11185907fe98e6a00e6f9d9dabe904be3791e02007, via https
+## id-c-gb-fetch (node kuberoot-fc6aaf)
+2026/11/09 11:13:09 identity: refused by policy: physis:pwpkwzazj35p (substrate id-c-gb) is under jurisdiction "UK", the data allows [EU]
+## dataset on B
+ce0beaf168eb842bdb707b11185907fe98e6a00e6f9d9dabe904be3791e02007  /state/objects/dataset.bin

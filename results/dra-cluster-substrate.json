@@ -1,0 +1,46 @@
+{
+    "apiVersion": "physis.kuberoot.dev/v1alpha1",
+    "kind": "Substrate",
+    "metadata": {
+        "annotations": {
+            "physis.kuberoot.dev/source": "dra:cpu.example.com/rack-7/cpu0"
+        },
+        "creationTimestamp": "2026-11-09T11:08:32Z",
+        "generation": 1,
+        "name": "dra-rack-7-cpu0",
+        "resourceVersion": "72473",
+        "uid": "00dc7c4f-c5e6-41d6-b93f-73e2f07530fd"
+    },
+    "spec": {
+        "emulated": false,
+        "jurisdiction": "CH",
+        "model": [
+            {
+                "hi": 200000000,
+                "lo": 10000000,
+                "name": "opsPerSecond",
+                "note": "not described by the DRA driver; the reference value for this physics",
+                "source": "assumption",
+                "value": 50000000
+            },
+            {
+                "name": "activePowerW",
+                "note": "declared by the DRA driver in pool rack-7",
+                "source": "ref:dra:cpu.example.com",
+                "value": 9
+            }
+        ],
+        "operator": "rack-7",
+        "physics": "cpu",
+        "slots": 1,
+        "zone": "FR"
+    },
+    "status": {
+        "agent": "dra-rack-7-cpu0",
+        "busyUntil": "0001-01-01T00:00:00Z",
+        "chainHead": "sha256:95573e4ef2c2877657e03dda6c3b9a3dac43b0e3bb895373394d48909aaf3eda",
+        "chainSeq": 1,
+        "heartbeat": "2026-11-09T11:09:43.488299003Z",
+        "publicKey": "3dd0a20225e4b22b94c52d44271348fc38fa97e3bef48ebe4fcb3e19693af5b6"
+    }
+}

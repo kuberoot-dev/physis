@@ -1,0 +1,108 @@
+{
+    "apiVersion": "physis.kuberoot.dev/v1alpha1",
+    "kind": "Problem",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"via-dra\",\"namespace\":\"dra-cluster\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":300,\"instance\":{\"gset\":\"G11\"},\"jurisdictions\":[\"CH\"],\"policy\":\"min-energy\",\"quality\":0.97}}\n"
+        },
+        "creationTimestamp": "2026-11-09T11:09:17Z",
+        "generation": 1,
+        "name": "via-dra",
+        "namespace": "dra-cluster",
+        "resourceVersion": "71987",
+        "uid": "16b78907-71d3-42c1-b1de-08c04f289781"
+    },
+    "spec": {
+        "class": "maxcut",
+        "confidence": 0.9,
+        "deadlineSeconds": 300,
+        "instance": {
+            "gset": "G11"
+        },
+        "jurisdictions": [
+            "CH"
+        ],
+        "policy": "min-energy",
+        "quality": 0.97
+    },
+    "status": {
+        "candidates": 3,
+        "claimedAt": "2026-11-09T11:09:18.152673549Z",
+        "claimedBy": "dra-rack-7-cpu0",
+        "feasiblePhysics": [
+            "cpu"
+        ],
+        "pareto": [
+            {
+                "algorithm": "anneal",
+                "ci": 77.4386011328701,
+                "effort": "w300",
+                "eur": 2.294568e-8,
+                "gco2": 0.000005575579281566647,
+                "joules": 0.2592,
+                "modelJoules": 0.216,
+                "modelSeconds": 0.024,
+                "pQuality": 0.9836065573770493,
+                "physics": "cpu",
+                "qualitySamples": 60,
+                "seconds": 0.024,
+                "start": "2026-11-09T11:09:17Z",
+                "substrate": "dra-rack-7-cpu0",
+                "zone": "FR"
+            }
+        ],
+        "phase": "Succeeded",
+        "plan": {
+            "algorithm": "anneal",
+            "ci": 77.4386011328701,
+            "effort": "w300",
+            "eur": 2.294568e-8,
+            "gco2": 0.000005575579281566647,
+            "joules": 0.2592,
+            "modelJoules": 0.216,
+            "modelSeconds": 0.024,
+            "pQuality": 0.9836065573770493,
+            "physics": "cpu",
+            "qualitySamples": 60,
+            "seconds": 0.024,
+            "start": "2026-11-09T11:09:17Z",
+            "substrate": "dra-rack-7-cpu0",
+            "zone": "FR"
+        },
+        "plannedAt": "2026-11-09T11:09:17.330559898Z",
+        "reasonCodes": [
+            "JurisdictionNotAllowed",
+            "QualityUnreachable"
+        ],
+        "reasons": [
+            "adiabatic-fr: operator jurisdiction \"EU\" not allowed",
+            "analog-imc-fr: operator jurisdiction \"EU\" not allowed",
+            "cgra-pl: operator jurisdiction \"EU\" not allowed",
+            "cpu-de: operator jurisdiction \"EU\" not allowed",
+            "cpu-fr: operator jurisdiction \"EU\" not allowed",
+            "cpu-gb: operator jurisdiction \"UK\" not allowed",
+            "cpu-pl: operator jurisdiction \"EU\" not allowed",
+            "dataflow-pl: operator jurisdiction \"EU\" not allowed",
+            "dra-rack-7-cpu0 local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+            "dra-rack-7-cpu0 local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+            "hdc-fr: operator jurisdiction \"EU\" not allowed",
+            "ising-digital-pl: operator jurisdiction \"EU\" not allowed",
+            "neuromorphic-pl: operator jurisdiction \"EU\" not allowed",
+            "optical-ising-gb: operator jurisdiction \"UK\" not allowed",
+            "organoid-fr: operator jurisdiction \"EU\" not allowed",
+            "pbit-gb: operator jurisdiction \"UK\" not allowed",
+            "photonic-de: operator jurisdiction \"EU\" not allowed",
+            "pim-dram-fr: operator jurisdiction \"EU\" not allowed",
+            "qpu-de: operator jurisdiction \"EU\" not allowed",
+            "sfq-de: operator jurisdiction \"EU\" not allowed"
+        ],
+        "result": {
+            "deviceJoules": 0.05700599999999856,
+            "gco2": 0.000001226240248938967,
+            "quality": 0.9858156028368794,
+            "receipt": "via-dra-dra-rack-7-cpu0-1",
+            "resultDigest": "sha256:ab595210eff3b28b74ba19fd949ca3ccf1fe4cc2929049ed8d373b256768978f",
+            "value": 556
+        }
+    }
+}
