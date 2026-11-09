@@ -30,7 +30,7 @@ func cell(v device.Value) string {
 func main() {
 	fmt.Println("| Физика | Эмуляция | Операций/с | Энергия на операцию, Дж | Мощность, Вт | Загрузка, с | Загрузка, Дж | Калибровка | Ёмкость |")
 	fmt.Println("|---|---|---|---|---|---|---|---|---|")
-	for _, p := range device.All {
+	for _, p := range append(append([]device.Physics{}, device.All...), device.Hosted...) {
 		m := device.Builtin(p)
 		cal := "—"
 		if m.CalEvery > 0 {

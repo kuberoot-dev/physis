@@ -1,0 +1,22 @@
+instance,ref_source,class,n,algo,effort,physics,emulated,seed,quality,value,spin_updates,macs,host_cpu_s,host_wall_s,device_s,device_j,host,cpu_model
+digits-100@0,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,90,0,64000,0.001195,0.244950,0.020493,0.163944,MacBook-Air-tym83.local,darwin/arm64
+digits-100@100,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,92,0,64000,0.000974,0.055008,0.00477454,0.0381963,MacBook-Air-tym83.local,darwin/arm64
+digits-100@200,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,95,0,64000,0.000993,0.049267,0.00422013,0.033761,MacBook-Air-tym83.local,darwin/arm64
+digits-100@300,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,98,0,64000,0.000886,0.048569,0.00405858,0.0324687,MacBook-Air-tym83.local,darwin/arm64
+digits-100@400,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,87,0,64000,0.000985,0.048438,0.00409917,0.0327933,MacBook-Air-tym83.local,darwin/arm64
+digits-100@500,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,88,0,64000,0.000984,0.047655,0.00400238,0.032019,MacBook-Air-tym83.local,darwin/arm64
+digits-100@600,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,90,0,64000,0.000904,0.048778,0.00422683,0.0338147,MacBook-Air-tym83.local,darwin/arm64
+digits-100@700,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,91,0,64000,0.000957,0.048962,0.00406396,0.0325117,MacBook-Air-tym83.local,darwin/arm64
+digits-100@800,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,92,0,64000,0.000983,0.048231,0.00414025,0.033122,MacBook-Air-tym83.local,darwin/arm64
+digits-100@900,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,95,0,64000,0.000938,0.047216,0.00354904,0.0283923,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1000,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,98,0,64000,0.000951,0.047825,0.00375171,0.0300137,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1100,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,97,0,64000,0.000967,0.048651,0.00389987,0.031199,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1200,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,95,0,64000,0.000851,0.047614,0.00383688,0.030695,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1300,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,96,0,64000,0.000918,0.047142,0.00397417,0.0317933,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1400,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,93,0,64000,0.001141,0.048211,0.00402583,0.0322067,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1500,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,83,0,64000,0.001042,0.048378,0.00364217,0.0291373,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1600,exact fp64,classify,100,exact-gpu,fp32,gpu,false,1,1.000000,87,0,64000,0.000891,0.046850,0.00366242,0.0292993,MacBook-Air-tym83.local,darwin/arm64
+digits-500@0,exact fp64,classify,500,exact-gpu,fp32,gpu,false,1,1.000000,462,0,320000,0.001586,0.053098,0.00504842,0.0403873,MacBook-Air-tym83.local,darwin/arm64
+digits-500@500,exact fp64,classify,500,exact-gpu,fp32,gpu,false,1,1.000000,456,0,320000,0.001610,0.050959,0.00367529,0.0294023,MacBook-Air-tym83.local,darwin/arm64
+digits-500@1000,exact fp64,classify,500,exact-gpu,fp32,gpu,false,1,1.000000,479,0,320000,0.001780,0.050755,0.00375342,0.0300273,MacBook-Air-tym83.local,darwin/arm64
+digits-1797@0,exact fp64,classify,1797,exact-gpu,fp32,gpu,false,1,1.000000,1659,0,1150080,0.003730,0.057184,0.00439654,0.0351723,MacBook-Air-tym83.local,darwin/arm64

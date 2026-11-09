@@ -21,7 +21,7 @@ case "${1:-}" in
     for i in $(seq 60); do [ -s $KC ] && break; sleep 1; done
     kubectl --kubeconfig $KC apply -f deploy/rbac.yaml -f deploy/links.yaml >/dev/null
     kubectl --kubeconfig $KC -n physis-system create configmap principals >/dev/null 2>&1 || true
-    nohup $OUT/bin/physis-scheduler -kubeconfig $KC -learn out/calibration/learn.json -grid-cache $OUT/grid-cache > $OUT/logs/scheduler.log 2>&1 &
+    nohup $OUT/bin/physis-scheduler -kubeconfig $KC -learn results/learn.json -grid-cache $OUT/grid-cache > $OUT/logs/scheduler.log 2>&1 &
     echo $! > $OUT/scheduler.pid
     # Agents read the grid cache the scheduler fills; start them after it.
     for i in $(seq 120); do grep -q "grid data loaded" $OUT/logs/scheduler.log 2>/dev/null && break; sleep 5; done
@@ -32,6 +32,15 @@ case "${1:-}" in
         > $OUT/logs/agent-$name.log 2>&1 &
       echo $! > $OUT/agent-$name.pid
     done
+    # The real GPU substrate runs where its hardware is: on macOS with an MLX
+    # environment in out/venv (python3 -m venv out/venv; out/venv/bin/pip install mlx).
+    if [ "$(uname)" = Darwin ] && out/venv/bin/python -I -c "import mlx.core" 2>/dev/null; then
+      mkdir -p $OUT/state/gpu-m4
+      PHYSIS_GPU_WORKER="$PWD/out/venv/bin/python -I $PWD/tools/gpu-worker.py" nohup $OUT/bin/physis-agent -kubeconfig $KC \
+        -name gpu-m4 -physics gpu -zone DE -operator laptop-m4 -jurisdiction EU -slots 1 -data data -state $OUT/state/gpu-m4 \
+        -grid-cache $OUT/grid-cache -code "physis-agent/$(git rev-parse --short HEAD)" > $OUT/logs/agent-gpu-m4.log 2>&1 &
+      echo $! > $OUT/agent-gpu-m4.pid
+    fi
     for i in $(seq 60); do
       n=$(kubectl --kubeconfig $KC get substrates --no-headers 2>/dev/null | wc -l | tr -d ' ')
       [ "$n" -ge "$(grep -vc '^#' hack/fleet.tsv)" ] && break; sleep 1

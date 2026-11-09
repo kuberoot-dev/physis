@@ -49,6 +49,10 @@ const (
 	// readout on a conventional computer. Emulated by an echo-state network;
 	// the life-support system is charged.
 	Organoid Physics = "organoid"
+	// GPU: a graphics processor running the classifier in float32. Real:
+	// on the Apple M4 of the laptop stand the matrix multiply runs on its
+	// GPU through MLX, and the device time is measured.
+	GPU Physics = "gpu"
 )
 
 // Value is a model parameter with its provenance.
@@ -98,7 +102,7 @@ func (m *Model) countOps(o solve.Ops) float64 {
 		// A core pays for both the local-field arithmetic and the update
 		// decision; its rate is calibrated on this sum.
 		return float64(o.SpinUpdates + o.MACs)
-	case AnalogIMC, Photonic, Neuromorphic:
+	case AnalogIMC, Photonic, Neuromorphic, GPU:
 		return float64(o.MACs)
 	default:
 		return float64(o.SpinUpdates)
@@ -211,6 +215,19 @@ var (
 // placeholder until calibrated from measured runs (see learn.Calibrate).
 func Builtin(p Physics) *Model {
 	switch p {
+	case GPU:
+		// Rate and setup measured on the Apple M4 of the laptop stand with
+		// tools/gpu-worker.py (8.3e8 MAC/s on a 1797-image batch, 6.5e9 on
+		// 200,000; setup 3-14 ms, about 50 ms with a cold kernel cache). The
+		// power is an assumption: Apple publishes no GPU power figure.
+		return &Model{Physics: GPU,
+			OpsPerSecond: Value{V: 5e9, Lo: 8e8, Hi: 7e9, Source: "measured", Note: "Apple M4 GPU through MLX, float32"},
+			ActivePowerW: Value{V: 8, Lo: 3, Hi: 20, Source: "assumption", Note: "Apple M4 GPU under load; not published"},
+			SetupSeconds: Value{V: 0.004, Lo: 0.003, Hi: 0.05, Source: "measured", Note: "Metal kernel setup per run"},
+			// The GPU draws power while it sets up, as the measured device
+			// time (setup plus compute) is charged at the same power.
+			SetupJoules: Value{V: 0.004 * 8, Lo: 0.003 * 3, Hi: 0.05 * 20, Source: "assumption", Note: "setup time x the assumed power"},
+			MaxSize:      1 << 30, PrecisionBits: 32}
 	case CPU:
 		return &Model{Physics: CPU, OpsPerSecond: Value{V: 5e7, Lo: 1e7, Hi: 2e8, Source: "measured", Note: "calibrated per host"},
 			ActivePowerW: CorePowerEPYC9454P, MaxSize: 1 << 30}
@@ -318,3 +335,7 @@ func (m *Model) AvailableAt(t, length float64) float64 {
 
 // All lists every physics physis knows.
 var All = []Physics{CPU, IsingDigital, PBit, AnalogIMC, QPU, OpticalIsing, SFQ, Adiabatic, Neuromorphic, Photonic, Organoid}
+
+// Hosted are real physics that need hardware on the agent's host (a GPU
+// worker); they are not part of the simulated fleet.
+var Hosted = []Physics{GPU}

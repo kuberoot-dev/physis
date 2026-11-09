@@ -31,6 +31,7 @@ import (
 
 func main() {
 	out := flag.String("out", "out/calibration", "output directory")
+	only := flag.String("physics", "", "calibrate only this physics (empty: all that can run here)")
 	seeds := flag.Int("seeds", 5, "seeds per instance")
 	quick := flag.Bool("quick", false, "smaller instance set for development")
 	flag.Parse()
@@ -85,6 +86,13 @@ func main() {
 				// runs the same dynamics.
 				var phys []device.Physics
 				for _, p := range a.Physics {
+					// Hosted physics run only where their hardware is.
+					if p == device.GPU && run.GPUWorker == "" {
+						continue
+					}
+					if *only != "" && string(p) != *only {
+						continue
+					}
 					if plan.CanRun(device.Builtin(p), a, shape) {
 						phys = append(phys, p)
 					}
@@ -93,7 +101,7 @@ func main() {
 					continue
 				}
 				ns := *seeds
-				if a.Name == "exact" || a.Name == "exact-fp" {
+				if a.Name == "exact" || a.Name == "exact-fp" || a.Name == "exact-gpu" {
 					ns = 1
 				}
 				for s := 1; s <= ns; s++ {
@@ -110,8 +118,10 @@ func main() {
 							}
 						}
 						rr := *r
-						if p != device.CPU {
+						if m.Emulated {
 							rr.Device = m.Predict(r.Ops)
+						} else if p == device.GPU {
+							// Measured by the worker on the GPU itself.
 						} else {
 							secs := math.Max(r.HostCPUSeconds, 1e-6)
 							rr.Device = device.Cost{Seconds: secs, Joules: secs * m.ActivePowerW.V}

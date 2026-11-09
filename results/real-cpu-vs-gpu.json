@@ -1,0 +1,62 @@
+[
+ {
+  "physics": "cpu",
+  "batch": 100,
+  "runs": 5,
+  "device_s": 0.00013599999999991397,
+  "device_j": 0.000821666666666147,
+  "pred_s": 0.00128,
+  "pred_j": 0.00928,
+  "min_quality": 1
+ },
+ {
+  "physics": "cpu",
+  "batch": 500,
+  "runs": 5,
+  "device_s": 0.00028699999999970416,
+  "device_j": 0.001733958333331546,
+  "pred_s": 0.0064,
+  "pred_j": 0.046400000000000004,
+  "min_quality": 1
+ },
+ {
+  "physics": "cpu",
+  "batch": 1797,
+  "runs": 5,
+  "device_s": 0.0011430000000003382,
+  "device_j": 0.006905625000002044,
+  "pred_s": 0.0230016,
+  "pred_j": 0.1667616,
+  "min_quality": 1
+ },
+ {
+  "physics": "gpu",
+  "batch": 100,
+  "runs": 5,
+  "device_s": 0.005473249941132963,
+  "device_j": 0.0437859995290637,
+  "pred_s": 0.0040128,
+  "pred_j": 0.03852288,
+  "min_quality": 1
+ },
+ {
+  "physics": "gpu",
+  "batch": 500,
+  "runs": 5,
+  "device_s": 0.006036125007085502,
+  "device_j": 0.04828900005668402,
+  "pred_s": 0.004064,
+  "pred_j": 0.0390144,
+  "min_quality": 1
+ },
+ {
+  "physics": "gpu",
+  "batch": 1797,
+  "runs": 5,
+  "device_s": 0.006653125048615038,
+  "device_j": 0.05322500038892031,
+  "pred_s": 0.004230016,
+  "pred_j": 0.040608153599999995,
+  "min_quality": 1
+ }
+]

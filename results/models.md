@@ -11,3 +11,4 @@
 | neuromorphic | да | 1e+10 (1e+09–1e+11) · assumption | 2.36e-11 (4e-12–2.5e-11) · ref:loihi | 1 (0.1–5) · assumption | 0.01 (0.001–0.1) · assumption | — | — | 1048576 |
 | photonic | да | 1e+12 (1e+11–1e+13) · assumption | 2.7e-13 (2e-14–2e-12) · ref:photonic2024 | 5 (1–20) · assumption | 0.001 (0.0001–0.01) · assumption | — | — | 65536 |
 | organoid | да | 3e+04 (3e+03–3e+05) · assumption | — | 30 (20–100) · ref:cl1power | 1 (0.1–10) · assumption | — | 3600 с каждые 24 ч | 1048576 |
+| gpu | нет | 5e+09 (8e+08–7e+09) · measured | — | 8 (3–20) · assumption | 0.004 (0.003–0.05) · measured | 0.032 (0.009–1) · assumption | — | 1073741824 |

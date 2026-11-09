@@ -27,7 +27,7 @@ spec:
             type: object
             required: [physics, zone]
             properties:
-              physics: {type: string, enum: [cpu, ising-digital, pbit, analog-imc, qpu, optical-ising, sfq, adiabatic, neuromorphic, photonic, organoid]}
+              physics: {type: string, enum: [cpu, ising-digital, pbit, analog-imc, qpu, optical-ising, sfq, adiabatic, neuromorphic, photonic, organoid, gpu]}
               zone: {type: string}
               operator: {type: string}
               jurisdiction: {type: string}

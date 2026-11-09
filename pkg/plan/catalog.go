@@ -66,6 +66,7 @@ var Catalog = []Algorithm{
 	{Name: "qaoa", Class: MaxCut, Physics: []device.Physics{device.QPU}, MaxN: 20,
 		Efforts: []Effort{{Name: "p4s256", Sweeps: 4, Starts: 256}, {Name: "p8s1024", Sweeps: 8, Starts: 1024}}},
 	{Name: "exact-fp", Class: Classify, Physics: []device.Physics{device.CPU}, Efforts: []Effort{{Name: "fp64"}}},
+	{Name: "exact-gpu", Class: Classify, Physics: []device.Physics{device.GPU}, Efforts: []Effort{{Name: "fp32"}}},
 	{Name: "analog", Class: Classify, Physics: []device.Physics{device.AnalogIMC, device.Photonic}, Efforts: []Effort{{Name: "w4"}}},
 	{Name: "spiking", Class: Classify, Physics: []device.Physics{device.Neuromorphic},
 		Efforts: []Effort{{Name: "t8", Sweeps: 8}, {Name: "t32", Sweeps: 32}, {Name: "t128", Sweeps: 128}}},
@@ -105,7 +106,7 @@ func EstimateOps(a Algorithm, e Effort, s Shape) (solve.Ops, bool) {
 		return solve.Ops{SpinUpdates: int64(e.Sweeps) * int64(s.N), MACs: int64(e.Sweeps) * int64(s.DegreeSum), RandomBits: 32 * int64(e.Sweeps) * int64(s.N)}, true
 	case "pbit":
 		return solve.Ops{SpinUpdates: int64(e.Sweeps) * int64(s.N), MACs: int64(e.Sweeps) * int64(s.DegreeSum), RandomBits: int64(e.Sweeps) * int64(s.N)}, true
-	case "exact-fp", "analog":
+	case "exact-fp", "exact-gpu", "analog":
 		return solve.Ops{MACs: int64(s.N) * int64(s.DegreeSum)}, true
 	case "cim":
 		return solve.Ops{SpinUpdates: int64(e.Sweeps) * int64(s.N), MACs: int64(e.Sweeps) * int64(s.DegreeSum)}, true

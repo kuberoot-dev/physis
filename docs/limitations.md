@@ -5,7 +5,9 @@ list is part of the results, not an appendix to them.
 
 ## Physics
 
-- **Ten of the eleven physics are emulated.** Only the CPU is real hardware.
+- **Ten of the twelve physics are emulated.** The CPU and, on the laptop
+  stand, the Apple M4 GPU (through MLX) are real hardware; the GPU's time is
+  measured, its power is an assumption because Apple does not publish it.
   The Ising machine, SFQ and adiabatic annealers, p-bits, coherent Ising
   machine, QPU, analog crossbar, photonic core, neuromorphic chip and living
   culture run as algorithms on a CPU; their time and energy come from device

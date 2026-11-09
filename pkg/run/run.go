@@ -6,9 +6,14 @@
 package run
 
 import (
+	"bytes"
 	"crypto/sha256"
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
+	"os"
+	"os/exec"
+	"strings"
 	"syscall"
 	"time"
 
@@ -92,6 +97,7 @@ func Execute(m *device.Model, algo, effort string, in *Instance, seed uint64) (*
 	var ops solve.Ops
 	var spins []int8
 	var correct int
+	var measured *device.Cost // device time measured on real hardware
 	switch algo {
 	case "exact":
 		r := solve.ExactMaxCut(in.Graph)
@@ -114,6 +120,12 @@ func Execute(m *device.Model, algo, effort string, in *Instance, seed uint64) (*
 	case "exact-fp":
 		r := solve.ClassifyExact(in.Model, in.Batch)
 		value, ops, correct = float64(r.Correct), r.Ops, r.Correct
+	case "exact-gpu":
+		c, o, d, err := classifyOnGPU(in)
+		if err != nil {
+			return nil, err
+		}
+		value, ops, correct, measured = float64(c), o, c, &d
 	case "analog":
 		r := solve.ClassifyAnalog(in.Model, in.Batch, *m.Analog, seed)
 		value, ops, correct = float64(r.Correct), r.Ops, r.Correct
@@ -144,7 +156,9 @@ func Execute(m *device.Model, algo, effort string, in *Instance, seed uint64) (*
 		res.Quality = acc / in.ExactAcc
 	}
 	res.ResultDigest = "sha256:" + hex.EncodeToString(h.Sum(nil))
-	if m.Physics == device.CPU {
+	if measured != nil {
+		res.Device = device.Cost{Seconds: measured.Seconds, Joules: measured.Seconds * m.ActivePowerW.V}
+	} else if m.Physics == device.CPU {
 		secs := res.HostCPUSeconds
 		if secs <= 0 {
 			secs = res.HostWall.Seconds()
@@ -154,4 +168,50 @@ func Execute(m *device.Model, algo, effort string, in *Instance, seed uint64) (*
 		res.Device = m.Predict(ops)
 	}
 	return res, nil
+}
+
+// GPUWorker is the command that runs the classifier on a GPU (see
+// tools/gpu-worker.py); set from PHYSIS_GPU_WORKER, split on spaces.
+var GPUWorker = os.Getenv("PHYSIS_GPU_WORKER")
+
+// classifyOnGPU sends the model and the batch to the GPU worker and returns
+// the correct count, the operation count and the measured device time
+// (kernel setup plus computation).
+func classifyOnGPU(in *Instance) (int, solve.Ops, device.Cost, error) {
+	if GPUWorker == "" {
+		return 0, solve.Ops{}, device.Cost{}, fmt.Errorf("no GPU worker: set PHYSIS_GPU_WORKER")
+	}
+	req, err := json.Marshal(map[string]any{"w": in.Model.W, "b": in.Model.B, "x": in.Batch.X})
+	if err != nil {
+		return 0, solve.Ops{}, device.Cost{}, err
+	}
+	args := strings.Fields(GPUWorker)
+	cmd := exec.Command(args[0], args[1:]...)
+	cmd.Stdin = bytes.NewReader(req)
+	var stderr bytes.Buffer
+	cmd.Stderr = &stderr
+	out, err := cmd.Output()
+	if err != nil {
+		return 0, solve.Ops{}, device.Cost{}, fmt.Errorf("gpu worker: %v: %s", err, stderr.String())
+	}
+	var resp struct {
+		Pred         []int   `json:"pred"`
+		Seconds      float64 `json:"seconds"`
+		SetupSeconds float64 `json:"setupSeconds"`
+		Device       string  `json:"device"`
+	}
+	if err := json.Unmarshal(out, &resp); err != nil {
+		return 0, solve.Ops{}, device.Cost{}, fmt.Errorf("gpu worker: %v", err)
+	}
+	if len(resp.Pred) != len(in.Batch.Y) || !strings.Contains(resp.Device, "gpu") {
+		return 0, solve.Ops{}, device.Cost{}, fmt.Errorf("gpu worker answered %d predictions on %q", len(resp.Pred), resp.Device)
+	}
+	correct := 0
+	for i, p := range resp.Pred {
+		if p == in.Batch.Y[i] {
+			correct++
+		}
+	}
+	ops := solve.Ops{MACs: int64(len(in.Batch.X)) * int64(in.Model.MACs())}
+	return correct, ops, device.Cost{Seconds: resp.SetupSeconds + resp.Seconds}, nil
 }
