@@ -22,6 +22,7 @@ import (
 	"k8s.io/client-go/tools/clientcmd"
 
 	v1 "github.com/kuberoot-dev/physis/api/v1alpha1"
+	"github.com/kuberoot-dev/physis/pkg/plan"
 )
 
 var (
@@ -265,6 +266,25 @@ func (c *Client) CreateReceipt(ctx context.Context, ns, name string, r *v1.Recei
 	}
 	_, err = c.D.Resource(Receipts).Namespace(ns).Create(ctx, u, metav1.CreateOptions{})
 	return err
+}
+
+// ListLinks reads the Link objects as the planner's links: the network as
+// priced paths. Objects that do not decode are skipped.
+func (c *Client) ListLinks(ctx context.Context) ([]plan.Link, error) {
+	l, err := c.D.Resource(Links).List(ctx, metav1.ListOptions{})
+	if err != nil {
+		return nil, err
+	}
+	var out []plan.Link
+	for i := range l.Items {
+		o, err := Decode[v1.LinkSpec, struct{}](&l.Items[i])
+		if err != nil {
+			continue
+		}
+		out = append(out, plan.Link{Name: o.Meta.Name, From: o.Spec.From, To: o.Spec.To, JPerByte: o.Spec.JPerByte,
+			LatencySeconds: o.Spec.LatencySeconds, BytesPerSecond: o.Spec.BytesPerSecond, Jurisdictions: o.Spec.PathJurisdictions})
+	}
+	return out, nil
 }
 
 var secrets = schema.GroupVersionResource{Version: "v1", Resource: "secrets"}

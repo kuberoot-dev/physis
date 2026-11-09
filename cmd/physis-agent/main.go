@@ -7,6 +7,9 @@
 // and pulls work (P7). If it loses the API server after claiming, it finishes
 // the work, keeps the receipt in a local outbox on disk and delivers it when
 // the API server is back (P8).
+//
+// With -listen, the agent also serves named objects to other substrates
+// addressed by identity (package identity, docs/network.md).
 package main
 
 import (
@@ -71,6 +74,8 @@ type agent struct {
 	grid   *grid.Series
 	best   map[string]float64
 	cut    time.Time // simulated partition: no API calls before this
+	// endpoints of the identity, published with every heartbeat.
+	endpoints []v1.Endpoint
 }
 
 // pending is a finished run whose report has not reached the API server.
@@ -124,6 +129,20 @@ func main() {
 			seq, head = cur.Status.ChainSeq, cur.Status.ChainHead
 		}
 		a.signer = receipt.NewSigner(priv, seq, head)
+		if *fetchAddr != "" {
+			if err := a.fetchOnce(ctx, priv); err != nil {
+				log.Fatal(err)
+			}
+			return
+		}
+		if *listen != "" {
+			a.endpoints = a.serveIdentity(priv)
+		}
+	}
+	if *deviceCmd != "" && (*listen != "" || *fetchAddr != "") {
+		// The identity's key stays inside the device core; serving the
+		// identity over TLS from the agent would need it outside.
+		log.Fatal("-listen and -fetch need the key in the agent; they do not combine with -device")
 	}
 	a.loadOutbox()
 	go a.refreshGrid()
@@ -263,7 +282,7 @@ func (a *agent) tick(ctx context.Context) {
 func (a *agent) heartbeat(ctx context.Context) {
 	seq, head := a.signer.Head()
 	s := &kube.Substrate{Spec: v1.SubstrateSpec{Physics: *physics, Zone: *zone, Operator: *operator, Jurisdiction: *jurisdiction, Emulated: a.model.Emulated, Slots: *slots, Model: params(a.model)},
-		Status: v1.SubstrateStatus{Agent: hostname(), Heartbeat: time.Now().UTC(), PublicKey: a.signer.PublicKey(), ChainSeq: seq, ChainHead: head, Running: len(a.sem)}}
+		Status: v1.SubstrateStatus{Agent: hostname(), Heartbeat: time.Now().UTC(), PublicKey: a.signer.PublicKey(), ChainSeq: seq, ChainHead: head, Running: len(a.sem), Endpoints: a.endpoints}}
 	s.Meta.Name = *name
 	if cur, err := a.c.GetSubstrate(ctx, *name); err == nil {
 		s.Meta = cur.Meta

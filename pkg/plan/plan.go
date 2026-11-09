@@ -105,15 +105,37 @@ func (env *Env) route(from, to string) (Link, bool) {
 	if from == "" {
 		from = to
 	}
-	for _, l := range env.Links {
-		if (l.From == from && l.To == to) || (l.From == to && l.To == from) {
-			return l, true
-		}
+	if l, ok := FindLink(env.Links, from, to); ok {
+		return l, true
 	}
 	if from == to {
 		return Link{JPerByte: env.IntraZoneJPerByte}, true
 	}
 	return Link{}, false
+}
+
+// FindLink finds the declared link between two zones; links are symmetric.
+func FindLink(links []Link, from, to string) (Link, bool) {
+	for _, l := range links {
+		if (l.From == from && l.To == to) || (l.From == to && l.To == from) {
+			return l, true
+		}
+	}
+	return Link{}, false
+}
+
+// Forbidden returns a jurisdiction the link's path crosses that is not in
+// allowed, or "" when the path stays within allowed (or allowed is empty).
+func (l Link) Forbidden(allowed []string) string {
+	if len(allowed) == 0 {
+		return ""
+	}
+	for _, j := range l.Jurisdictions {
+		if !contains(allowed, j) {
+			return j
+		}
+	}
+	return ""
 }
 
 // Interval is a reservation [From, To).
@@ -309,17 +331,9 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 						reject(reason.NoLink, "%s: no link from %s to %s", s.Name, r.DataZone, s.Zone)
 						continue
 					}
-					if len(r.Jurisdictions) > 0 {
-						bad := ""
-						for _, j := range l.Jurisdictions {
-							if !contains(r.Jurisdictions, j) {
-								bad = j
-							}
-						}
-						if bad != "" {
-							reject(reason.JurisdictionNotAllowed, "%s: the path %s crosses jurisdiction %s", s.Name, l.Name, bad)
-							continue
-						}
+					if bad := l.Forbidden(r.Jurisdictions); bad != "" {
+						reject(reason.JurisdictionNotAllowed, "%s: the path %s crosses jurisdiction %s", s.Name, l.Name, bad)
+						continue
 					}
 					link = l
 					moveJ = r.DataBytes * l.JPerByte

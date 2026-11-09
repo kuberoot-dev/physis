@@ -55,6 +55,28 @@ type SubstrateStatus struct {
 	ChainHead   string    `json:"chainHead,omitempty"`
 	BusyUntil   time.Time `json:"busyUntil,omitempty"`
 	Running     int       `json:"running,omitempty"`
+	// Endpoints are where the identity behind PublicKey can be reached now
+	// (package identity). They are hints, not trust: a caller authenticates
+	// the key on every connection, so a stale or forged endpoint fails
+	// closed. Empty when the agent serves nothing.
+	Endpoints []Endpoint `json:"endpoints,omitempty"`
+}
+
+// Transports of an endpoint.
+const (
+	// TransportHTTPS is the agent's own listener: HTTP over TLS 1.3 with a
+	// self-signed certificate whose key is the substrate's identity key.
+	TransportHTTPS = "https"
+	// TransportRelay means reachable only through small signed messages
+	// exchanged via the API server (for agents behind NAT).
+	TransportRelay = "api-relay"
+)
+
+// Endpoint is one way to reach a substrate's identity.
+type Endpoint struct {
+	Transport string `json:"transport"`
+	// Address is host:port for https; empty for api-relay.
+	Address string `json:"address,omitempty"`
 }
 
 // InstanceRef names the input of a problem. Exactly one field is set.

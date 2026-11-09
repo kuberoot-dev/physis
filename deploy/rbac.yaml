@@ -40,6 +40,10 @@ rules:
 - apiGroups: [physis.kuberoot.dev]
   resources: [receipts]
   verbs: [create, get]
+# Links decide where an agent's identity endpoint may send data.
+- apiGroups: [physis.kuberoot.dev]
+  resources: [links]
+  verbs: [get, list, watch]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
