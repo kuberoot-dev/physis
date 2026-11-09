@@ -230,3 +230,71 @@ spec:
         - --namespace=physis-system
         - --key-secret=agent-key-qpu-de
         - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-sfq-de
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=sfq-de
+        - --physics=sfq
+        - --zone=DE
+        - --operator=cryo-lab-de
+        - --jurisdiction=EU
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/sfq-de
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-sfq-de
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-ising-digital-pl
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=ising-digital-pl
+        - --physics=ising-digital
+        - --zone=PL
+        - --operator=annealer-co
+        - --jurisdiction=EU
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/ising-digital-pl
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-ising-digital-pl
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-pbit-gb
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=pbit-gb
+        - --physics=pbit
+        - --zone=GB
+        - --operator=pbit-labs
+        - --jurisdiction=UK
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/pbit-gb
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-pbit-gb
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-organoid-fr
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=organoid-fr
+        - --physics=organoid
+        - --zone=FR
+        - --operator=wetware-fr
+        - --jurisdiction=EU
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/organoid-fr
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-organoid-fr
+        - --code=physis-agent/kuberoot-node-service

@@ -21,7 +21,15 @@ case "${1:-}" in
     cp results/learn.json $R/usr/share/physis/learn.json
     k exec -i builder -c tools -- mkdir -p /work/out/$ARCH/physis
     tar -C out/kuberoot-physis-$ARCH -cf - root | k exec -i builder -c tools -- tar -xf - -C /work/out/$ARCH/physis
-    (cd "$KR" && KUBEROOT_NS=$NS KUBEROOT_DISTRO=physis JOBS=8 GOMAXPROCS=8 hack/hetzner.sh build $ARCH)
+    if [ "${REBUILD_BINARIES:-1}" = 1 ]; then
+      (cd "$KR" && KUBEROOT_NS=$NS KUBEROOT_DISTRO=physis JOBS=8 GOMAXPROCS=8 hack/hetzner.sh build $ARCH)
+    else
+      # Only the profile or physis changed: rootfs and initramfs from the
+      # binaries already built.
+      (cd "$KR" && KUBEROOT_NS=$NS hack/hetzner.sh sync)
+      k exec -i builder -c alpine -- sh -c "KUBEROOT_OUT=/work/out WORK=/work KUBEROOT_DISTRO=physis sh /work/src/kuberoot/scripts/build-rootfs.sh $ARCH"
+      k exec -i builder -c tools -- sh -c "KUBEROOT_OUT=/work/out WORK=/work /work/src/kuberoot/scripts/build-initramfs.sh $ARCH"
+    fi
     (cd "$KR" && KUBEROOT_NS=$NS hack/hetzner.sh media $ARCH) ;;
   node)
     (cd "$KR" && KUBEROOT_NS=$NS hack/hetzner.sh node "${2:?name}" $ARCH) ;;

@@ -108,7 +108,9 @@ list is part of the results, not an appendix to them.
   a real DRA driver.
 - **The WASI device core ran under wasmtime on the laptop**, not on a
   microcontroller; the line protocol is the same, the hardware is not.
-- **The container-free kuberoot distribution is described but was not built
-  or booted yet.**
+- **The container-free kuberoot distribution** was built and booted as one
+  node (a VM on server ws2) and passes conformance; agents restart twice at
+  boot while the API server comes up, and the agents use the admin
+  kubeconfig rather than identities of their own.
 - **The agent layer** (reason codes, idempotency, rate limit, MCP) is covered by
   unit tests and a run on the stand, not by conformance tests.

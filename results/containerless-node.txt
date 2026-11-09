@@ -1,0 +1,41 @@
+# kuberoot physis distribution (no containers), node px2 in tenant-physis, 2026-11-09T07:20:57Z
+## node services (node API)
+NAME                            STATE     PID   RESTARTS   MEMORY   CPU   AGE
+installer                       Running   114   0          21Mi     1s    2m57s
+kine                            Running   109   0          91Mi     16s   2m57s
+kube-apiserver                  Running   115   0          401Mi    43s   2m57s
+kube-controller-manager         Running   183   0          126Mi    2s    2m52s
+kuberoot-node                   Running   113   0          132Mi    1s    2m57s
+physis-agent-adiabatic-fr       Running   320   2          6Mi      1s    2m49s
+physis-agent-cpu-de             Running   341   2          7Mi      2s    2m49s
+physis-agent-hdc-fr             Running   325   2          14Mi     8s    2m49s
+physis-agent-ising-digital-pl   Running   358   2          8Mi      2s    2m49s
+physis-agent-organoid-fr        Running   359   2          11Mi     8s    2m49s
+physis-agent-pbit-gb            Running   342   2          7Mi      4s    2m49s
+physis-agent-photonic-de        Running   360   2          10Mi     2s    2m49s
+physis-agent-pim-dram-fr        Running   327   2          9Mi      2s    2m49s
+physis-agent-qpu-de             Running   347   2          8Mi      2s    2m49s
+physis-agent-sfq-de             Running   349   2          12Mi     2s    2m49s
+physis-agent-stochastic-gb      Running   357   2          12Mi     2s    2m49s
+physis-agent-systolic-de        Running   326   2          8Mi      2s    2m49s
+physis-scheduler                Running   178   0          32Mi     1s    2m53s
+## kubectl get nodes
+No resources found
+## kubectl get pods -A
+No resources found
+## substrates
+NAME               PHYSICS         ZONE   JURISDICTION   EMULATED   HEARTBEAT
+adiabatic-fr       adiabatic       FR     EU             true       0s
+cpu-de             cpu             DE     EU             false      0s
+hdc-fr             hdc             FR     EU             true       0s
+ising-digital-pl   ising-digital   PL     EU             true       0s
+organoid-fr        organoid        FR     EU             true       0s
+pbit-gb            pbit            GB     UK             true       0s
+photonic-de        photonic        DE     EU             true       0s
+pim-dram-fr        pim-dram        FR     EU             true       0s
+qpu-de             qpu             DE     EU             true       0s
+sfq-de             sfq             DE     EU             true       0s
+stochastic-gb      stochastic      GB     UK             true       0s
+systolic-de        systolic        DE     EU             true       0s
+## os-release
+{"addresses":["10.244.17.144"],"architecture":"amd64","bootTime":"2026-11-09T07:17:59Z","distro":"kuberoot","hostname":"kuberoot-f5ef1f","kernelVersion":"6.18.55-kuberoot","memoryFree":7108407296,"memoryTotal":8299720704,"version":"0.1.0-dev"}
