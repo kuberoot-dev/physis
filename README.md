@@ -15,10 +15,10 @@ that receive pods. Every result carries a signed, hash-chained receipt that
 anyone can verify offline. People delegate budgets with signed mandates; agents
 act within them.
 
-The prototype knows seventeen physics: a real CPU, a real GPU (the Apple M4 of
+The prototype knows eighteen physics: a real CPU, a real GPU (the Apple M4 of
 the laptop stand, through MLX, `tools/gpu-worker.py`), a systolic tensor array
 (FP8, MXFP4, int8), DRAM processing, a dataflow processor, stochastic and
-hyperdimensional computing, and emulated digital and SFQ
+hyperdimensional computing, a CGRA, and emulated digital and SFQ
 annealers, adiabatic logic, p-bits, a coherent optical Ising machine, a gate
 quantum processor (QAOA), analog in-memory computing, a photonic core, a
 neuromorphic chip and a living neuronal culture used as a reservoir. Emulated
@@ -45,7 +45,7 @@ from receipts once real hardware is attached.
 | Path | What |
 |---|---|
 | `pkg/solve` | MaxCut and classification solvers for every physics, with exact operation counts |
-| `pkg/device` | Device models of the seventeen physics, every parameter with provenance |
+| `pkg/device` | Device models of the eighteen physics, every parameter with provenance |
 | `pkg/plan` | The scheduler: algorithm × physics × zone × start time, constraints, policies, Pareto front |
 | `pkg/learn` | Quality distributions and model corrections learned from runs |
 | `pkg/grid` | Grid carbon intensity and prices: recorded and live (Energy-Charts, UK Carbon Intensity) |

@@ -18,3 +18,4 @@ pim-dram-fr	pim-dram	FR	memfab-fr	EU	2
 dataflow-pl	dataflow	PL	stream-pl	EU	2
 stochastic-gb	stochastic	GB	bitstream-gb	UK	2
 hdc-fr	hdc	FR	hypervec-fr	EU	2
+cgra-pl	cgra	PL	reconf-pl	EU	2

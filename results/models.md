@@ -16,4 +16,5 @@
 | dataflow | да | 3.75e+14 (3.75e+13–3.75e+14) · ref:abts2020tsp | — | 300 (150–400) · assumption | 0.0001 (1e-05–0.001) · assumption | 0.03 (0.0015–0.4) · assumption | — | 1073741824 |
 | stochastic | да | 1e+12 (1e+11–1e+13) · assumption | 5e-15 (1e-15–3e-14) · assumption | — | 0.0001 (1e-05–0.001) · assumption | — | — | 1073741824 |
 | hdc | да | 1e+12 (1e+11–1e+13) · assumption | 6e-16 (2e-16–5e-15) · assumption | — | 0.0001 (1e-05–0.001) · assumption | — | — | 1073741824 |
+| cgra | да | 6.15e+12 (1.1e+12–6.15e+12) · ref:podobas2020cgra | — | 49 (20–49) · ref:podobas2020cgra | 0.0001 (1e-05–0.01) · assumption | 0.0049 (0.0002–0.49) · assumption | — | 1073741824 |
 | gpu | нет | 5e+09 (8e+08–7e+09) · measured | — | 8 (3–20) · assumption | 0.004 (0.003–0.05) · measured | 0.032 (0.009–1) · assumption | — | 1073741824 |

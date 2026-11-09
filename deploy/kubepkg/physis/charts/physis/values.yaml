@@ -22,6 +22,7 @@ fleet:
   - {name: dataflow-pl, physics: dataflow, zone: PL, operator: stream-pl, jurisdiction: EU, slots: 2}
   - {name: stochastic-gb, physics: stochastic, zone: GB, operator: bitstream-gb, jurisdiction: UK, slots: 2}
   - {name: hdc-fr, physics: hdc, zone: FR, operator: hypervec-fr, jurisdiction: EU, slots: 2}
+  - {name: cgra-pl, physics: cgra, zone: PL, operator: reconf-pl, jurisdiction: EU, slots: 2}
 # How strictly agents spread over machines: ScheduleAnyway or DoNotSchedule.
 agentSpread: ScheduleAnyway
 # Trusted principals: name -> Ed25519 public key (hex).

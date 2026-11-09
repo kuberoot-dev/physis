@@ -1,0 +1,670 @@
+instance,ref_source,class,n,algo,effort,physics,emulated,seed,quality,value,spin_updates,macs,host_cpu_s,host_wall_s,device_s,device_j,host,cpu_model
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,1,1.000000,21,3600,15000,0.000062,0.000072,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,2,1.000000,21,3600,15000,0.000049,0.000050,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,3,1.000000,21,3600,15000,0.000051,0.000050,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,4,1.000000,21,3600,15000,0.000050,0.000051,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,5,1.000000,21,3600,15000,0.000048,0.000048,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,6,1.000000,21,3600,15000,0.000051,0.000050,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,7,1.000000,21,3600,15000,0.000048,0.000048,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,8,1.000000,21,3600,15000,0.000049,0.000049,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,9,1.000000,21,3600,15000,0.000049,0.000048,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,10,1.000000,21,3600,15000,0.000046,0.000046,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,11,1.000000,21,3600,15000,0.000048,0.000048,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w300,cgra,true,12,1.000000,21,3600,15000,0.000047,0.000047,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,1,1.000000,21,36000,150000,0.000463,0.000464,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,2,1.000000,21,36000,150000,0.000442,0.000442,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,3,1.000000,21,36000,150000,0.000455,0.000452,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,4,1.000000,21,36000,150000,0.000446,0.000443,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,5,1.000000,21,36000,150000,0.000437,0.000437,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,6,1.000000,21,36000,150000,0.000441,0.000441,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,7,1.000000,21,36000,150000,0.000439,0.000440,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,8,1.000000,21,36000,150000,0.000444,0.000444,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,9,1.000000,21,36000,150000,0.000446,0.000447,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,10,1.000000,21,36000,150000,0.000434,0.000435,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,11,1.000000,21,36000,150000,0.000442,0.000442,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w3000,cgra,true,12,1.000000,21,36000,150000,0.000440,0.000443,0.00010003,0.00490148,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,1,1.000000,21,360000,1500000,0.004382,0.004382,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,2,1.000000,21,360000,1500000,0.004332,0.004330,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,3,1.000000,21,360000,1500000,0.004326,0.004326,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,4,1.000000,21,360000,1500000,0.004383,0.004382,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,5,1.000000,21,360000,1500000,0.004312,0.004304,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,6,1.000000,21,360000,1500000,0.004280,0.004283,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,7,1.000000,21,360000,1500000,0.004292,0.004293,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,8,1.000000,21,360000,1500000,0.004257,0.004254,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,9,1.000000,21,360000,1500000,0.004280,0.004280,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,10,1.000000,21,360000,1500000,0.004284,0.004285,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,11,1.000000,21,360000,1500000,0.004383,0.004373,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12000,exact,maxcut,12,anneal,w30000,cgra,true,12,1.000000,21,360000,1500000,0.004370,0.004371,0.000100302,0.00491482,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,1,1.000000,20,3600,15600,0.000055,0.000055,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,2,1.000000,20,3600,15600,0.000051,0.000052,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,3,1.000000,20,3600,15600,0.000053,0.000053,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,4,1.000000,20,3600,15600,0.000051,0.000051,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,5,1.000000,20,3600,15600,0.000050,0.000051,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,6,1.000000,20,3600,15600,0.000051,0.000051,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,7,1.000000,20,3600,15600,0.000049,0.000049,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,8,1.000000,20,3600,15600,0.000051,0.000051,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,9,1.000000,20,3600,15600,0.000047,0.000047,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,10,1.000000,20,3600,15600,0.000046,0.000047,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,11,1.000000,20,3600,15600,0.000048,0.000048,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w300,cgra,true,12,1.000000,20,3600,15600,0.000049,0.000051,0.000100003,0.00490015,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,1,1.000000,20,36000,156000,0.000476,0.000476,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,2,1.000000,20,36000,156000,0.000442,0.000442,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,3,1.000000,20,36000,156000,0.000450,0.000451,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,4,1.000000,20,36000,156000,0.000468,0.000466,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,5,1.000000,20,36000,156000,0.000429,0.000430,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,6,1.000000,20,36000,156000,0.000432,0.000433,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,7,1.000000,20,36000,156000,0.000438,0.000437,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,8,1.000000,20,36000,156000,0.000431,0.000431,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,9,1.000000,20,36000,156000,0.000429,0.000430,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,10,1.000000,20,36000,156000,0.000437,0.000437,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,11,1.000000,20,36000,156000,0.000426,0.000426,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w3000,cgra,true,12,1.000000,20,36000,156000,0.000442,0.000442,0.000100031,0.00490153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,1,1.000000,20,360000,1560000,0.004251,0.004251,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,2,1.000000,20,360000,1560000,0.004318,0.004311,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,3,1.000000,20,360000,1560000,0.004253,0.004254,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,4,1.000000,20,360000,1560000,0.004252,0.004252,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,5,1.000000,20,360000,1560000,0.004260,0.004257,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,6,1.000000,20,360000,1560000,0.004425,0.004442,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,7,1.000000,20,360000,1560000,0.004472,0.004473,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,8,1.000000,20,360000,1560000,0.004465,0.004451,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,9,1.000000,20,360000,1560000,0.004303,0.004303,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,10,1.000000,20,360000,1560000,0.004302,0.004302,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,11,1.000000,20,360000,1560000,0.004204,0.004201,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12001,exact,maxcut,12,anneal,w30000,cgra,true,12,1.000000,20,360000,1560000,0.004258,0.004258,0.000100312,0.0049153,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,1,1.000000,21,3600,16200,0.000057,0.000057,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,2,1.000000,21,3600,16200,0.000050,0.000050,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,3,1.000000,21,3600,16200,0.000051,0.000050,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,4,1.000000,21,3600,16200,0.000047,0.000047,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,5,1.000000,21,3600,16200,0.000050,0.000050,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,6,1.000000,21,3600,16200,0.000049,0.000049,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,7,1.000000,21,3600,16200,0.000048,0.000047,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,8,1.000000,21,3600,16200,0.000047,0.000048,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,9,1.000000,21,3600,16200,0.000047,0.000047,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,10,1.000000,21,3600,16200,0.000047,0.000047,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,11,1.000000,21,3600,16200,0.000047,0.000047,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w300,cgra,true,12,1.000000,21,3600,16200,0.000046,0.000046,0.000100003,0.00490016,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,1,1.000000,21,36000,162000,0.000460,0.000460,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,2,1.000000,21,36000,162000,0.000452,0.000452,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,3,1.000000,21,36000,162000,0.000472,0.000474,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,4,1.000000,21,36000,162000,0.000459,0.000462,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,5,1.000000,21,36000,162000,0.000470,0.000470,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,6,1.000000,21,36000,162000,0.000454,0.000454,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,7,1.000000,21,36000,162000,0.000450,0.000450,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,8,1.000000,21,36000,162000,0.000445,0.000446,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,9,1.000000,21,36000,162000,0.000444,0.000444,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,10,1.000000,21,36000,162000,0.000440,0.000440,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,11,1.000000,21,36000,162000,0.000442,0.000442,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w3000,cgra,true,12,1.000000,21,36000,162000,0.000458,0.000451,0.000100032,0.00490158,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,1,1.000000,21,360000,1620000,0.004428,0.004430,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,2,1.000000,21,360000,1620000,0.004241,0.004241,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,3,1.000000,21,360000,1620000,0.004269,0.004267,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,4,1.000000,21,360000,1620000,0.004244,0.004245,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,5,1.000000,21,360000,1620000,0.004286,0.004286,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,6,1.000000,21,360000,1620000,0.004292,0.004286,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,7,1.000000,21,360000,1620000,0.004233,0.004234,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,8,1.000000,21,360000,1620000,0.004343,0.004344,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,9,1.000000,21,360000,1620000,0.004304,0.004301,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,10,1.000000,21,360000,1620000,0.004186,0.004189,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,11,1.000000,21,360000,1620000,0.004218,0.004219,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12002,exact,maxcut,12,anneal,w30000,cgra,true,12,1.000000,21,360000,1620000,0.004244,0.004239,0.000100322,0.00491578,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,1,1.000000,15,3600,10800,0.000050,0.000051,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,2,1.000000,15,3600,10800,0.000044,0.000045,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,3,1.000000,15,3600,10800,0.000043,0.000043,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,4,1.000000,15,3600,10800,0.000042,0.000042,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,5,1.000000,15,3600,10800,0.000043,0.000043,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,6,1.000000,15,3600,10800,0.000044,0.000043,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,7,1.000000,15,3600,10800,0.000040,0.000041,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,8,1.000000,15,3600,10800,0.000041,0.000041,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,9,1.000000,15,3600,10800,0.000041,0.000041,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,10,1.000000,15,3600,10800,0.000040,0.000040,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,11,1.000000,15,3600,10800,0.000040,0.000040,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w300,cgra,true,12,1.000000,15,3600,10800,0.000040,0.000040,0.000100002,0.00490011,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,1,1.000000,15,36000,108000,0.000393,0.000396,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,2,1.000000,15,36000,108000,0.000380,0.000380,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,3,1.000000,15,36000,108000,0.000379,0.000382,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,4,1.000000,15,36000,108000,0.000386,0.000386,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,5,1.000000,15,36000,108000,0.000374,0.000374,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,6,1.000000,15,36000,108000,0.000387,0.000388,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,7,1.000000,15,36000,108000,0.000370,0.000371,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,8,1.000000,15,36000,108000,0.000371,0.000371,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,9,1.000000,15,36000,108000,0.000373,0.000372,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,10,1.000000,15,36000,108000,0.000369,0.000370,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,11,1.000000,15,36000,108000,0.000369,0.000369,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w3000,cgra,true,12,1.000000,15,36000,108000,0.000369,0.000369,0.000100023,0.00490115,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,1,1.000000,15,360000,1080000,0.003709,0.003710,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,2,1.000000,15,360000,1080000,0.003648,0.003640,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,3,1.000000,15,360000,1080000,0.003750,0.003750,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,4,1.000000,15,360000,1080000,0.003775,0.003775,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,5,1.000000,15,360000,1080000,0.003667,0.003662,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,6,1.000000,15,360000,1080000,0.003644,0.003644,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,7,1.000000,15,360000,1080000,0.003641,0.003641,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,8,1.000000,15,360000,1080000,0.003662,0.003660,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,9,1.000000,15,360000,1080000,0.003647,0.003647,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,10,1.000000,15,360000,1080000,0.003684,0.003684,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,11,1.000000,15,360000,1080000,0.003666,0.003666,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n12-p0.40-s12003,exact,maxcut,12,anneal,w30000,cgra,true,12,1.000000,15,360000,1080000,0.003728,0.003723,0.000100234,0.00491147,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,1,1.000000,37,4800,30600,0.000094,0.000095,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,2,1.000000,37,4800,30600,0.000082,0.000082,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,3,1.000000,37,4800,30600,0.000080,0.000080,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,4,1.000000,37,4800,30600,0.000080,0.000080,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,5,1.000000,37,4800,30600,0.000081,0.000080,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,6,1.000000,37,4800,30600,0.000080,0.000080,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,7,1.000000,37,4800,30600,0.000079,0.000078,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,8,1.000000,37,4800,30600,0.000081,0.000080,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,9,1.000000,37,4800,30600,0.000078,0.000078,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,10,1.000000,37,4800,30600,0.000077,0.000077,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,11,1.000000,37,4800,30600,0.000077,0.000077,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w300,cgra,true,12,1.000000,37,4800,30600,0.000076,0.000077,0.000100006,0.00490028,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,1,1.000000,37,48000,306000,0.000762,0.000762,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,2,1.000000,37,48000,306000,0.000746,0.000746,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,3,1.000000,37,48000,306000,0.000751,0.000751,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,4,1.000000,37,48000,306000,0.000718,0.000718,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,5,1.000000,37,48000,306000,0.000710,0.000711,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,6,1.000000,37,48000,306000,0.000723,0.000723,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,7,1.000000,37,48000,306000,0.000709,0.000709,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,8,1.000000,37,48000,306000,0.000710,0.000710,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,9,1.000000,37,48000,306000,0.000707,0.000707,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,10,1.000000,37,48000,306000,0.000700,0.000700,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,11,1.000000,37,48000,306000,0.000698,0.000700,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w3000,cgra,true,12,1.000000,37,48000,306000,0.000695,0.000695,0.000100058,0.00490282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,1,1.000000,37,480000,3060000,0.007000,0.006997,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,2,1.000000,37,480000,3060000,0.007005,0.007003,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,3,1.000000,37,480000,3060000,0.007113,0.007113,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,4,1.000000,37,480000,3060000,0.007095,0.007092,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,5,1.000000,37,480000,3060000,0.006867,0.006868,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,6,1.000000,37,480000,3060000,0.007171,0.007165,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,7,1.000000,37,480000,3060000,0.007090,0.007091,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,8,1.000000,37,480000,3060000,0.007093,0.007090,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,9,1.000000,37,480000,3060000,0.007069,0.007061,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,10,1.000000,37,480000,3060000,0.006890,0.006889,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,11,1.000000,37,480000,3060000,0.006938,0.006942,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16000,exact,maxcut,16,anneal,w30000,cgra,true,12,1.000000,37,480000,3060000,0.007229,0.007228,0.000100576,0.0049282,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,1,1.000000,35,4800,28800,0.000093,0.000092,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,2,1.000000,35,4800,28800,0.000082,0.000082,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,3,1.000000,35,4800,28800,0.000082,0.000082,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,4,1.000000,35,4800,28800,0.000082,0.000081,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,5,1.000000,35,4800,28800,0.000080,0.000083,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,6,1.000000,35,4800,28800,0.000092,0.000093,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,7,1.000000,35,4800,28800,0.000083,0.000082,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,8,1.000000,35,4800,28800,0.000082,0.000081,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,9,1.000000,35,4800,28800,0.000081,0.000081,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,10,1.000000,35,4800,28800,0.000081,0.000080,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,11,1.000000,35,4800,28800,0.000078,0.000079,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w300,cgra,true,12,1.000000,35,4800,28800,0.000081,0.000081,0.000100005,0.00490027,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,1,1.000000,35,48000,288000,0.000791,0.000791,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,2,1.000000,35,48000,288000,0.000793,0.000788,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,3,1.000000,35,48000,288000,0.000759,0.000759,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,4,1.000000,35,48000,288000,0.000750,0.000750,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,5,1.000000,35,48000,288000,0.000750,0.000751,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,6,1.000000,35,48000,288000,0.000749,0.000749,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,7,1.000000,35,48000,288000,0.000753,0.000754,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,8,1.000000,35,48000,288000,0.000745,0.000748,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,9,1.000000,35,48000,288000,0.000737,0.000738,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,10,1.000000,35,48000,288000,0.000730,0.000732,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,11,1.000000,35,48000,288000,0.000730,0.000731,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w3000,cgra,true,12,1.000000,35,48000,288000,0.000716,0.000717,0.000100055,0.00490268,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,1,1.000000,35,480000,2880000,0.007142,0.007141,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,2,1.000000,35,480000,2880000,0.007147,0.007148,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,3,1.000000,35,480000,2880000,0.007092,0.007084,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,4,1.000000,35,480000,2880000,0.007204,0.007205,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,5,1.000000,35,480000,2880000,0.007295,0.007291,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,6,1.000000,35,480000,2880000,0.007107,0.007095,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,7,1.000000,35,480000,2880000,0.007161,0.007162,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,8,1.000000,35,480000,2880000,0.007055,0.007052,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,9,1.000000,35,480000,2880000,0.007198,0.007199,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,10,1.000000,35,480000,2880000,0.007403,0.007395,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,11,1.000000,35,480000,2880000,0.007447,0.007443,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16001,exact,maxcut,16,anneal,w30000,cgra,true,12,1.000000,35,480000,2880000,0.007177,0.007177,0.000100546,0.00492677,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,1,1.000000,34,4800,27600,0.000083,0.000083,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,2,1.000000,34,4800,27600,0.000080,0.000080,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,3,1.000000,34,4800,27600,0.000078,0.000079,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,4,1.000000,34,4800,27600,0.000078,0.000079,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,5,1.000000,34,4800,27600,0.000077,0.000077,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,6,1.000000,34,4800,27600,0.000077,0.000077,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,7,1.000000,34,4800,27600,0.000076,0.000077,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,8,1.000000,34,4800,27600,0.000075,0.000075,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,9,1.000000,34,4800,27600,0.000076,0.000076,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,10,1.000000,34,4800,27600,0.000072,0.000073,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,11,1.000000,34,4800,27600,0.000073,0.000073,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w300,cgra,true,12,1.000000,34,4800,27600,0.000074,0.000074,0.000100005,0.00490026,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,1,1.000000,34,48000,276000,0.000703,0.000705,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,2,1.000000,34,48000,276000,0.000691,0.000690,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,3,1.000000,34,48000,276000,0.000677,0.000677,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,4,1.000000,34,48000,276000,0.000714,0.000716,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,5,1.000000,34,48000,276000,0.000698,0.000697,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,6,1.000000,34,48000,276000,0.000710,0.000700,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,7,1.000000,34,48000,276000,0.000680,0.000681,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,8,1.000000,34,48000,276000,0.000677,0.000677,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,9,1.000000,34,48000,276000,0.000686,0.000686,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,10,1.000000,34,48000,276000,0.000679,0.000679,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,11,1.000000,34,48000,276000,0.000675,0.000676,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w3000,cgra,true,12,1.000000,34,48000,276000,0.000678,0.000679,0.000100053,0.00490258,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,1,1.000000,34,480000,2760000,0.006689,0.006683,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,2,1.000000,34,480000,2760000,0.006639,0.006638,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,3,1.000000,34,480000,2760000,0.006574,0.006575,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,4,1.000000,34,480000,2760000,0.006617,0.006609,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,5,1.000000,34,480000,2760000,0.006739,0.006740,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,6,1.000000,34,480000,2760000,0.006632,0.006627,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,7,1.000000,34,480000,2760000,0.006647,0.006639,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,8,1.000000,34,480000,2760000,0.006579,0.006580,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,9,1.000000,34,480000,2760000,0.006654,0.006652,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,10,1.000000,34,480000,2760000,0.006772,0.006773,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,11,1.000000,34,480000,2760000,0.006710,0.006701,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16002,exact,maxcut,16,anneal,w30000,cgra,true,12,1.000000,34,480000,2760000,0.006857,0.006857,0.000100527,0.00492581,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,1,1.000000,40,4800,34800,0.000102,0.000101,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,2,1.000000,40,4800,34800,0.000091,0.000091,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,3,1.000000,40,4800,34800,0.000093,0.000094,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,4,1.000000,40,4800,34800,0.000093,0.000093,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,5,1.000000,40,4800,34800,0.000093,0.000093,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,6,1.000000,40,4800,34800,0.000093,0.000093,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,7,1.000000,40,4800,34800,0.000090,0.000090,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,8,1.000000,40,4800,34800,0.000091,0.000091,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,9,1.000000,40,4800,34800,0.000090,0.000090,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,10,1.000000,40,4800,34800,0.000092,0.000091,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,11,1.000000,40,4800,34800,0.000092,0.000092,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w300,cgra,true,12,1.000000,40,4800,34800,0.000093,0.000093,0.000100006,0.00490032,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,1,1.000000,40,48000,348000,0.000868,0.000868,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,2,1.000000,40,48000,348000,0.000847,0.000848,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,3,1.000000,40,48000,348000,0.000844,0.000844,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,4,1.000000,40,48000,348000,0.000834,0.000834,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,5,1.000000,40,48000,348000,0.000838,0.000839,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,6,1.000000,40,48000,348000,0.000814,0.000815,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,7,1.000000,40,48000,348000,0.000816,0.000817,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,8,1.000000,40,48000,348000,0.000817,0.000818,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,9,1.000000,40,48000,348000,0.000804,0.000804,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,10,1.000000,40,48000,348000,0.000802,0.000801,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,11,1.000000,40,48000,348000,0.000801,0.000801,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w3000,cgra,true,12,1.000000,40,48000,348000,0.000803,0.000804,0.000100064,0.00490316,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,1,1.000000,40,480000,3480000,0.008133,0.008130,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,2,1.000000,40,480000,3480000,0.008191,0.008181,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,3,1.000000,40,480000,3480000,0.008093,0.008093,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,4,1.000000,40,480000,3480000,0.008052,0.008048,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,5,1.000000,40,480000,3480000,0.008164,0.008159,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,6,1.000000,40,480000,3480000,0.008125,0.008125,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,7,1.000000,40,480000,3480000,0.008112,0.008103,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,8,1.000000,40,480000,3480000,0.008115,0.008111,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,9,1.000000,40,480000,3480000,0.008152,0.008152,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,10,1.000000,40,480000,3480000,0.008146,0.008139,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,11,1.000000,40,480000,3480000,0.008064,0.008060,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n16-p0.40-s16003,exact,maxcut,16,anneal,w30000,cgra,true,12,1.000000,40,480000,3480000,0.008164,0.008164,0.000100644,0.00493155,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,1,1.000000,54,6000,44400,0.000125,0.000124,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,2,1.000000,54,6000,44400,0.000112,0.000112,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,3,1.000000,54,6000,44400,0.000108,0.000108,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,4,1.000000,54,6000,44400,0.000113,0.000114,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,5,1.000000,54,6000,44400,0.000110,0.000110,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,6,1.000000,54,6000,44400,0.000107,0.000106,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,7,1.000000,54,6000,44400,0.000107,0.000108,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,8,1.000000,54,6000,44400,0.000109,0.000109,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,9,1.000000,54,6000,44400,0.000107,0.000106,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,10,1.000000,54,6000,44400,0.000104,0.000105,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,11,1.000000,54,6000,44400,0.000105,0.000105,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w300,cgra,true,12,1.000000,54,6000,44400,0.000109,0.000110,0.000100008,0.0049004,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,1,1.000000,54,60000,444000,0.001033,0.001033,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,2,1.000000,54,60000,444000,0.001022,0.001015,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,3,1.000000,54,60000,444000,0.000994,0.000994,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,4,1.000000,54,60000,444000,0.001009,0.001010,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,5,1.000000,54,60000,444000,0.001018,0.001018,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,6,1.000000,54,60000,444000,0.001016,0.001015,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,7,1.000000,54,60000,444000,0.000978,0.000978,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,8,1.000000,54,60000,444000,0.001007,0.001007,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,9,1.000000,54,60000,444000,0.001001,0.001002,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,10,1.000000,54,60000,444000,0.001000,0.001001,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,11,1.000000,54,60000,444000,0.001017,0.001017,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w3000,cgra,true,12,1.000000,54,60000,444000,0.001015,0.001018,0.000100082,0.00490402,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,1,1.000000,54,600000,4440000,0.009846,0.009843,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,2,1.000000,54,600000,4440000,0.009830,0.009824,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,3,1.000000,54,600000,4440000,0.009968,0.009963,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,4,1.000000,54,600000,4440000,0.010117,0.010115,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,5,1.000000,54,600000,4440000,0.010059,0.010062,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,6,1.000000,54,600000,4440000,0.009927,0.009923,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,7,1.000000,54,600000,4440000,0.010050,0.010043,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,8,1.000000,54,600000,4440000,0.009921,0.009917,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,9,1.000000,54,600000,4440000,0.009998,0.009991,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,10,1.000000,54,600000,4440000,0.010043,0.010043,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,11,1.000000,54,600000,4440000,0.009911,0.009908,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20000,exact,maxcut,20,anneal,w30000,cgra,true,12,1.000000,54,600000,4440000,0.009860,0.009854,0.00010082,0.00494016,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,1,1.000000,63,6000,54000,0.000133,0.000131,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,2,1.000000,63,6000,54000,0.000121,0.000121,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,3,1.000000,63,6000,54000,0.000123,0.000123,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,4,1.000000,63,6000,54000,0.000126,0.000126,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,5,1.000000,63,6000,54000,0.000124,0.000123,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,6,1.000000,63,6000,54000,0.000125,0.000125,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,7,1.000000,63,6000,54000,0.000121,0.000121,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,8,1.000000,63,6000,54000,0.000121,0.000122,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,9,1.000000,63,6000,54000,0.000118,0.000118,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,10,1.000000,63,6000,54000,0.000120,0.000121,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,11,1.000000,63,6000,54000,0.000117,0.000118,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w300,cgra,true,12,1.000000,63,6000,54000,0.000123,0.000123,0.00010001,0.00490048,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,1,1.000000,63,60000,540000,0.001173,0.001172,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,2,1.000000,63,60000,540000,0.001135,0.001135,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,3,1.000000,63,60000,540000,0.001127,0.001128,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,4,1.000000,63,60000,540000,0.001136,0.001133,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,5,1.000000,63,60000,540000,0.001138,0.001138,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,6,1.000000,63,60000,540000,0.001131,0.001131,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,7,1.000000,63,60000,540000,0.001123,0.001123,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,8,1.000000,63,60000,540000,0.001150,0.001150,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,9,1.000000,63,60000,540000,0.001147,0.001148,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,10,1.000000,63,60000,540000,0.001154,0.001154,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,11,1.000000,63,60000,540000,0.001142,0.001141,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w3000,cgra,true,12,1.000000,63,60000,540000,0.001162,0.001161,0.000100098,0.00490478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,1,1.000000,63,600000,5400000,0.011106,0.011097,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,2,1.000000,63,600000,5400000,0.011382,0.011378,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,3,1.000000,63,600000,5400000,0.011421,0.011400,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,4,1.000000,63,600000,5400000,0.011267,0.011264,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,5,1.000000,63,600000,5400000,0.011231,0.011221,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,6,1.000000,63,600000,5400000,0.011398,0.011391,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,7,1.000000,63,600000,5400000,0.011177,0.011170,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,8,1.000000,63,600000,5400000,0.011148,0.011156,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,9,1.000000,63,600000,5400000,0.011595,0.011591,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,10,1.000000,63,600000,5400000,0.011656,0.011761,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,11,1.000000,63,600000,5400000,0.012256,0.012399,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20001,exact,maxcut,20,anneal,w30000,cgra,true,12,1.000000,63,600000,5400000,0.011912,0.011872,0.000100976,0.0049478,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,1,1.000000,54,6000,42600,0.000116,0.000116,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,2,1.000000,54,6000,42600,0.000106,0.000105,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,3,1.000000,54,6000,42600,0.000102,0.000103,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,4,1.000000,54,6000,42600,0.000105,0.000104,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,5,1.000000,54,6000,42600,0.000102,0.000103,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,6,1.000000,54,6000,42600,0.000105,0.000104,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,7,1.000000,54,6000,42600,0.000099,0.000099,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,8,1.000000,54,6000,42600,0.000107,0.000107,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,9,1.000000,54,6000,42600,0.000101,0.000100,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,10,1.000000,54,6000,42600,0.000099,0.000099,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,11,1.000000,54,6000,42600,0.000101,0.000101,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w300,cgra,true,12,1.000000,54,6000,42600,0.000101,0.000101,0.000100008,0.00490039,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,1,1.000000,54,60000,426000,0.000981,0.000984,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,2,1.000000,54,60000,426000,0.000992,0.000992,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,3,1.000000,54,60000,426000,0.001027,0.001029,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,4,1.000000,54,60000,426000,0.001011,0.001013,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,5,1.000000,54,60000,426000,0.000985,0.000984,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,6,1.000000,54,60000,426000,0.000980,0.000980,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,7,1.000000,54,60000,426000,0.000969,0.000969,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,8,1.000000,54,60000,426000,0.000963,0.000963,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,9,1.000000,54,60000,426000,0.000965,0.000964,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,10,1.000000,54,60000,426000,0.000973,0.000973,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,11,1.000000,54,60000,426000,0.000945,0.000945,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w3000,cgra,true,12,1.000000,54,60000,426000,0.000985,0.000985,0.000100079,0.00490387,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,1,1.000000,54,600000,4260000,0.009764,0.009767,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,2,1.000000,54,600000,4260000,0.011067,0.012415,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,3,1.000000,54,600000,4260000,0.009761,0.009770,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,4,1.000000,54,600000,4260000,0.009884,0.009914,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,5,1.000000,54,600000,4260000,0.009735,0.009743,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,6,1.000000,54,600000,4260000,0.009478,0.009498,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,7,1.000000,54,600000,4260000,0.009413,0.009417,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,8,1.000000,54,600000,4260000,0.009829,0.009937,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,9,1.000000,54,600000,4260000,0.009578,0.009578,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,10,1.000000,54,600000,4260000,0.009353,0.009353,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,11,1.000000,54,600000,4260000,0.009602,0.009594,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20002,exact,maxcut,20,anneal,w30000,cgra,true,12,1.000000,54,600000,4260000,0.009506,0.009502,0.00010079,0.00493872,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,1,1.000000,48,6000,39600,0.000112,0.000112,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,2,1.000000,48,6000,39600,0.000105,0.000105,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,3,1.000000,48,6000,39600,0.000106,0.000109,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,4,1.000000,48,6000,39600,0.000102,0.000103,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,5,1.000000,48,6000,39600,0.000104,0.000105,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,6,1.000000,48,6000,39600,0.000101,0.000101,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,7,1.000000,48,6000,39600,0.000109,0.000112,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,8,1.000000,48,6000,39600,0.000103,0.000103,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,9,1.000000,48,6000,39600,0.000100,0.000100,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,10,1.000000,48,6000,39600,0.000100,0.000100,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,11,1.000000,48,6000,39600,0.000106,0.000105,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w300,cgra,true,12,1.000000,48,6000,39600,0.000105,0.000105,0.000100007,0.00490036,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,1,1.000000,48,60000,396000,0.000978,0.000978,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,2,1.000000,48,60000,396000,0.000966,0.000969,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,3,1.000000,48,60000,396000,0.000963,0.000966,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,4,1.000000,48,60000,396000,0.000963,0.000963,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,5,1.000000,48,60000,396000,0.000958,0.000959,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,6,1.000000,48,60000,396000,0.000969,0.000970,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,7,1.000000,48,60000,396000,0.000963,0.000963,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,8,1.000000,48,60000,396000,0.000983,0.000974,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,9,1.000000,48,60000,396000,0.000965,0.000964,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,10,1.000000,48,60000,396000,0.000956,0.000956,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,11,1.000000,48,60000,396000,0.000958,0.000957,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w3000,cgra,true,12,1.000000,48,60000,396000,0.000972,0.000972,0.000100074,0.00490363,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,1,1.000000,48,600000,3960000,0.009891,0.009914,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,2,1.000000,48,600000,3960000,0.009962,0.009960,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,3,1.000000,48,600000,3960000,0.009663,0.009659,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,4,1.000000,48,600000,3960000,0.009665,0.009662,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,5,1.000000,48,600000,3960000,0.009809,0.009799,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,6,1.000000,48,600000,3960000,0.009792,0.009805,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,7,1.000000,48,600000,3960000,0.009353,0.009349,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,8,1.000000,48,600000,3960000,0.009538,0.009534,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,9,1.000000,48,600000,3960000,0.009661,0.009656,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,10,1.000000,48,600000,3960000,0.009544,0.009535,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,11,1.000000,48,600000,3960000,0.009553,0.009548,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+er-n20-p0.40-s20003,exact,maxcut,20,anneal,w30000,cgra,true,12,1.000000,48,600000,3960000,0.009768,0.009764,0.000100741,0.00493633,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,1,0.994494,11560,240000,11505600,0.021020,0.021020,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,2,0.999656,11620,240000,11505600,0.021307,0.021292,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,3,0.994064,11555,240000,11505600,0.020569,0.020559,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,4,0.995957,11577,240000,11505600,0.021049,0.021042,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,5,0.995613,11573,240000,11505600,0.020989,0.020980,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,6,0.997333,11593,240000,11505600,0.020858,0.020845,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,7,0.996301,11581,240000,11505600,0.021006,0.021003,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,8,0.994752,11563,240000,11505600,0.023584,0.023579,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,9,0.995182,11568,240000,11505600,0.021028,0.021022,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,10,0.995010,11566,240000,11505600,0.020878,0.020866,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,11,0.994322,11558,240000,11505600,0.020991,0.020983,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w300,cgra,true,12,0.994150,11556,240000,11505600,0.021068,0.021052,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,1,1.000000,11624,2400000,115056000,0.191972,0.191886,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,2,0.999656,11620,2400000,115056000,0.194403,0.194353,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,3,0.996043,11578,2400000,115056000,0.199977,0.199881,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,4,0.997505,11595,2400000,115056000,0.201825,0.201709,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,5,1.000000,11624,2400000,115056000,0.196681,0.196600,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,6,0.999226,11615,2400000,115056000,0.192233,0.192136,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,7,0.998796,11610,2400000,115056000,0.193578,0.193487,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,8,0.998538,11607,2400000,115056000,0.196005,0.196467,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,9,0.998538,11607,2400000,115056000,0.197115,0.197021,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,10,1.000000,11624,2400000,115056000,0.193506,0.193422,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,11,1.000000,11624,2400000,115056000,0.195157,0.195038,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w3000,cgra,true,12,1.000000,11624,2400000,115056000,0.206129,0.209773,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,1,1.000000,11624,24000000,1150560000,1.937083,1.945886,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,2,1.000000,11624,24000000,1150560000,1.943455,1.946415,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,3,1.000000,11624,24000000,1150560000,1.923154,1.927691,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,4,0.997763,11598,24000000,1150560000,1.982033,1.984468,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,5,0.998107,11602,24000000,1150560000,1.981068,1.986808,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,6,1.000000,11624,24000000,1150560000,1.935970,1.939633,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,7,0.998107,11602,24000000,1150560000,1.999588,2.010441,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,8,1.000000,11624,24000000,1150560000,1.918314,1.917619,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,9,0.998538,11607,24000000,1150560000,2.004733,2.034012,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,10,1.000000,11624,24000000,1150560000,1.948971,1.958030,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,11,1.000000,11624,24000000,1150560000,2.128702,2.140680,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G1,best-known (published),maxcut,800,anneal,w30000,cgra,true,12,1.000000,11624,24000000,1150560000,2.333584,2.700210,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,1,0.995955,11573,240000,11505600,0.031871,0.034255,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,2,0.997504,11591,240000,11505600,0.030846,0.033427,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,3,0.996127,11575,240000,11505600,0.039379,0.052117,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,4,0.996299,11577,240000,11505600,0.032260,0.037099,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,5,0.997849,11595,240000,11505600,0.030231,0.043267,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,6,0.995181,11564,240000,11505600,0.035322,0.061408,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,7,0.997504,11591,240000,11505600,0.028303,0.032679,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,8,0.997762,11594,240000,11505600,0.032328,0.044132,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,9,0.997332,11589,240000,11505600,0.056324,0.118213,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,10,0.995611,11569,240000,11505600,0.056263,0.102209,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,11,0.997418,11590,240000,11505600,0.026266,0.026618,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w300,cgra,true,12,0.994836,11560,240000,11505600,0.032566,0.033803,0.00010191,0.00499358,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,1,0.999312,11612,2400000,115056000,0.260506,0.297524,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,2,0.999053,11609,2400000,115056000,0.230899,0.241004,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,3,0.997849,11595,2400000,115056000,0.267335,0.299755,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,4,0.997935,11596,2400000,115056000,0.265237,0.323705,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,5,0.999656,11616,2400000,115056000,0.242940,0.268159,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,6,0.998881,11607,2400000,115056000,0.230598,0.232545,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,7,0.997590,11592,2400000,115056000,0.238147,0.241699,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,8,0.999312,11612,2400000,115056000,0.231045,0.266126,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,9,0.999742,11617,2400000,115056000,0.236701,0.240468,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,10,0.999742,11617,2400000,115056000,0.238097,0.243476,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,11,0.998881,11607,2400000,115056000,0.239884,0.241596,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w3000,cgra,true,12,0.997504,11591,2400000,115056000,0.238250,0.240272,0.000119099,0.00583583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,1,0.999225,11611,24000000,1150560000,2.307711,2.378893,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,2,0.998537,11603,24000000,1150560000,2.372911,2.429315,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,3,0.998623,11604,24000000,1150560000,2.244918,2.282260,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,4,1.000000,11620,24000000,1150560000,2.201787,2.265331,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,5,0.999742,11617,24000000,1150560000,2.257261,2.283605,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,6,0.998623,11604,24000000,1150560000,2.312414,2.420263,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,7,0.998623,11604,24000000,1150560000,2.198151,2.216109,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,8,0.999225,11611,24000000,1150560000,2.220708,2.233619,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,9,0.998107,11598,24000000,1150560000,2.361070,2.426203,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,10,0.999742,11617,24000000,1150560000,2.276471,2.297433,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,11,0.999742,11617,24000000,1150560000,2.282523,2.300176,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G2,best-known (published),maxcut,800,anneal,w30000,cgra,true,12,0.999742,11617,24000000,1150560000,2.277232,2.289339,0.000290985,0.0142583,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,1,0.994760,13289,600000,11994000,0.029031,0.029118,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,2,0.995509,13299,600000,11994000,0.030666,0.031225,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,3,0.994685,13288,600000,11994000,0.029768,0.029856,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,4,0.995209,13295,600000,11994000,0.031968,0.032093,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,5,0.992290,13256,600000,11994000,0.031385,0.032089,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,6,0.996482,13312,600000,11994000,0.032754,0.032858,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,7,0.996631,13314,600000,11994000,0.030495,0.030635,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,8,0.998203,13335,600000,11994000,0.032437,0.033625,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,9,0.994236,13282,600000,11994000,0.032037,0.032352,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,10,0.993862,13277,600000,11994000,0.031777,0.031992,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,11,0.994161,13281,600000,11994000,0.031298,0.031681,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w300,cgra,true,12,0.994610,13287,600000,11994000,0.032779,0.033208,0.000102048,0.00500034,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,1,0.997305,13323,6000000,119940000,0.295087,0.297353,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,2,0.999925,13358,6000000,119940000,0.282859,0.283996,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,3,0.997006,13319,6000000,119940000,0.294074,0.307214,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,4,0.999925,13358,6000000,119940000,0.287417,0.289077,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,5,0.997230,13322,6000000,119940000,0.292283,0.293537,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,6,0.999626,13354,6000000,119940000,0.293544,0.295248,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,7,0.999551,13353,6000000,119940000,0.296343,0.298800,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,8,0.997605,13327,6000000,119940000,0.298339,0.299481,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,9,0.999925,13358,6000000,119940000,0.281945,0.282952,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,10,0.997155,13321,6000000,119940000,0.295201,0.307665,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,11,0.999701,13355,6000000,119940000,0.284419,0.285263,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w3000,cgra,true,12,0.999925,13358,6000000,119940000,0.284371,0.286170,0.000120478,0.00590342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,1,0.999925,13358,60000000,1199400000,2.741174,2.754764,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,2,0.999925,13358,60000000,1199400000,2.742067,2.755106,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,3,0.999925,13358,60000000,1199400000,2.606573,2.612604,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,4,0.999925,13358,60000000,1199400000,2.707796,2.715223,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,5,0.999925,13358,60000000,1199400000,2.708653,2.714396,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,6,0.999925,13358,60000000,1199400000,2.764630,2.804892,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,7,0.999925,13358,60000000,1199400000,2.780883,2.821441,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,8,0.999925,13358,60000000,1199400000,2.708747,2.716155,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,9,0.999850,13357,60000000,1199400000,2.738270,2.753756,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,10,0.999701,13355,60000000,1199400000,3.335632,3.899145,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,11,0.999626,13354,60000000,1199400000,3.377184,3.815147,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G22,best-known (published),maxcut,2000,anneal,w30000,cgra,true,12,0.999701,13355,60000000,1199400000,3.088354,3.301100,0.00030478,0.0149342,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,1,0.982270,554,240000,960000,0.006028,0.015805,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,2,0.985816,556,240000,960000,0.007637,0.021256,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,3,0.985816,556,240000,960000,0.006775,0.007993,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,4,0.985816,556,240000,960000,0.004859,0.006851,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,5,0.982270,554,240000,960000,0.005251,0.005750,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,6,0.978723,552,240000,960000,0.006204,0.007421,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,7,0.989362,558,240000,960000,0.004371,0.004965,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,8,0.989362,558,240000,960000,0.004050,0.004117,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,9,0.982270,554,240000,960000,0.004064,0.004238,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,10,0.982270,554,240000,960000,0.006654,0.011218,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,11,0.971631,548,240000,960000,0.004724,0.004769,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w300,cgra,true,12,0.978723,552,240000,960000,0.004715,0.004770,0.000100195,0.00490956,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,1,0.992908,560,2400000,9600000,0.043200,0.044950,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,2,0.996454,562,2400000,9600000,0.039436,0.040825,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,3,0.989362,558,2400000,9600000,0.038902,0.039580,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,4,0.996454,562,2400000,9600000,0.038274,0.038437,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,5,0.992908,560,2400000,9600000,0.039056,0.039414,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,6,0.992908,560,2400000,9600000,0.039493,0.047161,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,7,0.996454,562,2400000,9600000,0.039116,0.039759,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,8,0.992908,560,2400000,9600000,0.038910,0.039042,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,9,0.989362,558,2400000,9600000,0.041819,0.043126,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,10,0.989362,558,2400000,9600000,0.038268,0.038518,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,11,0.989362,558,2400000,9600000,0.052961,0.060945,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w3000,cgra,true,12,0.989362,558,2400000,9600000,0.040908,0.042728,0.000101951,0.00499561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,1,1.000000,564,24000000,96000000,0.400156,0.416312,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,2,1.000000,564,24000000,96000000,0.419183,0.453678,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,3,1.000000,564,24000000,96000000,0.415638,0.440584,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,4,1.000000,564,24000000,96000000,0.383349,0.385508,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,5,1.000000,564,24000000,96000000,0.383667,0.399712,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,6,0.996454,562,24000000,96000000,0.382767,0.389193,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,7,0.996454,562,24000000,96000000,0.381141,0.397149,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,8,0.996454,562,24000000,96000000,0.411604,0.433495,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,9,0.996454,562,24000000,96000000,0.401599,0.436423,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,10,1.000000,564,24000000,96000000,0.379726,0.383212,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,11,0.996454,562,24000000,96000000,0.398075,0.415739,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G11,best found,maxcut,800,anneal,w30000,cgra,true,12,0.996454,562,24000000,96000000,0.392806,0.409324,0.000119512,0.0058561,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,1,0.992815,3040,240000,2816400,0.008724,0.009448,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,2,0.993795,3043,240000,2816400,0.009127,0.009240,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,3,0.994121,3044,240000,2816400,0.009107,0.009185,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,4,0.992489,3039,240000,2816400,0.009084,0.009263,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,5,0.991182,3035,240000,2816400,0.010401,0.010873,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,6,0.996081,3050,240000,2816400,0.008672,0.008689,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,7,0.994121,3044,240000,2816400,0.008756,0.008784,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,8,0.991509,3036,240000,2816400,0.008833,0.008852,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,9,0.991835,3037,240000,2816400,0.010014,0.010507,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,10,0.994121,3044,240000,2816400,0.008632,0.008643,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,11,0.993142,3041,240000,2816400,0.008754,0.008804,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w300,cgra,true,12,0.991835,3037,240000,2816400,0.009232,0.009250,0.000100497,0.00492435,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,1,0.994121,3044,2400000,28164000,0.089275,0.090486,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,2,0.996408,3051,2400000,28164000,0.085446,0.086255,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,3,0.996734,3052,2400000,28164000,0.085623,0.086538,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,4,0.997714,3055,2400000,28164000,0.089608,0.092941,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,5,0.996408,3051,2400000,28164000,0.086456,0.087945,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,6,0.998694,3058,2400000,28164000,0.084856,0.085293,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,7,0.996081,3050,2400000,28164000,0.090959,0.094310,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,8,0.995428,3048,2400000,28164000,0.101150,0.121244,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,9,0.993795,3043,2400000,28164000,0.114705,0.133023,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,10,0.997387,3054,2400000,28164000,0.095473,0.101677,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,11,0.996408,3051,2400000,28164000,0.084748,0.085374,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w3000,cgra,true,12,0.996081,3050,2400000,28164000,0.095891,0.103960,0.00010497,0.00514352,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,1,1.000000,3062,24000000,281640000,0.863508,0.905071,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,2,0.998694,3058,24000000,281640000,0.855909,0.897620,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,3,0.998040,3056,24000000,281640000,0.836219,0.854163,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,4,0.999347,3060,24000000,281640000,0.834919,0.861401,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,5,0.998694,3058,24000000,281640000,0.848366,0.872353,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,6,0.997387,3054,24000000,281640000,0.835629,0.858318,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,7,0.998367,3057,24000000,281640000,0.843847,0.861854,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,8,0.996408,3051,24000000,281640000,0.844521,0.863636,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,9,0.999347,3060,24000000,281640000,0.851912,0.874363,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,10,0.998694,3058,24000000,281640000,0.947171,1.066969,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,11,0.997061,3053,24000000,281640000,0.937791,1.035271,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G14,best found,maxcut,800,anneal,w30000,cgra,true,12,0.999020,3059,24000000,281640000,0.860341,0.928643,0.000149698,0.00733518,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,1,0.995796,6632,300000,5994000,0.015465,0.017969,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,2,0.993694,6618,300000,5994000,0.014356,0.014413,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,3,0.994294,6622,300000,5994000,0.014583,0.014641,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,4,0.996847,6639,300000,5994000,0.014342,0.014356,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,5,0.996246,6635,300000,5994000,0.014459,0.014448,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,6,0.998649,6651,300000,5994000,0.014089,0.014190,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,7,0.994745,6625,300000,5994000,0.014832,0.015077,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,8,0.995045,6627,300000,5994000,0.017846,0.019707,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,9,0.997598,6644,300000,5994000,0.013633,0.013724,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,10,0.994144,6621,300000,5994000,0.014845,0.014880,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,11,0.993393,6616,300000,5994000,0.016745,0.018192,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w300,cgra,true,12,0.997598,6644,300000,5994000,0.014767,0.014948,0.000101023,0.00495015,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,1,1.000000,6660,3000000,59940000,0.135605,0.138302,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,2,1.000000,6660,3000000,59940000,0.136750,0.138262,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,3,0.997147,6641,3000000,59940000,0.140921,0.151559,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,4,1.000000,6660,3000000,59940000,0.148642,0.157512,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,5,1.000000,6660,3000000,59940000,0.143434,0.146994,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,6,0.995796,6632,3000000,59940000,0.138525,0.139304,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,7,1.000000,6660,3000000,59940000,0.139715,0.146395,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,8,1.000000,6660,3000000,59940000,0.138790,0.142331,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,9,0.999399,6656,3000000,59940000,0.141322,0.146485,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,10,0.997748,6645,3000000,59940000,0.140926,0.150821,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,11,0.999399,6656,3000000,59940000,0.134439,0.135472,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w3000,cgra,true,12,1.000000,6660,3000000,59940000,0.137130,0.139337,0.000110234,0.00540147,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,1,1.000000,6660,30000000,599400000,1.395050,1.445778,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,2,0.999700,6658,30000000,599400000,1.597398,1.985376,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,3,1.000000,6660,30000000,599400000,1.494720,1.651339,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,4,0.999850,6659,30000000,599400000,1.456258,1.567112,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,5,1.000000,6660,30000000,599400000,1.373456,1.410463,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,6,0.999249,6655,30000000,599400000,1.337565,1.352177,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,7,1.000000,6660,30000000,599400000,1.322921,1.350677,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,8,1.000000,6660,30000000,599400000,1.309357,1.333084,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,9,1.000000,6660,30000000,599400000,1.329394,1.365792,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,10,0.999550,6657,30000000,599400000,1.334387,1.361523,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,11,0.999399,6656,30000000,599400000,1.386866,1.432556,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+G43,best found,maxcut,1000,anneal,w30000,cgra,true,12,1.000000,6660,30000000,599400000,1.326883,1.334847,0.000202341,0.00991473,MacBook-Air-tym83.local,darwin/arm64
+digits-100@0,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,90,0,64000,0.000184,0.001751,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@100,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,92,0,64000,0.000117,0.000834,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@200,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,95,0,64000,0.000143,0.000648,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@300,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,98,0,64000,0.000106,0.000131,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@400,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,87,0,64000,0.000157,0.000758,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@500,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,88,0,64000,0.000207,0.000843,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@600,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,90,0,64000,0.000118,0.000135,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@700,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,91,0,64000,0.000237,0.001199,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@800,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,92,0,64000,0.000133,0.000466,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@900,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,95,0,64000,0.000157,0.000552,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1000,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,98,0,64000,0.000149,0.000219,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1100,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,97,0,64000,0.000168,0.000372,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1200,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,95,0,64000,0.000134,0.000493,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1300,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,96,0,64000,0.000153,0.000380,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1400,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,93,0,64000,0.000118,0.000166,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1500,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,83,0,64000,0.000143,0.000264,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-100@1600,exact fp64,classify,100,exact-fp,fp64,cgra,true,1,1.000000,87,0,64000,0.000162,0.000307,0.00010001,0.00490051,MacBook-Air-tym83.local,darwin/arm64
+digits-500@0,exact fp64,classify,500,exact-fp,fp64,cgra,true,1,1.000000,462,0,320000,0.000217,0.000218,0.000100052,0.00490255,MacBook-Air-tym83.local,darwin/arm64
+digits-500@500,exact fp64,classify,500,exact-fp,fp64,cgra,true,1,1.000000,456,0,320000,0.000213,0.000213,0.000100052,0.00490255,MacBook-Air-tym83.local,darwin/arm64
+digits-500@1000,exact fp64,classify,500,exact-fp,fp64,cgra,true,1,1.000000,479,0,320000,0.000217,0.000217,0.000100052,0.00490255,MacBook-Air-tym83.local,darwin/arm64
+digits-1797@0,exact fp64,classify,1797,exact-fp,fp64,cgra,true,1,1.000000,1659,0,1150080,0.000786,0.000786,0.000100187,0.00490916,MacBook-Air-tym83.local,darwin/arm64

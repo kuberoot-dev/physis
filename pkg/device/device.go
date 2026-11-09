@@ -67,6 +67,9 @@ const (
 	Stochastic Physics = "stochastic"
 	// HDC: hyperdimensional computing on in-memory hardware. Emulated.
 	HDC Physics = "hdc"
+	// CGRA: a coarse-grained reconfigurable array, a grid of ALUs wired to
+	// the problem's dataflow instead of fetching instructions. Emulated.
+	CGRA Physics = "cgra"
 )
 
 // Value is a model parameter with its provenance.
@@ -112,8 +115,8 @@ type Model struct {
 // Unit is what one "operation" of the substrate is.
 func (m *Model) countOps(o solve.Ops) float64 {
 	switch m.Physics {
-	case CPU:
-		// A core pays for both the local-field arithmetic and the update
+	case CPU, CGRA:
+		// A core (or a CGRA's ALU grid) pays for both the local-field arithmetic and the update
 		// decision; its rate is calibrated on this sum.
 		return float64(o.SpinUpdates + o.MACs)
 	case AnalogIMC, Photonic, Neuromorphic, GPU, Systolic, PIMDRAM, Dataflow, Stochastic, HDC:
@@ -229,6 +232,16 @@ var (
 // placeholder until calibrated from measured runs (see learn.Calibrate).
 func Builtin(p Physics) *Model {
 	switch p {
+	case CGRA:
+		// Plasticine: 12.3 TFLOP/s at most 49 W (ref:podobas2020cgra). A MAC
+		// is two floating-point operations; the low end allows for the
+		// 18-25% of peak the survey reports for real applications.
+		return &Model{Physics: CGRA, Emulated: true,
+			OpsPerSecond: Value{V: 6.15e12, Lo: 1.1e12, Hi: 6.15e12, Source: "ref:podobas2020cgra", Note: "peak 12.3 TFLOP/s; low end at 18% of peak"},
+			ActivePowerW: Value{V: 49, Lo: 20, Hi: 49, Source: "ref:podobas2020cgra", Note: "maximum power of Plasticine"},
+			SetupSeconds: Value{V: 1e-4, Lo: 1e-5, Hi: 1e-2, Source: "assumption", Note: "load the configuration"},
+			SetupJoules:  Value{V: 1e-4 * 49, Lo: 1e-5 * 20, Hi: 1e-2 * 49, Source: "assumption", Note: "setup time x power"},
+			MaxSize:      1 << 30, PrecisionBits: 32}
 	case Systolic:
 		// TPU v1: 65,536 8-bit MACs at 700 MHz, 92 TOPS peak, 40 W busy
 		// (ref:jouppi2017tpu). FP8 runs at the int8 rate (assumption: FP8
@@ -405,7 +418,7 @@ var Hosted = []Physics{GPU}
 // Numeric are architectures that change how numbers are represented or where
 // they are computed rather than the physics of the switch. They run in the
 // live stands; the published simulations predate them.
-var Numeric = []Physics{Systolic, PIMDRAM, Dataflow, Stochastic, HDC}
+var Numeric = []Physics{Systolic, PIMDRAM, Dataflow, Stochastic, HDC, CGRA}
 
 // FromParams builds the model a substrate publishes: the reference model of
 // its physics, with every parameter the substrate states replacing the

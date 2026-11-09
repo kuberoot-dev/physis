@@ -5,7 +5,7 @@ list is part of the results, not an appendix to them.
 
 ## Physics
 
-- **Fifteen of the seventeen physics are emulated.** The CPU and, on the laptop
+- **Sixteen of the eighteen physics are emulated.** The CPU and, on the laptop
   stand, the Apple M4 GPU (through MLX) are real hardware; the GPU's time is
   measured, its power is an assumption because Apple does not publish it.
   The Ising machine, SFQ and adiabatic annealers, p-bits, coherent Ising
@@ -88,9 +88,9 @@ list is part of the results, not an appendix to them.
 
 ## Architectures added later
 
-- **The five architectures that change how numbers are represented or where
+- **The six architectures that change how numbers are represented or where
   they are computed** (systolic tensor array, DRAM processing, dataflow,
-  stochastic, hyperdimensional) run in the live stands and in conformance, but
+  stochastic, hyperdimensional, CGRA) run in the live stands and in conformance, but
   not in the published quarterly simulations, which predate them.
 - **Their accuracy is measured; their energy is modelled.** Peak rates are
   used, so small batches look better than they would at real utilisation;
