@@ -1,0 +1,5 @@
+# hack/gpu-benchmark.py on the Apple M4 GPU (MLX 0.32.4), 2026-11-08, medians of three runs
+1797 setup 0.0034 s, compute 0.00138 s, 8.34e+08 MAC/s
+50000 setup 0.0140 s, compute 0.00643 s, 4.98e+09 MAC/s
+200000 setup 0.0086 s, compute 0.01955 s, 6.55e+09 MAC/s
+# first evaluation with a cold Metal kernel cache (worker smoke test, same day): setup 0.0515 s

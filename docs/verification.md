@@ -87,3 +87,20 @@ lenders, a wrong alpha release of nftables, and the cryogenic factor above.
 The anniversary of the IFTF forecast was dropped: IFTF's own page speaks of
 the "50th year of this program" in 2025, other sources date the forecast to
 1978, and the article does not need the number.
+
+## 6. The pass over the second round of additions
+
+The text added with the five architectures, the DRA bridge, the hierarchy,
+the device core, the agent layer, identity networking, the container-free
+node, the figures and sections 12 and 13 was checked independently again:
+about 95 claims, 13 corrections. The most important one: the article said the
+planner never chooses the GPU unless asked, while its own screencast shows it
+choosing the GPU at target 1.0 — the uncorrected models make the GPU look
+cheaper, which is exactly what receipt corrections are for. Others: the
+models table lacked the five new rows; the count of emulated physics was
+stale; a claim that Cozystack GPUs would become substrates "without new work"
+overstated both the bridge and Cozystack's use of DRA; a GPU throughput figure
+came from a measurement not in `results/` (now `hack/gpu-benchmark.py` and
+`results/gpu-throughput-benchmark.txt`); the MX source speaks of 4-bit
+weights, not 4-bit everything; one server name could not be tied to the data
+and was dropped.

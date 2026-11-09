@@ -109,7 +109,7 @@ list is part of the results, not an appendix to them.
 - **The WASI device core ran under wasmtime on the laptop**, not on a
   microcontroller; the line protocol is the same, the hardware is not.
 - **The container-free kuberoot distribution** was built and booted as one
-  node (a VM on server ws2) and passes conformance; agents restart twice at
+  node (a VM on a server of the workshop cluster) and passes conformance; agents restart twice at
   boot while the API server comes up, and the agents use the admin
   kubeconfig rather than identities of their own.
 - **The agent layer** (reason codes, idempotency, rate limit, MCP) is covered by
