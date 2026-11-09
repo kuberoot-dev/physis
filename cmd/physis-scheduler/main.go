@@ -96,6 +96,15 @@ func main() {
 		}
 	}()
 	ctx := context.Background()
+	// The level's Lease is renewed on its own clock: a reconcile pass on a
+	// busy or CPU-limited scheduler can outlast the staleness window, and the
+	// other levels would take it for gone.
+	go func() {
+		for {
+			s.renewLease(ctx)
+			time.Sleep(*leaseStale / 3)
+		}
+	}()
 	for {
 		if err := s.reconcile(ctx); err != nil {
 			log.Printf("reconcile: %v", err)
@@ -161,7 +170,6 @@ func (s *scheduler) mandateFor(ctx context.Context, p *kube.Problem) (*mandate.M
 
 func (s *scheduler) reconcile(ctx context.Context) error {
 	now := time.Now().UTC()
-	s.renewLease(ctx)
 	subs, err := s.c.ListSubstrates(ctx)
 	if err != nil {
 		return err

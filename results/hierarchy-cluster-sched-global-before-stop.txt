@@ -1,0 +1,13 @@
+2026/11/09 11:02:26 grid data loaded for [DE FR GB PL]
+2026/11/09 11:03:09 hierarchy-7/mix-1 delegated to zone FR from 2026-11-09T11:03:09Z
+2026/11/09 11:03:11 hierarchy-7/mix-2 delegated to zone FR from 2026-11-09T11:03:11Z
+2026/11/09 11:03:13 hierarchy-7/mix-3 delegated to zone FR from 2026-11-09T11:03:13Z
+2026/11/09 11:03:15 hierarchy-7/mix-4 delegated to zone FR from 2026-11-09T11:03:15Z
+2026/11/09 11:03:18 hierarchy-7/mix-5 delegated to zone FR from 2026-11-09T11:03:17Z
+2026/11/09 11:03:20 hierarchy-7/mix-6 delegated to zone FR from 2026-11-09T11:03:20Z
+2026/11/09 11:03:22 hierarchy-7/mix-7 delegated to zone FR from 2026-11-09T11:03:22Z
+2026/11/09 11:03:24 hierarchy-7/mix-8 delegated to zone FR from 2026-11-09T11:03:24Z
+2026/11/09 11:03:28 hierarchy-7/mix-9 delegated to zone FR from 2026-11-09T11:03:28Z
+2026/11/09 11:03:30 hierarchy-7/mix-10 delegated to zone FR from 2026-11-09T11:03:30Z
+2026/11/09 11:03:32 hierarchy-7/mix-11 delegated to zone FR from 2026-11-09T11:03:32Z
+2026/11/09 11:03:35 hierarchy-7/mix-12 delegated to zone FR from 2026-11-09T11:03:34Z

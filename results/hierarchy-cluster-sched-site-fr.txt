@@ -1,0 +1,15 @@
+2026/11/09 11:02:40 grid data loaded for [DE FR GB PL]
+2026/11/09 11:03:10 hierarchy-7/mix-1 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:09Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:12 hierarchy-7/mix-2 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:12Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:14 hierarchy-7/mix-3 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:14Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:16 hierarchy-7/mix-4 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:16Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:18 hierarchy-7/mix-5 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:18Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:20 hierarchy-7/mix-6 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:20Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:22 hierarchy-7/mix-7 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:22Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:25 hierarchy-7/mix-8 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:24Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:27 lease global renewed after 15s
+2026/11/09 11:03:29 hierarchy-7/mix-9 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:29Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:31 hierarchy-7/mix-10 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:31Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:33 hierarchy-7/mix-11 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:33Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:03:35 hierarchy-7/mix-12 planned on adiabatic-fr (anneal/w300) at 2026-11-09T11:03:35Z: 0.00202 J, 4.34e-08 gCO2
+2026/11/09 11:05:01 lease global renewed after 1m34s

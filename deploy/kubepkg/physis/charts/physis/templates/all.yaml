@@ -36,6 +36,19 @@ metadata: {name: physis-agent}
 roleRef: {apiGroup: rbac.authorization.k8s.io, kind: ClusterRole, name: physis-agent}
 subjects: [{kind: ServiceAccount, name: physis-agent, namespace: {{ $ns }}}]
 ---
+# Planning levels (-role global|site) announce themselves with Leases.
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata: {name: physis-scheduler-leases, namespace: {{ $ns }}}
+rules:
+- {apiGroups: [coordination.k8s.io], resources: [leases], verbs: [get, create, update]}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata: {name: physis-scheduler-leases, namespace: {{ $ns }}}
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: Role, name: physis-scheduler-leases}
+subjects: [{kind: ServiceAccount, name: physis-scheduler, namespace: {{ $ns }}}]
+---
 # Agents keep their signing keys in Secrets of their own namespace, so a
 # restarted or moved agent signs with the same identity.
 apiVersion: rbac.authorization.k8s.io/v1

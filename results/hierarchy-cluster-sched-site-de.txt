@@ -1,0 +1,14 @@
+2026/11/09 11:02:51 grid data loaded for [DE FR GB PL]
+2026/11/09 11:05:01 lease global renewed after 1m30s
+2026/11/09 11:05:16 hierarchy-7/de-1 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:16Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:17 hierarchy-7/any-1 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:16Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:17 hierarchy-7/de-2 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:16Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:17 hierarchy-7/any-2 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:16Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:17 hierarchy-7/de-3 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:16Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:17 hierarchy-7/any-3 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:16Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:17 hierarchy-7/de-4 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:16Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:17 hierarchy-7/any-4 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:16Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:19 hierarchy-7/de-5 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:19Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:21 hierarchy-7/any-5 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:21Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:24 hierarchy-7/de-6 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:23Z: 0.0107 J, 1.34e-06 gCO2
+2026/11/09 11:05:26 hierarchy-7/any-6 planned on sfq-de (anneal/w300) at 2026-11-09T11:05:26Z: 0.0107 J, 1.34e-06 gCO2

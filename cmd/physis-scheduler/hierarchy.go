@@ -15,6 +15,7 @@ import (
 	"flag"
 	"log"
 	"strings"
+	"sync"
 	"time"
 
 	apierrors "k8s.io/apimachinery/pkg/api/errors"
@@ -57,7 +58,7 @@ func (s *scheduler) renewLease(ctx context.Context) {
 		u := &unstructured.Unstructured{Object: map[string]any{
 			"apiVersion": "coordination.k8s.io/v1", "kind": "Lease",
 			"metadata": map[string]any{"name": name, "namespace": *systemNS},
-			"spec":     map[string]any{"holderIdentity": name, "renewTime": now.Format(time.RFC3339Nano), "leaseDurationSeconds": int64(leaseStale.Seconds())},
+			"spec":     map[string]any{"holderIdentity": name, "renewTime": leaseTime(now.Time), "leaseDurationSeconds": int64(leaseStale.Seconds())},
 		}}
 		if _, err := ri.Create(ctx, u, metav1.CreateOptions{}); err != nil {
 			log.Printf("lease %s: %v", name, err)
@@ -68,22 +69,49 @@ func (s *scheduler) renewLease(ctx context.Context) {
 		log.Printf("lease %s: %v", name, err)
 		return
 	}
-	_ = unstructured.SetNestedField(cur.Object, now.Format(time.RFC3339Nano), "spec", "renewTime")
+	_ = unstructured.SetNestedField(cur.Object, leaseTime(now.Time), "spec", "renewTime")
 	if _, err := ri.Update(ctx, cur, metav1.UpdateOptions{}); err != nil {
 		log.Printf("lease %s: %v", name, err)
 	}
 }
 
-// fresh says whether a level announced itself recently.
+// leaseTime formats a Lease's renewTime: a MicroTime, six fractional digits.
+// The API server rejects nanoseconds, and a level whose renewals are
+// rejected looks dead to the others.
+func leaseTime(t time.Time) string { return t.UTC().Format(metav1.RFC3339Micro) }
+
+// fresh says whether a level announced itself recently. Like client-go's
+// leader election it never compares another machine's clock with this one:
+// a level is alive while the renewTime it writes keeps changing, measured by
+// when this scheduler saw it change.
 func (s *scheduler) fresh(ctx context.Context, level string) bool {
 	u, err := s.c.D.Resource(leases).Namespace(*systemNS).Get(ctx, leaseName(level), metav1.GetOptions{})
 	if err != nil {
 		return false
 	}
 	ts, _, _ := unstructured.NestedString(u.Object, "spec", "renewTime")
-	t, err := time.Parse(time.RFC3339Nano, ts)
-	return err == nil && time.Since(t) < *leaseStale
+	leaseMu.Lock()
+	defer leaseMu.Unlock()
+	o, seen := observed[level]
+	if !seen || o.value != ts {
+		if seen && time.Since(o.at) > *leaseStale/2 {
+			log.Printf("lease %s renewed after %s", level, time.Since(o.at).Round(time.Second))
+		}
+		observed[level] = observation{value: ts, at: time.Now()}
+		return seen || ts != ""
+	}
+	return time.Since(o.at) < *leaseStale
 }
+
+type observation struct {
+	value string
+	at    time.Time
+}
+
+var (
+	leaseMu  sync.Mutex
+	observed = map[string]observation{}
+)
 
 // mine says whether this scheduler should plan or replan a problem now.
 func (s *scheduler) mine(ctx context.Context, p *kube.Problem) bool {
