@@ -104,3 +104,24 @@ came from a measurement not in `results/` (now `hack/gpu-benchmark.py` and
 `results/gpu-throughput-benchmark.txt`); the MX source speaks of 4-bit
 weights, not 4-bit everything; one server name could not be tied to the data
 and was dropped.
+
+## 7. Reproduction from scratch
+
+All simulations were run again from a clean copy of the repository in the
+workshop cluster's builder pod (AMD EPYC 9454P, Linux, Go 1.26) instead of the
+laptop (Apple M4, macOS). With the published calibration, every table of the
+four experiments for both quarters matched the published files byte for byte;
+the summary files differed only below one part in a billion (floating-point
+differences between arm64 and amd64). A fresh calibration on the EPYC (9429
+records) and the main experiment with it are in `results/repro/`: the baseline
+became about 1.5 times more expensive because the server core is slower on
+these tasks, and physis's savings grew (Q3: energy -93%, carbon -94%, against
+-90% and -91% published), so the published figures are the conservative ones.
+
+## 8. Language passes
+
+Two editorial passes for publication (calques, terminology, connected prose,
+fewer colon and dash constructions: from 173 sentences with a colon to about
+40) were checked by script against the text before them: the multisets of
+numbers, citation keys, backtick spans, the tables, headings, image links and
+the bibliography are identical.
