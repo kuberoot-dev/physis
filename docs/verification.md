@@ -43,7 +43,7 @@ run 83 of 90 URLs answered directly. The rest:
 | gartner2026 | the site refuses automated clients (403) | opened in a browser on 8 Nov 2026: the release title matches the text ($6.37 trillion, +14.2%) |
 | suncatcher (fierce-network) | 403 to automated clients | opened in a browser: Starcloud-1 with an NVIDIA H100; Suncatcher's "two prototype satellites by early 2027" |
 | metamaterial2026 (Wiley) | 403 to automated clients | opened in a browser: Yin, Mei, Chen, *Advanced Materials* 2026, "mechanical analog-to-digital conversion ... FPGA-like logic operations"; DOI also confirmed through Crossref |
-| iftf2036, iftf2025 | iftf.org did not answer from our network on the last run | the pages were fetched on 8 Nov 2026 and checked for the cited statements ("Discernment", "The Future of Scientific Knowledge", "Four Cultures of AI", "What We Choose Next", "50th year of this program", "The Human Verification Crisis") |
+| iftf2036, iftf2025 | iftf.org did not answer from our network on the last run | the pages were fetched on 8 Nov 2026 and checked for the cited statements ("Discernment", "The Future of Scientific Knowledge", "Four Cultures of AI", "What We Choose Next", "The Human Verification Crisis") |
 | ipcc2014 (NREL link) | nrel.gov did not answer from our network | the factors are checked against the primary instead, IPCC AR5 WGIII Annex III, Table A.III.2 (fetched from ipcc.ch); see below |
 
 Sources that could not be verified were replaced or removed rather than kept:
@@ -83,3 +83,7 @@ references, the corrections themselves) was checked once more, independently:
 about 95 claims, 18 corrections — among them two experiments credited to the
 wrong cluster size, an out-of-date count of bugs, a reversed statement about
 lenders, a wrong alpha release of nftables, and the cryogenic factor above.
+
+The anniversary of the IFTF forecast was dropped: IFTF's own page speaks of
+the "50th year of this program" in 2025, other sources date the forecast to
+1978, and the article does not need the number.
