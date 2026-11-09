@@ -149,6 +149,7 @@ func (s *scheduler) mandateFor(ctx context.Context, p *kube.Problem) (*mandate.M
 
 func (s *scheduler) reconcile(ctx context.Context) error {
 	now := time.Now().UTC()
+	s.renewLease(ctx)
 	subs, err := s.c.ListSubstrates(ctx)
 	if err != nil {
 		return err
@@ -201,6 +202,19 @@ func (s *scheduler) reconcile(ctx context.Context) error {
 	for _, p := range probs {
 		switch p.Status.Phase {
 		case "", v1.PhasePending:
+			if s.mine(ctx, p) {
+				s.plan(ctx, p, live, g, now, spent[p.Meta.Namespace])
+			}
+		case v1.PhaseZonePlanned:
+			if !s.mine(ctx, p) {
+				continue
+			}
+			if *role == "global" {
+				p.Status.Phase, p.Status.Zone, p.Status.NotBefore = v1.PhasePending, "", nil
+				p.Status.Message = "taken back from a silent site"
+				s.update(ctx, p)
+				continue
+			}
 			s.plan(ctx, p, live, g, now, spent[p.Meta.Namespace])
 		case v1.PhaseAwaitingApproval:
 			if p.Meta.Annotations[v1.AnnotationApproved] == "true" {
@@ -209,7 +223,7 @@ func (s *scheduler) reconcile(ctx context.Context) error {
 				s.update(ctx, p)
 			}
 		case v1.PhasePlanned:
-			if p.Spec.DryRun || p.Status.Plan == nil {
+			if p.Spec.DryRun || p.Status.Plan == nil || !s.mine(ctx, p) {
 				continue
 			}
 			sub := byName[p.Status.Plan.Substrate]
@@ -221,6 +235,10 @@ func (s *scheduler) reconcile(ctx context.Context) error {
 					why = "substrate " + p.Status.Plan.Substrate + " stopped sending heartbeats"
 				}
 				p.Status.Phase = v1.PhasePending
+				if *role == "site" && p.Status.Zone == *siteZone {
+					// Stay in the zone the global level chose.
+					p.Status.Phase = v1.PhaseZonePlanned
+				}
 				p.Status.Replans++
 				p.Status.Message = "returned to the pool: " + why
 				p.Status.Plan = nil
@@ -285,6 +303,16 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 			return
 		}
 	}
+	if *role == "site" {
+		if len(zones) == 0 {
+			zones = []string{*siteZone}
+		} else if zones = intersect(zones, []string{*siteZone}); len(zones) == 0 {
+			return // not this site's work
+		}
+		if nb := p.Status.NotBefore; nb != nil && nb.After(now) {
+			now = *nb
+		}
+	}
 	req := &plan.Request{ID: p.Meta.Name, Shape: shape, Quality: p.Spec.Quality, Confidence: p.Spec.Confidence, Deadline: deadline,
 		Deferrable: p.Spec.Deferrable, Policy: plan.Policy(p.Spec.Policy), Budget: p.Spec.Budget, Zones: zones,
 		Jurisdictions: p.Spec.Jurisdictions, DataZone: p.Spec.DataZone, DataBytes: p.Spec.DataBytes}
@@ -312,6 +340,7 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 	}
 	p.Status.Phase = v1.PhasePlanned
 	p.Status.Message = ""
+	p.Status.PlannedBy = plannedBy()
 	if m != nil {
 		v := m.Admit(now, d.Chosen.Zone, d.Chosen.Joules, d.Chosen.EUR, d.Chosen.GCO2, spent)
 		if !v.Allowed {
@@ -325,6 +354,11 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 	}
 	if p.Spec.DryRun {
 		p.Status.Message = "dry run: plan only, nothing will run"
+	}
+	if s.delegate(ctx, p) {
+		s.update(ctx, p)
+		log.Printf("%s/%s delegated to zone %s from %s", p.Meta.Namespace, p.Meta.Name, p.Status.Zone, p.Status.NotBefore.Format(time.RFC3339))
+		return
 	}
 	s.update(ctx, p)
 	log.Printf("%s/%s planned on %s (%s/%s) at %s: %.3g J, %.3g gCO2", p.Meta.Namespace, p.Meta.Name, d.Chosen.Substrate, d.Chosen.Algorithm, d.Chosen.Effort, d.Chosen.Start.Format(time.RFC3339), d.Chosen.Joules, d.Chosen.GCO2)

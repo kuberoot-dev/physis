@@ -100,8 +100,11 @@ type ProblemSpec struct {
 
 // Phases of a problem.
 const (
-	PhasePending          = "Pending"
-	PhasePlanned          = "Planned"
+	PhasePending = "Pending"
+	PhasePlanned = "Planned"
+	// PhaseZonePlanned: the global level chose the zone and the earliest
+	// start; the site scheduler of that zone chooses the substrate.
+	PhaseZonePlanned      = "ZonePlanned"
 	PhaseAwaitingApproval = "AwaitingApproval"
 	PhaseRunning          = "Running"
 	PhaseSucceeded        = "Succeeded"
@@ -120,6 +123,12 @@ type ProblemStatus struct {
 	Reasons         []string   `json:"reasons,omitempty"`
 	PlannedAt       *time.Time `json:"plannedAt,omitempty"`
 	Replans         int        `json:"replans,omitempty"`
+	// Zone and NotBefore are set by the global level when it delegates the
+	// choice of substrate to a site; PlannedBy names the level that made the
+	// current plan ("global", "site:<zone>" or empty for a single scheduler).
+	Zone      string     `json:"zone,omitempty"`
+	NotBefore *time.Time `json:"notBefore,omitempty"`
+	PlannedBy string     `json:"plannedBy,omitempty"`
 	// Claim: the substrate took the work. Replaces binding a pod to a node.
 	ClaimedBy string     `json:"claimedBy,omitempty"`
 	ClaimedAt *time.Time `json:"claimedAt,omitempty"`

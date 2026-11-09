@@ -1,0 +1,2535 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"any-1\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:15Z",
+                "generation": 1,
+                "name": "any-1",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2122",
+                "uid": "7e6e45ea-15b8-486d-87de-af43abed4804"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:17.505042Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9863013698630138,
+                        "physics": "adiabatic",
+                        "qualitySamples": 72,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:33:16Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9863013698630138,
+                    "physics": "adiabatic",
+                    "qualitySamples": 72,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:33:16Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:33:16.869115Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9929078014184397,
+                    "receipt": "any-1-adiabatic-fr-13",
+                    "resultDigest": "sha256:3d76fdca6e28b32f3bdbff40eaab5fca51adfeb5a0f56ff4bf78eb6ecb0f5a0a",
+                    "value": 560
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"any-2\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:16Z",
+                "generation": 1,
+                "name": "any-2",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2152",
+                "uid": "60f5ae2e-90f9-45c3-acea-0a62bd3ef28e"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:18.519571Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9863013698630138,
+                        "physics": "adiabatic",
+                        "qualitySamples": 72,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:33:16Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9863013698630138,
+                    "physics": "adiabatic",
+                    "qualitySamples": 72,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:33:16Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:33:16.869115Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.975177304964539,
+                    "receipt": "any-2-adiabatic-fr-14",
+                    "resultDigest": "sha256:60f3dad02186da95cb95288c51e269e3a6e1d0ce13366775e1601138ae306578",
+                    "value": 550
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"any-3\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:16Z",
+                "generation": 1,
+                "name": "any-3",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2179",
+                "uid": "c44dc3f1-497e-4542-8058-5f56465f5c42"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:19.535941Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9863013698630138,
+                        "physics": "adiabatic",
+                        "qualitySamples": 72,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:33:16Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9863013698630138,
+                    "physics": "adiabatic",
+                    "qualitySamples": 72,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:33:16Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:33:16.869115Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9822695035460993,
+                    "receipt": "any-3-adiabatic-fr-15",
+                    "resultDigest": "sha256:c4748d0febec3511b3f2a0f69bf3aff2eaaba3e29a09752dc73c020f1493f771",
+                    "value": 554
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"any-4\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:16Z",
+                "generation": 1,
+                "name": "any-4",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2206",
+                "uid": "604e3a0f-d746-4c07-937e-85666d47da4c"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:20.55711Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9863013698630138,
+                        "physics": "adiabatic",
+                        "qualitySamples": 72,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:33:16Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9863013698630138,
+                    "physics": "adiabatic",
+                    "qualitySamples": 72,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:33:16Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:33:16.869115Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9893617021276596,
+                    "receipt": "any-4-adiabatic-fr-16",
+                    "resultDigest": "sha256:40564c51140f20c503d4debe7e4dbbf663a6f06c0f2605e45eac49c0a9312c36",
+                    "value": 558
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"any-5\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:16Z",
+                "generation": 1,
+                "name": "any-5",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2232",
+                "uid": "d8886591-2c2b-446d-94cc-af227738394f"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:21.577693Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9863013698630138,
+                        "physics": "adiabatic",
+                        "qualitySamples": 72,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:33:16Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9863013698630138,
+                    "physics": "adiabatic",
+                    "qualitySamples": 72,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:33:16Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:33:16.869115Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9787234042553191,
+                    "receipt": "any-5-adiabatic-fr-17",
+                    "resultDigest": "sha256:5c64a532834aedf34593a47f8aeb2c0d5dceabe9815a4cd06a1e8b55ad055552",
+                    "value": 552
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"any-6\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:16Z",
+                "generation": 1,
+                "name": "any-6",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2258",
+                "uid": "e21d98bf-c56d-406c-9eac-714b9656e38b"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:22.622369Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9863013698630138,
+                        "physics": "adiabatic",
+                        "qualitySamples": 72,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:33:16Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9863013698630138,
+                    "physics": "adiabatic",
+                    "qualitySamples": 72,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:33:16Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:33:16.869115Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9929078014184397,
+                    "receipt": "any-6-adiabatic-fr-18",
+                    "resultDigest": "sha256:855da6fc1b1398d375efd1a7ffd0874df804e9b1a1a95364dd0a6779970be9c6",
+                    "value": 560
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"de-1\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:15Z",
+                "generation": 1,
+                "name": "de-1",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2165",
+                "uid": "0624415f-58bb-4103-af54-f7c73b7999a5"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:18.832933Z",
+                "claimedBy": "sfq-de",
+                "feasiblePhysics": [
+                    "cpu",
+                    "sfq"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 1.132456045920007e-9,
+                        "gco2": 0.00000165233600112001,
+                        "joules": 0.010658131200000065,
+                        "modelJoules": 0.008881776000000055,
+                        "modelSeconds": 0.001012,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "sfq",
+                        "qualitySamples": 60,
+                        "seconds": 0.001012,
+                        "start": "2026-11-09T06:33:17Z",
+                        "substrate": "sfq-de",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 1.132456045920007e-9,
+                    "gco2": 0.00000165233600112001,
+                    "joules": 0.010658131200000065,
+                    "modelJoules": 0.008881776000000055,
+                    "modelSeconds": 0.001012,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "sfq",
+                    "qualitySamples": 60,
+                    "seconds": 0.001012,
+                    "start": "2026-11-09T06:33:17Z",
+                    "substrate": "sfq-de",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:33:17.878791Z",
+                "plannedBy": "site:DE",
+                "reasons": [
+                    "adiabatic-fr: zone FR not allowed",
+                    "analog-imc-fr: zone FR not allowed",
+                    "cpu-de local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-de local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-fr: zone FR not allowed",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "hdc-fr: zone FR not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "organoid-fr: zone FR not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "pim-dram-fr: zone FR not allowed",
+                    "stochastic-gb: zone GB not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.008881776000000055,
+                    "gco2": 0.0000013769466676000086,
+                    "quality": 0.9822695035460993,
+                    "receipt": "de-1-sfq-de-1",
+                    "resultDigest": "sha256:d06557d57cf0e4a5fa9fb8d1e4974bff8487205cf93a9ca3d54f1bfa8d348ae4",
+                    "value": 554
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"de-2\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:15Z",
+                "generation": 1,
+                "name": "de-2",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2192",
+                "uid": "00309580-db7b-4ce4-baa5-6eec2073defc"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:19.853831Z",
+                "claimedBy": "sfq-de",
+                "feasiblePhysics": [
+                    "cpu",
+                    "sfq"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 1.132456045920007e-9,
+                        "gco2": 0.00000165233600112001,
+                        "joules": 0.010658131200000065,
+                        "modelJoules": 0.008881776000000055,
+                        "modelSeconds": 0.001012,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "sfq",
+                        "qualitySamples": 60,
+                        "seconds": 0.001012,
+                        "start": "2026-11-09T06:33:17Z",
+                        "substrate": "sfq-de",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 1.132456045920007e-9,
+                    "gco2": 0.00000165233600112001,
+                    "joules": 0.010658131200000065,
+                    "modelJoules": 0.008881776000000055,
+                    "modelSeconds": 0.001012,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "sfq",
+                    "qualitySamples": 60,
+                    "seconds": 0.001012,
+                    "start": "2026-11-09T06:33:17Z",
+                    "substrate": "sfq-de",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:33:17.878791Z",
+                "plannedBy": "site:DE",
+                "reasons": [
+                    "adiabatic-fr: zone FR not allowed",
+                    "analog-imc-fr: zone FR not allowed",
+                    "cpu-de local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-de local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-fr: zone FR not allowed",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "hdc-fr: zone FR not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "organoid-fr: zone FR not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "pim-dram-fr: zone FR not allowed",
+                    "stochastic-gb: zone GB not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.008881776000000055,
+                    "gco2": 0.0000013769466676000086,
+                    "quality": 0.9858156028368794,
+                    "receipt": "de-2-sfq-de-2",
+                    "resultDigest": "sha256:b09be51562bae092eca9e0768b6daaa9c9636b8329a0b667bc1462ae054a485b",
+                    "value": 556
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"de-3\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:16Z",
+                "generation": 1,
+                "name": "de-3",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2219",
+                "uid": "f34246c4-c5cf-4e25-a444-6f3a9003b485"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:20.966195Z",
+                "claimedBy": "sfq-de",
+                "feasiblePhysics": [
+                    "cpu",
+                    "sfq"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 1.132456045920007e-9,
+                        "gco2": 0.00000165233600112001,
+                        "joules": 0.010658131200000065,
+                        "modelJoules": 0.008881776000000055,
+                        "modelSeconds": 0.001012,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "sfq",
+                        "qualitySamples": 60,
+                        "seconds": 0.001012,
+                        "start": "2026-11-09T06:33:17Z",
+                        "substrate": "sfq-de",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 1.132456045920007e-9,
+                    "gco2": 0.00000165233600112001,
+                    "joules": 0.010658131200000065,
+                    "modelJoules": 0.008881776000000055,
+                    "modelSeconds": 0.001012,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "sfq",
+                    "qualitySamples": 60,
+                    "seconds": 0.001012,
+                    "start": "2026-11-09T06:33:17Z",
+                    "substrate": "sfq-de",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:33:17.878791Z",
+                "plannedBy": "site:DE",
+                "reasons": [
+                    "adiabatic-fr: zone FR not allowed",
+                    "analog-imc-fr: zone FR not allowed",
+                    "cpu-de local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-de local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-fr: zone FR not allowed",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "hdc-fr: zone FR not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "organoid-fr: zone FR not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "pim-dram-fr: zone FR not allowed",
+                    "stochastic-gb: zone GB not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.008881776000000055,
+                    "gco2": 0.0000013769466676000086,
+                    "quality": 0.9822695035460993,
+                    "receipt": "de-3-sfq-de-3",
+                    "resultDigest": "sha256:6b8d10effc2f85c222a2a6be360793bc34930004e66ae008e2f1a80803d1c200",
+                    "value": 554
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"de-4\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:16Z",
+                "generation": 1,
+                "name": "de-4",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2247",
+                "uid": "6ca09a8e-21b5-44a3-be84-e194ae2546ea"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:22.085876Z",
+                "claimedBy": "sfq-de",
+                "feasiblePhysics": [
+                    "cpu",
+                    "sfq"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 1.132456045920007e-9,
+                        "gco2": 0.00000165233600112001,
+                        "joules": 0.010658131200000065,
+                        "modelJoules": 0.008881776000000055,
+                        "modelSeconds": 0.001012,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "sfq",
+                        "qualitySamples": 60,
+                        "seconds": 0.001012,
+                        "start": "2026-11-09T06:33:17Z",
+                        "substrate": "sfq-de",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 1.132456045920007e-9,
+                    "gco2": 0.00000165233600112001,
+                    "joules": 0.010658131200000065,
+                    "modelJoules": 0.008881776000000055,
+                    "modelSeconds": 0.001012,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "sfq",
+                    "qualitySamples": 60,
+                    "seconds": 0.001012,
+                    "start": "2026-11-09T06:33:17Z",
+                    "substrate": "sfq-de",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:33:17.878791Z",
+                "plannedBy": "site:DE",
+                "reasons": [
+                    "adiabatic-fr: zone FR not allowed",
+                    "analog-imc-fr: zone FR not allowed",
+                    "cpu-de local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-de local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-fr: zone FR not allowed",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "hdc-fr: zone FR not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "organoid-fr: zone FR not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "pim-dram-fr: zone FR not allowed",
+                    "stochastic-gb: zone GB not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.008881776000000055,
+                    "gco2": 0.0000013769466676000086,
+                    "quality": 0.9858156028368794,
+                    "receipt": "de-4-sfq-de-4",
+                    "resultDigest": "sha256:dd98c36d95c8d13cc1e4a5f0f7ac6bb7fe602b7c6e7ac9ec60f1d3224aec524d",
+                    "value": 556
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"de-5\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:16Z",
+                "generation": 1,
+                "name": "de-5",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2273",
+                "uid": "9fc95d1c-fe60-4721-97af-f4d455f6ed23"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:23.129473Z",
+                "claimedBy": "sfq-de",
+                "feasiblePhysics": [
+                    "cpu",
+                    "sfq"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 1.132456045920007e-9,
+                        "gco2": 0.00000165233600112001,
+                        "joules": 0.010658131200000065,
+                        "modelJoules": 0.008881776000000055,
+                        "modelSeconds": 0.001012,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "sfq",
+                        "qualitySamples": 60,
+                        "seconds": 0.001012,
+                        "start": "2026-11-09T06:33:17Z",
+                        "substrate": "sfq-de",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 1.132456045920007e-9,
+                    "gco2": 0.00000165233600112001,
+                    "joules": 0.010658131200000065,
+                    "modelJoules": 0.008881776000000055,
+                    "modelSeconds": 0.001012,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "sfq",
+                    "qualitySamples": 60,
+                    "seconds": 0.001012,
+                    "start": "2026-11-09T06:33:17Z",
+                    "substrate": "sfq-de",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:33:17.878791Z",
+                "plannedBy": "site:DE",
+                "reasons": [
+                    "adiabatic-fr: zone FR not allowed",
+                    "analog-imc-fr: zone FR not allowed",
+                    "cpu-de local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-de local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-fr: zone FR not allowed",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "hdc-fr: zone FR not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "organoid-fr: zone FR not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "pim-dram-fr: zone FR not allowed",
+                    "stochastic-gb: zone GB not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.008881776000000055,
+                    "gco2": 0.0000013769466676000086,
+                    "quality": 0.9822695035460993,
+                    "receipt": "de-5-sfq-de-5",
+                    "resultDigest": "sha256:2cf76b5809983a6b88d6eca96891ad78416b5733f8f09fb081988150ea2c2726",
+                    "value": 554
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"de-6\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:33:16Z",
+                "generation": 1,
+                "name": "de-6",
+                "namespace": "hierarchy2",
+                "resourceVersion": "2300",
+                "uid": "5a70cbbf-6ef9-4d56-ae83-42374a7306a4"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:33:24.272665Z",
+                "claimedBy": "sfq-de",
+                "feasiblePhysics": [
+                    "cpu",
+                    "sfq"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 1.132456045920007e-9,
+                        "gco2": 0.00000165233600112001,
+                        "joules": 0.010658131200000065,
+                        "modelJoules": 0.008881776000000055,
+                        "modelSeconds": 0.001012,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "sfq",
+                        "qualitySamples": 60,
+                        "seconds": 0.001012,
+                        "start": "2026-11-09T06:33:17Z",
+                        "substrate": "sfq-de",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 1.132456045920007e-9,
+                    "gco2": 0.00000165233600112001,
+                    "joules": 0.010658131200000065,
+                    "modelJoules": 0.008881776000000055,
+                    "modelSeconds": 0.001012,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "sfq",
+                    "qualitySamples": 60,
+                    "seconds": 0.001012,
+                    "start": "2026-11-09T06:33:17Z",
+                    "substrate": "sfq-de",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:33:17.878791Z",
+                "plannedBy": "site:DE",
+                "reasons": [
+                    "adiabatic-fr: zone FR not allowed",
+                    "analog-imc-fr: zone FR not allowed",
+                    "cpu-de local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-de local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-fr: zone FR not allowed",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "hdc-fr: zone FR not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "organoid-fr: zone FR not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "pim-dram-fr: zone FR not allowed",
+                    "stochastic-gb: zone GB not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.008881776000000055,
+                    "gco2": 0.0000013769466676000086,
+                    "quality": 0.9929078014184397,
+                    "receipt": "de-6-sfq-de-6",
+                    "resultDigest": "sha256:0764c35505fdd870e80947e8a9a95a4e3c0ec2cc008a185d4e32031136a6e71b",
+                    "value": 560
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-1\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-1",
+                "namespace": "hierarchy2",
+                "resourceVersion": "867",
+                "uid": "4a98fd97-6671-4ae1-b474-5047839ab452"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:19.543723Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9893617021276596,
+                    "receipt": "mix-1-adiabatic-fr-1",
+                    "resultDigest": "sha256:ad0a49d41f732d627fb0284cdae35bc1ad28e0a705376c525ac5c9554a92b958",
+                    "value": 558
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-10\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-10",
+                "namespace": "hierarchy2",
+                "resourceVersion": "892",
+                "uid": "183a2ad5-35b4-4770-9662-d3852873b568"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:20.565649Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9787234042553191,
+                    "receipt": "mix-10-adiabatic-fr-2",
+                    "resultDigest": "sha256:aab02201fc0f114af6bea41af9862f1c7beb64c168391e52879def4f187e7937",
+                    "value": 552
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-11\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-11",
+                "namespace": "hierarchy2",
+                "resourceVersion": "916",
+                "uid": "06187daf-0286-4a2a-9587-1c610424748b"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:21.576384Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9929078014184397,
+                    "receipt": "mix-11-adiabatic-fr-3",
+                    "resultDigest": "sha256:1c06a82cdc174e46ed62adec4ba21407327efbe637aa4297c8e249de3c53f9fe",
+                    "value": 560
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-12\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-12",
+                "namespace": "hierarchy2",
+                "resourceVersion": "940",
+                "uid": "4901d91e-685e-41de-8e84-5ad97c83b65c"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:22.609839Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9858156028368794,
+                    "receipt": "mix-12-adiabatic-fr-4",
+                    "resultDigest": "sha256:dfedb14fb4b610eea5616802ba7ecb4eadd90ee15772de6807de374f8cc0198b",
+                    "value": 556
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-2\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-2",
+                "namespace": "hierarchy2",
+                "resourceVersion": "967",
+                "uid": "f15e3a34-3eb5-420d-b142-c6e24759474b"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:23.718633Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9858156028368794,
+                    "receipt": "mix-2-adiabatic-fr-5",
+                    "resultDigest": "sha256:c54bf929047f25ce5a30cfff901056c7e0a2b67d7d903de0c3cb09fd1cfa77c6",
+                    "value": 556
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-3\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-3",
+                "namespace": "hierarchy2",
+                "resourceVersion": "995",
+                "uid": "f956844c-d467-4e9c-ab93-7b157811e84f"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:24.840347Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9787234042553191,
+                    "receipt": "mix-3-adiabatic-fr-6",
+                    "resultDigest": "sha256:ff7f362e3121b898b3956a0d7b135d7ce1bed1284d3775af41db34d32ed64436",
+                    "value": 552
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-4\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-4",
+                "namespace": "hierarchy2",
+                "resourceVersion": "1020",
+                "uid": "48c7c9c1-089c-4596-aa71-c30ec77b049b"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:25.874857Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9893617021276596,
+                    "receipt": "mix-4-adiabatic-fr-7",
+                    "resultDigest": "sha256:eee274c3c5f24fbc7f7dbd4e46d71d772c44bb296dd6e4f2a75a89caad516273",
+                    "value": 558
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-5\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-5",
+                "namespace": "hierarchy2",
+                "resourceVersion": "1044",
+                "uid": "79c36485-c517-4c73-9c7a-055449061d4a"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:26.891438Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9893617021276596,
+                    "receipt": "mix-5-adiabatic-fr-8",
+                    "resultDigest": "sha256:bba3ef4e753c6448a60b41cd90be39e568990fa1a2dc985b5a8a03b693618872",
+                    "value": 558
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-6\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-6",
+                "namespace": "hierarchy2",
+                "resourceVersion": "1069",
+                "uid": "3d91171f-dda0-4fb4-bf58-737219dc9a8a"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:28.002208Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9929078014184397,
+                    "receipt": "mix-6-adiabatic-fr-9",
+                    "resultDigest": "sha256:6c6249d785a4050e492dace001a7517d8c0668fc6dfd7ecb9da9d7ccad01dddb",
+                    "value": 560
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-7\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-7",
+                "namespace": "hierarchy2",
+                "resourceVersion": "1093",
+                "uid": "d0d2bfc9-7814-4229-8ad9-2d890bc6db07"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:29.017824Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9964539007092199,
+                    "receipt": "mix-7-adiabatic-fr-10",
+                    "resultDigest": "sha256:230240e95c69b14b4d1396069559957b26a3760e2be5701a419ee4c2a54e2fad",
+                    "value": 562
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-8\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-8",
+                "namespace": "hierarchy2",
+                "resourceVersion": "1118",
+                "uid": "1be858f6-f841-4094-aa25-e2b53eb2f561"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:30.031527Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9893617021276596,
+                    "receipt": "mix-8-adiabatic-fr-11",
+                    "resultDigest": "sha256:7d9668a47ca80ca9c23d00a0fef8a943e314e288be399f06d47f893fa372bf09",
+                    "value": 558
+                },
+                "zone": "FR"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"mix-9\",\"namespace\":\"hierarchy2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G11\"},\"policy\":\"min-carbon\",\"quality\":0.97,\"zones\":[\"DE\",\"FR\",\"PL\",\"GB\"]}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:32:15Z",
+                "generation": 1,
+                "name": "mix-9",
+                "namespace": "hierarchy2",
+                "resourceVersion": "1142",
+                "uid": "d034d2ad-cb20-4b66-b036-59a27aa5ee8d"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G11"
+                },
+                "policy": "min-carbon",
+                "quality": 0.97,
+                "zones": [
+                    "DE",
+                    "FR",
+                    "PL",
+                    "GB"
+                ]
+            },
+            "status": {
+                "candidates": 6,
+                "claimedAt": "2026-11-09T06:32:31.049032Z",
+                "claimedBy": "adiabatic-fr",
+                "feasiblePhysics": [
+                    "adiabatic",
+                    "cpu"
+                ],
+                "notBefore": "2026-11-09T06:32:16Z",
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 74.34,
+                        "effort": "w300",
+                        "eur": 1.9804399999999995e-10,
+                        "gco2": 4.16304e-8,
+                        "joules": 0.0020159999999999996,
+                        "modelJoules": 0.0016799999999999999,
+                        "modelSeconds": 0.00212,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "adiabatic",
+                        "qualitySamples": 60,
+                        "seconds": 0.00212,
+                        "start": "2026-11-09T06:32:18Z",
+                        "substrate": "adiabatic-fr",
+                        "zone": "FR"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 74.34,
+                    "effort": "w300",
+                    "eur": 1.9804399999999995e-10,
+                    "gco2": 4.16304e-8,
+                    "joules": 0.0020159999999999996,
+                    "modelJoules": 0.0016799999999999999,
+                    "modelSeconds": 0.00212,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "adiabatic",
+                    "qualitySamples": 60,
+                    "seconds": 0.00212,
+                    "start": "2026-11-09T06:32:18Z",
+                    "substrate": "adiabatic-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T06:32:18.605268Z",
+                "plannedBy": "site:FR",
+                "reasons": [
+                    "cpu-de: zone DE not allowed",
+                    "cpu-fr local/s10: P(q\u003e=0.970) lower bound 0.34 from 60 runs \u003c 0.90",
+                    "cpu-fr local/s100: P(q\u003e=0.970) lower bound 0.44 from 60 runs \u003c 0.90",
+                    "cpu-gb: zone GB not allowed",
+                    "cpu-pl: zone PL not allowed",
+                    "dataflow-pl: zone PL not allowed",
+                    "gpu-m4: zone DE not allowed",
+                    "ising-digital-pl: zone PL not allowed",
+                    "neuromorphic-pl: zone PL not allowed",
+                    "optical-ising-gb: zone GB not allowed",
+                    "pbit-gb: zone GB not allowed",
+                    "photonic-de: zone DE not allowed",
+                    "qpu-de: zone DE not allowed",
+                    "sfq-de: zone DE not allowed",
+                    "stochastic-gb: zone GB not allowed",
+                    "systolic-de: zone DE not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.0016799999999999999,
+                    "gco2": 3.4692e-8,
+                    "quality": 0.9893617021276596,
+                    "receipt": "mix-9-adiabatic-fr-12",
+                    "resultDigest": "sha256:747e82d620d5e477b3492329c010961ca50a7c7087840dc37fdce18a225362cf",
+                    "value": 558
+                },
+                "zone": "FR"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
