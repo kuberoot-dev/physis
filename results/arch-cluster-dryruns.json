@@ -1,0 +1,387 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"dry-q095\",\"namespace\":\"arch-cluster\"},\"spec\":{\"class\":\"classify\",\"confidence\":0.9,\"deadlineSeconds\":120,\"dryRun\":true,\"instance\":{\"digits\":{\"offset\":0,\"size\":1797}},\"policy\":\"min-energy\",\"quality\":0.95}}\n"
+                },
+                "creationTimestamp": "2026-11-09T11:19:06Z",
+                "generation": 1,
+                "name": "dry-q095",
+                "namespace": "arch-cluster",
+                "resourceVersion": "85153",
+                "uid": "220bdce3-9f54-4eae-a930-433d85722f44"
+            },
+            "spec": {
+                "class": "classify",
+                "confidence": 0.9,
+                "deadlineSeconds": 120,
+                "dryRun": true,
+                "instance": {
+                    "digits": {
+                        "offset": 0,
+                        "size": 1797
+                    }
+                },
+                "policy": "min-energy",
+                "quality": 0.95
+            },
+            "status": {
+                "candidates": 23,
+                "feasiblePhysics": [
+                    "cgra",
+                    "cpu",
+                    "dataflow",
+                    "hdc",
+                    "neuromorphic",
+                    "photonic",
+                    "pim-dram",
+                    "stochastic",
+                    "systolic"
+                ],
+                "message": "dry run: plan only, nothing will run",
+                "pareto": [
+                    {
+                        "algorithm": "hdc",
+                        "ci": 77.4386011328701,
+                        "effort": "d2048",
+                        "eur": 1.6929678114816002e-14,
+                        "gco2": 4.2179093714726104e-12,
+                        "joules": 1.9608403968000002e-7,
+                        "modelJoules": 1.634033664e-7,
+                        "modelSeconds": 0.00037233894399999997,
+                        "pQuality": 0.9960474308300395,
+                        "physics": "hdc",
+                        "qualitySamples": 252,
+                        "seconds": 0.00037233894399999997,
+                        "start": "2026-11-09T11:19:06Z",
+                        "substrate": "hdc-fr",
+                        "zone": "FR"
+                    },
+                    {
+                        "algorithm": "int8",
+                        "ci": 77.4386011328701,
+                        "effort": "int8",
+                        "eur": 5.4811739391999996e-12,
+                        "gco2": 1.3655956579936662e-9,
+                        "joules": 0.00006348441600000001,
+                        "modelJoules": 0.000052903680000000005,
+                        "modelSeconds": 0.0001019168,
+                        "pQuality": 0.9960474308300395,
+                        "physics": "pim-dram",
+                        "qualitySamples": 252,
+                        "seconds": 0.0001019168,
+                        "start": "2026-11-09T11:19:06Z",
+                        "substrate": "pim-dram-fr",
+                        "zone": "FR"
+                    },
+                    {
+                        "algorithm": "exact-fp",
+                        "ci": 556.0512053667672,
+                        "effort": "fp64",
+                        "eur": 3.084427263079024e-10,
+                        "gco2": 9.099153788005783e-7,
+                        "joules": 0.005890995886829268,
+                        "modelJoules": 0.00490916323902439,
+                        "modelSeconds": 0.00010018700487804878,
+                        "pQuality": 0.9545454545454544,
+                        "physics": "cgra",
+                        "qualitySamples": 21,
+                        "seconds": 0.00010018700487804878,
+                        "start": "2026-11-09T11:19:06Z",
+                        "substrate": "cgra-pl",
+                        "zone": "PL"
+                    },
+                    {
+                        "algorithm": "int8",
+                        "ci": 556.0512053667672,
+                        "effort": "int8",
+                        "eur": 1.88495780762112e-9,
+                        "gco2": 0.000005560682587899743,
+                        "joules": 0.036001104076799996,
+                        "modelJoules": 0.030000920064,
+                        "modelSeconds": 0.00010000306688,
+                        "pQuality": 0.9960474308300395,
+                        "physics": "dataflow",
+                        "qualitySamples": 252,
+                        "seconds": 0.00010000306688,
+                        "start": "2026-11-09T11:19:06Z",
+                        "substrate": "dataflow-pl",
+                        "zone": "PL"
+                    }
+                ],
+                "phase": "Planned",
+                "plan": {
+                    "algorithm": "hdc",
+                    "ci": 77.4386011328701,
+                    "effort": "d2048",
+                    "eur": 1.6929678114816002e-14,
+                    "gco2": 4.2179093714726104e-12,
+                    "joules": 1.9608403968000002e-7,
+                    "modelJoules": 1.634033664e-7,
+                    "modelSeconds": 0.00037233894399999997,
+                    "pQuality": 0.9960474308300395,
+                    "physics": "hdc",
+                    "qualitySamples": 252,
+                    "seconds": 0.00037233894399999997,
+                    "start": "2026-11-09T11:19:06Z",
+                    "substrate": "hdc-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T11:19:06.591986947Z",
+                "reasonCodes": [
+                    "QualityUnreachable",
+                    "DeadlineTooShort"
+                ],
+                "reasons": [
+                    "analog-imc-fr analog/w4: P(q\u003e=0.950) lower bound 0.87 from 252 runs \u003c 0.90",
+                    "hdc-fr hdc/d512: P(q\u003e=0.950) lower bound 0.64 from 252 runs \u003c 0.90",
+                    "organoid-fr reservoir/s8: finishes after deadline",
+                    "organoid-fr reservoir/s20: finishes after deadline",
+                    "stochastic-gb sc/l64: P(q\u003e=0.950) lower bound 0.78 from 252 runs \u003c 0.90"
+                ]
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"dry-q099\",\"namespace\":\"arch-cluster\"},\"spec\":{\"class\":\"classify\",\"confidence\":0.9,\"deadlineSeconds\":120,\"dryRun\":true,\"instance\":{\"digits\":{\"offset\":0,\"size\":1797}},\"policy\":\"min-energy\",\"quality\":0.99}}\n"
+                },
+                "creationTimestamp": "2026-11-09T11:19:08Z",
+                "generation": 1,
+                "name": "dry-q099",
+                "namespace": "arch-cluster",
+                "resourceVersion": "85196",
+                "uid": "6c99db73-ec75-4369-bb8c-af77a03f0b29"
+            },
+            "spec": {
+                "class": "classify",
+                "confidence": 0.9,
+                "deadlineSeconds": 120,
+                "dryRun": true,
+                "instance": {
+                    "digits": {
+                        "offset": 0,
+                        "size": 1797
+                    }
+                },
+                "policy": "min-energy",
+                "quality": 0.99
+            },
+            "status": {
+                "candidates": 12,
+                "feasiblePhysics": [
+                    "cgra",
+                    "cpu",
+                    "dataflow",
+                    "pim-dram",
+                    "systolic"
+                ],
+                "message": "dry run: plan only, nothing will run",
+                "pareto": [
+                    {
+                        "algorithm": "int8",
+                        "ci": 77.4386011328701,
+                        "effort": "int8",
+                        "eur": 5.4811739391999996e-12,
+                        "gco2": 1.3655956579936662e-9,
+                        "joules": 0.00006348441600000001,
+                        "modelJoules": 0.000052903680000000005,
+                        "modelSeconds": 0.0001019168,
+                        "pQuality": 0.9370854051791013,
+                        "physics": "pim-dram",
+                        "qualitySamples": 252,
+                        "seconds": 0.0001019168,
+                        "start": "2026-11-09T11:19:08Z",
+                        "substrate": "pim-dram-fr",
+                        "zone": "FR"
+                    },
+                    {
+                        "algorithm": "exact-fp",
+                        "ci": 556.0512053667672,
+                        "effort": "fp64",
+                        "eur": 3.084427263079024e-10,
+                        "gco2": 9.099153788005783e-7,
+                        "joules": 0.005890995886829268,
+                        "modelJoules": 0.00490916323902439,
+                        "modelSeconds": 0.00010018700487804878,
+                        "pQuality": 0.9545454545454544,
+                        "physics": "cgra",
+                        "qualitySamples": 21,
+                        "seconds": 0.00010018700487804878,
+                        "start": "2026-11-09T11:19:08Z",
+                        "substrate": "cgra-pl",
+                        "zone": "PL"
+                    },
+                    {
+                        "algorithm": "int8",
+                        "ci": 556.0512053667672,
+                        "effort": "int8",
+                        "eur": 1.88495780762112e-9,
+                        "gco2": 0.000005560682587899743,
+                        "joules": 0.036001104076799996,
+                        "modelJoules": 0.030000920064,
+                        "modelSeconds": 0.00010000306688,
+                        "pQuality": 0.9370854051791013,
+                        "physics": "dataflow",
+                        "qualitySamples": 252,
+                        "seconds": 0.00010000306688,
+                        "start": "2026-11-09T11:19:08Z",
+                        "substrate": "dataflow-pl",
+                        "zone": "PL"
+                    }
+                ],
+                "phase": "Planned",
+                "plan": {
+                    "algorithm": "int8",
+                    "ci": 77.4386011328701,
+                    "effort": "int8",
+                    "eur": 5.4811739391999996e-12,
+                    "gco2": 1.3655956579936662e-9,
+                    "joules": 0.00006348441600000001,
+                    "modelJoules": 0.000052903680000000005,
+                    "modelSeconds": 0.0001019168,
+                    "pQuality": 0.9370854051791013,
+                    "physics": "pim-dram",
+                    "qualitySamples": 252,
+                    "seconds": 0.0001019168,
+                    "start": "2026-11-09T11:19:08Z",
+                    "substrate": "pim-dram-fr",
+                    "zone": "FR"
+                },
+                "plannedAt": "2026-11-09T11:19:08.779524676Z",
+                "reasonCodes": [
+                    "QualityUnreachable",
+                    "DeadlineTooShort"
+                ],
+                "reasons": [
+                    "analog-imc-fr analog/w4: P(q\u003e=0.990) lower bound 0.19 from 252 runs \u003c 0.90",
+                    "hdc-fr hdc/d512: P(q\u003e=0.990) lower bound 0.08 from 252 runs \u003c 0.90",
+                    "hdc-fr hdc/d2048: P(q\u003e=0.990) lower bound 0.78 from 252 runs \u003c 0.90",
+                    "hdc-fr hdc/d8192: P(q\u003e=0.990) lower bound 0.78 from 252 runs \u003c 0.90",
+                    "neuromorphic-pl spiking/t8: P(q\u003e=0.990) lower bound 0.41 from 252 runs \u003c 0.90",
+                    "neuromorphic-pl spiking/t32: P(q\u003e=0.990) lower bound 0.62 from 252 runs \u003c 0.90",
+                    "neuromorphic-pl spiking/t128: P(q\u003e=0.990) lower bound 0.75 from 252 runs \u003c 0.90",
+                    "organoid-fr reservoir/s8: finishes after deadline",
+                    "organoid-fr reservoir/s20: P(q\u003e=0.990) lower bound 0.87 from 252 runs \u003c 0.90",
+                    "photonic-de analog/w4: P(q\u003e=0.990) lower bound 0.54 from 258 runs \u003c 0.90",
+                    "stochastic-gb sc/l64: P(q\u003e=0.990) lower bound 0.11 from 252 runs \u003c 0.90",
+                    "stochastic-gb sc/l256: P(q\u003e=0.990) lower bound 0.52 from 252 runs \u003c 0.90",
+                    "stochastic-gb sc/l1024: P(q\u003e=0.990) lower bound 0.67 from 252 runs \u003c 0.90",
+                    "stochastic-gb sc/l4096: P(q\u003e=0.990) lower bound 0.75 from 252 runs \u003c 0.90",
+                    "systolic-de fp8/e4m3: P(q\u003e=0.990) lower bound 0.69 from 252 runs \u003c 0.90",
+                    "systolic-de mxfp4/e2m1: P(q\u003e=0.990) lower bound 0.30 from 252 runs \u003c 0.90"
+                ]
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"dry-q10\",\"namespace\":\"arch-cluster\"},\"spec\":{\"class\":\"classify\",\"confidence\":0.9,\"deadlineSeconds\":120,\"dryRun\":true,\"instance\":{\"digits\":{\"offset\":0,\"size\":1797}},\"policy\":\"min-energy\",\"quality\":1}}\n"
+                },
+                "creationTimestamp": "2026-11-09T11:19:10Z",
+                "generation": 1,
+                "name": "dry-q10",
+                "namespace": "arch-cluster",
+                "resourceVersion": "85251",
+                "uid": "09ffa547-e11a-4e60-a30f-b4ef13f7461e"
+            },
+            "spec": {
+                "class": "classify",
+                "confidence": 0.9,
+                "deadlineSeconds": 120,
+                "dryRun": true,
+                "instance": {
+                    "digits": {
+                        "offset": 0,
+                        "size": 1797
+                    }
+                },
+                "policy": "min-energy",
+                "quality": 1
+            },
+            "status": {
+                "candidates": 9,
+                "feasiblePhysics": [
+                    "cgra",
+                    "cpu"
+                ],
+                "message": "dry run: plan only, nothing will run",
+                "pareto": [
+                    {
+                        "algorithm": "exact-fp",
+                        "ci": 556.0512053667672,
+                        "effort": "fp64",
+                        "eur": 3.084427263079024e-10,
+                        "gco2": 9.099153788005783e-7,
+                        "joules": 0.005890995886829268,
+                        "modelJoules": 0.00490916323902439,
+                        "modelSeconds": 0.00010018700487804878,
+                        "pQuality": 0.9545454545454544,
+                        "physics": "cgra",
+                        "qualitySamples": 21,
+                        "seconds": 0.00010018700487804878,
+                        "start": "2026-11-09T11:19:10Z",
+                        "substrate": "cgra-pl",
+                        "zone": "PL"
+                    }
+                ],
+                "phase": "Planned",
+                "plan": {
+                    "algorithm": "exact-fp",
+                    "ci": 556.0512053667672,
+                    "effort": "fp64",
+                    "eur": 3.084427263079024e-10,
+                    "gco2": 9.099153788005783e-7,
+                    "joules": 0.005890995886829268,
+                    "modelJoules": 0.00490916323902439,
+                    "modelSeconds": 0.00010018700487804878,
+                    "pQuality": 0.9545454545454544,
+                    "physics": "cgra",
+                    "qualitySamples": 21,
+                    "seconds": 0.00010018700487804878,
+                    "start": "2026-11-09T11:19:10Z",
+                    "substrate": "cgra-pl",
+                    "zone": "PL"
+                },
+                "plannedAt": "2026-11-09T11:19:10.877115325Z",
+                "reasonCodes": [
+                    "QualityUnreachable",
+                    "DeadlineTooShort"
+                ],
+                "reasons": [
+                    "analog-imc-fr analog/w4: P(q\u003e=1.000) lower bound 0.17 from 252 runs \u003c 0.90",
+                    "dataflow-pl int8/int8: P(q\u003e=1.000) lower bound 0.88 from 252 runs \u003c 0.90",
+                    "hdc-fr hdc/d512: P(q\u003e=1.000) lower bound 0.08 from 252 runs \u003c 0.90",
+                    "hdc-fr hdc/d2048: P(q\u003e=1.000) lower bound 0.73 from 252 runs \u003c 0.90",
+                    "hdc-fr hdc/d8192: P(q\u003e=1.000) lower bound 0.78 from 252 runs \u003c 0.90",
+                    "neuromorphic-pl spiking/t8: P(q\u003e=1.000) lower bound 0.35 from 252 runs \u003c 0.90",
+                    "neuromorphic-pl spiking/t32: P(q\u003e=1.000) lower bound 0.48 from 252 runs \u003c 0.90",
+                    "neuromorphic-pl spiking/t128: P(q\u003e=1.000) lower bound 0.67 from 252 runs \u003c 0.90",
+                    "organoid-fr reservoir/s8: finishes after deadline",
+                    "organoid-fr reservoir/s20: P(q\u003e=1.000) lower bound 0.87 from 252 runs \u003c 0.90",
+                    "photonic-de analog/w4: P(q\u003e=1.000) lower bound 0.46 from 258 runs \u003c 0.90",
+                    "pim-dram-fr int8/int8: P(q\u003e=1.000) lower bound 0.88 from 252 runs \u003c 0.90",
+                    "stochastic-gb sc/l64: P(q\u003e=1.000) lower bound 0.10 from 252 runs \u003c 0.90",
+                    "stochastic-gb sc/l256: P(q\u003e=1.000) lower bound 0.42 from 252 runs \u003c 0.90",
+                    "stochastic-gb sc/l1024: P(q\u003e=1.000) lower bound 0.58 from 252 runs \u003c 0.90",
+                    "stochastic-gb sc/l4096: P(q\u003e=1.000) lower bound 0.67 from 252 runs \u003c 0.90",
+                    "systolic-de fp8/e4m3: P(q\u003e=1.000) lower bound 0.54 from 252 runs \u003c 0.90",
+                    "systolic-de mxfp4/e2m1: P(q\u003e=1.000) lower bound 0.26 from 252 runs \u003c 0.90",
+                    "systolic-de int8/int8: P(q\u003e=1.000) lower bound 0.88 from 252 runs \u003c 0.90"
+                ]
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
