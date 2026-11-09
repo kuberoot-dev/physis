@@ -1,0 +1,60 @@
+{
+    "apiVersion": "physis.kuberoot.dev/v1alpha1",
+    "kind": "Substrate",
+    "metadata": {
+        "annotations": {
+            "physis.kuberoot.dev/source": "dra:gpu.apple.example/m4/gpu0"
+        },
+        "creationTimestamp": "2026-11-09T06:25:32Z",
+        "generation": 1,
+        "name": "dra-m4-gpu0",
+        "resourceVersion": "2813",
+        "uid": "5e43e7b4-7a8f-470f-9812-1dfb5dbe93db"
+    },
+    "spec": {
+        "emulated": false,
+        "jurisdiction": "EU",
+        "model": [
+            {
+                "name": "opsPerSecond",
+                "note": "declared by the DRA driver in pool m4",
+                "source": "ref:dra:gpu.apple.example",
+                "value": 5000000000
+            },
+            {
+                "hi": 20,
+                "lo": 3,
+                "name": "activePowerW",
+                "note": "not described by the DRA driver; the reference value for this physics",
+                "source": "assumption",
+                "value": 8
+            },
+            {
+                "name": "setupSeconds",
+                "note": "declared by the DRA driver in pool m4",
+                "source": "ref:dra:gpu.apple.example",
+                "value": 0.004
+            },
+            {
+                "hi": 1,
+                "lo": 0.009,
+                "name": "setupJ",
+                "note": "not described by the DRA driver; the reference value for this physics",
+                "source": "assumption",
+                "value": 0.032
+            }
+        ],
+        "operator": "laptop-m4",
+        "physics": "gpu",
+        "slots": 1,
+        "zone": "DE"
+    },
+    "status": {
+        "agent": "MacBook-Air-tym83.local",
+        "busyUntil": "0001-01-01T00:00:00Z",
+        "chainHead": "sha256:83d471dddc825532d980a3fac32225b4519eba263b7ef7acd1cdf7d50b9a797f",
+        "chainSeq": 1,
+        "heartbeat": "2026-11-09T06:26:14.923893Z",
+        "publicKey": "8a7d9164134277d0e2fe79003be6ccf4f141007f1eea82ccfe643d474da0099b"
+    }
+}

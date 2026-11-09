@@ -67,3 +67,25 @@ kind: RoleBinding
 metadata: {name: physis-agent-keys, namespace: physis-system}
 roleRef: {apiGroup: rbac.authorization.k8s.io, kind: Role, name: physis-agent-keys}
 subjects: [{kind: ServiceAccount, name: physis-agent, namespace: physis-system}]
+---
+# The DRA bridge reads ResourceSlices and writes Substrate specs, never status.
+apiVersion: v1
+kind: ServiceAccount
+metadata: {name: physis-dra-bridge, namespace: physis-system}
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata: {name: physis-dra-bridge}
+rules:
+- apiGroups: [resource.k8s.io]
+  resources: [resourceslices]
+  verbs: [get, list, watch]
+- apiGroups: [physis.kuberoot.dev]
+  resources: [substrates]
+  verbs: [get, list, create, update]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata: {name: physis-dra-bridge}
+roleRef: {apiGroup: rbac.authorization.k8s.io, kind: ClusterRole, name: physis-dra-bridge}
+subjects: [{kind: ServiceAccount, name: physis-dra-bridge, namespace: physis-system}]

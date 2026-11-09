@@ -1,0 +1,102 @@
+{
+    "apiVersion": "physis.kuberoot.dev/v1alpha1",
+    "kind": "Problem",
+    "metadata": {
+        "annotations": {
+            "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"via-dra\",\"namespace\":\"dra-demo\"},\"spec\":{\"class\":\"classify\",\"confidence\":0.9,\"deadlineSeconds\":120,\"instance\":{\"digits\":{\"offset\":0,\"size\":500}},\"physics\":[\"gpu\"],\"policy\":\"min-energy\",\"quality\":0.97}}\n"
+        },
+        "creationTimestamp": "2026-11-09T06:25:48Z",
+        "generation": 1,
+        "name": "via-dra",
+        "namespace": "dra-demo",
+        "resourceVersion": "2368",
+        "uid": "19cfae0c-1894-471a-9c5b-6ff0a571c341"
+    },
+    "spec": {
+        "class": "classify",
+        "confidence": 0.9,
+        "deadlineSeconds": 120,
+        "instance": {
+            "digits": {
+                "offset": 0,
+                "size": 500
+            }
+        },
+        "physics": [
+            "gpu"
+        ],
+        "policy": "min-energy",
+        "quality": 0.97
+    },
+    "status": {
+        "candidates": 2,
+        "claimedAt": "2026-11-09T06:25:49.148816Z",
+        "claimedBy": "dra-m4-gpu0",
+        "feasiblePhysics": [
+            "gpu"
+        ],
+        "pareto": [
+            {
+                "algorithm": "exact-gpu",
+                "ci": 558.1075451482058,
+                "effort": "fp32",
+                "eur": 3.80097792e-9,
+                "gco2": 0.000006048397502619488,
+                "joules": 0.0390144,
+                "modelJoules": 0.032512,
+                "modelSeconds": 0.004064,
+                "pQuality": 0.9545454545454544,
+                "physics": "gpu",
+                "qualitySamples": 21,
+                "seconds": 0.004064,
+                "start": "2026-11-09T06:25:48Z",
+                "substrate": "dra-m4-gpu0",
+                "zone": "DE"
+            },
+            {
+                "algorithm": "exact-gpu",
+                "ci": 558.1075451482058,
+                "effort": "fp32",
+                "eur": 3.80097792e-9,
+                "gco2": 0.000006048397502619488,
+                "joules": 0.0390144,
+                "modelJoules": 0.032512,
+                "modelSeconds": 0.004064,
+                "pQuality": 0.9545454545454544,
+                "physics": "gpu",
+                "qualitySamples": 21,
+                "seconds": 0.004064,
+                "start": "2026-11-09T06:25:48Z",
+                "substrate": "gpu-m4",
+                "zone": "DE"
+            }
+        ],
+        "phase": "Succeeded",
+        "plan": {
+            "algorithm": "exact-gpu",
+            "ci": 558.1075451482058,
+            "effort": "fp32",
+            "eur": 3.80097792e-9,
+            "gco2": 0.000006048397502619488,
+            "joules": 0.0390144,
+            "modelJoules": 0.032512,
+            "modelSeconds": 0.004064,
+            "pQuality": 0.9545454545454544,
+            "physics": "gpu",
+            "qualitySamples": 21,
+            "seconds": 0.004064,
+            "start": "2026-11-09T06:25:48Z",
+            "substrate": "dra-m4-gpu0",
+            "zone": "DE"
+        },
+        "plannedAt": "2026-11-09T06:25:48.749526Z",
+        "result": {
+            "deviceJoules": 0.1477806642651558,
+            "gco2": 0.00002291051848139614,
+            "quality": 1,
+            "receipt": "via-dra-dra-m4-gpu0-1",
+            "resultDigest": "sha256:da4d43f295ce92630829272fad6d2e7237c6248e9cd9499e6382d6fa6d758e7b",
+            "value": 462
+        }
+    }
+}

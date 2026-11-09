@@ -50,6 +50,7 @@ var (
 	gridCache    = flag.String("grid-cache", "", "directory caching live grid data (30 min)")
 	keySecret    = flag.String("key-secret", "", "Secret in the agent's namespace that keeps the signing key across restarts (empty: the state directory only)")
 	namespace    = flag.String("namespace", os.Getenv("POD_NAMESPACE"), "namespace of the key Secret")
+	adopt        = flag.Bool("adopt", false, "serve a substrate described by someone else (e.g. the DRA bridge): keep its spec and model, publish only status")
 	partitionAnn = v1.Group + "/simulate-partition-until"
 )
 
@@ -86,6 +87,19 @@ func main() {
 	c, err := kube.New(*kubeconfig)
 	if err != nil {
 		log.Fatal(err)
+	}
+	if *adopt {
+		// The described model is what this agent charges for, so that its
+		// receipts and the scheduler's plans agree.
+		if cur, err := c.GetSubstrate(context.Background(), *name); err == nil {
+			params := map[string]device.Value{}
+			for _, x := range cur.Spec.Model {
+				params[x.Name] = device.Value{V: x.Value, Lo: x.Lo, Hi: x.Hi, Source: x.Source, Note: x.Note}
+			}
+			m = device.FromParams(device.Physics(cur.Spec.Physics), cur.Spec.Emulated, params)
+		} else {
+			log.Fatalf("adopt: substrate %s not found: %v", *name, err)
+		}
 	}
 	a := &agent{c: c, model: m, loader: &instances.Loader{Dir: *dataDir}, sem: make(chan struct{}, *slots)}
 	a.loadBestFound()
@@ -238,6 +252,9 @@ func (a *agent) heartbeat(ctx context.Context) {
 	s.Meta.Name = *name
 	if cur, err := a.c.GetSubstrate(ctx, *name); err == nil {
 		s.Meta = cur.Meta
+		if *adopt {
+			s.Spec = cur.Spec
+		}
 		s.Status.RetiredKeys = cur.Status.RetiredKeys
 		if cur.Status.PublicKey != "" && cur.Status.PublicKey != s.Status.PublicKey {
 			// Record the change instead of overwriting: receipts signed with

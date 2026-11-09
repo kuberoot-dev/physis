@@ -187,7 +187,11 @@ func (s *scheduler) reconcile(ctx context.Context) error {
 		if !alive(sub, now) {
 			continue
 		}
-		m := device.Builtin(device.Physics(sub.Spec.Physics))
+		params := map[string]device.Value{}
+		for _, x := range sub.Spec.Model {
+			params[x.Name] = device.Value{V: x.Value, Lo: x.Lo, Hi: x.Hi, Source: x.Source, Note: x.Note}
+		}
+		m := device.FromParams(device.Physics(sub.Spec.Physics), sub.Spec.Emulated, params)
 		if m == nil {
 			continue
 		}

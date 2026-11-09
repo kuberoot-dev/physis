@@ -406,3 +406,32 @@ var Hosted = []Physics{GPU}
 // they are computed rather than the physics of the switch. They run in the
 // live stands; the published simulations predate them.
 var Numeric = []Physics{Systolic, PIMDRAM, Dataflow, Stochastic, HDC}
+
+// FromParams builds the model a substrate publishes: the reference model of
+// its physics, with every parameter the substrate states replacing the
+// reference value. A substrate's own description wins over the defaults
+// (principle P3), which is how a device described elsewhere (for example a
+// DRA ResourceSlice) reaches the scheduler.
+func FromParams(p Physics, emulated bool, params map[string]Value) *Model {
+	m := Builtin(p)
+	if m == nil {
+		return nil
+	}
+	c := *m
+	c.Emulated = emulated
+	for name, v := range params {
+		switch name {
+		case "opsPerSecond":
+			c.OpsPerSecond = v
+		case "energyPerOpJ":
+			c.EnergyPerOp = v
+		case "activePowerW":
+			c.ActivePowerW = v
+		case "setupSeconds":
+			c.SetupSeconds = v
+		case "setupJ":
+			c.SetupJoules = v
+		}
+	}
+	return &c
+}

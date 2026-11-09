@@ -1,0 +1,232 @@
+# The physis distribution: the Kubernetes API with no containers and no
+# nodes. The node runs its kernel, its init, the API server with its store,
+# and physis itself as node services: the outcome scheduler and one agent per
+# substrate. There is no kubelet, container runtime, kube-proxy or
+# kube-scheduler; work is Problems claimed by agents, not pods bound to nodes.
+# Kept in the physis repository (deploy/kuberoot-distro) and copied into a
+# kuberoot tree by physis/hack/kuberoot-physis-distro.sh.
+apiVersion: kuberoot.dev/v1alpha1
+kind: Distribution
+metadata:
+  name: physis
+spec:
+  roles:
+    controlPlane:
+      generators: [node, cluster]
+      addons: true
+      services:
+      - name: kuberoot-node
+        args:
+        - /usr/bin/kuberoot-node
+        - --node-name={{.Node.Name}}
+        - --advertise-address={{.Node.IP}}
+        - --tls-cert-file={{pki "node-api.crt"}}
+        - --tls-private-key-file={{pki "node-api.key"}}
+        - --client-ca-file={{pki "node-client-ca.crt"}}
+        - --kubeconfigs=admin={{kube "admin.kubeconfig"}}
+        - --requestheader-client-ca-file={{pki "front-proxy-ca.crt"}}
+        - --cluster-tls-cert-file={{pki "node-api-cluster.crt"}}
+        - --cluster-tls-private-key-file={{pki "node-api-cluster.key"}}
+        - --cluster-kubeconfig={{kube "node-api-delegation.kubeconfig"}}
+        - --cluster-ca-file={{pki "ca.crt"}}
+        - --cluster-ca-key-file={{pki "ca.key"}}
+        - --admin-kubeconfig={{kube "admin.kubeconfig"}}
+        - --proxy-client-cert-file={{pki "node-api-proxy.crt"}}
+        - --proxy-client-key-file={{pki "node-api-proxy.key"}}
+        - --pod-cidr={{.Net.Pod}}
+        - --service-cidr={{.Net.Service}}
+      - name: kine
+        args:
+        - /usr/bin/kine
+        - --endpoint
+        # As on edge: writers wait for the lock; FULL sync survives power loss.
+        - sqlite:///var/lib/kine/state.db?_journal=WAL&_synchronous=FULL&cache=shared&_busy_timeout=30000&_txlock=immediate
+        - --listen-address
+        - unix:///run/kine/kine.sock
+        # The API server compacts the history every five minutes, as with etcd;
+        # kine's own floor of 1000 revisions kept a quiet cluster's old
+        # versions for hours, so list continuations never expired.
+        - --compact-min-retain=100
+      - name: kube-apiserver
+        args:
+        - /usr/bin/kube-apiserver
+        - --etcd-servers=unix:///run/kine/kine.sock
+        - --advertise-address={{.Node.IP}}
+        - --secure-port=6443
+        - --service-cluster-ip-range={{.Net.Service}}
+        - --client-ca-file={{pki "ca.crt"}}
+        - --tls-cert-file={{pki "apiserver.crt"}}
+        - --tls-private-key-file={{pki "apiserver.key"}}
+        - --service-account-issuer=https://kubernetes.default.svc.cluster.local
+        - --service-account-key-file={{pki "sa.pub"}}
+        - --service-account-signing-key-file={{pki "sa.key"}}
+        - --authorization-mode=RBAC
+        - --encryption-provider-config={{pki "encryption.yaml"}}
+        - --audit-policy-file={{kube "audit-policy.yaml"}}
+        - --audit-log-path=/var/log/kuberoot/audit.log
+        - --audit-log-maxsize=50
+        - --audit-log-maxbackup=3
+        - --requestheader-client-ca-file={{pki "front-proxy-ca.crt"}}
+        - --requestheader-allowed-names=front-proxy-client
+        - --requestheader-username-headers=X-Remote-User
+        - --requestheader-group-headers=X-Remote-Group
+        - --requestheader-extra-headers-prefix=X-Remote-Extra-
+        - --proxy-client-cert-file={{pki "front-proxy-client.crt"}}
+        - --proxy-client-key-file={{pki "front-proxy-client.key"}}
+        - --enable-aggregator-routing=true
+      # Garbage collection, namespaces and service account tokens.
+      - name: kube-controller-manager
+        after: apiserver
+        args:
+        - /usr/bin/kube-controller-manager
+        - --kubeconfig={{kube "controller-manager.kubeconfig"}}
+        - --authentication-kubeconfig={{kube "controller-manager.kubeconfig"}}
+        - --authorization-kubeconfig={{kube "controller-manager.kubeconfig"}}
+        - --root-ca-file={{pki "ca.crt"}}
+        - --service-account-private-key-file={{pki "sa.key"}}
+        - --use-service-account-credentials=true
+        - --controllers=garbagecollector,namespace,serviceaccount,serviceaccount-token,root-ca-cert-publisher,clusterrole-aggregation
+        - --leader-elect=false
+      - name: physis-scheduler
+        after: apiserver
+        args:
+        - /usr/bin/physis-scheduler
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --learn=/usr/share/physis/learn.json
+        - --grid-cache=/var/lib/physis/grid
+      - name: physis-agent-cpu-de
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=cpu-de
+        - --physics=cpu
+        - --zone=DE
+        - --operator=node-cpu
+        - --jurisdiction=EU
+        - --slots=2
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/cpu-de
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-cpu-de
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-photonic-de
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=photonic-de
+        - --physics=photonic
+        - --zone=DE
+        - --operator=lightcore
+        - --jurisdiction=EU
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/photonic-de
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-photonic-de
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-systolic-de
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=systolic-de
+        - --physics=systolic
+        - --zone=DE
+        - --operator=tensor-de
+        - --jurisdiction=EU
+        - --slots=2
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/systolic-de
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-systolic-de
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-pim-dram-fr
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=pim-dram-fr
+        - --physics=pim-dram
+        - --zone=FR
+        - --operator=memfab-fr
+        - --jurisdiction=EU
+        - --slots=2
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/pim-dram-fr
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-pim-dram-fr
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-hdc-fr
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=hdc-fr
+        - --physics=hdc
+        - --zone=FR
+        - --operator=hypervec-fr
+        - --jurisdiction=EU
+        - --slots=2
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/hdc-fr
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-hdc-fr
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-adiabatic-fr
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=adiabatic-fr
+        - --physics=adiabatic
+        - --zone=FR
+        - --operator=reversible-fr
+        - --jurisdiction=EU
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/adiabatic-fr
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-adiabatic-fr
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-stochastic-gb
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=stochastic-gb
+        - --physics=stochastic
+        - --zone=GB
+        - --operator=bitstream-gb
+        - --jurisdiction=UK
+        - --slots=2
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/stochastic-gb
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-stochastic-gb
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-qpu-de
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=qpu-de
+        - --physics=qpu
+        - --zone=DE
+        - --operator=quantum-de
+        - --jurisdiction=EU
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/qpu-de
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-qpu-de
+        - --code=physis-agent/kuberoot-node-service
