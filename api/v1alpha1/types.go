@@ -144,6 +144,9 @@ type Result struct {
 	Receipt      string  `json:"receipt"`
 	DeviceJoules float64 `json:"deviceJoules"`
 	GCO2         float64 `json:"gco2"`
+	// Effort is set when the agent ran another effort than planned (the
+	// local level of planning raised it).
+	Effort string `json:"effort,omitempty"`
 }
 
 // ReceiptSpec is the signed record (P9); see package receipt.

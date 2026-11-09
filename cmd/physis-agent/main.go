@@ -32,6 +32,8 @@ import (
 	"github.com/kuberoot-dev/physis/pkg/grid"
 	"github.com/kuberoot-dev/physis/pkg/instances"
 	"github.com/kuberoot-dev/physis/pkg/kube"
+	"github.com/kuberoot-dev/physis/pkg/learn"
+	"github.com/kuberoot-dev/physis/pkg/plan"
 	"github.com/kuberoot-dev/physis/pkg/receipt"
 	"github.com/kuberoot-dev/physis/pkg/run"
 )
@@ -62,6 +64,7 @@ type agent struct {
 	sem    chan struct{}
 	mu     sync.Mutex
 	outbox []pending
+	local  *learn.Store // the agent's own results: the local level of planning
 	grid   *grid.Series
 	best   map[string]float64
 	cut    time.Time // simulated partition: no API calls before this
@@ -297,7 +300,12 @@ func (a *agent) execute(ctx context.Context, p *kube.Problem) {
 	}
 	started := time.Now().UTC()
 	seed := uint64(started.UnixNano())
-	res, err := run.Execute(a.model, pl.Algorithm, pl.Effort, in, seed)
+	// The local level: the agent knows its device's recent behaviour better
+	// than any planner. If its own results say the planned effort no longer
+	// reaches the target with the required confidence, it raises the effort
+	// one step within the same algorithm and records that it did.
+	effort := a.localEffort(pl.Algorithm, pl.Effort, p.Spec.Quality, p.Spec.Confidence, in)
+	res, err := run.Execute(a.model, pl.Algorithm, effort, in, seed)
 	if err != nil {
 		a.fail(ctx, p, err)
 		return
@@ -316,7 +324,7 @@ func (a *agent) execute(ctx context.Context, p *kube.Problem) {
 	}
 	finished := time.Now().UTC()
 	r := receipt.Receipt{Problem: p.Meta.Namespace + "/" + p.Meta.Name, Requester: p.Meta.Annotations[v1.Group+"/requester"], Mandate: p.Spec.Mandate,
-		InstanceDigest: in.Digest(), Algorithm: pl.Algorithm, Effort: pl.Effort, Code: *code, Seed: seed,
+		InstanceDigest: in.Digest(), Algorithm: pl.Algorithm, Effort: effort, Code: *code, Seed: seed,
 		Substrate: *name, Physics: *physics, Emulated: a.model.Emulated, Zone: *zone,
 		ResultDigest: res.ResultDigest, Quality: res.Quality, Value: res.Value,
 		Started: started, Finished: finished, SpinUpdates: res.Ops.SpinUpdates, MACs: res.Ops.MACs,
@@ -330,9 +338,10 @@ func (a *agent) execute(ctx context.Context, p *kube.Problem) {
 			r.EUR = res.Device.Joules / 3.6e9 * price
 		}
 	}
+	a.observe(pl.Algorithm, effort, in, res.Quality)
 	a.signer.Sign(&r)
 	pend := pending{Namespace: p.Meta.Namespace, Problem: p.Meta.Name, Receipt: r,
-		Result: v1.Result{Quality: res.Quality, Value: res.Value, ResultDigest: res.ResultDigest, Receipt: receiptName(p.Meta.Name, r.Seq), DeviceJoules: res.Device.Joules, GCO2: r.GCO2}}
+		Result: v1.Result{Quality: res.Quality, Value: res.Value, ResultDigest: res.ResultDigest, Receipt: receiptName(p.Meta.Name, r.Seq), DeviceJoules: res.Device.Joules, GCO2: r.GCO2, Effort: effortIfChanged(effort, pl.Effort)}}
 	a.outbox = append(a.outbox, pend)
 	a.saveOutboxLocked()
 	a.mu.Unlock()
@@ -413,4 +422,52 @@ func contains(s, sub string) bool {
 		}
 		return false
 	})()
+}
+
+// localKey groups this agent's own results by algorithm, effort and size.
+func localKey(algo, effort string, in *run.Instance) learn.Key {
+	sh := in.Shape()
+	return learn.Key{Class: string(sh.Class), Algo: algo, Effort: effort, Physics: *physics, SizeBucket: learn.Bucket(sh.Size())}
+}
+
+func (a *agent) observe(algo, effort string, in *run.Instance, q float64) {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	if a.local == nil {
+		a.local = learn.NewStore()
+	}
+	a.local.Observe(localKey(algo, effort, in), q)
+}
+
+// localEffort raises the planned effort one step when at least eight of the
+// agent's own recent runs give a confidence bound below the target.
+func (a *agent) localEffort(algo, planned string, target, confidence float64, in *run.Instance) string {
+	a.mu.Lock()
+	defer a.mu.Unlock()
+	if a.local == nil || confidence <= 0 {
+		return planned
+	}
+	pb, n := a.local.ProbAtLeast(localKey(algo, planned, in), target, 1)
+	if n < 8 || pb >= confidence {
+		return planned
+	}
+	alg, err := plan.Find(algo)
+	if err != nil {
+		return planned
+	}
+	for i, e := range alg.Efforts {
+		if e.Name == planned && i+1 < len(alg.Efforts) {
+			next := alg.Efforts[i+1].Name
+			log.Printf("local level: %s/%s reached %.3f with bound %.2f over %d own runs; running %s instead", algo, planned, target, pb, n, next)
+			return next
+		}
+	}
+	return planned
+}
+
+func effortIfChanged(ran, planned string) string {
+	if ran == planned {
+		return ""
+	}
+	return ran
 }

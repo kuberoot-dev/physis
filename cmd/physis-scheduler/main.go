@@ -259,8 +259,14 @@ func (s *scheduler) learnFrom(p *kube.Problem) {
 	if err != nil {
 		return
 	}
-	s.store.Observe(learn.Key{Class: string(shape.Class), Algo: st.Plan.Algorithm, Effort: st.Plan.Effort, Physics: string(st.Plan.Physics), SizeBucket: learn.Bucket(shape.Size())}, st.Result.Quality)
-	s.store.Measure(st.Plan.Substrate, "joules", st.Result.DeviceJoules, st.Plan.ModelJoules)
+	effort := st.Plan.Effort
+	if st.Result.Effort != "" {
+		effort = st.Result.Effort // the agent's local level ran another effort
+	}
+	s.store.Observe(learn.Key{Class: string(shape.Class), Algo: st.Plan.Algorithm, Effort: effort, Physics: string(st.Plan.Physics), SizeBucket: learn.Bucket(shape.Size())}, st.Result.Quality)
+	if effort == st.Plan.Effort {
+		s.store.Measure(st.Plan.Substrate, "joules", st.Result.DeviceJoules, st.Plan.ModelJoules)
+	}
 }
 
 func (s *scheduler) update(ctx context.Context, p *kube.Problem) {
