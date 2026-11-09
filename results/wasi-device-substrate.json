@@ -1,0 +1,45 @@
+{
+    "apiVersion": "physis.kuberoot.dev/v1alpha1",
+    "kind": "Substrate",
+    "metadata": {
+        "creationTimestamp": "2026-11-09T06:43:47Z",
+        "generation": 1,
+        "name": "wasi-cpu-ch",
+        "resourceVersion": "4560",
+        "uid": "fc1ecc3d-fb00-486f-9ad7-c7dbf3ea677f"
+    },
+    "spec": {
+        "emulated": false,
+        "jurisdiction": "CH",
+        "model": [
+            {
+                "hi": 200000000,
+                "lo": 10000000,
+                "name": "opsPerSecond",
+                "note": "calibrated per host",
+                "source": "measured",
+                "value": 50000000
+            },
+            {
+                "hi": 9,
+                "lo": 3,
+                "name": "activePowerW",
+                "note": "TDP/cores; marginal power of a busy core",
+                "source": "ref:amd-9454p",
+                "value": 6.041666666666667
+            }
+        ],
+        "operator": "sandbox-ch",
+        "physics": "cpu",
+        "slots": 1,
+        "zone": "DE"
+    },
+    "status": {
+        "agent": "MacBook-Air-tym83.local",
+        "busyUntil": "0001-01-01T00:00:00Z",
+        "chainHead": "sha256:6b96e447641a20a43c9edea77dc4702f2ab338d4d869deea6b8578497af09861",
+        "chainSeq": 5,
+        "heartbeat": "2026-11-09T06:45:01.797228Z",
+        "publicKey": "fed09618f9a53b11712f18af43ffb8ede273d01d66dfc5baa80d4d079de44602"
+    }
+}

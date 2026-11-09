@@ -29,6 +29,7 @@ import (
 
 	v1 "github.com/kuberoot-dev/physis/api/v1alpha1"
 	"github.com/kuberoot-dev/physis/pkg/device"
+	"github.com/kuberoot-dev/physis/pkg/devicelink"
 	"github.com/kuberoot-dev/physis/pkg/grid"
 	"github.com/kuberoot-dev/physis/pkg/instances"
 	"github.com/kuberoot-dev/physis/pkg/kube"
@@ -52,6 +53,7 @@ var (
 	gridCache    = flag.String("grid-cache", "", "directory caching live grid data (30 min)")
 	keySecret    = flag.String("key-secret", "", "Secret in the agent's namespace that keeps the signing key across restarts (empty: the state directory only)")
 	namespace    = flag.String("namespace", os.Getenv("POD_NAMESPACE"), "namespace of the key Secret")
+	deviceCmd    = flag.String("device", "", "a device core to compute and sign (physis-device, e.g. under wasmtime), spoken to over its stdin/stdout; the agent then only does the networking")
 	adopt        = flag.Bool("adopt", false, "serve a substrate described by someone else (e.g. the DRA bridge): keep its spec and model, publish only status")
 	partitionAnn = v1.Group + "/simulate-partition-until"
 )
@@ -59,7 +61,8 @@ var (
 type agent struct {
 	c      *kube.Client
 	model  *device.Model
-	signer *receipt.Signer
+	signer signer
+	link   *devicelink.Link // the device core, when computing and signing are outside the agent
 	loader *instances.Loader
 	sem    chan struct{}
 	mu     sync.Mutex
@@ -107,12 +110,21 @@ func main() {
 	a := &agent{c: c, model: m, loader: &instances.Loader{Dir: *dataDir}, sem: make(chan struct{}, *slots)}
 	a.loadBestFound()
 	ctx := context.Background()
-	priv := a.key(ctx)
-	seq, head := uint64(0), ""
-	if cur, err := c.GetSubstrate(ctx, *name); err == nil && cur.Status.PublicKey == hex.EncodeToString(priv.Public().(ed25519.PublicKey)) {
-		seq, head = cur.Status.ChainSeq, cur.Status.ChainHead
+	if *deviceCmd != "" {
+		l, err := devicelink.Start(*deviceCmd, os.Stderr)
+		if err != nil {
+			log.Fatalf("device: %v", err)
+		}
+		a.link, a.signer = l, l
+		log.Printf("device core %s: key %.12s, chain at %d", *deviceCmd, l.PublicKey(), func() uint64 { s, _ := l.Head(); return s }())
+	} else {
+		priv := a.key(ctx)
+		seq, head := uint64(0), ""
+		if cur, err := c.GetSubstrate(ctx, *name); err == nil && cur.Status.PublicKey == hex.EncodeToString(priv.Public().(ed25519.PublicKey)) {
+			seq, head = cur.Status.ChainSeq, cur.Status.ChainHead
+		}
+		a.signer = receipt.NewSigner(priv, seq, head)
 	}
-	a.signer = receipt.NewSigner(priv, seq, head)
 	a.loadOutbox()
 	go a.refreshGrid()
 	for {
@@ -305,7 +317,12 @@ func (a *agent) execute(ctx context.Context, p *kube.Problem) {
 	// reaches the target with the required confidence, it raises the effort
 	// one step within the same algorithm and records that it did.
 	effort := a.localEffort(pl.Algorithm, pl.Effort, p.Spec.Quality, p.Spec.Confidence, in)
-	res, err := run.Execute(a.model, pl.Algorithm, effort, in, seed)
+	var res *run.Result
+	if a.link != nil {
+		res, err = a.runOnDevice(p.Spec.Instance, pl.Algorithm, effort, seed)
+	} else {
+		res, err = run.Execute(a.model, pl.Algorithm, effort, in, seed)
+	}
 	if err != nil {
 		a.fail(ctx, p, err)
 		return
@@ -323,6 +340,8 @@ func (a *agent) execute(ctx context.Context, p *kube.Problem) {
 		}
 	}
 	finished := time.Now().UTC()
+	// Before taking a.mu below: observe takes it too.
+	a.observe(pl.Algorithm, effort, in, res.Quality)
 	r := receipt.Receipt{Problem: p.Meta.Namespace + "/" + p.Meta.Name, Requester: p.Meta.Annotations[v1.Group+"/requester"], Mandate: p.Spec.Mandate,
 		InstanceDigest: in.Digest(), Algorithm: pl.Algorithm, Effort: effort, Code: *code, Seed: seed,
 		Substrate: *name, Physics: *physics, Emulated: a.model.Emulated, Zone: *zone,
@@ -338,7 +357,6 @@ func (a *agent) execute(ctx context.Context, p *kube.Problem) {
 			r.EUR = res.Device.Joules / 3.6e9 * price
 		}
 	}
-	a.observe(pl.Algorithm, effort, in, res.Quality)
 	a.signer.Sign(&r)
 	pend := pending{Namespace: p.Meta.Namespace, Problem: p.Meta.Name, Receipt: r,
 		Result: v1.Result{Quality: res.Quality, Value: res.Value, ResultDigest: res.ResultDigest, Receipt: receiptName(p.Meta.Name, r.Seq), DeviceJoules: res.Device.Joules, GCO2: r.GCO2, Effort: effortIfChanged(effort, pl.Effort)}}
@@ -470,4 +488,22 @@ func effortIfChanged(ran, planned string) string {
 		return ""
 	}
 	return ran
+}
+
+// signer is what signs receipts: the agent's own key, or the device core.
+type signer interface {
+	Sign(*receipt.Receipt)
+	PublicKey() string
+	Head() (uint64, string)
+}
+
+// runOnDevice has the device core compute; the agent only times the wait.
+func (a *agent) runOnDevice(in v1.InstanceRef, algo, effort string, seed uint64) (*run.Result, error) {
+	w0 := time.Now()
+	r, err := a.link.Run(in, algo, effort, seed)
+	if err != nil {
+		return nil, err
+	}
+	return &run.Result{Value: r.Value, Quality: r.Quality, Ops: r.Ops, ResultDigest: r.ResultDigest,
+		HostCPUSeconds: r.HostCPUSeconds, HostWall: time.Since(w0), Device: r.Device}, nil
 }

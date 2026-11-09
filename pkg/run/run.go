@@ -14,7 +14,6 @@ import (
 	"os"
 	"os/exec"
 	"strings"
-	"syscall"
 	"time"
 
 	"github.com/kuberoot-dev/physis/pkg/device"
@@ -64,14 +63,6 @@ type Result struct {
 	HostWall       time.Duration
 	// Device: what the substrate model charges for the ops.
 	Device device.Cost
-}
-
-func cpuSeconds() float64 {
-	var ru syscall.Rusage
-	if err := syscall.Getrusage(syscall.RUSAGE_SELF, &ru); err != nil {
-		return 0
-	}
-	return float64(ru.Utime.Sec+ru.Stime.Sec) + float64(ru.Utime.Usec+ru.Stime.Usec)/1e6
 }
 
 // Execute runs the algorithm. For the CPU, device time is the measured CPU

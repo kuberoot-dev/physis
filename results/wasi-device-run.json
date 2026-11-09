@@ -1,0 +1,759 @@
+{
+    "apiVersion": "v1",
+    "items": [
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"in-sandbox-1\",\"namespace\":\"wasi-demo2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G1\"},\"jurisdictions\":[\"CH\"],\"physics\":[\"cpu\"],\"policy\":\"min-energy\",\"quality\":0.97}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:43:57Z",
+                "generation": 1,
+                "name": "in-sandbox-1",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3259",
+                "uid": "79b8c849-eba8-4162-9d61-b0f7704c02d3"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G1"
+                },
+                "jurisdictions": [
+                    "CH"
+                ],
+                "physics": [
+                    "cpu"
+                ],
+                "policy": "min-energy",
+                "quality": 0.97
+            },
+            "status": {
+                "candidates": 3,
+                "claimedAt": "2026-11-09T06:43:58.399349Z",
+                "claimedBy": "wasi-cpu-ch",
+                "feasiblePhysics": [
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 1.809603808666667e-7,
+                        "gco2": 0.0002640343995333334,
+                        "joules": 1.7031120000000002,
+                        "modelJoules": 1.4192600000000002,
+                        "modelSeconds": 0.234912,
+                        "pQuality": 0.9836065573770493,
+                        "physics": "cpu",
+                        "qualitySamples": 60,
+                        "seconds": 0.234912,
+                        "start": "2026-11-09T06:43:57Z",
+                        "substrate": "wasi-cpu-ch",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 1.809603808666667e-7,
+                    "gco2": 0.0002640343995333334,
+                    "joules": 1.7031120000000002,
+                    "modelJoules": 1.4192600000000002,
+                    "modelSeconds": 0.234912,
+                    "pQuality": 0.9836065573770493,
+                    "physics": "cpu",
+                    "qualitySamples": 60,
+                    "seconds": 0.234912,
+                    "start": "2026-11-09T06:43:57Z",
+                    "substrate": "wasi-cpu-ch",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:43:57.762484Z",
+                "reasons": [
+                    "adiabatic-fr: operator jurisdiction \"EU\" not allowed",
+                    "analog-imc-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-de: operator jurisdiction \"EU\" not allowed",
+                    "cpu-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-gb: operator jurisdiction \"UK\" not allowed",
+                    "cpu-pl: operator jurisdiction \"EU\" not allowed",
+                    "dataflow-pl: operator jurisdiction \"EU\" not allowed",
+                    "gpu-m4: operator jurisdiction \"EU\" not allowed",
+                    "hdc-fr: operator jurisdiction \"EU\" not allowed",
+                    "ising-digital-pl: operator jurisdiction \"EU\" not allowed",
+                    "neuromorphic-pl: operator jurisdiction \"EU\" not allowed",
+                    "optical-ising-gb: operator jurisdiction \"UK\" not allowed",
+                    "organoid-fr: operator jurisdiction \"EU\" not allowed",
+                    "pbit-gb: operator jurisdiction \"UK\" not allowed",
+                    "photonic-de: operator jurisdiction \"EU\" not allowed",
+                    "pim-dram-fr: operator jurisdiction \"EU\" not allowed",
+                    "qpu-de: operator jurisdiction \"EU\" not allowed",
+                    "sfq-de: operator jurisdiction \"EU\" not allowed",
+                    "stochastic-gb: operator jurisdiction \"UK\" not allowed",
+                    "systolic-de: operator jurisdiction \"EU\" not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.3252030335416667,
+                    "gco2": 0.00005041640695831655,
+                    "quality": 0.9948382656572609,
+                    "receipt": "in-sandbox-1-wasi-cpu-ch-1",
+                    "resultDigest": "sha256:52f3735adf134b3a6d1403c6e7d67c36bccf46c7066cd2a86d323ed3a1536b45",
+                    "value": 11564
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"in-sandbox-2\",\"namespace\":\"wasi-demo2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G1\"},\"jurisdictions\":[\"CH\"],\"physics\":[\"cpu\"],\"policy\":\"min-energy\",\"quality\":0.97}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:44:00Z",
+                "generation": 1,
+                "name": "in-sandbox-2",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3349",
+                "uid": "2b4d1761-8471-42d5-8734-4ede9608182a"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G1"
+                },
+                "jurisdictions": [
+                    "CH"
+                ],
+                "physics": [
+                    "cpu"
+                ],
+                "policy": "min-energy",
+                "quality": 0.97
+            },
+            "status": {
+                "candidates": 3,
+                "claimedAt": "2026-11-09T06:44:02.495416Z",
+                "claimedBy": "wasi-cpu-ch",
+                "feasiblePhysics": [
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 4.146447078667431e-8,
+                        "gco2": 0.000060499688349979865,
+                        "joules": 0.39024364025,
+                        "modelJoules": 1.4192600000000002,
+                        "modelSeconds": 0.234912,
+                        "pQuality": 0.9838709677419354,
+                        "physics": "cpu",
+                        "qualitySamples": 61,
+                        "seconds": 0.234912,
+                        "start": "2026-11-09T06:44:01Z",
+                        "substrate": "wasi-cpu-ch",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 4.146447078667431e-8,
+                    "gco2": 0.000060499688349979865,
+                    "joules": 0.39024364025,
+                    "modelJoules": 1.4192600000000002,
+                    "modelSeconds": 0.234912,
+                    "pQuality": 0.9838709677419354,
+                    "physics": "cpu",
+                    "qualitySamples": 61,
+                    "seconds": 0.234912,
+                    "start": "2026-11-09T06:44:01Z",
+                    "substrate": "wasi-cpu-ch",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:44:01.789372Z",
+                "reasons": [
+                    "adiabatic-fr: operator jurisdiction \"EU\" not allowed",
+                    "analog-imc-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-de: operator jurisdiction \"EU\" not allowed",
+                    "cpu-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-gb: operator jurisdiction \"UK\" not allowed",
+                    "cpu-pl: operator jurisdiction \"EU\" not allowed",
+                    "dataflow-pl: operator jurisdiction \"EU\" not allowed",
+                    "gpu-m4: operator jurisdiction \"EU\" not allowed",
+                    "hdc-fr: operator jurisdiction \"EU\" not allowed",
+                    "ising-digital-pl: operator jurisdiction \"EU\" not allowed",
+                    "neuromorphic-pl: operator jurisdiction \"EU\" not allowed",
+                    "optical-ising-gb: operator jurisdiction \"UK\" not allowed",
+                    "organoid-fr: operator jurisdiction \"EU\" not allowed",
+                    "pbit-gb: operator jurisdiction \"UK\" not allowed",
+                    "photonic-de: operator jurisdiction \"EU\" not allowed",
+                    "pim-dram-fr: operator jurisdiction \"EU\" not allowed",
+                    "qpu-de: operator jurisdiction \"EU\" not allowed",
+                    "sfq-de: operator jurisdiction \"EU\" not allowed",
+                    "stochastic-gb: operator jurisdiction \"UK\" not allowed",
+                    "systolic-de: operator jurisdiction \"EU\" not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.32123315104166666,
+                    "gco2": 0.000049800953868851274,
+                    "quality": 0.994322092222987,
+                    "receipt": "in-sandbox-2-wasi-cpu-ch-2",
+                    "resultDigest": "sha256:1a77e7c030ff40577e32ec2d2a1ac6e057817184407744e27147bfc7d130c56a",
+                    "value": 11558
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"in-sandbox-3\",\"namespace\":\"wasi-demo2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G1\"},\"jurisdictions\":[\"CH\"],\"physics\":[\"cpu\"],\"policy\":\"min-energy\",\"quality\":0.97}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:44:03Z",
+                "generation": 1,
+                "name": "in-sandbox-3",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3398",
+                "uid": "474d33b6-8e7d-4855-9797-56cdec450018"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G1"
+                },
+                "jurisdictions": [
+                    "CH"
+                ],
+                "physics": [
+                    "cpu"
+                ],
+                "policy": "min-energy",
+                "quality": 0.97
+            },
+            "status": {
+                "candidates": 3,
+                "claimedAt": "2026-11-09T06:44:04.656101Z",
+                "claimedBy": "wasi-cpu-ch",
+                "feasiblePhysics": [
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 4.136323613633597e-8,
+                        "gco2": 0.000060351979608508195,
+                        "joules": 0.38929086845,
+                        "modelJoules": 1.4192600000000002,
+                        "modelSeconds": 0.234912,
+                        "pQuality": 0.9841269841269842,
+                        "physics": "cpu",
+                        "qualitySamples": 62,
+                        "seconds": 0.234912,
+                        "start": "2026-11-09T06:44:03Z",
+                        "substrate": "wasi-cpu-ch",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 4.136323613633597e-8,
+                    "gco2": 0.000060351979608508195,
+                    "joules": 0.38929086845,
+                    "modelJoules": 1.4192600000000002,
+                    "modelSeconds": 0.234912,
+                    "pQuality": 0.9841269841269842,
+                    "physics": "cpu",
+                    "qualitySamples": 62,
+                    "seconds": 0.234912,
+                    "start": "2026-11-09T06:44:03Z",
+                    "substrate": "wasi-cpu-ch",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:44:03.80774Z",
+                "reasons": [
+                    "adiabatic-fr: operator jurisdiction \"EU\" not allowed",
+                    "analog-imc-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-de: operator jurisdiction \"EU\" not allowed",
+                    "cpu-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-gb: operator jurisdiction \"UK\" not allowed",
+                    "cpu-pl: operator jurisdiction \"EU\" not allowed",
+                    "dataflow-pl: operator jurisdiction \"EU\" not allowed",
+                    "gpu-m4: operator jurisdiction \"EU\" not allowed",
+                    "hdc-fr: operator jurisdiction \"EU\" not allowed",
+                    "ising-digital-pl: operator jurisdiction \"EU\" not allowed",
+                    "neuromorphic-pl: operator jurisdiction \"EU\" not allowed",
+                    "optical-ising-gb: operator jurisdiction \"UK\" not allowed",
+                    "organoid-fr: operator jurisdiction \"EU\" not allowed",
+                    "pbit-gb: operator jurisdiction \"UK\" not allowed",
+                    "photonic-de: operator jurisdiction \"EU\" not allowed",
+                    "pim-dram-fr: operator jurisdiction \"EU\" not allowed",
+                    "qpu-de: operator jurisdiction \"EU\" not allowed",
+                    "sfq-de: operator jurisdiction \"EU\" not allowed",
+                    "stochastic-gb: operator jurisdiction \"UK\" not allowed",
+                    "systolic-de: operator jurisdiction \"EU\" not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.337494296875,
+                    "gco2": 0.00005232192834136285,
+                    "quality": 0.9956125258086718,
+                    "receipt": "in-sandbox-3-wasi-cpu-ch-3",
+                    "resultDigest": "sha256:02a9bb7867408d0a685964d0f5741562218f6e7879b037bd2546f620d8af121e",
+                    "value": 11573
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"in-sandbox-4\",\"namespace\":\"wasi-demo2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G1\"},\"jurisdictions\":[\"CH\"],\"physics\":[\"cpu\"],\"policy\":\"min-energy\",\"quality\":0.97}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:44:06Z",
+                "generation": 1,
+                "name": "in-sandbox-4",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3493",
+                "uid": "11f3d95a-2a31-4878-ab61-5f251d1a663b"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G1"
+                },
+                "jurisdictions": [
+                    "CH"
+                ],
+                "physics": [
+                    "cpu"
+                ],
+                "policy": "min-energy",
+                "quality": 0.97
+            },
+            "status": {
+                "candidates": 3,
+                "claimedAt": "2026-11-09T06:44:09.059245Z",
+                "claimedBy": "wasi-cpu-ch",
+                "feasiblePhysics": [
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 4.16969184755792e-8,
+                        "gco2": 0.00006083884648873365,
+                        "joules": 0.3924313260100001,
+                        "modelJoules": 1.4192600000000002,
+                        "modelSeconds": 0.234912,
+                        "pQuality": 0.984375,
+                        "physics": "cpu",
+                        "qualitySamples": 63,
+                        "seconds": 0.234912,
+                        "start": "2026-11-09T06:44:07Z",
+                        "substrate": "wasi-cpu-ch",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 4.16969184755792e-8,
+                    "gco2": 0.00006083884648873365,
+                    "joules": 0.3924313260100001,
+                    "modelJoules": 1.4192600000000002,
+                    "modelSeconds": 0.234912,
+                    "pQuality": 0.984375,
+                    "physics": "cpu",
+                    "qualitySamples": 63,
+                    "seconds": 0.234912,
+                    "start": "2026-11-09T06:44:07Z",
+                    "substrate": "wasi-cpu-ch",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:44:07.84745Z",
+                "reasons": [
+                    "adiabatic-fr: operator jurisdiction \"EU\" not allowed",
+                    "analog-imc-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-de: operator jurisdiction \"EU\" not allowed",
+                    "cpu-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-gb: operator jurisdiction \"UK\" not allowed",
+                    "cpu-pl: operator jurisdiction \"EU\" not allowed",
+                    "dataflow-pl: operator jurisdiction \"EU\" not allowed",
+                    "gpu-m4: operator jurisdiction \"EU\" not allowed",
+                    "hdc-fr: operator jurisdiction \"EU\" not allowed",
+                    "ising-digital-pl: operator jurisdiction \"EU\" not allowed",
+                    "neuromorphic-pl: operator jurisdiction \"EU\" not allowed",
+                    "optical-ising-gb: operator jurisdiction \"UK\" not allowed",
+                    "organoid-fr: operator jurisdiction \"EU\" not allowed",
+                    "pbit-gb: operator jurisdiction \"UK\" not allowed",
+                    "photonic-de: operator jurisdiction \"EU\" not allowed",
+                    "pim-dram-fr: operator jurisdiction \"EU\" not allowed",
+                    "qpu-de: operator jurisdiction \"EU\" not allowed",
+                    "sfq-de: operator jurisdiction \"EU\" not allowed",
+                    "stochastic-gb: operator jurisdiction \"UK\" not allowed",
+                    "systolic-de: operator jurisdiction \"EU\" not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.33229116520833335,
+                    "gco2": 0.000051515283948450816,
+                    "quality": 0.9937198898830006,
+                    "receipt": "in-sandbox-4-wasi-cpu-ch-4",
+                    "resultDigest": "sha256:42bd8c463f32ab7a9fbc9961575552e47d2dfc87eb3d82d06fcd2ac0be65647f",
+                    "value": 11551
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Problem",
+            "metadata": {
+                "annotations": {
+                    "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"physis.kuberoot.dev/v1alpha1\",\"kind\":\"Problem\",\"metadata\":{\"annotations\":{},\"name\":\"in-sandbox-5\",\"namespace\":\"wasi-demo2\"},\"spec\":{\"class\":\"maxcut\",\"confidence\":0.9,\"deadlineSeconds\":600,\"instance\":{\"gset\":\"G1\"},\"jurisdictions\":[\"CH\"],\"physics\":[\"cpu\"],\"policy\":\"min-energy\",\"quality\":0.97}}\n"
+                },
+                "creationTimestamp": "2026-11-09T06:44:09Z",
+                "generation": 1,
+                "name": "in-sandbox-5",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3522",
+                "uid": "ee136986-69ad-421b-acd3-013723b4facf"
+            },
+            "spec": {
+                "class": "maxcut",
+                "confidence": 0.9,
+                "deadlineSeconds": 600,
+                "instance": {
+                    "gset": "G1"
+                },
+                "jurisdictions": [
+                    "CH"
+                ],
+                "physics": [
+                    "cpu"
+                ],
+                "policy": "min-energy",
+                "quality": 0.97
+            },
+            "status": {
+                "candidates": 3,
+                "claimedAt": "2026-11-09T06:44:10.180412Z",
+                "claimedBy": "wasi-cpu-ch",
+                "feasiblePhysics": [
+                    "cpu"
+                ],
+                "pareto": [
+                    {
+                        "algorithm": "anneal",
+                        "ci": 558.11,
+                        "effort": "w300",
+                        "eur": 4.1831181020719326e-8,
+                        "gco2": 0.00006103474533861511,
+                        "joules": 0.393694940458,
+                        "modelJoules": 1.4192600000000002,
+                        "modelSeconds": 0.234912,
+                        "pQuality": 0.9846153846153847,
+                        "physics": "cpu",
+                        "qualitySamples": 64,
+                        "seconds": 0.234912,
+                        "start": "2026-11-09T06:44:09Z",
+                        "substrate": "wasi-cpu-ch",
+                        "zone": "DE"
+                    }
+                ],
+                "phase": "Succeeded",
+                "plan": {
+                    "algorithm": "anneal",
+                    "ci": 558.11,
+                    "effort": "w300",
+                    "eur": 4.1831181020719326e-8,
+                    "gco2": 0.00006103474533861511,
+                    "joules": 0.393694940458,
+                    "modelJoules": 1.4192600000000002,
+                    "modelSeconds": 0.234912,
+                    "pQuality": 0.9846153846153847,
+                    "physics": "cpu",
+                    "qualitySamples": 64,
+                    "seconds": 0.234912,
+                    "start": "2026-11-09T06:44:09Z",
+                    "substrate": "wasi-cpu-ch",
+                    "zone": "DE"
+                },
+                "plannedAt": "2026-11-09T06:44:09.926543Z",
+                "reasons": [
+                    "adiabatic-fr: operator jurisdiction \"EU\" not allowed",
+                    "analog-imc-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-de: operator jurisdiction \"EU\" not allowed",
+                    "cpu-fr: operator jurisdiction \"EU\" not allowed",
+                    "cpu-gb: operator jurisdiction \"UK\" not allowed",
+                    "cpu-pl: operator jurisdiction \"EU\" not allowed",
+                    "dataflow-pl: operator jurisdiction \"EU\" not allowed",
+                    "gpu-m4: operator jurisdiction \"EU\" not allowed",
+                    "hdc-fr: operator jurisdiction \"EU\" not allowed",
+                    "ising-digital-pl: operator jurisdiction \"EU\" not allowed",
+                    "neuromorphic-pl: operator jurisdiction \"EU\" not allowed",
+                    "optical-ising-gb: operator jurisdiction \"UK\" not allowed",
+                    "organoid-fr: operator jurisdiction \"EU\" not allowed",
+                    "pbit-gb: operator jurisdiction \"UK\" not allowed",
+                    "photonic-de: operator jurisdiction \"EU\" not allowed",
+                    "pim-dram-fr: operator jurisdiction \"EU\" not allowed",
+                    "qpu-de: operator jurisdiction \"EU\" not allowed",
+                    "sfq-de: operator jurisdiction \"EU\" not allowed",
+                    "stochastic-gb: operator jurisdiction \"UK\" not allowed",
+                    "systolic-de: operator jurisdiction \"EU\" not allowed"
+                ],
+                "result": {
+                    "deviceJoules": 0.327811523125,
+                    "gco2": 0.0000508208025475816,
+                    "quality": 0.9950103234686855,
+                    "receipt": "in-sandbox-5-wasi-cpu-ch-5",
+                    "resultDigest": "sha256:0ed91fc897ca094712e1b88c0fab6751e88b11fdb781e2de42c8f64620d951ae",
+                    "value": 11566
+                }
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Receipt",
+            "metadata": {
+                "creationTimestamp": "2026-11-09T06:43:58Z",
+                "generation": 1,
+                "name": "in-sandbox-1-wasi-cpu-ch-1",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3258",
+                "uid": "10c0ed4c-58e5-4076-b21d-5729a0d1682d"
+            },
+            "spec": {
+                "algorithm": "anneal",
+                "ciGPerKWh": 558.11,
+                "code": "physis-agent/dev",
+                "deviceJoules": 0.3252030335416667,
+                "deviceSeconds": 0.053826709,
+                "effort": "w300",
+                "emulated": false,
+                "energySource": "model",
+                "eur": 3.4553725655561925e-8,
+                "finished": "2026-11-09T06:43:58.505186Z",
+                "gco2": 0.00005041640695831655,
+                "hostCpuSeconds": 0,
+                "instanceDigest": "sha256:fbff61528a8a0c2ec1ab11a87b576f435e7ea26d9e74896a8024111c9dde9ed4",
+                "key": "fed09618f9a53b11712f18af43ffb8ede273d01d66dfc5baa80d4d079de44602",
+                "macs": 11505600,
+                "physics": "cpu",
+                "prev": "",
+                "problem": "wasi-demo2/in-sandbox-1",
+                "quality": 0.9948382656572609,
+                "requester": "",
+                "resultDigest": "sha256:52f3735adf134b3a6d1403c6e7d67c36bccf46c7066cd2a86d323ed3a1536b45",
+                "seed": 1794206638410891000,
+                "seq": 1,
+                "signature": "L7o4wZRLSwvwuOYYH04ITaGbEKL1F+CW4RSdbyoe7p5aP4njiS0RBC5i3qHkByQ7phD5gXrt4rUglsN0hFl3BQ==",
+                "spinUpdates": 240000,
+                "started": "2026-11-09T06:43:58.410891Z",
+                "substrate": "wasi-cpu-ch",
+                "value": 11564,
+                "zone": "DE"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Receipt",
+            "metadata": {
+                "creationTimestamp": "2026-11-09T06:44:02Z",
+                "generation": 1,
+                "name": "in-sandbox-2-wasi-cpu-ch-2",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3348",
+                "uid": "77f4510c-39ff-40d6-b816-05ecb488aa4e"
+            },
+            "spec": {
+                "algorithm": "anneal",
+                "ciGPerKWh": 558.11,
+                "code": "physis-agent/dev",
+                "deviceJoules": 0.32123315104166666,
+                "deviceSeconds": 0.053169625,
+                "effort": "w300",
+                "emulated": false,
+                "energySource": "model",
+                "eur": 3.413191461248553e-8,
+                "finished": "2026-11-09T06:44:02.602481Z",
+                "gco2": 0.000049800953868851274,
+                "hostCpuSeconds": 0,
+                "instanceDigest": "sha256:fbff61528a8a0c2ec1ab11a87b576f435e7ea26d9e74896a8024111c9dde9ed4",
+                "key": "fed09618f9a53b11712f18af43ffb8ede273d01d66dfc5baa80d4d079de44602",
+                "macs": 11505600,
+                "physics": "cpu",
+                "prev": "sha256:fa6d3cc008284d3ac00fe2e4f59beffe4b56f97d78fed898ce15db02f8d584b2",
+                "problem": "wasi-demo2/in-sandbox-2",
+                "quality": 0.994322092222987,
+                "requester": "",
+                "resultDigest": "sha256:1a77e7c030ff40577e32ec2d2a1ac6e057817184407744e27147bfc7d130c56a",
+                "seed": 1794206642507609000,
+                "seq": 2,
+                "signature": "Kn/H7aWiRYcP6m7PLP2t3Emfs+sLVDxoPXT57//AUbm/yigmVy6zcLdof353d/15/8lAXSpJq0Z2n0N2YqSLCQ==",
+                "spinUpdates": 240000,
+                "started": "2026-11-09T06:44:02.507609Z",
+                "substrate": "wasi-cpu-ch",
+                "value": 11558,
+                "zone": "DE"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Receipt",
+            "metadata": {
+                "creationTimestamp": "2026-11-09T06:44:04Z",
+                "generation": 1,
+                "name": "in-sandbox-3-wasi-cpu-ch-3",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3397",
+                "uid": "0b6594b1-6f04-4fc8-8c99-431b274a71a7"
+            },
+            "spec": {
+                "algorithm": "anneal",
+                "ciGPerKWh": 558.11,
+                "code": "physis-agent/dev",
+                "deviceJoules": 0.337494296875,
+                "deviceSeconds": 0.055861125,
+                "effort": "w300",
+                "emulated": false,
+                "energySource": "model",
+                "eur": 3.585970652712673e-8,
+                "finished": "2026-11-09T06:44:04.764879Z",
+                "gco2": 0.00005232192834136285,
+                "hostCpuSeconds": 0,
+                "instanceDigest": "sha256:fbff61528a8a0c2ec1ab11a87b576f435e7ea26d9e74896a8024111c9dde9ed4",
+                "key": "fed09618f9a53b11712f18af43ffb8ede273d01d66dfc5baa80d4d079de44602",
+                "macs": 11505600,
+                "physics": "cpu",
+                "prev": "sha256:2481a3909ab2a8a33bed4e31b513038edfb4ac3c8c7a8b562576c8991e3172b7",
+                "problem": "wasi-demo2/in-sandbox-3",
+                "quality": 0.9956125258086718,
+                "requester": "",
+                "resultDigest": "sha256:02a9bb7867408d0a685964d0f5741562218f6e7879b037bd2546f620d8af121e",
+                "seed": 1794206644669897000,
+                "seq": 3,
+                "signature": "KYkFygGJeP+Kts8FcRsavgUdbX7nuPPKW2pnIFBfEUEgee4BAhtHZOkdazBWVtTFst/tx9ElakvA7T+xnUyaAA==",
+                "spinUpdates": 240000,
+                "started": "2026-11-09T06:44:04.669897Z",
+                "substrate": "wasi-cpu-ch",
+                "value": 11573,
+                "zone": "DE"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Receipt",
+            "metadata": {
+                "creationTimestamp": "2026-11-09T06:44:09Z",
+                "generation": 1,
+                "name": "in-sandbox-4-wasi-cpu-ch-4",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3492",
+                "uid": "e78aa1f2-6f11-4646-9943-b4010e7d0598"
+            },
+            "spec": {
+                "algorithm": "anneal",
+                "ciGPerKWh": 558.11,
+                "code": "physis-agent/dev",
+                "deviceJoules": 0.33229116520833335,
+                "deviceSeconds": 0.054999917,
+                "effort": "w300",
+                "emulated": false,
+                "energySource": "model",
+                "eur": 3.5306859334399884e-8,
+                "finished": "2026-11-09T06:44:09.175191Z",
+                "gco2": 0.000051515283948450816,
+                "hostCpuSeconds": 0,
+                "instanceDigest": "sha256:fbff61528a8a0c2ec1ab11a87b576f435e7ea26d9e74896a8024111c9dde9ed4",
+                "key": "fed09618f9a53b11712f18af43ffb8ede273d01d66dfc5baa80d4d079de44602",
+                "macs": 11505600,
+                "physics": "cpu",
+                "prev": "sha256:a3766adddbadd08d3808a74811957996c124029edda8335961174b2e2599c3cb",
+                "problem": "wasi-demo2/in-sandbox-4",
+                "quality": 0.9937198898830006,
+                "requester": "",
+                "resultDigest": "sha256:42bd8c463f32ab7a9fbc9961575552e47d2dfc87eb3d82d06fcd2ac0be65647f",
+                "seed": 1794206649073220000,
+                "seq": 4,
+                "signature": "nCc7R6G8BGG4BGdp9PaywduTBmVkdsNJoedd2nOAceDjfgx9JLpTKd46QGi19tTGejg1LXclN4Nwct4C6BVaCQ==",
+                "spinUpdates": 240000,
+                "started": "2026-11-09T06:44:09.07322Z",
+                "substrate": "wasi-cpu-ch",
+                "value": 11551,
+                "zone": "DE"
+            }
+        },
+        {
+            "apiVersion": "physis.kuberoot.dev/v1alpha1",
+            "kind": "Receipt",
+            "metadata": {
+                "creationTimestamp": "2026-11-09T06:44:10Z",
+                "generation": 1,
+                "name": "in-sandbox-5-wasi-cpu-ch-5",
+                "namespace": "wasi-demo2",
+                "resourceVersion": "3521",
+                "uid": "730cae4b-abb8-47df-81b7-a657bf86bf0b"
+            },
+            "spec": {
+                "algorithm": "anneal",
+                "ciGPerKWh": 558.11,
+                "code": "physis-agent/dev",
+                "deviceJoules": 0.327811523125,
+                "deviceSeconds": 0.054258459,
+                "effort": "w300",
+                "emulated": false,
+                "energySource": "model",
+                "eur": 3.4830884919595486e-8,
+                "finished": "2026-11-09T06:44:10.291881Z",
+                "gco2": 0.0000508208025475816,
+                "hostCpuSeconds": 0,
+                "instanceDigest": "sha256:fbff61528a8a0c2ec1ab11a87b576f435e7ea26d9e74896a8024111c9dde9ed4",
+                "key": "fed09618f9a53b11712f18af43ffb8ede273d01d66dfc5baa80d4d079de44602",
+                "macs": 11505600,
+                "physics": "cpu",
+                "prev": "sha256:9d5e7d3cc83fdeb27855ed9fc1f1cdf24f45993054c5cca135067d84a80e2ac6",
+                "problem": "wasi-demo2/in-sandbox-5",
+                "quality": 0.9950103234686855,
+                "requester": "",
+                "resultDigest": "sha256:0ed91fc897ca094712e1b88c0fab6751e88b11fdb781e2de42c8f64620d951ae",
+                "seed": 1794206650194871000,
+                "seq": 5,
+                "signature": "9yPpRKutWz8nXYVy6Bf46YLj2fn2z2QFCrdOZXzRqL7Spo5w0w1O/YC5R1sqqAsiqUALgkjNuHakUaba7wZWDw==",
+                "spinUpdates": 240000,
+                "started": "2026-11-09T06:44:10.194871Z",
+                "substrate": "wasi-cpu-ch",
+                "value": 11566,
+                "zone": "DE"
+            }
+        }
+    ],
+    "kind": "List",
+    "metadata": {
+        "resourceVersion": ""
+    }
+}
