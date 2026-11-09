@@ -96,6 +96,13 @@ type ProblemSpec struct {
 	Physics []string `json:"physics,omitempty"`
 	// DryRun asks for a plan and its alternatives without running (P14).
 	DryRun bool `json:"dryRun,omitempty"`
+	// RequestID makes a submission idempotent: an agent that retries after
+	// a timeout, under a new name, must not get the work run twice. Of the
+	// problems in a namespace that carry the same RequestID, the scheduler
+	// plans only the first created and rejects the others with reason code
+	// Duplicate and status.duplicateOf naming it. Dry runs, and problems
+	// rejected as Duplicate or RateLimited, do not hold a RequestID.
+	RequestID string `json:"requestID,omitempty"`
 }
 
 // Phases of a problem.
@@ -116,10 +123,17 @@ type ProblemStatus struct {
 	Pareto     []plan.Candidate `json:"pareto,omitempty"`
 	Candidates int              `json:"candidates,omitempty"`
 	// FeasiblePhysics: every physics on which the outcome is reachable.
-	FeasiblePhysics []string   `json:"feasiblePhysics,omitempty"`
-	Reasons         []string   `json:"reasons,omitempty"`
-	PlannedAt       *time.Time `json:"plannedAt,omitempty"`
-	Replans         int        `json:"replans,omitempty"`
+	FeasiblePhysics []string `json:"feasiblePhysics,omitempty"`
+	Reasons         []string `json:"reasons,omitempty"`
+	// ReasonCodes are the stable codes behind Reasons (package reason), for
+	// machine callers: why the problem was refused or, when it was planned,
+	// why the alternatives were dropped.
+	ReasonCodes []string `json:"reasonCodes,omitempty"`
+	// DuplicateOf names the problem holding the same spec.requestID when
+	// this one was rejected as a duplicate.
+	DuplicateOf string     `json:"duplicateOf,omitempty"`
+	PlannedAt   *time.Time `json:"plannedAt,omitempty"`
+	Replans     int        `json:"replans,omitempty"`
 	// Claim: the substrate took the work. Replaces binding a pod to a node.
 	ClaimedBy string     `json:"claimedBy,omitempty"`
 	ClaimedAt *time.Time `json:"claimedAt,omitempty"`
