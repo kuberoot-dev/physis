@@ -68,3 +68,51 @@ func TestResignedForgeryBreaksTheLink(t *testing.T) {
 		t.Fatal("forged receipt accepted")
 	}
 }
+
+// substrateChain signs n receipts of one substrate with a fresh key.
+func substrateChain(t *testing.T, sub string, n int) ([]*Receipt, string) {
+	_, priv, err := ed25519.GenerateKey(rand.Reader)
+	if err != nil {
+		t.Fatal(err)
+	}
+	s := NewSigner(priv, 0, "")
+	var rs []*Receipt
+	for i := 0; i < n; i++ {
+		r := &Receipt{Problem: "ns/p", Substrate: sub, Quality: 0.9, DeviceJoules: float64(i + 1)}
+		s.Sign(r)
+		rs = append(rs, r)
+	}
+	return rs, s.PublicKey()
+}
+
+func TestCheckChainsUsesPublishedAndRetiredKeys(t *testing.T) {
+	old, oldKey := substrateChain(t, "sub-a", 3)
+	cur, curKey := substrateChain(t, "sub-a", 4)
+	stray, strayKey := substrateChain(t, "sub-a", 2)
+	// The first receipt of the current chain is gone: only the tail after
+	// the gap is judged.
+	all := append(append(append([]*Receipt{}, old...), cur[1:]...), stray...)
+	keys := map[string][]string{"sub-a": {curKey, oldKey}}
+	reps := CheckChains(all, keys)
+	if len(reps) != 3 {
+		t.Fatalf("%d chains, want 3", len(reps))
+	}
+	byKey := map[string]ChainReport{}
+	for _, r := range reps {
+		byKey[r.Key] = r
+	}
+	if r := byKey[oldKey]; !r.OK() || r.Verified != 3 {
+		t.Fatalf("retired-key chain: %+v", r)
+	}
+	if r := byKey[curKey]; !r.OK() || r.Verified != 3 || r.FirstSeq != 2 {
+		t.Fatalf("current-key chain after a missing first receipt: %+v", r)
+	}
+	if r := byKey[strayKey]; r.OK() || r.Published || !strings.Contains(r.Error, "never published") {
+		t.Fatalf("a chain under an unpublished key passed: %+v", r)
+	}
+	forged := *old[1]
+	forged.DeviceJoules /= 10
+	if r := CheckChains([]*Receipt{old[0], &forged, old[2]}, keys); r[0].OK() {
+		t.Fatal("a tampered receipt verified")
+	}
+}
