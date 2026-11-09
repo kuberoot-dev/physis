@@ -328,20 +328,11 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 
 // links reads the Link objects: the network as priced paths.
 func (s *scheduler) links(ctx context.Context) []plan.Link {
-	l, err := s.c.D.Resource(kube.Links).List(ctx, metav1.ListOptions{})
+	l, err := s.c.ListLinks(ctx)
 	if err != nil {
 		return nil
 	}
-	var out []plan.Link
-	for i := range l.Items {
-		o, err := kube.Decode[v1.LinkSpec, struct{}](&l.Items[i])
-		if err != nil {
-			continue
-		}
-		out = append(out, plan.Link{Name: o.Meta.Name, From: o.Spec.From, To: o.Spec.To, JPerByte: o.Spec.JPerByte,
-			LatencySeconds: o.Spec.LatencySeconds, BytesPerSecond: o.Spec.BytesPerSecond, Jurisdictions: o.Spec.PathJurisdictions})
-	}
-	return out
+	return l
 }
 
 func intersect(a, b []string) []string {

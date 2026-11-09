@@ -34,6 +34,7 @@ from receipts once real hardware is attached.
 - `docs/principles.md` — the fourteen principles.
 - `docs/conformance.md` — the tomorrow conformance suite, version 0.1.
 - `docs/limitations.md` — what the results do not show.
+- `docs/network.md` — addressing by identity: what is implemented and what remains design.
 - `docs/verification.md` — how every claim and link of the article was checked.
 - `docs/references.md` — sources of every figure.
 - `docs/article.ru.md` — the full article (Russian).
@@ -48,6 +49,7 @@ from receipts once real hardware is attached.
 | `pkg/learn` | Quality distributions and model corrections learned from runs |
 | `pkg/grid` | Grid carbon intensity and prices: recorded and live (Energy-Charts, UK Carbon Intensity) |
 | `pkg/receipt`, `pkg/mandate` | Signed receipt chains; signed human mandates |
+| `pkg/identity` | Substrates addressed by their keys: address format, resolution, mutual authentication, data transfer by identity with jurisdiction policy |
 | `pkg/sim` | The digital twin used for the experiments |
 | `cmd/physis-scheduler`, `cmd/physis-agent` | Control plane and substrate agent |
 | `cmd/physis-conformance` | The conformance suite |
