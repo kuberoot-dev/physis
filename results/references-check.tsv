@@ -1,0 +1,91 @@
+key	url	status	title
+legallo2023	https://www.hpcwire.com/off-the-wire/ibm-develops-a-new-64-core-mixed-signal-in-memory-computing-chip/	200	HPCwire - Since 1987 – Covering the Fastest Computers in the World and the People Who Run Them
+ambrogio2023	https://www.nature.com/articles/s41586-023-06337-5	200	An analog-AI chip for energy-efficient speech recognition and transcription | Nature
+horowitz2014	https://www.Gwern.net/doc/cs/hardware/2014-horowitz-2.pdf	200	(pdf)
+singh2024	https://arxiv.org/html/2304.05949v3	200	CMOS + stochastic nanomagnets: heterogeneous computers for probabilistic inference and learning
+tatsumura2019	https://fpl2019.bsc.es/sites/default/files/uploaded/A12.FPL2019-slides-FPGABasedSimulatedBifurcation.pdf	200	Making sure you're not a bot!
+cim2018	https://ideas.repec.org/a/nat/natcom/v9y2018i1d10.1038_s41467-018-07328-1.html	200	Understanding dynamics of coherent Ising machines through simulation of large-scale 2D Ising models
+cim2026	https://thequantuminsider.com/2026/03/24/new-zealand-researchers-report-advance-in-optical-ising-machine-for-hybrid-quantum-optimization/	200	New Zealand Researchers Report Advance in Optical Ising Machine for Hybrid Quantum Optimization
+arute2019supp	https://arxiv.org/pdf/1910.11333	200	(pdf)
+cryo4k	https://opticalengineering.spiedigitallibrary.org/conference-proceedings-of-spie/5904/59040X/Development-of-a-4K-10K-Collins-type-cryocooler-for-space/10.1117/12.626151.full	200	
+imec-sfq	https://spectrum.ieee.org/superconducting-computer	200	Superconducting Computer: Imec's plan to shrink datacenters - IEEE Spectrum
+loihi	https://arxiv.org/pdf/2509.23896	200	(pdf)
+halapoint	https://www.sandia.gov/news/publications/hpc-annual-reports/article/advancing-neuromorphic-computing-at-the-neural-exploration-and-research-lab/	200	Advancing neuromorphic computing at the Neural Exploration and Research Lab – News
+photonic2024	https://arxiv.org/pdf/2403.04216	200	(pdf)
+lightmatter	https://convergedigest.com/ai-infrastructure-summit-lightmatters-photonic-roadmap/?amp=1	200	AI Infrastructure Summit: Lightmatter's Photonic Roadmap - Converge Digest
+cl1power	https://heise.de/-10312614	200	CL1 is the first commercial computer with human brain cells | heise online
+finalspark	https://www.tomshardware.com/pc-components/cpus/worlds-first-bioprocessor-uses-16-human-brain-organoids-for-a-million-times-less-power-consumption-than-a-digital-chip	200	World's first bioprocessor uses 16 human brain organoids for ‘a million times less power’ consumption than a digital chip | Tom's Hardware
+vaire	https://www.sciencenews.org/article/computer-chip-reuses-energy	200	This experimental computer chip reuses energy
+vaire	https://www.techradar.com/pro/more-like-a-pendulum-than-a-hammer-the-ai-chip-that-can-reuse-its-own-energy-reaches-proof-of-concept-stage-but-i-dont-think-it-will-be-enough-to-convince-hyperscalers-to-invest	200	Vaire Computing’s Ice River chip reuses energy and cuts energy waste in proof of concept test | TechRadar
+extropic	https://extropic.ai/writing/from-one-to-one-billion	200	From One to One Billion: Torx, Thermalizers, and Z1 - Extropic
+mcmahon	https://mcmahon.aep.cornell.edu/aspen/2024/slides/Wright.pdf	200	(pdf)
+metamaterial2026	https://advanced.onlinelibrary.wiley.com/doi/10.1002/adma.74376	403	
+ackley	https://highscalability.com/pursue-robust-indefinite-scalability-with-the-movable-feast/	200	Pursue robust indefinite scalability with the Movable Feast Machine - High Scalability -
+ackley	https://creativegood.com/blog/21/ackley-and-tiles.html	200	Creative Good: Why we might transform computers into “tiles”
+pcss-hybrid	https://arxiv.org/pdf/2508.16297	200	(pdf)
+hpc-qc-sched	https://arxiv.org/pdf/2504.10520	200	(pdf)
+dna2026	https://www.blocksandfiles.com/architecture/2026/03/06/french-dna-coming-to-a-datacenter-near-you-soon/4093753	200	French DNA coming to a datacenter near you soon
+suncatcher	https://interestingengineering.com/innovation/google-project-suncatcher-space-ai	200	Google plans orbital AI data centers powered directly by sunlight
+suncatcher	https://www.fierce-network.com/cloud/space-data-centers-starcloud-spacex-and-project-suncatcher-explained	403	
+k8s-large	https://kubernetes.io/docs/setup/best-practices/cluster-large/	200	Considerations for large clusters | Kubernetes
+k8s-net	https://kubernetes.io/docs/concepts/cluster-administration/networking/	200	Cluster Networking | Kubernetes
+nftables	https://www.k8s.dev/resources/keps/3866/	200	Add an nftables-based kube-proxy backend | Kubernetes Contributors
+nftables	https://kubernetes.io/blog/2025/02/28/nftables-kube-proxy/	200	NFTables mode for kube-proxy | Kubernetes
+kep5495	https://www.k8s.dev/resources/keps/5495/	200	Deprecate ipvs mode in kube-proxy | Kubernetes Contributors
+dra	https://kubernetes.io/blog/2025/09/01/kubernetes-v1-34-dra-updates/	200	Kubernetes v1.34: DRA has graduated to GA | Kubernetes
+dra	https://kubernetes.io/docs/concepts/scheduling-eviction/dynamic-resource-allocation/	200	Dynamic Resource Allocation | Kubernetes
+homa	https://arxiv.org/abs/2210.00714	200	[2210.00714] It's Time to Replace TCP in the Datacenter
+rfc9171	https://www.rfc-editor.org/rfc/rfc9171	200	RFC 9171: Bundle Protocol Version 7 | RFC Editor
+dbos	https://mail.vldb.org/pvldb/volumes/15/paper/DBOS%3A%20A%20DBMS-oriented%20Operating%20System	200	Proceedings of the VLDB Endowment
+hydro	https://jhellerstein.github.io/blog/hello-aws	200	Schema Evolution, Career Edition | Async Stream
+adrs	https://arxiv.org/abs/2510.06189v1	200	[2510.06189v1] Barbarians at the Gate: How AI is Upending Systems Research
+demoura2026	https://leodemoura.github.io/static/nfm2026/	200	Lean 4: A Unified Platform for Programming and Verification
+skypilot	https://www2.eecs.berkeley.edu/Pubs/TechRpts/2023/EECS-2023-179.html	200	Going Beyond Hyperscaler Clouds in the Sky Ecosystem with SkyPilot | EECS at UC Berkeley
+localfirst	https://se-radio.net/2026/04/se-radio-716-martin-kleppmann-local-first-software/	200	SE Radio 716: Martin Kleppmann Local-First Software – Software Engineering Radio
+malleable	https://www.inkandswitch.com/essay/malleable-software/	200	Malleable software: Restoring user agency in a world of locked-down apps
+microvm2026	https://emirb.github.io/blog/microvm-2026/	200	Your Container Is Not a Sandbox: The State of MicroVM Isolation in 2026
+oxide	https://oxide.computer/	200	Oxide Computer Company
+kcp	https://github.com/kcp-dev/kcp	200	GitHub - kcp-dev/kcp: Kubernetes-like control planes for form-factors and use-cases beyond Kubernetes and container workloads. · GitHub
+virtual-kubelet	https://github.com/virtual-kubelet/virtual-kubelet	200	GitHub - virtual-kubelet/virtual-kubelet: Virtual Kubelet is an open source Kubernetes kubelet implementation. · GitHub
+talos	https://www.talos.dev/	200	Linux OS for Kubernetes
+hubris	https://hubris.oxide.computer/	200	Hubris
+rfc9162	https://www.rfc-editor.org/rfc/rfc9162	200	RFC 9162: Certificate Transparency Version 2.0 | RFC Editor
+rekor	https://docs.sigstore.dev/logging/overview/	200	Rekor - Sigstore
+mlir	https://arxiv.org/abs/2002.11054	200	[2002.11054] MLIR: A Compiler Infrastructure for the End of Moore's Law
+cxl-dc	https://www.hpcwire.com/off-the-wire/panmnesia-and-meta-outline-cxl-fabric-spanning-entire-ai-data-centers/	200	HPCwire - Since 1987 – Covering the Fastest Computers in the World and the People Who Run Them
+cxl-dc	https://www.nature.com/articles/s44287-026-00315-5	200	One-chip-like datacenter design enabled by CXL-based scale-up fabrics | Nature Reviews Electrical Engineering
+ocp2026	https://www.datacenterfrontier.com/hyperscale/article/55411534/ocp-2026-agentic-ai-pushes-the-data-center-from-chip-to-grid	200	OCP 2026: Agentic AI Pushes the Data Center from Chip to Grid | Data Center Frontier
+fhe2026	https://www.darkreading.com/endpoint-security/niobium-introduces-the-fog	200	Niobium Introduces The Fog
+fhe2026	https://siliconangle.com/?p=737132	200	Niobium brings fully encrypted AI workloads to the cloud with The Fog - SiliconANGLE
+capex2026	https://www.yieldtheory.app/research/hyperscaler-ai-capex-tracker-2026	200	Hyperscaler Capex 2026: $720B to $740B Guidance by Company | Yield Theory
+gartner2026	https://www.gartner.com/en/newsroom/press-releases/2026-07-27-gartner-forecasts-worldwide-it-spending-to-grow-14-point-2-percent-in-2026-totaling-6-point-37-trillion	403	
+gartner2026	https://www.telecomtv.com/content/digital-platforms-services/gartner-forecasts-worldwide-it-spending-to-grow-14-2-in-2026-totalling-6-37tn-55964/	200	Gartner forecasts worldwide IT spending to grow 14.2% in 2026, totalling $6.37tn, Digital Platforms and Services | TelecomTV
+ai-debt	https://www.newkerala.com/news/a/morgan-stanley-estimates-global-ai-debt-issuance-double-248.htm	200	Global AI Debt to Hit $570 Billion by 2026: Morgan Stanley
+ap2-fido	https://www.biometricupdate.com/202604/fido-alliance-to-start-work-on-interoperable-standards-for-agentic-commerce	200	FIDO Alliance to start work on interoperable standards for agentic commerce | Biometric Update
+boe-fsr-2026	https://www.bankofengland.co.uk/-/media/boe/files/financial-stability-report/2026/financial-stability-report-july-2026.pdf	200	(pdf)
+woodmac-transformers	https://www.woodmac.com/news/opinion/supply-shortages-and-an-inflexible-market-give-rise-to-high-power-transformer-lead-times/	200	Supply shortages and an inflexible market give rise to high power transformer lead times | Wood Mackenzie
+scripps-o2	https://scrippso2.ucsd.edu	200	Scripps O2 Program | Atmospheric Oxygen Research
+primavera2021	https://arxiv.org/abs/2106.14803	200	[2106.14803] Considerations for neuromorphic supercomputing in semiconducting and superconducting optoelectronic hardware
+stockholm-data-parks	https://stockholmdataparks.com/	200	Stockholm Data Parks sets new standards for sustainable data centers
+spolsky	https://www.joelonsoftware.com/2002/06/12/strategy-letter-v/	200	Strategy Letter V – Joel on Software
+rfc6962	https://www.rfc-editor.org/rfc/rfc6962	200	RFC 6962: Certificate Transparency | RFC Editor
+epoch-prices	https://epoch.ai/blog/llm-inference-price-trends	200	LLM inference prices have fallen rapidly but unequally across tasks | Epoch AI
+compute-futures	https://www.fia.org/fia/articles/explainer-what-are-compute-futures-and-how-do-they-work	200	Explainer: What are compute futures and how do they work? | FIA
+x402	https://www.linuxfoundation.org/press/linux-foundation-is-launching-the-x402-foundation-and-welcoming-the-contribution-of-the-x402-protocol	200	Linux Foundation is Launching the x402 Foundation and Welcoming the Contribution of the x402 Protocol
+outcome-pricing	https://stories.eqtventures.com/articles/monetising-the-agentic-workforce-is-outcome-based-pricing-the-answer	200	Monetising the Agentic Workforce — is Outcome-Based Pricing the Answer?
+data-act	https://eur-lex.europa.eu/legal-content/EN/TXT/HTML/?uri=CELEX:32023R2854	200	L_202302854EN.000101.fmx.xml
+power2026	https://www.softwareseni.com/the-broken-power-grid-infrastructure-bottlenecks-driving-the-nuclear-push-for-ai-data-centres/	200	The Broken Power Grid — Infrastructure Bottlenecks Driving the Nuclear Push for AI Data Centres - SoftwareSeni
+ipcc2014	https://www.ipcc.ch/site/assets/uploads/2018/02/ipcc_wg3_ar5_annex-iii.pdf	200	(pdf)
+ipcc2014	https://www.nrel.gov/docs/fy21osti/80580.pdf	ERR	URLError
+iftf2036	https://www.iftf.org/projects/iftf-ten-year-forecast-2036-tyf/	ERR	TimeoutError
+iftf2025	https://www.iftf.org/events/iftf-ten-year-forecast-2025-2035-sanctuaries-of-social-imagination/	ERR	TimeoutError
+iftf2025	https://www.iftf.org/projects/iftf-ten-year-forecast-urgent-futures-perspectives/	ERR	TimeoutError
+ftsg2026	https://sxsw.md/news/2026-03-16-amy-webb-end-of-trend-reports	200	Amy Webb and the End of the Trend Report — SXSW.md
+ftsg2026	https://fortune.com/brandstudio/future-today-strategy-group/the-5-convergences-that-will-redefine-business	200	The 5 convergences that will redefine business | Fortune
+abi-physical	https://www.abiresearch.com/blog/physical-ai-at-scale-why-robotics-needs-a-new-data-infrastructure	200	Physical AI at Scale: Why Robotics Needs a New Data Infrastructure
+gset-best	https://web.stanford.edu/~yyye/yyye/Gset/	200	Index of /~yyye/yyye/Gset
+optdigits	https://archive.ics.uci.edu/dataset/80/optical+recognition+of+handwritten+digits	200	UCI Machine Learning Repository
+optdigits	https://archive.ics.uci.edu/ml/machine-learning-databases/optdigits/optdigits.tra	200	
+energy-charts	https://api.energy-charts.info/	200	Energy-Charts API
+uk-ci	https://carbonintensity.org.uk/	200	Carbon Intensity
+amd-9454p	https://www.scan.co.uk/products/amd-epyc-9454p-s-sp5-5nm-zen-4-48-core-96-thread-275ghz-38ghz-turbo-256mb-290w-cpu-oem	200	AMD 48 Core Zen 4 EPYC™ 9454P Single Socket OEM Server CPU/Processor LN130693 - 100-000000873 | SCAN UK

@@ -31,6 +31,7 @@ from receipts once real hardware is attached.
 - `docs/principles.md` — the fourteen principles.
 - `docs/conformance.md` — the tomorrow conformance suite, version 0.1.
 - `docs/limitations.md` — what the results do not show.
+- `docs/verification.md` — how every claim and link of the article was checked.
 - `docs/references.md` — sources of every figure.
 - `docs/article.ru.md` — the full article (Russian).
 

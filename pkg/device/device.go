@@ -199,8 +199,8 @@ var (
 	// A photonic matrix processor measured 0.27 pJ/MAC of laser energy at
 	// 10 mW and 36.7 GBaud (ref:photonic2024); converters add more.
 	PhotonicEnergyPerMAC = Value{V: 0.27e-12, Lo: 0.02e-12, Hi: 2e-12, Source: "ref:photonic2024"}
-	// A Cortical Labs CL1 rack of 30 units draws 850-1000 W, about 30 W per
-	// unit for life support and electronics (ref:cl1power).
+	// A Cortical Labs CL1 is reported at about 20 W per device
+	// (ref:cl1power); 30 W leaves room for life support and electronics.
 	OrganoidPowerW = Value{V: 30, Lo: 20, Hi: 100, Source: "ref:cl1power"}
 	// Vaire's adiabatic test chip used about 30% less energy than a
 	// conventional one for the same task (ref:vaire).

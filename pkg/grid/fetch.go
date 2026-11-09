@@ -38,6 +38,10 @@ var FactorSource = map[string]string{
 	"Others":                      "assumption",
 	"Fossil coal-derived gas":     "assumption (treated as coal)",
 	"Fossil brown coal / lignite": "ref:ipcc2014 (coal median; lignite is higher, so this understates)",
+	// The table's onshore median is 11. 11.5 is a transcription slip kept so
+	// that the published results reproduce; the difference is at most 0.5
+	// gCO2e/kWh even at full wind.
+	"Wind onshore": "ref:ipcc2014 (median 11; 11.5 used)",
 }
 
 // Generation types that are not generation, or whose carbon belongs to
