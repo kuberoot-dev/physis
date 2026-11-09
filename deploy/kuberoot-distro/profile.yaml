@@ -298,3 +298,139 @@ spec:
         - --namespace=physis-system
         - --key-secret=agent-key-organoid-fr
         - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-cpu-fr
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=cpu-fr
+        - --physics=cpu
+        - --zone=FR
+        - --operator=ovh-like-fr
+        - --jurisdiction=EU
+        - --slots=4
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/cpu-fr
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-cpu-fr
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-cpu-pl
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=cpu-pl
+        - --physics=cpu
+        - --zone=PL
+        - --operator=local-pl
+        - --jurisdiction=EU
+        - --slots=4
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/cpu-pl
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-cpu-pl
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-cpu-gb
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=cpu-gb
+        - --physics=cpu
+        - --zone=GB
+        - --operator=colo-gb
+        - --jurisdiction=UK
+        - --slots=4
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/cpu-gb
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-cpu-gb
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-optical-ising-gb
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=optical-ising-gb
+        - --physics=optical-ising
+        - --zone=GB
+        - --operator=photon-ising
+        - --jurisdiction=UK
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/optical-ising-gb
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-optical-ising-gb
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-analog-imc-fr
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=analog-imc-fr
+        - --physics=analog-imc
+        - --zone=FR
+        - --operator=pcm-fab
+        - --jurisdiction=EU
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/analog-imc-fr
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-analog-imc-fr
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-neuromorphic-pl
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=neuromorphic-pl
+        - --physics=neuromorphic
+        - --zone=PL
+        - --operator=spiking-pl
+        - --jurisdiction=EU
+        - --slots=1
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/neuromorphic-pl
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-neuromorphic-pl
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-dataflow-pl
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=dataflow-pl
+        - --physics=dataflow
+        - --zone=PL
+        - --operator=stream-pl
+        - --jurisdiction=EU
+        - --slots=2
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/dataflow-pl
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-dataflow-pl
+        - --code=physis-agent/kuberoot-node-service
+      - name: physis-agent-cgra-pl
+        after: apiserver
+        args:
+        - /usr/bin/physis-agent
+        - --kubeconfig={{kube "admin.kubeconfig"}}
+        - --name=cgra-pl
+        - --physics=cgra
+        - --zone=PL
+        - --operator=reconf-pl
+        - --jurisdiction=EU
+        - --slots=2
+        - --data=/usr/share/physis/data
+        - --state=/var/lib/physis/state/cgra-pl
+        - --grid-cache=/var/lib/physis/grid
+        - --namespace=physis-system
+        - --key-secret=agent-key-cgra-pl
+        - --code=physis-agent/kuberoot-node-service

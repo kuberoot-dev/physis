@@ -26,11 +26,13 @@ case "${1:-}" in
     else
       # Only the profile or physis changed: rootfs and initramfs from the
       # binaries already built.
-      (cd "$KR" && KUBEROOT_NS=$NS hack/hetzner.sh sync)
+      for try in 1 2 3; do (cd "$KR" && KUBEROOT_NS=$NS hack/hetzner.sh sync) && break; sleep 10; done
       k exec -i builder -c alpine -- sh -c "KUBEROOT_OUT=/work/out WORK=/work KUBEROOT_DISTRO=physis sh /work/src/kuberoot/scripts/build-rootfs.sh $ARCH"
       k exec -i builder -c tools -- sh -c "KUBEROOT_OUT=/work/out WORK=/work /work/src/kuberoot/scripts/build-initramfs.sh $ARCH"
     fi
-    (cd "$KR" && KUBEROOT_NS=$NS hack/hetzner.sh media $ARCH) ;;
+    # The media step streams the tree to the builder and sometimes times out
+    # on the way; it is idempotent, so retry.
+    for try in 1 2 3; do (cd "$KR" && KUBEROOT_NS=$NS hack/hetzner.sh media $ARCH) && break; sleep 10; done ;;
   node)
     (cd "$KR" && KUBEROOT_NS=$NS hack/hetzner.sh node "${2:?name}" $ARCH) ;;
   *) echo "usage: $0 build|node <name>"; exit 1 ;;

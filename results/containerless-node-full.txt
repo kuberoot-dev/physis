@@ -1,0 +1,55 @@
+# kuberoot physis distribution (no containers), node px3 in tenant-physis (server ws3), full fleet, 2026-11-09T09:59:08Z
+## node services (node API)
+NAME                            STATE     PID   RESTARTS   MEMORY   CPU   AGE
+installer                       Running   115   0          22Mi     1s    3m15s
+kine                            Running   114   0          105Mi    22s   3m15s
+kube-apiserver                  Running   113   0          409Mi    62s   3m15s
+kube-controller-manager         Running   183   0          116Mi    2s    3m11s
+kuberoot-node                   Running   109   0          129Mi    1s    3m15s
+physis-agent-adiabatic-fr       Running   412   2          8Mi      1s    3m8s
+physis-agent-analog-imc-fr      Running   425   2          7Mi      2s    3m8s
+physis-agent-cgra-pl            Running   443   2          9Mi      2s    3m8s
+physis-agent-cpu-de             Running   411   2          8Mi      2s    3m8s
+physis-agent-cpu-fr             Running   465   2          6Mi      2s    3m7s
+physis-agent-cpu-gb             Running   426   2          7Mi      2s    3m8s
+physis-agent-cpu-pl             Running   445   2          7Mi      2s    3m8s
+physis-agent-dataflow-pl        Running   394   2          6Mi      2s    3m8s
+physis-agent-hdc-fr             Running   444   2          13Mi     8s    3m8s
+physis-agent-ising-digital-pl   Running   480   2          6Mi      2s    3m7s
+physis-agent-neuromorphic-pl    Running   434   2          7Mi      2s    3m8s
+physis-agent-optical-ising-gb   Running   405   2          8Mi      2s    3m8s
+physis-agent-organoid-fr        Running   410   2          12Mi     8s    3m8s
+physis-agent-pbit-gb            Running   442   2          18Mi     4s    3m8s
+physis-agent-photonic-de        Running   469   2          9Mi      2s    3m7s
+physis-agent-pim-dram-fr        Running   450   2          9Mi      2s    3m8s
+physis-agent-qpu-de             Running   461   2          12Mi     2s    3m8s
+physis-agent-sfq-de             Running   463   2          7Mi      2s    3m8s
+physis-agent-stochastic-gb      Running   400   2          7Mi      2s    3m8s
+physis-agent-systolic-de        Running   437   2          7Mi      2s    3m8s
+physis-scheduler                Running   185   0          22Mi     1s    3m11s
+## kubectl get nodes
+No resources found
+## kubectl get pods -A
+No resources found
+## substrates
+NAME               PHYSICS         ZONE   JURISDICTION   EMULATED   HEARTBEAT
+adiabatic-fr       adiabatic       FR     EU             true       0s
+analog-imc-fr      analog-imc      FR     EU             true       0s
+cgra-pl            cgra            PL     EU             true       0s
+cpu-de             cpu             DE     EU             false      0s
+cpu-fr             cpu             FR     EU             false      0s
+cpu-gb             cpu             GB     UK             false      0s
+cpu-pl             cpu             PL     EU             false      0s
+dataflow-pl        dataflow        PL     EU             true       0s
+hdc-fr             hdc             FR     EU             true       0s
+ising-digital-pl   ising-digital   PL     EU             true       0s
+neuromorphic-pl    neuromorphic    PL     EU             true       0s
+optical-ising-gb   optical-ising   GB     UK             true       0s
+organoid-fr        organoid        FR     EU             true       0s
+pbit-gb            pbit            GB     UK             true       0s
+photonic-de        photonic        DE     EU             true       0s
+pim-dram-fr        pim-dram        FR     EU             true       0s
+qpu-de             qpu             DE     EU             true       0s
+sfq-de             sfq             DE     EU             true       0s
+stochastic-gb      stochastic      GB     UK             true       1s
+systolic-de        systolic        DE     EU             true       0s
