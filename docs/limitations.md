@@ -76,9 +76,12 @@ list is part of the results, not an appendix to them.
   dedicated racks, and kuberoot's own high availability was not exercised.
 - **The scheduler polls** every two seconds rather than using informers.
 - **Learning in the live scheduler is in memory** and is lost on restart.
-- **The network redesign is a design**, checked at the level of the contract
-  (zones, jurisdictions, priced data movement), not an implementation of
-  identity-addressed transport.
+- **The network redesign is partly implemented.** Priced links and path
+  jurisdictions work (TC-17); identity addressing with mutual authentication
+  and object transfer between substrates work in tests and on the stand but
+  are off by default (docs/network.md). The API-object relay for substrates
+  behind NAT, data movement as a plan step, content addressing and transport
+  choice remain design; a substrate's jurisdiction is declared, not proven.
 - **The partition test hook** simulates a cut-off agent by an annotation in
   the conformance suite; a network-level partition (the worker's cluster link
   taken down) was tested separately on the two-node kuberoot cluster on a laptop and on the workshop cluster (three and four nodes).
@@ -93,3 +96,19 @@ list is part of the results, not an appendix to them.
   used, so small batches look better than they would at real utilisation;
   the dataflow card power and the energy per bit-op of stochastic and
   hyperdimensional circuits are assumptions with ranges.
+
+## Added with the hierarchy, DRA bridge, device core and agent layer
+
+- **The planning levels share one API server and store**; a site keeps
+  planning without the global level, but not without the store.
+- **The local level raises effort from the agent's own results** only when it
+  has at least eight of them; it is unit-tested, and on the stands the
+  emulated devices did not drift enough to trigger it.
+- **The DRA bridge was tested with one hand-written ResourceSlice**, not with
+  a real DRA driver.
+- **The WASI device core ran under wasmtime on the laptop**, not on a
+  microcontroller; the line protocol is the same, the hardware is not.
+- **The container-free kuberoot distribution is described but was not built
+  or booted yet.**
+- **The agent layer** (reason codes, idempotency, rate limit, MCP) is covered by
+  unit tests and a run on the stand, not by conformance tests.
