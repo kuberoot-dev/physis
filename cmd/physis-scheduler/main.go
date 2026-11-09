@@ -5,6 +5,13 @@
 // never binds anything to a node: an agent claims a planned problem. If a
 // planned substrate stops sending heartbeats before claiming, the work goes
 // back to Pending and is planned again (P7).
+//
+// Agents are its main callers (P14), so before planning it protects itself
+// and them: a problem repeating another's spec.requestID is rejected as a
+// duplicate instead of run twice, and a namespace submitting more new
+// problems than -rate-limit per -rate-window has the excess rejected with
+// reason code RateLimited. Every refusal carries stable reason codes next to
+// its text.
 package main
 
 import (
@@ -14,6 +21,7 @@ import (
 	"log"
 	"net/http"
 	"os"
+	"sort"
 	"sync"
 	"time"
 
@@ -28,6 +36,7 @@ import (
 	"github.com/kuberoot-dev/physis/pkg/learn"
 	"github.com/kuberoot-dev/physis/pkg/mandate"
 	"github.com/kuberoot-dev/physis/pkg/plan"
+	"github.com/kuberoot-dev/physis/pkg/reason"
 )
 
 var (
@@ -40,6 +49,8 @@ var (
 	systemNS    = flag.String("system-namespace", "physis-system", "namespace of the principals ConfigMap")
 	gridCache   = flag.String("grid-cache", "", "directory caching live grid data (30 min)")
 	interZoneJB = flag.Float64("inter-zone-j-per-byte", 4.77e-6, "energy of moving a byte between zones (ref:aslan2018, extrapolated to 2026)")
+	rateLimit   = flag.Int("rate-limit", 60, "new problems admitted per namespace per -rate-window; the excess is rejected as RateLimited (0: no limit)")
+	rateWindow  = flag.Duration("rate-window", time.Minute, "window of -rate-limit")
 )
 
 type scheduler struct {
@@ -48,6 +59,7 @@ type scheduler struct {
 	mu    sync.Mutex
 	grid  *grid.Provider
 	seen  map[string]bool // problems whose results were folded into the store
+	limit *rateLimiter
 }
 
 func main() {
@@ -65,7 +77,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	s := &scheduler{c: c, store: store, seen: map[string]bool{}}
+	s := &scheduler{c: c, store: store, seen: map[string]bool{}, limit: newRateLimiter(*rateLimit, *rateWindow)}
 	// Without grid data there is nothing to plan with: retry with backoff
 	// instead of exiting, the provider may be rate-limiting.
 	for wait := 10 * time.Second; ; wait = min(2*wait, 10*time.Minute) {
@@ -199,10 +211,13 @@ func (s *scheduler) reconcile(ctx context.Context) error {
 		live = append(live, &plan.Substrate{Name: sub.Meta.Name, Zone: sub.Spec.Zone, Operator: sub.Spec.Operator, Jurisdiction: sub.Spec.Jurisdiction, Model: m,
 			Reserved: reserved[sub.Meta.Name], Slots: max(sub.Spec.Slots, 1)})
 	}
+	// Oldest first: the first of several problems with one requestID is the
+	// one planned, and a namespace over its rate keeps its earliest work.
+	sort.SliceStable(probs, func(i, j int) bool { return createdBefore(probs[i], probs[j]) })
 	for _, p := range probs {
 		switch p.Status.Phase {
 		case "", v1.PhasePending:
-			if s.mine(ctx, p) {
+			if s.mine(ctx, p) && s.admit(ctx, p, probs, now) {
 				s.plan(ctx, p, live, g, now, spent[p.Meta.Namespace])
 			}
 		case v1.PhaseZonePlanned:
@@ -275,10 +290,13 @@ func (s *scheduler) update(ctx context.Context, p *kube.Problem) {
 	}
 }
 
-func (s *scheduler) reject(ctx context.Context, p *kube.Problem, msg string, reasons []string) {
+// reject refuses a problem with a message for people and stable codes for
+// machines; every refusal has at least one code.
+func (s *scheduler) reject(ctx context.Context, p *kube.Problem, msg string, reasons, codes []string) {
 	p.Status.Phase = v1.PhaseRejected
 	p.Status.Message = msg
 	p.Status.Reasons = reasons
+	p.Status.ReasonCodes = codes
 	s.update(ctx, p)
 	log.Printf("%s/%s rejected: %s", p.Meta.Namespace, p.Meta.Name, msg)
 }
@@ -288,13 +306,13 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 	if p.Spec.Mandate != "" {
 		var err error
 		if m, err = s.mandateFor(ctx, p); err != nil {
-			s.reject(ctx, p, "no valid mandate: "+err.Error(), nil)
+			s.reject(ctx, p, "no valid mandate: "+err.Error(), nil, []string{reason.MandateInvalid})
 			return
 		}
 	}
 	shape, err := instances.Shape(p.Spec.Class, p.Spec.Instance)
 	if err != nil {
-		s.reject(ctx, p, err.Error(), nil)
+		s.reject(ctx, p, err.Error(), nil, []string{reason.InvalidRequest})
 		return
 	}
 	deadline := p.Meta.CreationTimestamp.Time.Add(time.Duration(p.Spec.DeadlineSeconds) * time.Second)
@@ -305,7 +323,7 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 	if m != nil && len(m.Zones) > 0 {
 		zones = intersect(zones, m.Zones)
 		if len(zones) == 0 {
-			s.reject(ctx, p, "the problem's zones and the mandate's zones do not overlap", nil)
+			s.reject(ctx, p, "the problem's zones and the mandate's zones do not overlap", nil, []string{reason.ZoneNotAllowed})
 			return
 		}
 	}
@@ -331,15 +349,19 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 	env := &plan.Env{Substrates: live, Grid: g, Learn: s.store, Now: now, PUE: 1.2, InterZoneJPerByte: *interZoneJB, IntraZoneJPerByte: *interZoneJB / 10, Links: s.links(ctx)}
 	d, err := plan.Plan(env, req)
 	if err != nil {
-		s.reject(ctx, p, err.Error(), nil)
+		s.reject(ctx, p, err.Error(), nil, []string{reason.InvalidRequest})
 		return
 	}
 	if d.Chosen == nil {
-		s.reject(ctx, p, fmt.Sprintf("no way to reach quality %.3f by %s within the budget on the %d live substrates", p.Spec.Quality, deadline.Format(time.RFC3339), len(live)), d.Reasons)
+		codes := d.ReasonCodes
+		if len(codes) == 0 {
+			codes = []string{reason.NoSubstrates}
+		}
+		s.reject(ctx, p, fmt.Sprintf("no way to reach quality %.3f by %s within the budget on the %d live substrates", p.Spec.Quality, deadline.Format(time.RFC3339), len(live)), d.Reasons, codes)
 		return
 	}
 	t := now
-	p.Status.Plan, p.Status.Pareto, p.Status.Candidates, p.Status.Reasons, p.Status.PlannedAt = d.Chosen, d.Pareto, d.Count, d.Reasons, &t
+	p.Status.Plan, p.Status.Pareto, p.Status.Candidates, p.Status.Reasons, p.Status.ReasonCodes, p.Status.PlannedAt = d.Chosen, d.Pareto, d.Count, d.Reasons, d.ReasonCodes, &t
 	p.Status.FeasiblePhysics = nil
 	for _, ph := range d.Physics {
 		p.Status.FeasiblePhysics = append(p.Status.FeasiblePhysics, string(ph))
@@ -350,7 +372,7 @@ func (s *scheduler) plan(ctx context.Context, p *kube.Problem, live []*plan.Subs
 	if m != nil {
 		v := m.Admit(now, d.Chosen.Zone, d.Chosen.Joules, d.Chosen.EUR, d.Chosen.GCO2, spent)
 		if !v.Allowed {
-			s.reject(ctx, p, "mandate: "+v.Reason, nil)
+			s.reject(ctx, p, "mandate: "+v.Reason, nil, []string{reason.MandateDenied})
 			return
 		}
 		if v.NeedsApproval && p.Meta.Annotations[v1.AnnotationApproved] != "true" {

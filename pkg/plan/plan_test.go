@@ -1,13 +1,16 @@
 package plan
 
 import (
+	"fmt"
 	"math"
+	"slices"
 	"testing"
 	"time"
 
 	"github.com/kuberoot-dev/physis/pkg/device"
 	"github.com/kuberoot-dev/physis/pkg/grid"
 	"github.com/kuberoot-dev/physis/pkg/learn"
+	"github.com/kuberoot-dev/physis/pkg/reason"
 )
 
 var t0 = time.Date(2026, 7, 1, 0, 0, 0, 0, time.UTC)
@@ -223,5 +226,34 @@ func TestLinksPriceAndConstrainDataMovement(t *testing.T) {
 	r.Zones, r.DataZone, r.Jurisdictions = nil, "GB", []string{"EU"}
 	if d, _ = Plan(e, r); d.Chosen != nil {
 		t.Fatalf("data crossed a disallowed jurisdiction: %+v", d.Chosen)
+	}
+}
+
+func TestRejectionsCarryStableCodes(t *testing.T) {
+	e := env(map[string]*grid.Series{"DE": twoPhaseGrid("DE", 400, 50)},
+		&Substrate{Name: "cpu-fr", Zone: "FR", Jurisdiction: "EU", Model: device.Builtin(device.CPU)},
+		&Substrate{Name: "cpu-us", Zone: "DE", Jurisdiction: "US", Model: device.Builtin(device.CPU)},
+		&Substrate{Name: "cpu-de", Zone: "DE", Jurisdiction: "EU", Model: device.Builtin(device.CPU)})
+	r := &Request{ID: "a", Shape: shape, Quality: 0.99, Deadline: t0.Add(2 * time.Hour), Policy: MinCarbon,
+		Zones: []string{"DE"}, Jurisdictions: []string{"EU"}}
+	d, _ := Plan(e, r)
+	if d.Chosen != nil {
+		t.Fatalf("planned with no quality evidence: %+v", d.Chosen)
+	}
+	want := []string{reason.ZoneNotAllowed, reason.JurisdictionNotAllowed, reason.QualityUnreachable}
+	if fmt.Sprint(d.ReasonCodes) != fmt.Sprint(want) {
+		t.Fatalf("codes %v, want %v", d.ReasonCodes, want)
+	}
+	knownQuality(e.Learn, shape)
+	r.Budget.Joules = 1e-12
+	d, _ = Plan(e, r)
+	if d.Chosen != nil || !slices.Contains(d.ReasonCodes, reason.BudgetExceeded) {
+		t.Fatalf("a budget no plan meets: chosen %+v, codes %v", d.Chosen, d.ReasonCodes)
+	}
+	r.Budget.Joules = 0
+	r.Deadline = t0.Add(time.Nanosecond)
+	d, _ = Plan(e, r)
+	if d.Chosen != nil || !slices.Contains(d.ReasonCodes, reason.DeadlineTooShort) {
+		t.Fatalf("an impossible deadline: chosen %+v, codes %v", d.Chosen, d.ReasonCodes)
 	}
 }

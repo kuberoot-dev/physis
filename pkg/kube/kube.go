@@ -137,6 +137,47 @@ func (c *Client) ListProblems(ctx context.Context) ([]*Problem, error) {
 	return out, nil
 }
 
+// CreateProblem creates a problem; its status is left to the scheduler.
+func (c *Client) CreateProblem(ctx context.Context, p *Problem) (*Problem, error) {
+	u, err := Encode("Problem", p)
+	if err != nil {
+		return nil, err
+	}
+	delete(u.Object, "status")
+	r, err := c.D.Resource(Problems).Namespace(p.Meta.Namespace).Create(ctx, u, metav1.CreateOptions{})
+	if err != nil {
+		return nil, err
+	}
+	return Decode[v1.ProblemSpec, v1.ProblemStatus](r)
+}
+
+// GetProblem reads one problem.
+func (c *Client) GetProblem(ctx context.Context, ns, name string) (*Problem, error) {
+	u, err := c.D.Resource(Problems).Namespace(ns).Get(ctx, name, metav1.GetOptions{})
+	if err != nil {
+		return nil, err
+	}
+	return Decode[v1.ProblemSpec, v1.ProblemStatus](u)
+}
+
+// ListReceipts returns the receipts of a namespace, or of all namespaces
+// when ns is empty.
+func (c *Client) ListReceipts(ctx context.Context, ns string) ([]*v1.ReceiptSpec, error) {
+	l, err := c.D.Resource(Receipts).Namespace(ns).List(ctx, metav1.ListOptions{})
+	if err != nil {
+		return nil, err
+	}
+	out := make([]*v1.ReceiptSpec, 0, len(l.Items))
+	for i := range l.Items {
+		o, err := Decode[v1.ReceiptSpec, struct{}](&l.Items[i])
+		if err != nil {
+			return nil, err
+		}
+		out = append(out, &o.Spec)
+	}
+	return out, nil
+}
+
 // UpdateProblemStatus writes the status subresource with optimistic
 // concurrency: the resourceVersion in p.Meta must be current, so two agents
 // claiming the same work cannot both succeed.

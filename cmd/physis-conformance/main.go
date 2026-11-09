@@ -545,58 +545,34 @@ func tc10(t *T) error {
 	// A substrate may have changed its key (a new device, a lost one); its
 	// earlier receipts verify against the keys it lists as retired. A
 	// receipt signed with a key the substrate never published fails.
-	keys := map[string]map[string]bool{}
+	keys := map[string][]string{}
 	for _, s := range subs {
-		k := map[string]bool{s.Status.PublicKey: true}
-		for _, r := range s.Status.RetiredKeys {
-			k[r] = true
-		}
-		keys[s.Meta.Name] = k
+		keys[s.Meta.Name] = append([]string{s.Status.PublicKey}, s.Status.RetiredKeys...)
 	}
-	l, err := t.c.D.Resource(kube.Receipts).Namespace("").List(t.ctx, metav1.ListOptions{})
+	rs, err := t.c.ListReceipts(t.ctx, "")
 	if err != nil {
 		return err
 	}
-	chains := map[string][]*receipt.Receipt{}
-	for i := range l.Items {
-		o, err := kube.Decode[receipt.Receipt, struct{}](&l.Items[i])
-		if err != nil {
-			return err
-		}
-		r := o.Spec
-		chains[r.Substrate+"/"+r.Key] = append(chains[r.Substrate+"/"+r.Key], &r)
-	}
+	// Receipts of a chain may live in several namespaces and earlier ones
+	// may have been deleted with their namespace; CheckChains verifies the
+	// contiguous tail we can see.
+	reps := receipt.CheckChains(rs, keys)
 	verified := 0
-	for id, rs := range chains {
-		sub, signer, _ := strings.Cut(id, "/")
-		if !keys[sub][signer] {
-			return fmt.Errorf("chain of %s: signed with %.12s, a key the substrate never published", sub, signer)
+	for _, c := range reps {
+		if !c.OK() {
+			return fmt.Errorf("chain of %s: %s", c.Substrate, c.Error)
 		}
-		sort.Slice(rs, func(i, j int) bool { return rs[i].Seq < rs[j].Seq })
-		// Receipts of a chain may live in several namespaces and earlier ones
-		// may have been deleted with their namespace; verify the contiguous
-		// tail we can see.
-		start := 0
-		for i := 1; i < len(rs); i++ {
-			if rs[i].Seq != rs[i-1].Seq+1 {
-				start = i
-			}
-		}
-		tail := rs[start:]
-		if err := receipt.VerifyChain(tail, signer); err != nil {
-			return fmt.Errorf("chain of %s: %v", sub, err)
-		}
-		verified += len(tail)
-		if len(tail) >= 2 {
-			forged := *tail[0]
+		verified += c.Verified
+		if len(c.Tail) >= 2 {
+			forged := *c.Tail[0]
 			forged.DeviceJoules /= 10
-			tampered := append([]*receipt.Receipt{&forged}, tail[1:]...)
-			if receipt.VerifyChain(tampered, signer) == nil {
-				return fmt.Errorf("a tampered receipt of %s verified", sub)
+			tampered := append([]*receipt.Receipt{&forged}, c.Tail[1:]...)
+			if receipt.VerifyChain(tampered, c.Key) == nil {
+				return fmt.Errorf("a tampered receipt of %s verified", c.Substrate)
 			}
 		}
 	}
-	t.note("%d receipts in %d chains verified with the substrates' published keys; a tampered copy was rejected", verified, len(chains))
+	t.note("%d receipts in %d chains verified with the substrates' published keys; a tampered copy was rejected", verified, len(reps))
 	return nil
 }
 

@@ -17,6 +17,7 @@ import (
 	"github.com/kuberoot-dev/physis/pkg/device"
 	"github.com/kuberoot-dev/physis/pkg/grid"
 	"github.com/kuberoot-dev/physis/pkg/learn"
+	"github.com/kuberoot-dev/physis/pkg/reason"
 )
 
 // Policy is what the requester optimises.
@@ -210,6 +211,10 @@ type Decision struct {
 	// Physics lists every physics with at least one feasible candidate.
 	Physics []device.Physics `json:"feasiblePhysics,omitempty"`
 	Reasons []string         `json:"reasons,omitempty"` // why candidates were rejected (sample)
+	// ReasonCodes are the distinct codes of every rejection (package
+	// reason), not a sample: an agent can tell "over budget" from "too
+	// late" without parsing Reasons.
+	ReasonCodes []string `json:"reasonCodes,omitempty"`
 }
 
 // zoneAllowed reports whether a zone is in the request's allow-list.
@@ -250,7 +255,8 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 		conf = 0.9
 	}
 	d := &Decision{}
-	reject := func(format string, a ...any) {
+	reject := func(code, format string, a ...any) {
+		d.ReasonCodes = reason.Add(d.ReasonCodes, code)
 		if len(d.Reasons) < 20 {
 			d.Reasons = append(d.Reasons, fmt.Sprintf(format, a...))
 		}
@@ -258,11 +264,11 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 	var cands []Candidate
 	for _, s := range env.Substrates {
 		if !zoneAllowed(r, s.Zone) {
-			reject("%s: zone %s not allowed", s.Name, s.Zone)
+			reject(reason.ZoneNotAllowed, "%s: zone %s not allowed", s.Name, s.Zone)
 			continue
 		}
 		if len(r.Jurisdictions) > 0 && !contains(r.Jurisdictions, s.Jurisdiction) {
-			reject("%s: operator jurisdiction %q not allowed", s.Name, s.Jurisdiction)
+			reject(reason.JurisdictionNotAllowed, "%s: operator jurisdiction %q not allowed", s.Name, s.Jurisdiction)
 			continue
 		}
 		if !pinned(r, s.Model.Physics) {
@@ -270,7 +276,7 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 		}
 		series, err := env.Grid.Zone(s.Zone)
 		if err != nil {
-			reject("%s: %v", s.Name, err)
+			reject(reason.GridUnavailable, "%s: %v", s.Name, err)
 			continue
 		}
 		for _, a := range Catalog {
@@ -285,7 +291,7 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 				key := learn.Key{Class: string(r.Shape.Class), Algo: a.Name, Effort: e.Name, Physics: string(s.Model.Physics), SizeBucket: learn.Bucket(r.Shape.Size())}
 				pq, n := env.Learn.ProbAtLeast(key, r.Quality, 1.0)
 				if pq < conf {
-					reject("%s %s/%s: P(q>=%.3f) lower bound %.2f from %d runs < %.2f", s.Name, a.Name, e.Name, r.Quality, pq, n, conf)
+					reject(reason.QualityUnreachable, "%s %s/%s: P(q>=%.3f) lower bound %.2f from %d runs < %.2f", s.Name, a.Name, e.Name, r.Quality, pq, n, conf)
 					continue
 				}
 				cost := s.Model.Predict(ops)
@@ -300,7 +306,7 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 				if r.DataBytes > 0 {
 					l, ok := env.route(r.DataZone, s.Zone)
 					if !ok {
-						reject("%s: no link from %s to %s", s.Name, r.DataZone, s.Zone)
+						reject(reason.NoLink, "%s: no link from %s to %s", s.Name, r.DataZone, s.Zone)
 						continue
 					}
 					if len(r.Jurisdictions) > 0 {
@@ -311,7 +317,7 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 							}
 						}
 						if bad != "" {
-							reject("%s: the path %s crosses jurisdiction %s", s.Name, l.Name, bad)
+							reject(reason.JurisdictionNotAllowed, "%s: the path %s crosses jurisdiction %s", s.Name, l.Name, bad)
 							continue
 						}
 					}
@@ -344,7 +350,7 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 					avail := s.Model.AvailableAt(float64(st.Unix()), secs)
 					st = time.Unix(int64(math.Ceil(avail)), 0).UTC()
 					if st.Add(dur).After(r.Deadline) {
-						reject("%s %s/%s: finishes after deadline", s.Name, a.Name, e.Name)
+						reject(reason.DeadlineTooShort, "%s %s/%s: finishes after deadline", s.Name, a.Name, e.Name)
 						continue
 					}
 					ciAt := func(z *grid.Series) float64 {
@@ -371,7 +377,7 @@ func Plan(env *Env, r *Request) (*Decision, error) {
 						Start: st, Seconds: secs, Joules: joules + moveJ, GCO2: gco2, EUR: eur, PQuality: pq, QualityN: n, CI: ci,
 						ModelSeconds: cost.Seconds, ModelJoules: cost.Joules, MoveJoules: moveJ, MoveSeconds: moveS, Link: link.Name}
 					if !withinBudget(r.Budget, c) {
-						reject("%s %s/%s: over budget", s.Name, a.Name, e.Name)
+						reject(reason.BudgetExceeded, "%s %s/%s: over budget", s.Name, a.Name, e.Name)
 						continue
 					}
 					cands = append(cands, c)
