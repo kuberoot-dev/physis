@@ -24,6 +24,7 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/apis/meta/v1/unstructured"
 	"k8s.io/apimachinery/pkg/runtime/schema"
+	"k8s.io/client-go/util/retry"
 
 	v1 "github.com/kuberoot-dev/physis/api/v1alpha1"
 	"github.com/kuberoot-dev/physis/pkg/kube"
@@ -721,18 +722,22 @@ func tc12(t *T) error {
 // partition asks a substrate's agent to behave as if cut off from the API
 // server until a time (the agent's test hook).
 func (t *T) partition(sub string, until time.Time) error {
-	u, err := t.c.D.Resource(kube.Substrates).Get(t.ctx, sub, metav1.GetOptions{})
-	if err != nil {
+	// The agent writes the substrate every second (its heartbeat), so an
+	// update from a stale read conflicts: read again and retry.
+	return retry.RetryOnConflict(retry.DefaultRetry, func() error {
+		u, err := t.c.D.Resource(kube.Substrates).Get(t.ctx, sub, metav1.GetOptions{})
+		if err != nil {
+			return err
+		}
+		ann := u.GetAnnotations()
+		if ann == nil {
+			ann = map[string]string{}
+		}
+		ann[v1.Group+"/simulate-partition-until"] = until.UTC().Format(time.RFC3339)
+		u.SetAnnotations(ann)
+		_, err = t.c.D.Resource(kube.Substrates).Update(t.ctx, u, metav1.UpdateOptions{})
 		return err
-	}
-	ann := u.GetAnnotations()
-	if ann == nil {
-		ann = map[string]string{}
-	}
-	ann[v1.Group+"/simulate-partition-until"] = until.UTC().Format(time.RFC3339)
-	u.SetAnnotations(ann)
-	_, err = t.c.D.Resource(kube.Substrates).Update(t.ctx, u, metav1.UpdateOptions{})
-	return err
+	})
 }
 
 func tc13(t *T) error {
