@@ -104,8 +104,9 @@ list is part of the results, not an appendix to them.
 - **The local level raises effort from the agent's own results** only when it
   has at least eight of them; it is unit-tested, and on the stands the
   emulated devices did not drift enough to trigger it.
-- **The DRA bridge was tested with one hand-written ResourceSlice**, not with
-  a real DRA driver.
+- **The DRA bridge was tested with hand-written ResourceSlices** (on the
+  laptop stand and on the four-node kuberoot cluster), not with a real DRA
+  driver.
 - **The WASI device core ran under wasmtime on the laptop**, not on a
   microcontroller; the line protocol is the same, the hardware is not.
 - **The container-free kuberoot distribution** was built and booted as one
@@ -113,4 +114,5 @@ list is part of the results, not an appendix to them.
   boot while the API server comes up, and the agents use the admin
   kubeconfig rather than identities of their own.
 - **The agent layer** (reason codes, idempotency, rate limit, MCP) is covered by
-  unit tests and a run on the stand, not by conformance tests.
+  unit tests and runs on the laptop stand and the kuberoot cluster, not by
+  conformance tests.

@@ -125,3 +125,17 @@ fewer colon and dash constructions: from 173 sentences with a colon to about
 40) were checked by script against the text before them: the multisets of
 numbers, citation keys, backtick spans, the tables, headings, image links and
 the bibliography are identical.
+
+## 9. Every feature on the servers
+
+The features first checked on the laptop stand were run again on the
+four-node kuberoot cluster with the current code and all twenty emulated
+substrates (conformance 17/17), and on the container-free node with all
+twenty (17/17). Hierarchy, the DRA bridge, identity transfer between nodes,
+MCP and a live network cut were each run there and recorded as screencasts
+from the live systems (`hack/demos/`, `docs/img/demo-*.gif`). This round
+found two real defects that the laptop had hidden: lease renewals were
+rejected by the API server (nanoseconds where a MicroTime is required) and
+could be starved by a slow reconcile, and the Helm chart shipped a stale
+calibration, so the new physics were alive but never planned. Both are
+fixed, with tests.
