@@ -11,6 +11,7 @@ implemented.
 | Materials limits: copper, transformers, turbines, helium; oxygen is not a limit | 1, F1 | design |
 | Divergent physics of computation (analog, Ising, p-bits, optics, SFQ, adiabatic, neuromorphic, quantum, living cultures, DNA storage) | 1, F2; 7 "Двенадцать физик" | CPU and GPU (Apple M4) real and measured; ten emulated and calibrated (7, 8) |
 | Non-copyable device state; migration means retraining; care of devices; ethics of living hardware | 1, F2 | design |
+| Architectures that change how numbers are represented or where they are computed (systolic, dataflow, PIM, FP8/MXFP4, stochastic, hyperdimensional, CGRA) | 1, F2; 8.6 | five emulated with measured accuracy; conformance 17/17 |
 | Dissolving machine boundaries (CXL, optical interconnect, rack-scale) | 1, F3 | design |
 | Agents as the main users; defensive server-side code | 1, F4; 3 | design; budgets and mandates enforced server-side (TC-06, TC-12) |
 | Trust is no longer free; verification levels; receipts | 1, F5; 3 | tested (TC-10, TC-11) |

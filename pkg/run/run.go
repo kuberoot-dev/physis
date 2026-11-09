@@ -33,6 +33,8 @@ type Instance struct {
 	Batch     *problem.Dataset
 	ExactAcc  float64
 	Reservoir *solve.Reservoir
+	// HDC holds trained hyperdimensional classifiers by dimension.
+	HDC map[int]*solve.HDC
 }
 
 // Shape returns what the scheduler sees.
@@ -119,6 +121,22 @@ func Execute(m *device.Model, algo, effort string, in *Instance, seed uint64) (*
 		value, ops, spins = r.Cut, r.Ops, r.Spins
 	case "exact-fp":
 		r := solve.ClassifyExact(in.Model, in.Batch)
+		value, ops, correct = float64(r.Correct), r.Ops, r.Correct
+	case "fp8", "mxfp4":
+		r := solve.ClassifyLowPrecision(in.Model, in.Batch, algo)
+		value, ops, correct = float64(r.Correct), r.Ops, r.Correct
+	case "int8":
+		r := solve.ClassifyInt8(in.Model, in.Batch)
+		value, ops, correct = float64(r.Correct), r.Ops, r.Correct
+	case "sc":
+		r := solve.ClassifyStochastic(in.Model, in.Batch, e.Sweeps, seed)
+		value, ops, correct = float64(r.Correct), r.Ops, r.Correct
+	case "hdc":
+		h := in.HDC[e.Sweeps]
+		if h == nil {
+			return nil, fmt.Errorf("no hyperdimensional model of dimension %d", e.Sweeps)
+		}
+		r := h.Classify(in.Batch)
 		value, ops, correct = float64(r.Correct), r.Ops, r.Correct
 	case "exact-gpu":
 		c, o, d, err := classifyOnGPU(in)

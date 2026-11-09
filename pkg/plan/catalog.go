@@ -67,6 +67,13 @@ var Catalog = []Algorithm{
 		Efforts: []Effort{{Name: "p4s256", Sweeps: 4, Starts: 256}, {Name: "p8s1024", Sweeps: 8, Starts: 1024}}},
 	{Name: "exact-fp", Class: Classify, Physics: []device.Physics{device.CPU}, Efforts: []Effort{{Name: "fp64"}}},
 	{Name: "exact-gpu", Class: Classify, Physics: []device.Physics{device.GPU}, Efforts: []Effort{{Name: "fp32"}}},
+	{Name: "fp8", Class: Classify, Physics: []device.Physics{device.Systolic}, Efforts: []Effort{{Name: "e4m3"}}},
+	{Name: "mxfp4", Class: Classify, Physics: []device.Physics{device.Systolic}, Efforts: []Effort{{Name: "e2m1"}}},
+	{Name: "int8", Class: Classify, Physics: []device.Physics{device.Systolic, device.PIMDRAM, device.Dataflow}, Efforts: []Effort{{Name: "int8"}}},
+	{Name: "sc", Class: Classify, Physics: []device.Physics{device.Stochastic},
+		Efforts: []Effort{{Name: "l64", Sweeps: 64}, {Name: "l256", Sweeps: 256}, {Name: "l1024", Sweeps: 1024}, {Name: "l4096", Sweeps: 4096}}},
+	{Name: "hdc", Class: Classify, Physics: []device.Physics{device.HDC},
+		Efforts: []Effort{{Name: "d512", Sweeps: 512}, {Name: "d2048", Sweeps: 2048}, {Name: "d8192", Sweeps: 8192}}},
 	{Name: "analog", Class: Classify, Physics: []device.Physics{device.AnalogIMC, device.Photonic}, Efforts: []Effort{{Name: "w4"}}},
 	{Name: "spiking", Class: Classify, Physics: []device.Physics{device.Neuromorphic},
 		Efforts: []Effort{{Name: "t8", Sweeps: 8}, {Name: "t32", Sweeps: 32}, {Name: "t128", Sweeps: 128}}},
@@ -106,8 +113,18 @@ func EstimateOps(a Algorithm, e Effort, s Shape) (solve.Ops, bool) {
 		return solve.Ops{SpinUpdates: int64(e.Sweeps) * int64(s.N), MACs: int64(e.Sweeps) * int64(s.DegreeSum), RandomBits: 32 * int64(e.Sweeps) * int64(s.N)}, true
 	case "pbit":
 		return solve.Ops{SpinUpdates: int64(e.Sweeps) * int64(s.N), MACs: int64(e.Sweeps) * int64(s.DegreeSum), RandomBits: int64(e.Sweeps) * int64(s.N)}, true
-	case "exact-fp", "exact-gpu", "analog":
+	case "exact-fp", "exact-gpu", "analog", "fp8", "int8":
 		return solve.Ops{MACs: int64(s.N) * int64(s.DegreeSum)}, true
+	case "mxfp4":
+		// Charged as 8-bit-equivalent MACs: a quarter of an FP8 multiply.
+		return solve.Ops{MACs: int64(s.N) * int64(s.DegreeSum) / 4}, true
+	case "sc":
+		// Bit operations: stream length x MACs.
+		return solve.Ops{MACs: int64(e.Sweeps) * int64(s.N) * int64(s.DegreeSum), RandomBits: 2 * int64(e.Sweeps) * int64(s.N) * int64(s.DegreeSum)}, true
+	case "hdc":
+		// Encoding (dimension x features) plus similarity (dimension x
+		// classes) per sample; DegreeSum carries classes x features = 640.
+		return solve.Ops{MACs: int64(s.N) * int64(e.Sweeps) * int64(s.DegreeSum/10+10)}, true
 	case "cim":
 		return solve.Ops{SpinUpdates: int64(e.Sweeps) * int64(s.N), MACs: int64(e.Sweeps) * int64(s.DegreeSum)}, true
 	case "qaoa":

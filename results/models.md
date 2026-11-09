@@ -11,4 +11,9 @@
 | neuromorphic | да | 1e+10 (1e+09–1e+11) · assumption | 2.36e-11 (4e-12–2.5e-11) · ref:loihi | 1 (0.1–5) · assumption | 0.01 (0.001–0.1) · assumption | — | — | 1048576 |
 | photonic | да | 1e+12 (1e+11–1e+13) · assumption | 2.7e-13 (2e-14–2e-12) · ref:photonic2024 | 5 (1–20) · assumption | 0.001 (0.0001–0.01) · assumption | — | — | 65536 |
 | organoid | да | 3e+04 (3e+03–3e+05) · assumption | — | 30 (20–100) · ref:cl1power | 1 (0.1–10) · assumption | — | 3600 с каждые 24 ч | 1048576 |
+| systolic | да | 4.6e+13 (4.6e+12–4.6e+13) · ref:jouppi2017tpu | — | 40 (30–75) · ref:jouppi2017tpu | 0.001 (0.0001–0.01) · assumption | 0.04 (0.003–0.75) · assumption | — | 1073741824 |
+| pim-dram | да | 6e+11 (6e+10–6e+11) · ref:kwon2021fimdram | 4.6e-11 (2e-11–9.3e-11) · assumption | — | 0.0001 (1e-05–0.001) · assumption | — | — | 1073741824 |
+| dataflow | да | 3.75e+14 (3.75e+13–3.75e+14) · ref:abts2020tsp | — | 300 (150–400) · assumption | 0.0001 (1e-05–0.001) · assumption | 0.03 (0.0015–0.4) · assumption | — | 1073741824 |
+| stochastic | да | 1e+12 (1e+11–1e+13) · assumption | 5e-15 (1e-15–3e-14) · assumption | — | 0.0001 (1e-05–0.001) · assumption | — | — | 1073741824 |
+| hdc | да | 1e+12 (1e+11–1e+13) · assumption | 6e-16 (2e-16–5e-15) · assumption | — | 0.0001 (1e-05–0.001) · assumption | — | — | 1073741824 |
 | gpu | нет | 5e+09 (8e+08–7e+09) · measured | — | 8 (3–20) · assumption | 0.004 (0.003–0.05) · measured | 0.032 (0.009–1) · assumption | — | 1073741824 |

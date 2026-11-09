@@ -5,7 +5,7 @@ list is part of the results, not an appendix to them.
 
 ## Physics
 
-- **Ten of the twelve physics are emulated.** The CPU and, on the laptop
+- **Fifteen of the seventeen physics are emulated.** The CPU and, on the laptop
   stand, the Apple M4 GPU (through MLX) are real hardware; the GPU's time is
   measured, its power is an assumption because Apple does not publish it.
   The Ising machine, SFQ and adiabatic annealers, p-bits, coherent Ising
@@ -82,3 +82,14 @@ list is part of the results, not an appendix to them.
 - **The partition test hook** simulates a cut-off agent by an annotation in
   the conformance suite; a network-level partition (the worker's cluster link
   taken down) was tested separately on the two-node kuberoot cluster on a laptop and on the workshop cluster (three and four nodes).
+
+## Architectures added later
+
+- **The five architectures that change how numbers are represented or where
+  they are computed** (systolic tensor array, DRAM processing, dataflow,
+  stochastic, hyperdimensional) run in the live stands and in conformance, but
+  not in the published quarterly simulations, which predate them.
+- **Their accuracy is measured; their energy is modelled.** Peak rates are
+  used, so small batches look better than they would at real utilisation;
+  the dataflow card power and the energy per bit-op of stochastic and
+  hyperdimensional circuits are assumptions with ranges.

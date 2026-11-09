@@ -79,12 +79,16 @@ func Digits(dir string, sizes []int, reservoirNoise float64) ([]Named, error) {
 	m := problem.TrainSoftmax(tr, 200, 0.5, 1e-4)
 	res := solve.NewReservoir(64, 300, 8, reservoirNoise, 1)
 	res.Train(tr, 1.0)
+	hdc := map[int]*solve.HDC{}
+	for _, d := range []int{512, 2048, 8192} {
+		hdc[d] = solve.NewHDC(d, tr, 1)
+	}
 	var out []Named
 	for _, sz := range sizes {
 		for off := 0; off+sz <= len(te.X) && len(out) < 1000; off += sz {
 			b := &problem.Dataset{Name: fmt.Sprintf("digits-%d@%d", sz, off), X: te.X[off : off+sz], Y: te.Y[off : off+sz], Classes: 10, Features: 64}
 			acc := solve.ClassifyExact(m, b).Accuracy
-			out = append(out, Named{Name: b.Name, Instance: &run.Instance{Model: m, Batch: b, ExactAcc: acc, Reservoir: res}, RefSource: "exact fp64"})
+			out = append(out, Named{Name: b.Name, Instance: &run.Instance{Model: m, Batch: b, ExactAcc: acc, Reservoir: res, HDC: hdc}, RefSource: "exact fp64"})
 			if sz >= len(te.X)/2 {
 				break
 			}

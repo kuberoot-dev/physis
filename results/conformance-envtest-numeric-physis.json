@@ -1,0 +1,205 @@
+[
+ {
+  "id": "TC-01",
+  "level": "Core",
+  "principle": "P3",
+  "title": "every substrate describes its physics with provenance",
+  "pass": true,
+  "seconds": 0.002943333,
+  "evidence": [
+   "20 live substrates, 17 physics: adiabatic, analog-imc, cpu, dataflow, gpu, hdc, ising-digital, neuromorphic, optical-ising, organoid, pbit, photonic, pim-dram, qpu, sfq, stochastic, systolic"
+  ]
+ },
+ {
+  "id": "TC-02",
+  "level": "Core",
+  "principle": "P7",
+  "title": "work completes without Node objects; roles grant nothing on nodes",
+  "pass": true,
+  "seconds": 5.546770041,
+  "evidence": [
+   "Node objects in the cluster: 0",
+   "ClusterRole physis-agent: no access to nodes or pods",
+   "ClusterRole physis-scheduler: no access to nodes or pods",
+   "problem completed on hdc-fr (hdc) with 0 Node objects present"
+  ]
+ },
+ {
+  "id": "TC-03",
+  "level": "Core",
+  "principle": "P2,P4",
+  "title": "an outcome request is planned with predicted cost and met by its deadline",
+  "pass": true,
+  "seconds": 3.019342959,
+  "evidence": [
+   "plan: pbit/w30000 on pbit-gb (pbit), predicted 0.00124s, 0.0123J, 9.41e-07gCO2 at 275 g/kWh",
+   "result: quality 1.0000, finished 1m57s before the deadline"
+  ]
+ },
+ {
+  "id": "TC-04",
+  "level": "Core",
+  "principle": "P4",
+  "title": "the plan exposes a non-dominated set of alternatives",
+  "pass": true,
+  "seconds": 0.507816458,
+  "evidence": [
+   "24 candidates considered, 3 non-dominated alternatives exposed"
+  ]
+ },
+ {
+  "id": "TC-05",
+  "level": "Core",
+  "principle": "P5",
+  "title": "an unattainable outcome is refused with reasons and never run",
+  "pass": true,
+  "seconds": 2.017293916,
+  "evidence": [
+   "refused: no way to reach quality 1.000 by 2026-11-08T22:36:57-07:00 within the budget on the 20 live substrates",
+   "e.g. adiabatic-fr anneal/w300: P(q\u003e=1.000) lower bound 0.00 from 12 runs \u003c 1.00"
+  ]
+ },
+ {
+  "id": "TC-06",
+  "level": "Core",
+  "principle": "P4",
+  "title": "a budget is a hard limit",
+  "pass": true,
+  "seconds": 4.033006583,
+  "evidence": [
+   "cheapest plan 0.00504 J; with a 5.04e-06 J budget: Rejected"
+  ]
+ },
+ {
+  "id": "TC-07",
+  "level": "Core",
+  "principle": "P11",
+  "title": "zones and operator jurisdictions are hard constraints",
+  "pass": true,
+  "seconds": 12.101295542,
+  "evidence": [
+   "zone DE: Planned",
+   "zone GB: Planned",
+   "zone PL: Planned",
+   "zone FR: Planned",
+   "jurisdiction EU: Planned",
+   "jurisdiction UK: Planned"
+  ]
+ },
+ {
+  "id": "TC-08",
+  "level": "Core",
+  "principle": "P14",
+  "title": "a dry run returns a plan and runs nothing",
+  "pass": true,
+  "seconds": 10.027652916,
+  "evidence": [
+   "plan returned; nothing claimed after 8s"
+  ]
+ },
+ {
+  "id": "TC-09",
+  "level": "Extended",
+  "principle": "P12",
+  "title": "deferrable work is placed at the lowest forecast carbon within its deadline",
+  "pass": true,
+  "seconds": 2.012180208,
+  "evidence": [
+   "planned on adiabatic-fr in FR at 2026-11-09T11:00:00Z (wait 5h23m0s), 63 g/kWh forecast"
+  ]
+ },
+ {
+  "id": "TC-10",
+  "level": "Core",
+  "principle": "P9",
+  "title": "every result has a signed receipt whose chain verifies offline; tampering is detected",
+  "pass": true,
+  "seconds": 7.048835458,
+  "evidence": [
+   "5 receipts in 2 chains verified with the substrates' published keys; a tampered copy was rejected"
+  ]
+ },
+ {
+  "id": "TC-11",
+  "level": "Core",
+  "principle": "P9",
+  "title": "receipts are immutable",
+  "pass": true,
+  "seconds": 0.003902625,
+  "evidence": [
+   "update of receipt tc02-hdc-fr-1 refused: Receipt.physis.kuberoot.dev \"tc02-hdc-fr-1\" is invalid: spec: Invalid value: receipts are immutable"
+  ]
+ },
+ {
+  "id": "TC-12",
+  "level": "Core",
+  "principle": "P10",
+  "title": "work outside a valid human mandate is refused; approval thresholds hold",
+  "pass": true,
+  "seconds": 6.051503333,
+  "evidence": [
+   "mandate signed by a key the principal does not hold: no valid mandate: mandate of \"conformance-person\" signed by an unknown key",
+   "valid mandate, plan above threshold: AwaitingApproval (plan of 0 J above the 0 J approval threshold)",
+   "after a person approved: Succeeded"
+  ]
+ },
+ {
+  "id": "TC-13",
+  "level": "Core",
+  "principle": "P7",
+  "title": "work planned on a substrate that goes silent returns to the pool and completes elsewhere",
+  "pass": true,
+  "seconds": 34.228290583,
+  "evidence": [
+   "would run on adiabatic-fr; that agent was silenced for 75s before submission",
+   "returned to the pool 1 time(s), completed on sfq-de (sfq)"
+  ]
+ },
+ {
+  "id": "TC-14",
+  "level": "Extended",
+  "principle": "P8",
+  "title": "a substrate cut off after claiming finishes the work and reports it later",
+  "pass": true,
+  "seconds": 32.231615292,
+  "evidence": [
+   "claimed by organoid-fr; agent cut off until 2026-11-08T22:38:46-07:00",
+   "work finished at 2026-11-09T05:38:29Z, during the cut; report delivered after it ended, receipt #1"
+  ]
+ },
+ {
+  "id": "TC-15",
+  "level": "Core",
+  "principle": "P2,P3",
+  "title": "the same problem class is offered on more than one physics",
+  "pass": true,
+  "seconds": 3.536218583,
+  "evidence": [
+   "maxcut: reachable on cpu, ising-digital, pbit, sfq; chosen sfq",
+   "classify: reachable on cpu, dataflow, gpu, hdc, neuromorphic, organoid, photonic, pim-dram, stochastic, systolic; chosen hdc"
+  ]
+ },
+ {
+  "id": "TC-16",
+  "level": "Core",
+  "principle": "P5",
+  "title": "results report achieved quality; plans report a confidence bound",
+  "pass": true,
+  "seconds": 2.523902083,
+  "evidence": [
+   "plan: P(quality \u003e= 0.95) \u003e= 0.996 from 257 runs; achieved 1.0110"
+  ]
+ },
+ {
+  "id": "TC-17",
+  "level": "Core",
+  "principle": "P11",
+  "title": "data movement is priced from Link objects; paths through disallowed jurisdictions are not used",
+  "pass": true,
+  "seconds": 3.5328679579999998,
+  "evidence": [
+   "data in FR, planned in FR over fr-fr: 477 J and 0.08 s of movement, as the Link prices it",
+   "data in FR, jurisdiction EU forbidden, every path out of FR crosses it: Rejected"
+  ]
+ }
+]

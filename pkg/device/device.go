@@ -53,6 +53,20 @@ const (
 	// on the Apple M4 of the laptop stand the matrix multiply runs on its
 	// GPU through MLX, and the device time is measured.
 	GPU Physics = "gpu"
+	// Systolic: a tensor array (TPU-like) multiplying in low or block-scaled
+	// precision (FP8, MXFP4, int8). Emulated: the arithmetic is quantised as
+	// the array would quantise it, so accuracy is measured.
+	Systolic Physics = "systolic"
+	// PIMDRAM: processing in DRAM banks (HBM-PIM, UPMEM-like), int8. Emulated.
+	PIMDRAM Physics = "pim-dram"
+	// Dataflow: a spatial dataflow inference processor (Groq-, SambaNova-,
+	// Cerebras-like) with weights in on-chip SRAM, int8. Emulated.
+	Dataflow Physics = "dataflow"
+	// Stochastic: stochastic computing, numbers as random bitstreams, a
+	// multiply as an XNOR gate. Emulated, including its sampling noise.
+	Stochastic Physics = "stochastic"
+	// HDC: hyperdimensional computing on in-memory hardware. Emulated.
+	HDC Physics = "hdc"
 )
 
 // Value is a model parameter with its provenance.
@@ -102,7 +116,7 @@ func (m *Model) countOps(o solve.Ops) float64 {
 		// A core pays for both the local-field arithmetic and the update
 		// decision; its rate is calibrated on this sum.
 		return float64(o.SpinUpdates + o.MACs)
-	case AnalogIMC, Photonic, Neuromorphic, GPU:
+	case AnalogIMC, Photonic, Neuromorphic, GPU, Systolic, PIMDRAM, Dataflow, Stochastic, HDC:
 		return float64(o.MACs)
 	default:
 		return float64(o.SpinUpdates)
@@ -215,6 +229,54 @@ var (
 // placeholder until calibrated from measured runs (see learn.Calibrate).
 func Builtin(p Physics) *Model {
 	switch p {
+	case Systolic:
+		// TPU v1: 65,536 8-bit MACs at 700 MHz, 92 TOPS peak, 40 W busy
+		// (ref:jouppi2017tpu). FP8 runs at the int8 rate (assumption: FP8
+		// units match int8 throughput on later arrays).
+		return &Model{Physics: Systolic, Emulated: true,
+			OpsPerSecond: Value{V: 4.6e13, Lo: 4.6e12, Hi: 4.6e13, Source: "ref:jouppi2017tpu", Note: "peak; the low end allows 10% utilisation"},
+			ActivePowerW: Value{V: 40, Lo: 30, Hi: 75, Source: "ref:jouppi2017tpu", Note: "busy power; 75 W TDP"},
+			SetupSeconds: Value{V: 1e-3, Lo: 1e-4, Hi: 1e-2, Source: "assumption", Note: "load weights and inputs over the host link"},
+			SetupJoules:  Value{V: 1e-3 * 40, Lo: 1e-4 * 30, Hi: 1e-2 * 75, Source: "assumption", Note: "setup time x busy power"},
+			MaxSize:      1 << 30, PrecisionBits: 8}
+	case Dataflow:
+		// Groq TSP: about 750 TOPS int8 peak, 220 MiB on-chip SRAM, no caches
+		// (ref:abts2020tsp). Power is not published in the sources we read.
+		return &Model{Physics: Dataflow, Emulated: true,
+			OpsPerSecond: Value{V: 3.75e14, Lo: 3.75e13, Hi: 3.75e14, Source: "ref:abts2020tsp", Note: "peak int8; the low end allows 10% utilisation"},
+			ActivePowerW: Value{V: 300, Lo: 150, Hi: 400, Source: "assumption", Note: "card power; not in the cited sources"},
+			SetupSeconds: Value{V: 1e-4, Lo: 1e-5, Hi: 1e-3, Source: "assumption", Note: "weights already resident in SRAM"},
+			SetupJoules:  Value{V: 1e-4 * 300, Lo: 1e-5 * 150, Hi: 1e-3 * 400, Source: "assumption", Note: "setup time x card power"},
+			MaxSize:      1 << 30, PrecisionBits: 8}
+	case PIMDRAM:
+		// HBM-PIM: 1.2 TFLOPS from bank-level SIMD (ref:kwon2021fimdram).
+		// Energy per MAC: a DRAM read costs 1.3-2.6 nJ per 64 bits
+		// (ref:horowitz2014), and PIM cuts the energy per bit moved by 3.5x
+		// (ref:lee2021pim): about 46-93 pJ per weight byte.
+		return &Model{Physics: PIMDRAM, Emulated: true,
+			OpsPerSecond: Value{V: 6e11, Lo: 6e10, Hi: 6e11, Source: "ref:kwon2021fimdram", Note: "1.2 TFLOPS = 6e11 MAC/s peak"},
+			EnergyPerOp:  Value{V: 46e-12, Lo: 20e-12, Hi: 93e-12, Source: "assumption", Note: "derived from ref:horowitz2014 and ref:lee2021pim"},
+			SetupSeconds: Value{V: 1e-4, Lo: 1e-5, Hi: 1e-3, Source: "assumption", Note: "kernel launch on the PIM units"},
+			MaxSize:      1 << 30, PrecisionBits: 8}
+	case Stochastic:
+		// One bit-op is a gate on two random bits; the survey gives no
+		// energy figure (ref:alaghi2013survey), so the energy per bit-op is an
+		// assumption, bounded above by an 8-bit add (0.03 pJ, ref:horowitz2014).
+		return &Model{Physics: Stochastic, Emulated: true,
+			OpsPerSecond: Value{V: 1e12, Lo: 1e11, Hi: 1e13, Source: "assumption", Note: "bit-ops per second across parallel lanes"},
+			EnergyPerOp:  Value{V: 5e-15, Lo: 1e-15, Hi: 30e-15, Source: "assumption", Note: "gate plus random-number generation per bit"},
+			SetupSeconds: Value{V: 1e-4, Lo: 1e-5, Hi: 1e-3, Source: "assumption"},
+			MaxSize:      1 << 30, PrecisionBits: 1}
+	case HDC:
+		// In-memory hyperdimensional computing saves more than 6x end-to-end
+		// energy over a digital CMOS design (ref:karunaratne2020inmemory). A
+		// digital bit operation is taken as an eighth of an 8-bit add
+		// (0.03 pJ, ref:horowitz2014): about 0.6 fJ per bit-op in memory.
+		return &Model{Physics: HDC, Emulated: true,
+			OpsPerSecond: Value{V: 1e12, Lo: 1e11, Hi: 1e13, Source: "assumption", Note: "bit-ops per second of an in-memory array"},
+			EnergyPerOp:  Value{V: 0.6e-15, Lo: 0.2e-15, Hi: 5e-15, Source: "assumption", Note: "derived from ref:horowitz2014 and ref:karunaratne2020inmemory"},
+			SetupSeconds: Value{V: 1e-4, Lo: 1e-5, Hi: 1e-3, Source: "assumption", Note: "class prototypes resident in memory"},
+			MaxSize:      1 << 30, PrecisionBits: 1}
 	case GPU:
 		// Rate and setup measured on the Apple M4 of the laptop stand with
 		// tools/gpu-worker.py (8.3e8 MAC/s on a 1797-image batch, 6.5e9 on
@@ -227,7 +289,7 @@ func Builtin(p Physics) *Model {
 			// The GPU draws power while it sets up, as the measured device
 			// time (setup plus compute) is charged at the same power.
 			SetupJoules: Value{V: 0.004 * 8, Lo: 0.003 * 3, Hi: 0.05 * 20, Source: "assumption", Note: "setup time x the assumed power"},
-			MaxSize:      1 << 30, PrecisionBits: 32}
+			MaxSize:     1 << 30, PrecisionBits: 32}
 	case CPU:
 		return &Model{Physics: CPU, OpsPerSecond: Value{V: 5e7, Lo: 1e7, Hi: 2e8, Source: "measured", Note: "calibrated per host"},
 			ActivePowerW: CorePowerEPYC9454P, MaxSize: 1 << 30}
@@ -339,3 +401,8 @@ var All = []Physics{CPU, IsingDigital, PBit, AnalogIMC, QPU, OpticalIsing, SFQ, 
 // Hosted are real physics that need hardware on the agent's host (a GPU
 // worker); they are not part of the simulated fleet.
 var Hosted = []Physics{GPU}
+
+// Numeric are architectures that change how numbers are represented or where
+// they are computed rather than the physics of the switch. They run in the
+// live stands; the published simulations predate them.
+var Numeric = []Physics{Systolic, PIMDRAM, Dataflow, Stochastic, HDC}

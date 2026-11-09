@@ -93,7 +93,7 @@ func (l *Loader) Load(ref v1.InstanceRef, bestFound map[string]float64) (*run.In
 		}
 		b := &problem.Dataset{Name: fmt.Sprintf("digits-%d@%d", ref.Digits.Size, lo), X: full.Batch.X[lo:hi], Y: full.Batch.Y[lo:hi], Classes: 10, Features: 64}
 		acc := solve.ClassifyExact(full.Model, b).Accuracy
-		return &run.Instance{Model: full.Model, Batch: b, ExactAcc: acc, Reservoir: full.Reservoir}, nil
+		return &run.Instance{Model: full.Model, Batch: b, ExactAcc: acc, Reservoir: full.Reservoir, HDC: full.HDC}, nil
 	}
 	return nil, fmt.Errorf("instance not set")
 }
